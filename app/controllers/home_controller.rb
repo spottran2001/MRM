@@ -4,4 +4,9 @@ class HomeController < ApplicationController
 
   def home_page
   end
+
+  def page_usinfo
+    @user = User.find(params[:user])
+    binding.pry
+  end
 end

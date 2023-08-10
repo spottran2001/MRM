@@ -693,9 +693,9 @@ html,body {
                         <i class="fa-regular fa-bell"></i>
                     </div>
                     <div class="user__info">
-                        <p>Nhân viên / Giảng viên</p>
+                        <p> <%= @user.role || "N/A" %></p>
                         <p>
-                            thanhnhan@vanlanguni.vn
+                            <%= @user.email || "N/A"%>
                         </p>
                         
                     </div>
@@ -715,7 +715,7 @@ html,body {
                 </div>
                 <div class="info__content">
                   <div class="info__title">
-                    <h1>Lê Thanh Nhàn</h1>
+                    <h1><%= @user.name %></h1>
                     <p class="info">Thông tin</p>
                   </div>
                    <nav class="info__nav">
@@ -723,7 +723,7 @@ html,body {
                         <li>
                             <span></span>
                             <p>Email</p>
-                            Thanhnhan@vanlanguni.com 
+                            <%= @user.email || "N/A" %>
                         </li>
                         <li>
                             <span></span>
@@ -733,17 +733,17 @@ html,body {
                         <li>
                             <span></span>
                             <p>Chức vụ</p>
-                            Giảng viên
+                            <%= @user.role || "N/A" %>
                         </li>
                         <li>
                             <span></span>
                             <p>Bộ môn</p>
-                            Vật lí đại cương
+                            <%= @user.subject.name || "N/A" %>
                         </li>
                         <li>
                             <span></span>
                             <p>Khoa</p>
-                           Khoa học cơ bản
+                            <%= @user.faculty.name || "N/A" %>
                         </li>
 
                     </ul>
