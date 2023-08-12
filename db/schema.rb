@@ -33,8 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_070826) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "role"
-    t.integer "faculty_id"
-    t.integer "subject_id"
+    t.bigint "faculty_id"
+    t.bigint "subject_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["faculty_id"], name: "index_users_on_faculty_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
