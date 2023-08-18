@@ -11,4 +11,8 @@ class HomeController < ApplicationController
 
   def page_stats
   end
+
+  def report
+
+  end
 end

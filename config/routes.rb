@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   get "page_usinfo", to: 'home#page_usinfo'
   get "statistic", to: 'home#page_stats' 
+  get "reports", to: 'home#report' 
 end
