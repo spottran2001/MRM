@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get "page_usinfo", to: 'home#page_usinfo' 
+  get "page_usinfo", to: 'home#page_usinfo'
+  get "statistic", to: 'home#page_stats' 
 end
