@@ -10,11 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_09_070826) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_18_094620) do
   create_table "faculties", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "report_details", force: :cascade do |t|
+    t.text "report_value", null: false
+    t.string "report_keys", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "name"
+    t.text "title", null: false
+    t.boolean "is_apply"
+    t.datetime "apply_time"
+    t.datetime "last_submit_time"
+    t.datetime "confirm_time"
+    t.datetime "return_time"
+    t.string "status", default: "shopper", null: false
+    t.integer "submiter_id"
+    t.integer "returner_id"
+    t.string "report_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "report_details_id"
+    t.index ["report_details_id"], name: "index_reports_on_report_details_id"
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -33,10 +58,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_070826) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "role"
-    t.integer "faculty_id"
-    t.integer "subject_id"
+    t.bigint "faculty_id"
+    t.bigint "subject_id"
+    t.bigint "reports_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["faculty_id"], name: "index_users_on_faculty_id"
+    t.index ["reports_id"], name: "index_users_on_reports_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["subject_id"], name: "index_users_on_subject_id"
   end
