@@ -1,9 +1,18 @@
-class HomeController < ApplicationController
+class UserController < ApplicationController
+  before_action :authenticate_user!
+  def index
+    if current_user.role != "admin"
+      @user = User.find(current_user.id)
+    else
+      @user = User.all
+    end
+  end
+
   def page_login
   end
 
-  def page_usinfo
-    @user = User.find(params[:user])
+  def show
+    @user = params[:id].blank? ? User.find(current_user.id) : User.find(params[:id])
   end
 
   def page_stats
@@ -15,7 +24,6 @@ class HomeController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @role = Role.all
     @faculties = Faculty.all
     @subjects = Subject.all
   end

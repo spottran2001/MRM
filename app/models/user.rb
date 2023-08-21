@@ -8,4 +8,12 @@ class User < ApplicationRecord
 
   belongs_to :faculty, optional: true
   belongs_to :subject, optional: true
+
+  def self.from_omniauth(auth)
+	  where(email: auth.info.email).first_or_create do |user|
+      user.email = auth.info.email
+      user.name = auth.info.name
+      user.password = Devise.friendly_token[0,20]
+	  end
+  end
 end

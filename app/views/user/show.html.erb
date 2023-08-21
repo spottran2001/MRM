@@ -753,7 +753,7 @@ html,body {
                     <%= image_tag("https://toigingiuvedep.vn/wp-content/uploads/2021/07/hinh-ve-don-gian-va-de-thuong-nhat.jpg")%>
                 </div>
                 <div class="btn_edit-info">
-                    <button>CHỈNH SỬA</button>
+                <%= button_to  "CHỈNH SỬA" ,edit_user_path(@user), method: :get%>
                 </div>
             </div>
         </div>

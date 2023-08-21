@@ -286,9 +286,12 @@ footer {
                            </div>
                             <div class="office__btn">
                                 <form class="button_to" method="post" action="/users/auth/azure_activedirectory_v2">
-                                  <button data-turbo="false" type="submit">Sign in with AzureActivedirectoryV2</button>
-                                  <input type="hidden" name="authenticity_token" value="tWv6LRxdQ17dLsi5X2jOVBcUg2ahIZm-cHNBV4hBbBgA637kKdDxEZ8d2kX9rx_48t_e_h-8yqJDgldkz2JzCQ" autocomplete="off">\
                                 </form>
+                                <%- if devise_mapping.omniauthable? %>
+                                  <%- resource_class.omniauth_providers.each do |provider| %>
+                                    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
+                                  <% end %>
+                                <% end %>
                             </div>
                         </div>
                     </form>
@@ -297,7 +300,6 @@ footer {
         </div>
         <footer>
             <div class="footer">
-
             </div>
         </footer>
 

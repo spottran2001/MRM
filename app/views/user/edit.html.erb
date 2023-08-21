@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Thông tin tài khoản</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -20,6 +20,7 @@ html,body {
   display: flex;
   height: 100%;
 }
+
 /* MENU */
 .menu {
   background-color: white;
@@ -315,7 +316,7 @@ html,body {
   transition: all 0.3s;
 }
 .menu__dropdown_nav {
-  padding-left: 52px;
+  padding-left: 44px;
   font-size: 14px;
   margin-top: 10px;
   display: none;
@@ -452,18 +453,17 @@ html,body {
   margin-left: 32px;
 }
 .info__title h1 {
-  border-bottom: 4px solid red;
+  border: 1px solid black;
   padding-bottom: 6px;
+  width: 80%;
+  
 }
 .info {
   font-size: 16px;
   color: gray;
   margin: 6px 0px 40px 0px;
-}
-
-.info__nav {
-}
-.info__list {
+  border-top: 4px solid red;
+  padding-top: 6px;
 }
 .info__list li {
   display: flex;
@@ -502,8 +502,8 @@ html,body {
 
 .btn_edit-info {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 580px;
+  left: 950px;
 }
 
 .btn_edit-info button {
@@ -511,8 +511,9 @@ html,body {
   border: none;
   cursor: pointer;
   outline: none;
-  background-color: white;
+  background-color: #DC546C;
   border-radius: 40px;
+  color: white;
 }
 
     </style>
@@ -526,16 +527,16 @@ html,body {
                     alt="">
             </div>
             <p class="menu__title">MENU</p>
-            <a href="index.html" class="menu__items">
+            <a href="dashboard.html" class="menu__items">
                 <div class="menu__icon">
                     <i class="fa-solid fa-chart-simple"></i>
                 </div>
             </a>
-            <div class="menu__items">
+            <a href="report-management.html" class="menu__items">
                 <div class="menu__icon  ">
                     <i class="fa-regular fa-clipboard"></i>
                 </div>
-            </div>
+              </a>
             <div class="menu__items">
                 <div class="menu__icon  ">
                     <i class="fa-regular fa-bell"></i>
@@ -546,8 +547,8 @@ html,body {
                     <i class="fa-regular fa-calendar"></i>
                 </div>
             </div>
-            <a href="account.html" class="menu__items menu__items--separation">
-                <div class="menu__icon">
+            <a href="us-information.html" class="menu__items menu__items--separation">
+                <div class="menu__icon menu__active ">
                     <i class="fa-regular fa-user"></i>
                 </div>
             </a>
@@ -556,8 +557,8 @@ html,body {
                     <i class="fa-regular fa-sun"></i>
                 </div>
             </div>
-            <a href="user.html" class="menu__items">
-                <div class="menu__icon menu__active  ">
+            <a href="#" class="menu__items">
+                <div class="menu__icon  ">
                     <i class="fa-solid fa-gear"></i>
                 </div>
             </a>
@@ -589,7 +590,7 @@ html,body {
                 </div>
                <nav class="menu__dropdown_nav ">
                     <ul class="menu__dropdown_list">
-                        <li>Giảng viên - nhân viên</li>
+                      <li><a href="dashboard.html" style="text-decoration: none;color: black;">Giảng viên - nhân viên</a></li>
                         <li>Phụ trách bộ môn</li>
                         <li>Khoa</li>
                     </ul>
@@ -597,23 +598,13 @@ html,body {
             </div>
             <div class="menu__items" style="margin: 32px 0px;">
                 <div class="menu__icon" id="report">
-                    <div class="menu__dropdown_icon">
+                    <a href="report-management.html" style="text-decoration: none;" class="menu__dropdown_icon">
                         <i class="fa-regular fa-clipboard"></i>
                         <p >Quản lý báo cáo</p>
-                       </div>
-                       <div class="menu__icon_open">
-                        <i class="fa-solid fa-angle-up"></i>
-                       </div>
+                    </a>
                      
                 </div>
-                <nav class="menu__dropdown_nav">
-                    <ul class="menu__dropdown_list">
-                        <li>1. Công việc thực hiện theo KPI</li>
-                        <li>2. Tinh thần trách nhiệm với nhà trường</li>
-                        <li>3. Đánh giá</li>
-                        <li>4. Kế hoạch công việc </li>
-                    </ul>
-               </nav>
+    
             </div>
             <div class="menu__items">
                 <div class="menu__icon  ">
@@ -634,8 +625,8 @@ html,body {
                    
                 </div>
             </div>
-            <a href="account.html" class="menu__items menu__items--separation">
-                <div class="menu__icon   ">
+            <a href="us-information.html" class="menu__items menu__items--separation">
+                <div class="menu__icon menu__active  ">
                     <div class="menu__dropdown_icon">
                         <i class="fa-regular fa-user"></i>
                         <p>Quản lý tài khoản</p>
@@ -657,8 +648,8 @@ html,body {
                     </div>
                 </div>
             </div>
-            <a href="user.html" class="menu__items" style="margin: 18px 0px 32px 0px;">
-                <div class="menu__icon menu__active">
+            <a href="#" class="menu__items" style="margin: 18px 0px 32px 0px;">
+                <div class="menu__icon ">
                     <div class="menu__dropdown_icon">
                         <i class="fa-solid fa-gear"></i>
                         <p>Thiết lập</p>
@@ -693,9 +684,9 @@ html,body {
                         <i class="fa-regular fa-bell"></i>
                     </div>
                     <div class="user__info">
-                        <p> <%= @user.role || "N/A" %></p>
+                        <p>Nhân viên / Giảng viên</p>
                         <p>
-                            <%= @user.email || "N/A"%>
+                            thanhnhan@vanlanguni.vn
                         </p>
                         
                     </div>
@@ -732,28 +723,35 @@ html,body {
                         </li>
                         <li>
                             <span></span>
-                            <p>Chức vụ</p>
+                            <p>SĐT</p>
+                            <input />
+                        </li>
+                        <li>
+                            <span></span>
+                            <p style="margin-right: 66px;">Chức vụ</p>
                             <%= @user.role || "N/A" %>
                         </li>
                         <li>
                             <span></span>
-                            <p>Bộ môn</p>
+                            <p style="margin-right: 66px">Bộ môn</p>
                             <%= @user.subject&.name || "N/A" %>
                         </li>
                         <li>
                             <span></span>
                             <p>Khoa</p>
-                            <%= @user.faculty&.name || "N/A" %>
+                           <%= @user.faculty&.name || "N/A" %>
                         </li>
 
                     </ul>
                    </nav>
                 </div>
                 <div class="info__user_img">
-                    <%= image_tag("https://toigingiuvedep.vn/wp-content/uploads/2021/07/hinh-ve-don-gian-va-de-thuong-nhat.jpg")%>
+                    <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo" alt="">
                 </div>
                 <div class="btn_edit-info">
-                    <button>CHỈNH SỬA</button>
+                    <button>
+                        <a href="us-information.html">Lưu Chỉnh Sửa</a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -761,30 +759,6 @@ html,body {
     </main>
 </body>
 <!-- JS -->
-<script>
-  const getEle = (id) =>{
-    return document.getElementById(id)
-}
-getEle("statistics").addEventListener("click",()=>{
-    getEle("statistics").classList.toggle("show")
-})
-getEle("report").addEventListener("click",()=>{
-    getEle("report").classList.toggle("show")
-})
-
-getEle("btn-dropdown").addEventListener("click",()=>{
-    getEle("menu-dropdown").style.transform = "translateX(-10000px)"
-    getEle("menu-dropdown").style.display  = "none"
-    getEle("menu").style.transform = "translateX(0px)"
-    getEle("menu").style.display  = "block"
-    getEle("menu").style.transition = "all 0.5s"
-
-})
-getEle("btn-menu").addEventListener("click",()=>{
-    getEle("menu-dropdown").style.transform = "translateX(0px)"
-    getEle("menu-dropdown").style.display = "block"
-    getEle("menu").style.display = "none"
-    getEle("menu").style.transform = "translateX(-10000px)"
-})
+<script src="./index.js">
 </script>
 </html>
