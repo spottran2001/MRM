@@ -1,10 +1,10 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_action :authenticate_user!
   def index
     if current_user.role != "admin"
-      @user = User.find(current_user.id)
+      @users = User.where(id: current_user.id)
     else
-      @user = User.all
+      @users = User.all
     end
   end
 
