@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :users
+  resources :report_template
   root 'users#show'
   get "statistic", to: 'home#page_stats' 
   get "reports", to: 'home#report' 

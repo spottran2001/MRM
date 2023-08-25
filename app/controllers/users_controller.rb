@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+
   def index
     if current_user.role != "admin"
       @users = User.where(id: current_user.id)
@@ -18,8 +19,8 @@ class UsersController < ApplicationController
   def page_stats
   end
 
-  def report
-
+  def report_templates
+    report_templates = ReportTemplate.all.order(:created_at)
   end
 
   def edit
@@ -35,5 +36,9 @@ class UsersController < ApplicationController
     else
       user.update!(params[:phone_number]) #add this column to database!
     end
+  end
+
+  def generate_report
+    raise "you dont have permission to do this " if current_user.role != 'admin'
   end
 end
