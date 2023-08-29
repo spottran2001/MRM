@@ -33,7 +33,7 @@ th, td{
    background-color: #ABABAB;
    font-weight: bold;
 }
-#tableBody,#tableBody21,#tableBody31,#tableBody41{
+.list_table{
     display: none;
 }
 #myTable12 , #myTable13 , #myTable14 , #myTable15{
@@ -567,7 +567,6 @@ margin: 0;
     <main class="container">
         <div class="content">
             <div class="content__title">
-                
                 <div class="content__breadcrumb">
                     MENU
                     <p class="breadcrumb__name" style="color: black; border-bottom: none;">QUẢN LÝ TÀI KHOẢN</p>
@@ -624,13 +623,96 @@ margin: 0;
                             <i class="fa-regular fa-newspaper"></i>
                             <p>LƯU BÁO CÁO</p>
                           </button>
-           
-            <table id="myTable" class="content__table" style="border-radius: 0px; " >
-                <thead >  <tr class="content__table_header"  style="background-color: #f4924b; ">
+            <% @report_template_title.keys.each_with_index do |key, index|%>
+              <table class="content__table" style="border-radius: 0px; " >
+                <thead>
+                  <tr class="content__table_header"  style="background-color: #f4924b;" onclick="showTableList(this)">
+                    <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
+                    <th id="tableHeader" colspan="8" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none;"> <%= "#{index+1}. #{key}"%></th>
+                  </tr>
+                </thead>
+                <% @report_template_title[key].each do |key, value|%>
+                  <tbody class="list_table">
+                    <tr class="content__table_header">
+                        <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
+                        <th>
+                            <input id="Checkbox11" onchange="toggleAllCheckboxes()"  class="content__table-checkbox" type="checkbox" placeholder="checkbox">
+                        </th>
+                        <th>
+                            1.1
+                        </th>
+                        <th>
+                            Công tác giảng dạy
+                        </th>
+                        <th>
+                            Trống
+                            <p>tiết / giờ</p>
+                        </th>
+                        <th>
+                            Lớp / nhóm
+                        </th>
+                        <th>
+                            Thứ
+                        </th>
+                        <th>
+                            Ca
+                        </th>
+                        <th>
+                            Ghi chú
+                        </th>
+                    </tr>
+                    <tr class="content__table_body">
+                        <td class="first_column"  style="border: none;text-align: right;padding: 0;">
+                            <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <button  onclick="addRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </td>
+                        <td> <input  class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
+                        <td>1</td>
+                        <td>text</td>
+                        <td>text</td>
+                        <td>text</td>
+                        <td>text</td>
+                        <td>text</td>
+                        <td>text</td>
+                    </tr>
+                    <tr class="content__table_body">
+                        <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
+                        <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
+                        <td>2</td>
+                        <td>text</td>
+                        <td>text</td>
+                        <td>text</td>
+                        <td>text</td>
+                        <td>text</td>
+                        <td>test</td>
+                    </tr>
+                    <tr class="content__table_body">
+                        <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
+                        
+                        <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
+                        <td>3</td>
+                        <td>test</td>
+                        <td>test</td>
+                        <td>test</td>
+                        <td>test</td>
+                        <td>test</td>
+                        <td>test</td>    
+                    </tr>
+                  </tbody>
+                <% end %>
+              </table>
+            <% end %>
+            
+            <%# <table class="content__table" style="border-radius: 0px; " >
+                <thead >  <tr class="content__table_header"  style="background-color: #f4924b; "  onclick="showTableList(this)">
                     <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
                     <th id="tableHeader" colspan="8" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none;">1. CÔNG VIỆC THỰC HIỆN THEO KPI </th>
                 </tr></thead>
-              <tbody id="tableBody">
+              <tbody id="tableBody"  class="list_table">
                 <tr class="content__table_header">
                     <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
                     <th>
@@ -661,10 +743,10 @@ margin: 0;
                 </tr>
                 <tr class="content__table_body">
                     <td class="first_column"  style="border: none;text-align: right;padding: 0;">
-                        <button  onclick="delRow()" style="display: block;width: 100%;padding: 2px 0px;">
+                        <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
                             <i class="fa-solid fa-trash"></i>
                         </button>
-                        <button  onclick="addRow()" style="display: block;width: 100%;padding: 2px 0px;">
+                        <button  onclick="addRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </td>
@@ -690,7 +772,6 @@ margin: 0;
                 </tr>
                 <tr class="content__table_body">
                     <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    
                     <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
                     <td>3</td>
                     <td>test</td>
@@ -703,8 +784,8 @@ margin: 0;
               </tbody>
                
 
-            </table>
-
+            </table> %>
+<%# 
             <table id="myTable12" class="content__table" style="border-radius: 0px;margin-top: 30px;" loading="lazy">
                 <tr class="content__table_header">
                     <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
@@ -845,369 +926,7 @@ margin: 0;
     
                 </tr>
              </tbody>
-            </table>
-            
-           
-            <table id="myTable13" class="content__table" style="border-radius: 0px;margin-top: 30px;" loading="lazy">
-                <tr class="content__table_header">
-                    <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th style="border-top-left-radius: 12px;">
-                        <input id="Checkbox13" onchange="toggleAllCheckboxes13()" class="content__table-checkbox" type="checkbox" placeholder="checkbox">
-                    </th>
-                    <th>
-                        1.3
-                    </th>
-                    <th style ="text-align: left;">
-                        Phục vụ cộng đồng vào chuyên môn khác 
-                    </th>
-
-                    <th>
-                        số lượng 
-                    </th>
-                    <th style="border-top-right-radius: 12px;">
-                        Kết quả
-                    </th>
-            
-                </tr>
-
-                <tr class="content__table_body">
-                    <td style="border: none;text-align: right;padding: 0;">
-                        <button id="delete" onclick="delRow13()" style="display: block;width: 100%;padding: 2px 0px;">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <button id="add" onclick="addRow13()" style="display: block;width: 100%;">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    
-                    <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>1</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td> 
-                </tr>
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td ><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td >2</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>3</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                
-    
-                </tr>
-               
-
-            </table>
-            <table id="myTable14" class="content__table" style="border-radius: 0px;margin-top: 30px;" loading="lazy">
-                <tr class="content__table_header">
-                    <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th style="border-top-left-radius: 12px;">
-                        <input id="Checkbox14" onchange="toggleAllCheckboxes14()" class="content__table-checkbox" type="checkbox" placeholder="checkbox">
-                    </th>
-                    <th>
-                        1.4
-                    </th>
-                    <th style ="text-align: left;">
-                        Nâng cao chuyên môn
-                    </th>
-                    <th>
-                        ĐVT
-                    </th>
-                    <th>
-                        Số lượng
-                    </th>
-                    <th style="border-top-right-radius: 12px;">
-                        Kết quả
-                    </th>
-            
-                </tr>
-                <tr class="content__table_body">
-                    <td style="border: none;text-align: right;padding: 0;">
-                        <button id="delete" onclick="delRow14()" style="display: block;width: 100%;padding: 2px 0px;">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <button id="add" onclick="addRow14()" style="display: block;width: 100%;">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    
-                    <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>1</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td ><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>2</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-    
-                </tr>
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>3</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>    
-                </tr>
-               
-
-            </table>
-            <table id="myTable15" class="content__table" style="border-radius: 0px;margin-top: 30px;" loading="lazy">
-                <tr class="content__table_header">
-                    <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th style="border-top-left-radius: 12px;">
-                        <input id="Checkbox15" onchange="toggleAllCheckboxes15()" class="content__table-checkbox" type="checkbox" placeholder="checkbox">
-                    </th>
-                    <th>
-                        1.5
-                    </th>
-                    <th style ="text-align: left;">
-                        Công việc khác
-                    </th>
-                    <th>
-                        ĐVT
-                    </th>
-                    <th>
-                        Số lượng
-                    </th>
-                    <th style="border-top-right-radius: 12px;">
-                        Kết quả
-                    </th>
-            
-                </tr>
-                <tr class="content__table_body">
-                    <td style="border: none;text-align: right;padding: 0;">
-                        <button id="delete" onclick="delRow15()" style="display: block;width: 100%;padding: 2px 0px;">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <button id="add" onclick="addRow15()" style="display: block;width: 100%;">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    
-                    <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>1</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>2</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-    
-                </tr>
-               
-
-            </table>
-            <table id="myTable21" class="content__table" style="border-radius: 0px; " loading="lazy">
-                <tr class="content__table_header" style="background-color: #f4924b; ">
-                    <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th id="tableHeader21" colspan="4" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none;">2. TINH THẦN TRÁCH NHIỆM VỚI NHÀ TRƯỜNG </th>
-                </tr>
-       <tbody id="tableBody21">
-        <tr class="content__table_header">
-            <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-            <th>
-                <input id="Checkbox21" onchange="toggleAllCheckboxes21()" class="content__table-checkbox" type="checkbox" placeholder="checkbox">
-            </th>
-            <th>
-                STT
-            </th>
-            <th>
-                Tinh thần trách nhiệm với nhà trường 
-            </th>              
-            <th>
-                Kết quả
-            </th>
-        </tr>
-        <tr class="content__table_body">
-            <td class="first_column"  style="border: none;text-align: right;padding: 0;">
-                <button  onclick="delRow21()" style="display: block;width: 100%;padding: 2px 0px;">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-                <button  onclick="addRow21()" style="display: block;width: 100%;padding: 2px 0px;">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-            </td>
-            
-            <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-            <td>1</td>
-            <td>test</td>
-            <td>test</td>
-
-        </tr>
-        <tr class="content__table_body">
-            <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-            <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-            <td>2</td>
-            <td>text</td>
-            <td>text</td>
-
-        </tr>
-        <tr class="content__table_body">
-            <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-            <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-            <td>3</td>
-            <td>text</td>
-            <td>text</td>
-
-        </tr>
-       </tbody>
-                
-            </table>
-            <table id="myTable31" class="content__table" style="border-radius: 0px; " loading="lazy">
-                <tr class="content__table_header" style="background-color: #f4924b; ">
-                    <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th id="tableHeader31" colspan="2" style="user-select: none;cursor: pointer; text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;">3. ĐÁNH GIÁ </th>
-                </tr>
-                <tbody id="tableBody31">
-                    <tr style="background-color: #dc546c" >
-                        <td class="first_column"  style="border: none;text-align: right;padding: 0;">
-                            <button  onclick="delRow31()" style="display: block;width: 100%;padding: 2px 0px;">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            <button  onclick="addRow31()" style="display: block;width: 100%;padding: 2px 0px;">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </td>
-                        <th style="text-align: left;">
-                            Đề xuất mức đánh giá  
-                        </th> 
-                        <td style="background-color: #f5f5f5;">
-                            <div class="checkbox-row">
-                              <label for="checkbox1">
-                                <input id="checkbox1" class="content__table-checkbox-report" type="checkbox" placeholder="checkbox">
-                                Hoàn thành (M)
-                              </label>
-                            </div>
-                            <div class="checkbox-row">
-                              <label for="checkbox2">
-                                <input id="checkbox2" class="content__table-checkbox-report" type="checkbox" placeholder="checkbox">
-                                Không hoàn thành (B)
-                              </label>
-                            </div>
-                          </td>
-     
-                    </tr>
-                    <tr style="background-color: #dc546c" >
-                        <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>                    
-                        <th style="text-align: left;">
-                            Đề xuất mức đánh giá  
-                        </th>              
-                        <td style="background-color: #f5f5f5;">
-                            <div class="checkbox-row">
-                              <label for="checkbox1">
-                                <input id="checkbox1" class="content__table-checkbox-report" type="checkbox" placeholder="checkbox">
-                                Hoàn thành (M)
-                              </label>
-                            </div>
-                            <div class="checkbox-row">
-                              <label for="checkbox2">
-                                <input id="checkbox2" class="content__table-checkbox-report" type="checkbox" placeholder="checkbox">
-                                Không hoàn thành (B)
-                              </label>
-                            </div>
-                          </td>
-                        
-                    </tr>
-                    <tr style="background-color: #dc546c" >
-                        <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>                    
-                        <th style="text-align: left;">
-                            Đề xuất mức đánh giá  
-                        </th>      
-                        <td style="background-color: #f5f5f5;">
-                            <div class="checkbox-row">
-                              <label for="checkbox1">
-                                <input id="checkbox1" class="content__table-checkbox-report" type="checkbox" placeholder="checkbox">
-                                Hoàn thành (M)
-                              </label>
-                            </div>
-                            <div class="checkbox-row">
-                              <label for="checkbox2">
-                                <input id="checkbox2" class="content__table-checkbox-report" type="checkbox" placeholder="checkbox">
-                                Không hoàn thành (B)
-                              </label>
-                            </div>
-                          </td>
-    
-                    </tr>
-                    <tr class="content__table_body">
-                        <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    </tr>
-                </tbody>
-                
-                
-            </table>
-            <table id="myTable41" class="content__table" style="border-radius: 0px; " loading="lazy">
-                <tr class="content__table_header" style="background-color: #f4924b; ">
-                    <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th id="tableHeader41" colspan="4" style="text-align: left; user-select:none;cursor: pointer;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;">4. KẾ HOẠCH CÔNG VIỆC </th>
-                </tr>
-            <tbody id="tableBody41">
-                <tr class="content__table_header">
-                    <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th>
-                        <input id="Checkbox21" onchange="toggleAllCheckboxes21()" class="content__table-checkbox" type="checkbox" placeholder="checkbox">
-                    </th>
-                    <th>
-                        STT
-                    </th>
-                    <th>
-                        Kế hoạch công việc dự kiến thực hiện trong tháng kế tiếp
-                    </th>              
-                
-                </tr>
-                <tr class="content__table_body">
-                    <td class="first_column"  style="border: none;text-align: right;padding: 0;">
-                        <button  onclick="delRow41()" style="display: block;width: 100%;padding: 2px 0px;">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <button  onclick="addRow41()" style="display: block;width: 100%;padding: 2px 0px;">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    
-                    <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>1</td>
-                    <td>test</td>
-                  
- 
-                </tr>
-                <tr class="content__table_body">
-                    <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>2</td>
-                    <td>text</td>
-                    
-
-                </tr>
-            </tbody>
-                
-            </table>
+            </table> %>
         </div>
         <div id="popup__guiBaocao">
             <div id="popup__inner">
@@ -1250,9 +969,11 @@ getEle("btn-menu").addEventListener("click",()=>{
     getEle("menu").style.display = "none"
     getEle("menu").style.transform = "translateX(-10000px)"
 })
-// Nút bảng 1.1
-function addRow() {
-  var table = document.getElementById("myTable");
+
+// add row to table
+function addRow(e) {
+  var row = document.getElementsByClassName("content__table_body")[0];
+  var table = e.parentNode.parentNode.parentNode;
   var row = table.insertRow(-1); 
 
   var cell1 = row.insertCell(0);
@@ -1311,8 +1032,10 @@ function addRow() {
   cell9.innerHTML = "text";
 }
 
-function delRow() {
-  var table = document.getElementById("myTable");
+
+// delete row form table
+function delRow(e) {
+  var table = e.parentNode.parentNode.parentNode;
   var lastRowIndex = table.rows.length - 1; 
 
   if (lastRowIndex > 0) {
@@ -1320,455 +1043,6 @@ function delRow() {
   }
 }
 
-// Nút bảng 1.2
-// Nhom 1
-function addRow12() {
-  var table = document.getElementById("tablenhom1");
-  var row = table.insertRow(-1); 
-
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  var cell5 = row.insertCell(4);
-  var cell6 = row.insertCell(5);
-  var cell7 = row.insertCell(6);
-  
-  cell1.classList.add("first_column");
-  cell2.innerHTML = '<input class="content__table-checkbox" type="checkbox" placeholder="checkbox">';
-  cell3.contentEditable = true;
-  cell3.style.border = "1px solid black";
-  cell3.style.overflow = "hidden";
-  cell3.style.fontSize = "16px";
-  cell3.style.padding = "10px 0px";
-  cell3.innerHTML = "1";
-  cell4.contentEditable = true;
-  cell4.style.border = "1px solid black";
-  cell4.style.overflow = "hidden";
-  cell4.style.fontSize = "16px";
-  cell4.style.padding = "10px 0px";
-  cell4.style.textAlign = "left "
-  cell4.innerHTML = "text";
-  cell5.contentEditable = true;
-  cell5.style.border = "1px solid black";
-  cell5.style.overflow = "hidden";
-  cell5.style.fontSize = "16px";
-  cell5.style.padding = "10px 0px";
-  cell5.innerHTML = "text";
-  cell6.contentEditable = true;
-  cell6.style.border = "1px solid black";
-  cell6.style.overflow = "hidden";
-  cell6.style.fontSize = "16px";
-  cell6.style.padding = "10px 0px";
-  cell6.innerHTML = "text";
-  cell7.contentEditable = true;
-  cell7.style.border = "1px solid black";
-  cell7.style.overflow = "hidden";
-  cell7.style.fontSize = "16px";
-  cell7.style.padding = "10px 0px";
-  cell7.innerHTML = "text";
-
-}
-
-function delRow12() {
-  var table = document.getElementById("tablenhom1");
-  var lastRowIndex = table.rows.length - 1; 
-
-  if (lastRowIndex > 0) {
-    table.deleteRow(lastRowIndex); 
-  }
-}
-// Nhom 2
-function addRow12nhom2() {
-  var table = document.getElementById("tablenhom2");
-  var row = table.insertRow(-1); 
-
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  var cell5 = row.insertCell(4);
-  var cell6 = row.insertCell(5);
-  var cell7 = row.insertCell(6);
-  
-  cell1.classList.add("first_column");
-  cell2.innerHTML = '<input class="content__table-checkbox" type="checkbox" placeholder="checkbox">';
-  cell3.contentEditable = true;
-  cell3.style.border = "1px solid black";
-  cell3.style.overflow = "hidden";
-  cell3.style.fontSize = "16px";
-  cell3.style.padding = "10px 0px";
-  cell3.innerHTML = "1";
-  cell4.contentEditable = true;
-  cell4.style.border = "1px solid black";
-  cell4.style.overflow = "hidden";
-  cell4.style.fontSize = "16px";
-  cell4.style.padding = "10px 0px";
-  cell4.style.textAlign = "left "
-  cell4.innerHTML = "text";
-  cell5.contentEditable = true;
-  cell5.style.border = "1px solid black";
-  cell5.style.overflow = "hidden";
-  cell5.style.fontSize = "16px";
-  cell5.style.padding = "10px 0px";
-  cell5.innerHTML = "text";
-  cell6.contentEditable = true;
-  cell6.style.border = "1px solid black";
-  cell6.style.overflow = "hidden";
-  cell6.style.fontSize = "16px";
-  cell6.style.padding = "10px 0px";
-  cell6.innerHTML = "text";
-  cell7.contentEditable = true;
-  cell7.style.border = "1px solid black";
-  cell7.style.overflow = "hidden";
-  cell7.style.fontSize = "16px";
-  cell7.style.padding = "10px 0px";
-  cell7.innerHTML = "text";
-
-}
-
-function delRow12nhom2() {
-  var table = document.getElementById("tablenhom2");
-  var lastRowIndex = table.rows.length - 1; 
-
-  if (lastRowIndex > 0) {
-    table.deleteRow(lastRowIndex); 
-  }
-}
-// Nhom 3
-function addRow12nhom3() {
-  var table = document.getElementById("tablenhom3");
-  var row = table.insertRow(-1); 
-
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  var cell5 = row.insertCell(4);
-  var cell6 = row.insertCell(5);
-  var cell7 = row.insertCell(6);
-  
-  cell1.classList.add("first_column");
-  cell2.innerHTML = '<input class="content__table-checkbox" type="checkbox" placeholder="checkbox">';
-  cell3.contentEditable = true;
-  cell3.style.border = "1px solid black";
-  cell3.style.overflow = "hidden";
-  cell3.style.fontSize = "16px";
-  cell3.style.padding = "10px 0px";
-  cell3.innerHTML = "1";
-  cell4.contentEditable = true;
-  cell4.style.border = "1px solid black";
-  cell4.style.overflow = "hidden";
-  cell4.style.fontSize = "16px";
-  cell4.style.padding = "10px 0px";
-  cell4.style.textAlign = "left "
-  cell4.innerHTML = "text";
-  cell5.contentEditable = true;
-  cell5.style.border = "1px solid black";
-  cell5.style.overflow = "hidden";
-  cell5.style.fontSize = "16px";
-  cell5.style.padding = "10px 0px";
-  cell5.innerHTML = "text";
-  cell6.contentEditable = true;
-  cell6.style.border = "1px solid black";
-  cell6.style.overflow = "hidden";
-  cell6.style.fontSize = "16px";
-  cell6.style.padding = "10px 0px";
-  cell6.innerHTML = "text";
-  cell7.contentEditable = true;
-  cell7.style.border = "1px solid black";
-  cell7.style.overflow = "hidden";
-  cell7.style.fontSize = "16px";
-  cell7.style.padding = "10px 0px";
-  cell7.innerHTML = "text";
-
-}
-
-function delRow12nhom3() {
-  var table = document.getElementById("tablenhom3");
-  var lastRowIndex = table.rows.length - 1; 
-
-  if (lastRowIndex > 0) {
-    table.deleteRow(lastRowIndex); 
-  }
-}
-
-
-// Nút bảng 1.3
-function addRow13() {
-  var table = document.getElementById("myTable13");
-  var row = table.insertRow(-1); 
-
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  var cell5 = row.insertCell(4);
-  var cell6 = row.insertCell(5);
-  
-  cell1.classList.add("first_column");
-  cell2.innerHTML = '<input class="content__table-checkbox" type="checkbox" placeholder="checkbox">';
-  cell3.contentEditable = true;
-  cell3.style.border = "1px solid black";
-  cell3.style.overflow = "hidden";
-  cell3.style.fontSize = "16px";
-  cell3.style.padding = "10px 0px";
-  cell3.innerHTML = "1";
-  cell4.contentEditable = true;
-  cell4.style.border = "1px solid black";
-  cell4.style.overflow = "hidden";
-  cell4.style.fontSize = "16px";
-  cell4.style.padding = "10px 0px";
-  cell4.style.textAlign = "left "
-  cell4.innerHTML = "text";
-  cell5.contentEditable = true;
-  cell5.style.border = "1px solid black";
-  cell5.style.overflow = "hidden";
-  cell5.style.fontSize = "16px";
-  cell5.style.padding = "10px 0px";
-  cell5.innerHTML = "text";
-  cell6.contentEditable = true;
-  cell6.style.border = "1px solid black";
-  cell6.style.overflow = "hidden";
-  cell6.style.fontSize = "16px";
-  cell6.style.padding = "10px 0px";
-  cell6.innerHTML = "text";
-}
-
-function delRow13() {
-  var table = document.getElementById("myTable13");
-  var lastRowIndex = table.rows.length - 1; 
-
-  if (lastRowIndex > 0) {
-    table.deleteRow(lastRowIndex); 
-  }
-}
-
-//Nút bảng 1.4
-function addRow14() {
-  var table = document.getElementById("myTable14");
-  var row = table.insertRow(-1); 
-
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  var cell5 = row.insertCell(4);
-  var cell6 = row.insertCell(5);
-  var cell7 = row.insertCell(6);
-  
-  cell1.classList.add("first_column");
-  cell2.innerHTML = '<input class="content__table-checkbox" type="checkbox" placeholder="checkbox">';
-  cell3.contentEditable = true;
-  cell3.style.border = "1px solid black";
-  cell3.style.overflow = "hidden";
-  cell3.style.fontSize = "16px";
-  cell3.style.padding = "10px 0px";
-  cell3.innerHTML = "1";
-  cell4.contentEditable = true;
-  cell4.style.border = "1px solid black";
-  cell4.style.overflow = "hidden";
-  cell4.style.fontSize = "16px";
-  cell4.style.padding = "10px 0px";
-  cell4.style.textAlign = "left "
-  cell4.innerHTML = "text";
-  cell5.contentEditable = true;
-  cell5.style.border = "1px solid black";
-  cell5.style.overflow = "hidden";
-  cell5.style.fontSize = "16px";
-  cell5.style.padding = "10px 0px";
-  cell5.innerHTML = "text";
-  cell6.contentEditable = true;
-  cell6.style.border = "1px solid black";
-  cell6.style.overflow = "hidden";
-  cell6.style.fontSize = "16px";
-  cell6.style.padding = "10px 0px";
-  cell6.innerHTML = "text";
-  cell7.style.border = "1px solid black";
-  cell7.style.overflow = "hidden";
-  cell7.style.fontSize = "16px";
-  cell7.style.padding = "10px 0px";
-  cell7.innerHTML = "text";
-}
-
-function delRow14() {
-  var table = document.getElementById("myTable14");
-  var lastRowIndex = table.rows.length - 1; 
-
-  if (lastRowIndex > 0) {
-    table.deleteRow(lastRowIndex); 
-  }
-}
-
-//Nút bảng 1.5
-function addRow15() {
-  var table = document.getElementById("myTable15");
-  var row = table.insertRow(-1); 
-
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  var cell5 = row.insertCell(4);
-  var cell6 = row.insertCell(5);
-  var cell7 = row.insertCell(6);
-  
-  cell1.classList.add("first_column");
-  cell2.innerHTML = '<input class="content__table-checkbox" type="checkbox" placeholder="checkbox">';
-  cell3.contentEditable = true;
-  cell3.style.border = "1px solid black";
-  cell3.style.overflow = "hidden";
-  cell3.style.fontSize = "16px";
-  cell3.style.padding = "10px 0px";
-  cell3.innerHTML = "1";
-  cell4.contentEditable = true;
-  cell4.style.border = "1px solid black";
-  cell4.style.overflow = "hidden";
-  cell4.style.fontSize = "16px";
-  cell4.style.padding = "10px 0px";
-  cell4.style.textAlign = "left "
-  cell4.innerHTML = "text";
-  cell5.contentEditable = true;
-  cell5.style.border = "1px solid black";
-  cell5.style.overflow = "hidden";
-  cell5.style.fontSize = "16px";
-  cell5.style.padding = "10px 0px";
-  cell5.innerHTML = "text";
-  cell6.contentEditable = true;
-  cell6.style.border = "1px solid black";
-  cell6.style.overflow = "hidden";
-  cell6.style.fontSize = "16px";
-  cell6.style.padding = "10px 0px";
-  cell6.innerHTML = "text";
-  cell7.style.border = "1px solid black";
-  cell7.style.overflow = "hidden";
-  cell7.style.fontSize = "16px";
-  cell7.style.padding = "10px 0px";
-  cell7.innerHTML = "text";
-}
-
-function delRow15() {
-  var table = document.getElementById("myTable15");
-  var lastRowIndex = table.rows.length - 1; 
-
-  if (lastRowIndex > 0) {
-    table.deleteRow(lastRowIndex); 
-  }
-}
-
-//Nút bảng 2.1
-function addRow21() {
-  var table = document.getElementById("myTable21");
-  var row = table.insertRow(-1); 
-
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  var cell5 = row.insertCell(4);
-   
-  cell1.classList.add("first_column");
-  cell2.innerHTML = '<input class="content__table-checkbox" type="checkbox" placeholder="checkbox">';
-  cell3.contentEditable = true;
-  cell3.style.border = "1px solid black";
-  cell3.style.overflow = "hidden";
-  cell3.style.fontSize = "16px";
-  cell3.style.padding = "10px 0px";
-  cell3.innerHTML = "1";
-  cell4.contentEditable = true;
-  cell4.style.border = "1px solid black";
-  cell4.style.overflow = "hidden";
-  cell4.style.fontSize = "16px";
-  cell4.style.padding = "10px 0px";
-  cell4.style.textAlign = "center "
-  cell4.innerHTML = "text";
-  cell5.contentEditable = true;
-  cell5.style.border = "1px solid black";
-  cell5.style.overflow = "hidden";
-  cell5.style.fontSize = "16px";
-  cell5.style.padding = "10px 0px";
-  cell5.innerHTML = "text";
- }
-
-function delRow21() {
-  var table = document.getElementById("myTable21");
-  var lastRowIndex = table.rows.length - 1; 
-
-  if (lastRowIndex > 0) {
-    table.deleteRow(lastRowIndex); 
-  }
-}
-
-//Nút bảng 3.1
-function addRow31() {
-  var table = document.getElementById("myTable31");
-  var row = table.insertRow(-1); 
-
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);  
-
-  
-  cell1.classList.add("first_column");
-  cell2.innerHTML = "Đề xuất mức đánh giá";
-  cell3.innerHTML = ``;
-  cell2.style.backgroundColor ="#dc546c";
-  cell2.style.border = "1px solid black";
-  cell2.style.overflow = "hidden";
-  cell2.style.fontSize = "16px";
-  cell2.style.padding = "25px 10px";
-  cell2.style.textAlign ="left";
-  cell2.style.color = "white";
-  cell2.style.fontWeight = "bold";
-  cell3.innerHTML = '<td style="background-color: #f5f5f5;"><div class="checkbox-row"><label for="checkbox1"><input id="checkbox1" class="content__table-checkbox-report" type="checkbox" placeholder="checkbox">Hoàn thành (M)</label></div><div class="checkbox-row"><label for="checkbox2"><input id="checkbox2" class="content__table-checkbox-report" type="checkbox" placeholder="checkbox">Không hoàn thành (B)</label></div></td>';
-}
-
-function delRow31() {
-  var table = document.getElementById("myTable31");
-  var lastRowIndex = table.rows.length - 1; 
-
-  if (lastRowIndex > 0) {
-    table.deleteRow(lastRowIndex); 
-  }
-}
-// Nut Bang 4.1
-function addRow41() {
-  var table = document.getElementById("myTable41");
-  var row = table.insertRow(-1); 
-
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  
-   
-  cell1.classList.add("first_column");
-  cell2.innerHTML = '<input class="content__table-checkbox" type="checkbox" placeholder="checkbox">';
-  cell3.contentEditable = true;
-  cell3.style.border = "1px solid black";
-  cell3.style.overflow = "hidden";
-  cell3.style.fontSize = "16px";
-  cell3.style.padding = "10px 0px";
-  cell3.innerHTML = "1";
-  cell4.contentEditable = true;
-  cell4.style.border = "1px solid black";
-  cell4.style.overflow = "hidden";
-  cell4.style.fontSize = "16px";
-  cell4.style.padding = "10px 0px";
-  cell4.style.textAlign = "center "
-  cell4.innerHTML = "text";
- 
- }
-
-function delRow41() {
-  var table = document.getElementById("myTable41");
-  var lastRowIndex = table.rows.length - 1; 
-
-  if (lastRowIndex > 0) {
-    table.deleteRow(lastRowIndex); 
-  }
-}
-// Checkbox bảng 1.1
 function toggleAllCheckboxes() {
   var masterCheckbox = document.getElementById("Checkbox11");
   var checkboxes = document.querySelectorAll("#myTable .content__table-checkbox");
@@ -1824,34 +1098,13 @@ function toggleAllCheckboxes21() {
   }
 }
 
+// open/close table
+function showTableList(e) {
+  for (table of e.parentNode.parentNode.children){
+    table.classList.toggle("showTable");
+  }
+};
 
-
-
-
-</script>
-<script>
-    
-// Show Table
-// Table 1
-getEle("tableHeader").addEventListener("click",() =>{
-    getEle("tableBody").classList.toggle("showTable");
-    getEle("myTable12").classList.toggle("showTableNhom");
-    getEle("myTable13").classList.toggle("showTableNhom");
-    getEle("myTable14").classList.toggle("showTableNhom");
-    getEle("myTable15").classList.toggle("showTableNhom");
-  })
-  // Table 2
-  getEle("tableHeader21").addEventListener("click",()=>{
-    getEle("tableBody21").classList.toggle("showTable");
-  })
-  // Table 3
-  getEle("tableHeader31").addEventListener("click",()=>{
-    getEle("tableBody31").classList.toggle("showTable");
-  })
-  // Table 4
-  getEle("tableHeader41").addEventListener("click",()=>{
-    getEle("tableBody41").classList.toggle("showTable");
-  })
 </script>
 <!-- JS POPUP -->
 <script>
