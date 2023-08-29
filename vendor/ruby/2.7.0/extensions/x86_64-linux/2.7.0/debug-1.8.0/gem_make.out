@@ -1,0 +1,19 @@
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/debug-1.8.0/ext/debug
+/home/spot/.rvm/rubies/ruby-2.7.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/debug-1.8.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-ucntv8 sitelibdir\=./.gem.20230829-116259-ucntv8 clean
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/debug-1.8.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-ucntv8 sitelibdir\=./.gem.20230829-116259-ucntv8
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/debug-1.8.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-ucntv8 sitelibdir\=./.gem.20230829-116259-ucntv8 install
+/usr/bin/install -m 0755 debug.so ./.gem.20230829-116259-ucntv8/debug
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/debug-1.8.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-ucntv8 sitelibdir\=./.gem.20230829-116259-ucntv8 clean
