@@ -1,0 +1,15 @@
+current directory: /home/spot/MRM/vendor/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+/home/spot/.rvm/rubies/ruby-3.1.0/bin/ruby -I /home/spot/.rvm/rubies/ruby-3.1.0/lib/ruby/3.1.0 -r ./siteconf20230829-161802-5kctji.rb extconf.rb
+creating Makefile
+
+current directory: /home/spot/MRM/vendor/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /home/spot/MRM/vendor/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.so
+
+current directory: /home/spot/MRM/vendor/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -m 0755 bootsnap.so ./.gem.20230829-161802-7ku5cx/bootsnap
