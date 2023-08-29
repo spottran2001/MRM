@@ -294,7 +294,6 @@ DEPENDENCIES
   simple_form
   sprockets-rails
   stimulus-rails
-  tiny_tds
   turbo-rails
   tzinfo-data
   web-console
@@ -304,4 +303,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.4.15
+   2.4.19
