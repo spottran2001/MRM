@@ -112,6 +112,7 @@ GEM
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
+    htmlbeautifier (1.4.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -225,6 +226,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simple_form (5.2.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -277,6 +281,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   dotenv-rails
+  htmlbeautifier
   jbuilder
   jsbundling-rails
   omniauth-azure-activedirectory-v2
@@ -286,6 +291,7 @@ DEPENDENCIES
   rails (~> 7.0.6)
   redis (~> 4.0)
   selenium-webdriver
+  simple_form
   sprockets-rails
   stimulus-rails
   tiny_tds

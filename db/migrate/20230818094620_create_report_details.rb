@@ -5,6 +5,6 @@ class CreateReportDetails < ActiveRecord::Migration[7.0]
       t.string :report_keys, null: false
       t.timestamps
     end
-    add_reference :reports, :report_details , index: true
+    add_reference :report_details, :report, index: true
   end
 end

@@ -1,0 +1,56 @@
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/tiny_tds-2.1.5/ext/tiny_tds
+/home/spot/.rvm/rubies/ruby-2.7.2/bin/ruby extconf.rb
+looking for freetds headers in the following directories:
+ - /opt/local/include
+ - /opt/local/include/freetds
+ - /usr/local/include
+ - /usr/local/include/freetds
+looking for freetds library in the following directories:
+ - /opt/local/lib
+ - /opt/local/lib/freetds
+ - /usr/local/lib
+ - /usr/local/lib/freetds
+checking for sybfront.h... yes
+checking for sybdb.h... yes
+checking for tdsdbopen() in -lsybdb... yes
+checking for dbanydatecrack() in -lsybdb... yes
+creating Makefile
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/tiny_tds-2.1.5/ext/tiny_tds
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-fh07mn sitelibdir\=./.gem.20230829-116259-fh07mn clean
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/tiny_tds-2.1.5/ext/tiny_tds
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-fh07mn sitelibdir\=./.gem.20230829-116259-fh07mn
+compiling client.c
+In file included from /usr/include/string.h:495,
+                 from /home/spot/.rvm/rubies/ruby-2.7.2/include/ruby-2.7.0/ruby/defines.h:145,
+                 from /home/spot/.rvm/rubies/ruby-2.7.2/include/ruby-2.7.0/ruby/ruby.h:29,
+                 from /home/spot/.rvm/rubies/ruby-2.7.2/include/ruby-2.7.0/ruby.h:33,
+                 from ./tiny_tds_ext.h:7,
+                 from client.c:1:
+In function ‘strncpy’,
+    inlined from ‘tinytds_err_handler’ at client.c:126:3:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:106:10: warning: ‘__builtin_strncpy’ specified bound 1024 equals destination size [-Wstringop-truncation]
+  106 |   return __builtin___strncpy_chk (__dest, __src, __len, __bos (__dest));
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:106:10: warning: ‘__builtin_strncpy’ specified bound 1024 equals destination size [-Wstringop-truncation]
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:106:10: warning: ‘__builtin_strncpy’ specified bound 1024 equals destination size [-Wstringop-truncation]
+In function ‘strncpy’,
+    inlined from ‘tinytds_msg_handler’ at client.c:161:3:
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:106:10: warning: ‘__builtin_strncpy’ specified bound 1024 equals destination size [-Wstringop-truncation]
+  106 |   return __builtin___strncpy_chk (__dest, __src, __len, __bos (__dest));
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+client.c: At top level:
+cc1: warning: unrecognized command line option ‘-Wno-self-assign’
+cc1: warning: unrecognized command line option ‘-Wno-parentheses-equality’
+cc1: warning: unrecognized command line option ‘-Wno-constant-logical-operand’
+compiling result.c
+compiling tiny_tds_ext.c
+linking shared-object tiny_tds/tiny_tds.so
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/tiny_tds-2.1.5/ext/tiny_tds
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-fh07mn sitelibdir\=./.gem.20230829-116259-fh07mn install
+/usr/bin/install -m 0755 tiny_tds.so ./.gem.20230829-116259-fh07mn/tiny_tds
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/tiny_tds-2.1.5/ext/tiny_tds
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-fh07mn sitelibdir\=./.gem.20230829-116259-fh07mn clean

@@ -10,6 +10,7 @@
 </head>
 <style>
 .container {
+  max-width: 100%;
   display: flex;
 }
 .content__table th {
@@ -590,11 +591,16 @@ margin: 0;
                     <i class="fa-regular fa-calendar"></i>
                 </div>
             </div>
-            <a href="us-information.html" class="menu__items menu__items--separation ">
+            <%= link_to users_path, class: "menu__items menu__items--separation " do %>
+              <div class="menu__icon ">
+                <i class="fa-regular fa-user"></i>
+              </div>
+            <% end %>
+            <%# <a href="us-information.html" class="menu__items menu__items--separation ">
                 <div class="menu__icon ">
                     <i class="fa-regular fa-user"></i>
                 </div>
-            </a>
+            </a> %>
             <div class="menu__items">
                 <div class="menu__icon  ">
                     <i class="fa-regular fa-sun"></i>
@@ -667,6 +673,7 @@ margin: 0;
                    
                 </div>
             </div>
+
             <a href="us-information.html" class="menu__items menu__items--separation">
                 <div class="menu__icon  ">
                     <div class="menu__dropdown_icon ">

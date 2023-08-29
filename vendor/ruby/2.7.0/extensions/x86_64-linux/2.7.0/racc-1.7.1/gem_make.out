@@ -1,0 +1,20 @@
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/racc-1.7.1/ext/racc/cparse
+/home/spot/.rvm/rubies/ruby-2.7.2/bin/ruby extconf.rb
+checking for rb_block_call()... yes
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-yipe8e sitelibdir\=./.gem.20230829-116259-yipe8e clean
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-yipe8e sitelibdir\=./.gem.20230829-116259-yipe8e
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-yipe8e sitelibdir\=./.gem.20230829-116259-yipe8e install
+/usr/bin/install -m 0755 cparse.so ./.gem.20230829-116259-yipe8e/racc
+
+current directory: /home/spot/MRM/vendor/ruby/2.7.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20230829-116259-yipe8e sitelibdir\=./.gem.20230829-116259-yipe8e clean

@@ -1,10 +1,7 @@
 class CreateReports < ActiveRecord::Migration[7.0]
   def change
     create_table :reports do |t|
-      t.string :name
-      t.json :title, null: false
-      t.boolean :is_apply
-      t.datetime :apply_time
+      t.string :template_keys
       t.datetime :last_submit_time
       t.datetime :confirm_time
       t.datetime :return_time
@@ -16,6 +13,6 @@ class CreateReports < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_reference :users, :reports , index: true
+    add_reference :reports, :user , index: true
   end
 end
