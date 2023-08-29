@@ -3,3 +3,4 @@ js: yarn build --watch
 css: yarn watch:css
 css: yarn watch:css
 css: yarn watch:css
+release: bundle exec ruby -e "p(require 'tiny_tds')"
