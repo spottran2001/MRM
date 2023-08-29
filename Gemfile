@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.6"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-gem 'tiny_tds'
+gem 'tiny_tds', '~> 2.1'
 #gem 'activerecord-sqlserver-adapter'
 gem 'activerecord-sqlserver-adapter', '~> 7.0.3.0'
 
