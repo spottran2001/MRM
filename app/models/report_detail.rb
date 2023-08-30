@@ -1,3 +1,3 @@
 class ReportDetail < ApplicationRecord
-  belong_to :report
+  belongs_to :report
 end
