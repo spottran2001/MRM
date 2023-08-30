@@ -1,5 +1,6 @@
 set :application, "MRM"
 set :repo_url, "https://github.com/spottran2001/MRM.git"
+#set :repo_url, 'https://spottran2001@gmail.com:Spot0504@github.com/spottran2001/MRM'
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/deploy/#{fetch :application}"
