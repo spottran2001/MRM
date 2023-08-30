@@ -1,4 +1,5 @@
 set :application, "MRM"
+set :branch, "develop"
 #set :repo_url, "https://github.com/spottran2001/MRM.git"
 set :repo_url, 'https://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@github.com/spottran2001/MRM'
 
