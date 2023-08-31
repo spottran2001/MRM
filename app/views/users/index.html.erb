@@ -794,99 +794,7 @@ margin: 0;
     <main class="container">
         <%= render "shared/left_nav"%>
 
-        <div class="menu__dropwdown" id="menu-dropdown">
-          <div class="menu__dropdown_logo">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Logo_VLU_2022.png" alt="">
-          </div>
-          <p class="menu__title">MENU</p>
-          <div class="menu__items">
-              <div class="menu__icon" id="statistics">
-                  <div class="menu__dropdown_icon">
-                  <i class="fa-solid fa-chart-simple"></i>
-                  <p>Thống Kê</p>
-                  </div>
-                  <div class="menu__icon_open">
-                  <i class="fa-solid fa-angle-up"></i>
-                  </div>
-              </div>
-              <nav class="menu__dropdown_nav ">
-                  <ul class="menu__dropdown_list">
-                      <li><a href="thongke.html" style="text-decoration: none;color: black;">Giảng viên - nhân viên</a></li>
-                      <li>Phụ trách bộ môn</li>
-                      <li>Khoa</li>
-                  </ul>
-              </nav>
-          </div>
-          <div class="menu__items" style="margin: 32px 0px;">
-            <div class="menu__icon" id="report">
-                <a href="baocaostaff.html" style="text-decoration: none;" class="menu__dropdown_icon">
-                    <i class="fa-regular fa-clipboard"></i>
-                    <p >Quản lý báo cáo</p>
-                </a>                 
-            </div>
-          </div>     
-          <div class="menu__items" >
-            <div class="menu__icon menu__active  ">
-              <div class="menu__dropdown_icon">
-                <a href="quanlytaikhoan.html" style="text-decoration: none; color: #d72134;" class="menu__dropdown_icon">
-                <i class="fa-solid fa-users"></i>
-                <p >Quản lý tài khoản</p>
-              </a>
-              </div>
-            </div>
-          </div>
-          <div class="menu__items" style="margin: 32px 0px;">
-            <div class="menu__icon  ">  
-              <div class="menu__dropdown_icon">
-                <a href="quanlyphongban.html" style="text-decoration: none;" class="menu__dropdown_icon">
-                  <i class="fa-regular fa-calendar"></i>
-                  <p >Quản lý phòng ban</p>
-                </a>
-              </div>
-            </div>
-        </div>
-          <a href="thongtintaikhoan.html" class="menu__items menu__items--separation">
-            <div class="menu__icon  ">
-              <div class="menu__dropdown_icon">
-                <i class="fa-regular fa-user"></i>
-                <p>Thông tin tài khoản</p>
-              </div>
-            </div>
-            <div class="menu__items" style="margin-top: 40px;cursor: default;">
-                <p class="menu__title" style="color: black;">SETTING</p>
-                <div class="menu__regime">
-                  <div class="regime__light" style="cursor: pointer;">
-                    <i class="fa-regular fa-sun"></i>
-                    <p>Light</p>
-                  </div>
-                  <div class="regime__dark" style="cursor: pointer;">
-                    <i class="fa-regular fa-moon"></i>
-                    <p>Dark</p>
-                  </div>
-                </div>
-            </div>
-            <a  class="menu__items" style="margin: 18px 0px 32px 0px;">
-              <div class="menu__icon">
-                <div class="menu__dropdown_icon">
-                  <i class="fa-solid fa-gear"></i>
-                  <p>Thiết lập</p>
-                </div>
-              </div>
-            </a>
-            <div class="menu__items">
-              <div class="menu__icon  ">
-                <div class="menu__dropdown_icon">
-                  <i class="fa-solid fa-right-to-bracket"></i>
-                  <p>Đăng xuất</p>
-                </div>
-              </div>
-            </div>
-            <div id="btn-dropdown">
-              <button aria-label="btn-dropdown">
-                <i class="fa-solid fa-chevron-left"></i>
-              </button>
-            </div>
-        </div>
+       
         <div class="content">
             <%= render 'shared/header' %>
             <h1 class="content__name">Quản lý tài khoản</h1>
@@ -1104,21 +1012,6 @@ getEle("statistics").addEventListener("click",()=>{
 })
 getEle("report").addEventListener("click",()=>{
     getEle("report").classList.toggle("show")
-})
-
-getEle("btn-dropdown").addEventListener("click",()=>{
-    getEle("menu-dropdown").style.transform = "translateX(-10000px)"
-    getEle("menu-dropdown").style.display  = "none"
-    getEle("menu").style.transform = "translateX(0px)"
-    getEle("menu").style.display  = "block"
-    getEle("menu").style.transition = "all 0.5s"
-
-})
-getEle("btn-menu").addEventListener("click",()=>{
-    getEle("menu-dropdown").style.transform = "translateX(0px)"
-    getEle("menu-dropdown").style.display = "block"
-    getEle("menu").style.display = "none"
-    getEle("menu").style.transform = "translateX(-10000px)"
 })
     getEle("userIcon").addEventListener("click",()=>{
       getEle("userIcon").classList.toggle("color__primary")

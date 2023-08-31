@@ -571,12 +571,12 @@ margin: 0;
                     alt="">
             </div>
             <p class="menu__title">MENU</p>
-            <a href="dashboard.html" class="menu__items">
+            <a href="#" class="menu__items">
                 <div class="menu__icon  ">
                     <i class="fa-solid fa-chart-simple"></i>
                 </div>
             </a>
-            <a href="Report.html" class="menu__items">
+            <a href="#" class="menu__items">
                 <div class="menu__icon menu__active ">
                     <i class="fa-regular fa-clipboard"></i>
                 </div>
@@ -596,7 +596,7 @@ margin: 0;
                 <i class="fa-regular fa-user"></i>
               </div>
             <% end %>
-            <%# <a href="us-information.html" class="menu__items menu__items--separation ">
+            <%# <a href="us-#" class="menu__items menu__items--separation ">
                 <div class="menu__icon ">
                     <i class="fa-regular fa-user"></i>
                 </div>
@@ -639,7 +639,7 @@ margin: 0;
                 </div>
                <nav class="menu__dropdown_nav ">
                     <ul class="menu__dropdown_list">
-                        <li><a style="text-decoration: none;color: black;" href="dashboard.html">Giảng viên - nhân viên</a></li>
+                        <li><a style="text-decoration: none;color: black;" href="#">Giảng viên - nhân viên</a></li>
                         <li>Phụ trách bộ môn</li>
                         <li>Khoa</li>
                     </ul>
@@ -647,7 +647,7 @@ margin: 0;
             </div>
             <div class="menu__items" style="margin: 32px 0px;">
                 <div class="menu__icon menu__active" id="report">
-                    <a  href="report-management.html" style="text-decoration: none;color: #dc546c;" class="menu__dropdown_icon">
+                    <a  href="#" style="text-decoration: none;color: #dc546c;" class="menu__dropdown_icon">
                         <i class="fa-regular fa-clipboard"></i>
                         <p style="color: #dc546c;" >Quản lý báo cáo</p>
                     </a>
@@ -674,7 +674,7 @@ margin: 0;
                 </div>
             </div>
 
-            <a href="us-information.html" class="menu__items menu__items--separation">
+            <a href="#" class="menu__items menu__items--separation">
                 <div class="menu__icon  ">
                     <div class="menu__dropdown_icon ">
                         <i class="fa-regular fa-user"></i>
@@ -1392,20 +1392,6 @@ getEle("statistics").addEventListener("click",()=>{
     getEle("statistics").classList.toggle("show")
 })
 
-getEle("btn-dropdown").addEventListener("click",()=>{
-    getEle("menu-dropdown").style.transform = "translateX(-10000px)"
-    getEle("menu-dropdown").style.display  = "none"
-    getEle("menu").style.transform = "translateX(0px)"
-    getEle("menu").style.display  = "block"
-    getEle("menu").style.transition = "all 0.5s"
-
-})
-getEle("btn-menu").addEventListener("click",()=>{
-    getEle("menu-dropdown").style.transform = "translateX(0px)"
-    getEle("menu-dropdown").style.display = "block"
-    getEle("menu").style.display = "none"
-    getEle("menu").style.transform = "translateX(-10000px)"
-})
 // Nút bảng 1.1
 function addRow() {
   var table = document.getElementById("myTable");

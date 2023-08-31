@@ -1,52 +1,187 @@
 <div class="menu" id="menu">
-  <div class="menu__logo">
-      <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/12/Icon-Dai-Hoc-Van-Lang.png"
-          alt="">
-  </div>
-  <p class="menu__title">MENU</p>
-  <a href="thongke.html" class="menu__items">
-      <div class="menu__icon  ">
-          <i class="fa-solid fa-chart-simple"></i>
-      </div>
-  </a>
-  <a href="baocaostaff.html" class="menu__items">
-      <div  class="menu__icon  ">
-          <i class="fa-regular fa-clipboard"></i>
-      </div>
-  </a>
-  <div class="menu__items">
-      <div class="menu__icon menu__active ">
-          <i class="fa-solid fa-users"></i>
-      </div>
-  </div>
-  <a href="quanlyphongban.html" class="menu__items  ">
-    <div class="menu__icon ">
-      <i class="fa-regular fa-calendar"></i>
+    <div class="menu__logo">
+        <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/12/Icon-Dai-Hoc-Van-Lang.png"
+            alt="">
     </div>
-</a>
-  <a href="thongtintaikhoan.html" class="menu__items menu__items--separation ">
-      <div class="menu__icon ">
-          <i class="fa-regular fa-user"></i>
-      </div>
-  </a>
-  <div class="menu__items">
-      <div class="menu__icon  ">
-          <i class="fa-regular fa-sun"></i>
-      </div>
-  </div>
-  <a  class="menu__items">
-      <div class="menu__icon  ">
-          <i class="fa-solid fa-gear"></i>
-      </div>
-  </a>
-  <div class="menu__items">
-      <div class="menu__icon  ">
-          <i class="fa-solid fa-right-to-bracket"></i>
-      </div>
-  </div>
-  <div id="btn-menu">
-      <button aria-label="btn-menu">
-          <i class="fa-solid fa-chevron-right"></i>
-      </button>
-  </div>
+    <p class="menu__title">MENU</p>
+    <a href="#" class="menu__items">
+        <div class="menu__icon">
+            <i class="fa-solid fa-chart-simple"></i>
+        </div>
+    </a>
+    <div class="menu__items">
+        <div class="menu__icon  ">
+            <i class="fa-regular fa-clipboard"></i>
+        </div>
+    </div>
+    <div class="menu__items">
+        <div class="menu__icon  ">
+            <i class="fa-regular fa-bell"></i>
+        </div>
+    </div>
+    <div class="menu__items">
+        <div class="menu__icon  ">
+            <i class="fa-regular fa-calendar"></i>
+        </div>
+    </div>
+    <%= link_to users_path, class: "menu__items menu__items--separation" do %>
+        <div class="menu__icon">
+        <i class="fa-regular fa-user"></i>
+        </div>
+    <% end %>
+    <div class="menu__items">
+        <div class="menu__icon  ">
+            <i class="fa-regular fa-sun"></i>
+        </div>
+    </div>
+    <a href="#" class="menu__items">
+        <div class="menu__icon">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+    </a>
+    
+    <div class="menu__items">
+        <%= button_to destroy_user_session_path, method: :delete, style: "background-color: white; color: #dadada; border:none", class: "menu__icon" do %>
+            <i class="fa-solid fa-right-to-bracket"></i>
+        <% end %>
+    </div>
+    <div id="btn-menu">
+        <button aria-label="btn-menu">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
 </div>
+<div class="menu__dropwdown" id="menu-dropdown">
+    <div class="menu__dropdown_logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Logo_VLU_2022.png" alt="">
+    </div>
+    <p class="menu__title">MENU</p>
+    <div class="menu__items">
+        <div class="menu__icon " id="statistics">
+            <div class="menu__dropdown_icon">
+            <i class="fa-solid fa-chart-simple"></i>
+            <p >Thống Kê</p>
+            </div>
+            <div class="menu__icon_open">
+            <i class="fa-solid fa-angle-up"></i>
+            </div>
+        </div>
+        <nav class="menu__dropdown_nav ">
+            <ul class="menu__dropdown_list">
+                <li>Giảng viên - nhân viên</li>
+                <li>Phụ trách bộ môn</li>
+                <li>Khoa</li>
+            </ul>
+        </nav>
+    </div>
+    <div class="menu__items" style="margin: 32px 0px;">
+        <div class="menu__icon" id="report">
+            <div class="menu__dropdown_icon">
+                <i class="fa-regular fa-clipboard"></i>
+                <p >Quản lý báo cáo</p>
+                </div>
+                <div class="menu__icon_open">
+                <i class="fa-solid fa-angle-up"></i>
+                </div>
+                
+        </div>
+        <nav class="menu__dropdown_nav">
+            <ul class="menu__dropdown_list">
+                <li>1. Công việc thực hiện theo KPI</li>
+                <li>2. Tinh thần trách nhiệm với nhà trường</li>
+                <li>3. Đánh giá</li>
+                <li>4. Kế hoạch công việc </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="menu__items">
+        <div class="menu__icon  ">
+            
+            <div class="menu__dropdown_icon">
+                <i class="fa-regular fa-bell"></i>
+                <p>Thông báo</p>
+            </div>
+            <div class="icon__notification"></div>
+        </div>
+    </div>
+    <div class="menu__items" style="margin: 32px 0px;">
+        <div class="menu__icon  ">
+            <div class="menu__dropdown_icon">
+                <i class="fa-regular fa-calendar"></i>
+                <p>Quản lý phòng ban</p>
+            </div>
+            
+        </div>
+    </div>
+    <%= link_to users_url, class: "menu__items menu__items--separation" do %>
+        <div class="menu__icon">
+            <div class="menu__dropdown_icon">
+                <i class="fa-regular fa-user"></i>
+                <p>Quản lý tài khoản</p>
+            </div>
+        </div>
+    <% end %>
+    <div class="menu__items" style="margin-top: 40px;cursor: default;">
+        <p class="menu__title" style="color: black;">SETTING</p>
+        <div class="menu__regime">
+            <div class="regime__light" style="cursor: pointer;">
+                <i class="fa-regular fa-sun"></i>
+                <p>Light</p>
+            </div>
+            <div class="regime__dark" style="cursor: pointer;">
+                <i class="fa-regular fa-moon"></i>
+                <p>Dark</p>
+                
+            </div>
+        </div>
+    </div>
+    <a href="#" class="menu__items" style="margin: 18px 0px 32px 0px;">
+        <div class="menu__icon">
+            <div class="menu__dropdown_icon">
+                <i class="fa-solid fa-gear"></i>
+                <p>Thiết lập</p>
+            </div>
+        </div>
+    </a>
+    
+    <div class="menu__items">
+        <div class="menu__icon  ">
+            <%= button_to destroy_user_session_path, method: :delete, style: "margin-left: 10px; background-color: #FFBF24", class: "menu__dropdown_icon" do %>
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <p>Đăng xuất</p>
+            <% end %>
+        </div>
+    </div>
+    <div id="btn-dropdown">
+        <button aria-label="btn-dropdown">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+    </div>
+</div>
+
+<script>
+  var elements = document.getElementsByClassName("menu__items");
+  for (const element of elements) {
+    element.addEventListener('click', function handleClick() {
+      for (const element of elements) {
+        element.classList.remove('menu__active');
+      }
+      element.classList.add('menu__active');
+    });
+  };
+
+ document.getElementById("btn-menu").addEventListener("click",()=>{
+    getEle("menu-dropdown").style.transform = "translateX(0px)"
+    getEle("menu-dropdown").style.display = "block"
+    getEle("menu").style.display = "none"
+    getEle("menu").style.transform = "translateX(-10000px)"
+})
+
+  document.getElementById("btn-dropdown").addEventListener("click",()=>{
+    getEle("menu-dropdown").style.transform = "translateX(-10000px)"
+    getEle("menu-dropdown").style.display  = "none"
+    getEle("menu").style.transform = "translateX(0px)"
+    getEle("menu").style.display  = "block"
+    getEle("menu").style.transition = "all 0.5s"
+	});
+</script>
