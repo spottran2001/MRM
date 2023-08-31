@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   belongs_to :faculty, optional: true
   belongs_to :subject, optional: true
+  has_many :notifications
 
   def self.from_omniauth(auth)
 	  where(email: auth.info.email).first_or_create do |user|
@@ -16,5 +17,9 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
       user.reset_password_token = "#{user.email}#{user.password}"
 	  end
+  end
+
+  def read_notification!
+    notifications.update_all(have_read: true)
   end
 end

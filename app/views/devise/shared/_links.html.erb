@@ -46,7 +46,6 @@ footer {
   padding: 275px 0px;
 }
 .form__container {
-  position: fixed;
   height: 500px;
   width: 48%;
   border-radius: 8px;
@@ -252,51 +251,53 @@ footer {
                 <h1>Trường Đại Học Văn Lang</h1>
             </div>
         </header>
-        <div class="form__container">
-            <div class="form__left"></div>
-            <div class="form__right">
-                <div class="form__content">
-                    <form>
-                        <h2>WELCOME</h2>
-                        <div class="form__control">
-                            <input class="form__input" id="password" placeholder="Tên đăng nhập"/>
-                            <i class="fa-solid fa-user"></i>
-                            <div class="underline"></div>
-                        </div>
-                        <div class="form__control">
-                            <input class="form__input" id="password" placeholder="Mật khẩu"/>
-                            <i class="fa-solid fa-lock" ></i>
-                            <div class="underline"></div>
-                        </div>
-                        <div class="form__checkbox">
-                         
-                            <label for="remember">
-                                <input type="checkbox" id="remember" name="remember" class="checkbox__input">
-                                Ghi nhớ đăng nhập
-                                <i class="fa-solid fa-check"></i>
-                               
-                            </label>
-                        </div>
-                        <div class="form__btn">
-                            <button>ĐĂNG NHẬP</button>
-                        </div>
-                        <div class="form__office">
-                           <div class="office__logo">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsETm6bPgfW7M7yODuAhM-1CzeKhPWGQ11DNuR8ImKRknieRkf4JXdgS8ySZlJ-M-yvbE&usqp=CAU" alt="">
-                           </div>
+        <div style="display:flex; justify-content:center;">
+          <div class="form__container">
+              <div class="form__left"></div>
+              <div class="form__right">
+                  <div class="form__content">
+                      <form>
+                          <h2>WELCOME</h2>
+                          <div class="form__control">
+                              <input class="form__input" id="password" placeholder="Tên đăng nhập"/>
+                              <i class="fa-solid fa-user"></i>
+                              <div class="underline"></div>
+                          </div>
+                          <div class="form__control">
+                              <input class="form__input" id="password" placeholder="Mật khẩu"/>
+                              <i class="fa-solid fa-lock" ></i>
+                              <div class="underline"></div>
+                          </div>
+                          <div class="form__checkbox">
+                          
+                              <label for="remember">
+                                  <input type="checkbox" id="remember" name="remember" class="checkbox__input">
+                                  Ghi nhớ đăng nhập
+                                  <i class="fa-solid fa-check"></i>
+                                
+                              </label>
+                          </div>
+                          <div class="form__btn">
+                              <button>ĐĂNG NHẬP</button>
+                          </div>
+                          <div class="form__office">
                             <div class="office__btn">
-                                <form class="button_to" method="post" action="/users/auth/azure_activedirectory_v2">
-                                </form>
-                                <%- if devise_mapping.omniauthable? %>
-                                  <%- resource_class.omniauth_providers.each do |provider| %>
-                                    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
-                                  <% end %>
+                              <div class="office__logo">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsETm6bPgfW7M7yODuAhM-1CzeKhPWGQ11DNuR8ImKRknieRkf4JXdgS8ySZlJ-M-yvbE&usqp=CAU" alt="">
+                              </div>
+                              <form class="button_to" method="post" action="/users/auth/azure_activedirectory_v2">
+                              </form>
+                              <%- if devise_mapping.omniauthable? %>
+                                <%- resource_class.omniauth_providers.each do |provider| %>
+                                  <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
                                 <% end %>
+                              <% end %>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
         </div>
         <footer>
             <div class="footer">

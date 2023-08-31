@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :users
+  resources :users do
+    put "read_notifications", to: "users#read_notification"
+  end
   resources :report_template
   root 'users#show'
   get "statistic", to: 'home#page_stats' 

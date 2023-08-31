@@ -31,14 +31,23 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @current_user.role != 'admin'
-      user.update!(params)
+    if current_user.role != 'admin'
+      @user.update!(update_phone_params)
     else
-      user.update!(params[:phone_number]) #add this column to database!
+      @user.update!(update_phone_params) #add this column to database!
     end
+    redirect_to users_path
   end
 
   def generate_report
     raise "you dont have permission to do this " if current_user.role != 'admin'
+  end
+
+  def update_phone_params
+    params.require(:user).permit(:phone_number)
+  end
+
+  def read_notification
+    current_user.read_notification!
   end
 end

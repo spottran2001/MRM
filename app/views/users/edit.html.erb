@@ -522,162 +522,8 @@ html,body {
 
 <body>
     <main class="container">
-        <div class="menu" id="menu">
-            <div class="menu__logo">
-                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/12/Icon-Dai-Hoc-Van-Lang.png"
-                    alt="">
-            </div>
-            <p class="menu__title">MENU</p>
-            <a href="#" class="menu__items">
-                <div class="menu__icon">
-                    <i class="fa-solid fa-chart-simple"></i>
-                </div>
-            </a>
-            <a href="#" class="menu__items">
-                <div class="menu__icon  ">
-                    <i class="fa-regular fa-clipboard"></i>
-                </div>
-              </a>
-            <div class="menu__items">
-                <div class="menu__icon  ">
-                    <i class="fa-regular fa-bell"></i>
-                </div>
-            </div>
-            <div class="menu__items">
-                <div class="menu__icon  ">
-                    <i class="fa-regular fa-calendar"></i>
-                </div>
-            </div>
-            <%= link_to users_path, class: "menu__items menu__items--separation " do %>
-              <div class="menu__icon menu__active">
-                <i class="fa-regular fa-user"></i>
-              </div>
-            <% end %>
-            <%# <a href="us-information.html" class="menu__items menu__items--separation">
-                <div class="menu__icon menu__active ">
-                    <i class="fa-regular fa-user"></i>
-                </div>
-            </a> %>
-            <div class="menu__items">
-                <div class="menu__icon  ">
-                    <i class="fa-regular fa-sun"></i>
-                </div>
-            </div>
-            <a href="#" class="menu__items">
-                <div class="menu__icon  ">
-                    <i class="fa-solid fa-gear"></i>
-                </div>
-            </a>
-            <div class="menu__items">
-                <div class="menu__icon  ">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                </div>
-            </div>
-            <div id="btn-menu">
-                <button aria-label="btn-menu">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-        <div class="menu__dropwdown" id="menu-dropdown">
-            <div class="menu__dropdown_logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Logo_VLU_2022.png" alt="">
-            </div>
-            <p class="menu__title">MENU</p>
-            <div class="menu__items">
-                <div class="menu__icon " id="statistics">
-                   <div class="menu__dropdown_icon">
-                    <i class="fa-solid fa-chart-simple"></i>
-                    <p >Thống Kê</p>
-                   </div>
-                   <div class="menu__icon_open">
-                    <i class="fa-solid fa-angle-up"></i>
-                   </div>
-                </div>
-               <nav class="menu__dropdown_nav ">
-                    <ul class="menu__dropdown_list">
-                      <li><a href="#" style="text-decoration: none;color: black;">Giảng viên - nhân viên</a></li>
-                        <li>Phụ trách bộ môn</li>
-                        <li>Khoa</li>
-                    </ul>
-               </nav>
-            </div>
-            <div class="menu__items" style="margin: 32px 0px;">
-                <div class="menu__icon" id="report">
-                    <a href="#" style="text-decoration: none;" class="menu__dropdown_icon">
-                        <i class="fa-regular fa-clipboard"></i>
-                        <p >Quản lý báo cáo</p>
-                    </a>
-                     
-                </div>
-    
-            </div>
-            <div class="menu__items">
-                <div class="menu__icon  ">
-                   
-                    <div class="menu__dropdown_icon">
-                        <i class="fa-regular fa-bell"></i>
-                        <p>Thông báo</p>
-                    </div>
-                    <div class="icon__notification"></div>
-                </div>
-            </div>
-            <div class="menu__items" style="margin: 32px 0px;">
-                <div class="menu__icon  ">
-                    <div class="menu__dropdown_icon">
-                        <i class="fa-regular fa-calendar"></i>
-                        <p>Quản lý phòng ban</p>
-                    </div>
-                   
-                </div>
-            </div>
-            <a href="#" class="menu__items menu__items--separation">
-                <div class="menu__icon menu__active  ">
-                    <div class="menu__dropdown_icon">
-                        <i class="fa-regular fa-user"></i>
-                        <p>Quản lý tài khoản</p>
-                    </div>
-                
-                </div>
-            </a>
-            <div class="menu__items" style="margin-top: 40px;cursor: default;">
-                <p class="menu__title" style="color: black;">SETTING</p>
-                <div class="menu__regime">
-                    <div class="regime__light" style="cursor: pointer;">
-                        <i class="fa-regular fa-sun"></i>
-                       <p>Light</p>
-                    </div>
-                    <div class="regime__dark" style="cursor: pointer;">
-                        <i class="fa-regular fa-moon"></i>
-                        <p>Dark</p>
-                      
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="menu__items" style="margin: 18px 0px 32px 0px;">
-                <div class="menu__icon ">
-                    <div class="menu__dropdown_icon">
-                        <i class="fa-solid fa-gear"></i>
-                        <p>Thiết lập</p>
-                    </div>
-                   
-                </div>
-            </a>
-            <div class="menu__items">
-                <div class="menu__icon  ">
-                    <div class="menu__dropdown_icon">
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        <p>Đăng xuất</p>
-                    </div>
-                
-                </div>
-            </div>
-            <div id="btn-dropdown">
-                <button aria-label="btn-dropdown">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-            </div>
-        </div>
+        <%= render "shared/left_nav"%>
+
         <div class="content">
             <div class="content__title">
                 
@@ -710,56 +556,55 @@ html,body {
                 <div class="info__img">
                     
                 </div>
-                <div class="info__content">
-                  <div class="info__title">
-                    <h1><%= @user.name %></h1>
-                    <p class="info">Thông tin</p>
-                  </div>
-                   <nav class="info__nav">
-                    <ul class="info__list">
-                        <li>
-                            <span></span>
-                            <p>Email</p>
-                            <%= @user.email || "N/A" %>
-                        </li>
-                        <li>
-                            <span></span>
-                            <p>Mã số</p>
-                            197XX123456
-                        </li>
-                        <li>
-                            <span></span>
-                            <p>SĐT</p>
-                            <input />
-                        </li>
-                        <li>
-                            <span></span>
-                            <p style="margin-right: 66px;">Chức vụ</p>
-                            <%= @user.role || "N/A" %>
-                        </li>
-                        <li>
-                            <span></span>
-                            <p style="margin-right: 66px">Bộ môn</p>
-                            <%= @user.subject&.name || "N/A" %>
-                        </li>
-                        <li>
-                            <span></span>
-                            <p>Khoa</p>
-                           <%= @user.faculty&.name || "N/A" %>
-                        </li>
+                <%= simple_form_for @user, method: :put, url: user_path(@user) do |f| %>
+                  <div class="info__content">
+                    <div class="info__title">
+                      <h1><%= @user.name %></h1>
+                      <p class="info">Thông tin</p>
+                    </div>
+                    <nav class="info__nav">
+                      <ul class="info__list">
+                          <li>
+                              <span></span>
+                              <p>Email</p>
+                              <%= @user.email || "N/A" %>
+                          </li>
+                          <li>
+                              <span></span>
+                              <p>Mã số</p>
+                              197XX123456
+                          </li>
+                          <li>
+                              <span></span>
+                              <p>SĐT</p>
+                              <%= f.input :phone_number,label: false, required: false, input_html: { autocomplete: "phone-number" } %>  
+                          </li>
+                          <li>
+                              <span></span>
+                              <p style="margin-right: 66px;">Chức vụ</p>
+                              <%= @user.role || "N/A" %>
+                          </li>
+                          <li>
+                              <span></span>
+                              <p style="margin-right: 66px">Bộ môn</p>
+                              <%= @user.subject&.name || "N/A" %>
+                          </li>
+                          <li>
+                              <span></span>
+                              <p>Khoa</p>
+                            <%= @user.faculty&.name || "N/A" %>
+                          </li>
 
-                    </ul>
-                   </nav>
-                </div>
+                      </ul>
+                    </nav>
+                  </div>
                 <div class="info__user_img">
                     <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo" alt="">
                 </div>
                 <div class="btn_edit-info">
-                    <button>
-                        <%= link_to "Lưu Chỉnh Sửa", users_path %>
-                        <%# <a href="us-information.html">Lưu Chỉnh Sửa</a> %>
-                    </button>
+                    <%= f.submit 'Lưu Chỉnh Sửa', style: 'padding: 10px 20px;border: none; cursor: pointer; outline: none; background-color: #DC546C; border-radius: 40px; color: white;', data: { disable_with: "Please wait..." } %>
                 </div>
+              <% end %>
             </div>
         </div>
       

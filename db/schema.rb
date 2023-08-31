@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_25_061641) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_31_072142) do
   create_table "faculties", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id"
+    t.boolean "have_read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_25_061641) do
     t.string "role"
     t.bigint "faculty_id"
     t.bigint "subject_id"
+    t.string "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["faculty_id"], name: "index_users_on_faculty_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
