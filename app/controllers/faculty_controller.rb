@@ -3,8 +3,6 @@ class FacultyController < ApplicationController
 
   def index
     @faculties = Faculty.all.order(:created_at)
-    Faculty.create!(name: "Ky Thuat Phan Men")
-    Subject.create!(name: "Cong Nghe Thong Tin")
   end
 
   def create
