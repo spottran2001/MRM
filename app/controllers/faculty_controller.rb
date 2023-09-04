@@ -2,7 +2,7 @@ class FacultyController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @faculties = Faculty.where(user_id: current_user.id).order(:created_at)
+    @faculties = Faculty.all.order(:created_at)
   end
 
   def create
@@ -14,7 +14,7 @@ class FacultyController < ApplicationController
   end
 
   def destroy
-    if User.where(faculty_id: @faculty.id).present?
+    if User.where(faculty_id: params[:id]).present?
       raise 'You can not delete this faculty because it has been used already'
     end
     @faculty.destroy!

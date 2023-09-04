@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     put "read_notifications", to: "users#read_notification"
   end
   resources :report_template
+  resources :faculty
+  resources :subject
   root 'users#show'
   get "statistic", to: 'home#page_stats' 
   get "reports", to: 'home#report' 

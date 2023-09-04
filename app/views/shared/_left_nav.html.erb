@@ -1,3 +1,559 @@
+<style>
+    .container {
+      display: flex;
+      height: 100%;
+    }
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+/* MENU */
+.menu {
+  background-color: white;
+  width: 100px;
+  max-height: 100%;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transition: all 0.5s;
+  display: block;
+  position: relative;
+}
+.menu__title {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+.menu__logo {
+  width: 100%;
+  padding: 20px;
+}
+.menu__logo img {
+  width: 100%;
+}
+.menu__items {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0px 20px;
+  cursor: pointer;
+  color: #dadada;
+  display: block;
+}
+.menu__items--separation {
+  margin-bottom: 40px;
+}
+.menu__icon i {
+  font-size: 20px;
+}
+
+.menu__icon {
+  padding: 6px 0px;
+}
+
+.menu__active {
+  border-left: 2px solid #d72134;
+  color: #d72134 !important;
+}
+
+/* Content */
+
+.content {
+  background-color: #f5f5f5;
+  width: 100%;
+  padding: 30px 60px 20px 30px;
+}
+.content__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content__name {
+  padding: 40px 0px 10px 40px;
+  font-size: 30px;
+}
+
+.content__breadcrumb {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.breadcrumb__name {
+  display: inline-block;
+  margin-left: 10px;
+  color: #f34f68;
+  border-bottom: 3px solid #f34f68;
+  padding: 12px 0px;
+}
+.content__user {
+  display: flex;
+  align-items: center;
+}
+.user_icon {
+  font-size: 24px;
+  margin-right: 14px;
+  margin-top: 6px;
+}
+.user__info {
+  margin-right: 10px;
+  font-size: 16px;
+}
+.user__info p:first-child {
+  text-align: right;
+}
+
+.user__img img {
+  border-radius: 50%;
+  width: 40px;
+  height: 100%;
+}
+.user__img {
+  margin-right: 10px;
+}
+.user__detail {
+  font-size: 20px;
+  cursor: pointer;
+  color: gray;
+}
+
+.content__generality {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0px;
+  padding: 14px 20px;
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+.generality__total {
+  display: flex;
+  align-items: center;
+}
+.generality__select {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.generality__select select {
+  width: 60px;
+  height: 40px;
+  border-radius: 4px;
+
+  outline: none;
+}
+.content__btn {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border-radius: 10px;
+}
+.content__btn button {
+  cursor: pointer;
+  padding: 12px 20px;
+  outline: none;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: white;
+  border: 1px solid gray;
+  color: black;
+}
+.content__btn button i {
+  margin-left: 6px;
+}
+
+.generality__search {
+  position: relative;
+}
+.generality__search_icon {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  font-size: 12px;
+  color: gray;
+  cursor: pointer;
+  padding: 10px;
+}
+.generality__search input {
+  padding: 14px 40px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 20px 0px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+}
+.content__table {
+  width: 100%;
+  text-align: center;
+  border: none;
+  border-spacing: 0px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 25px;
+}
+.content__table th {
+  color: white;
+  padding: 20px 10px;
+}
+.content__table_header {
+  background-color: #dc546c;
+  font-size: 16px;
+}
+.content__table-checkbox {
+  margin-top: 4px;
+}
+
+.content__table-checkbox-report{
+  margin-left: 5px;
+
+}
+.content__table_body {
+  font-size: 16px;
+}
+.checkbox-row{
+  display: flex;
+  align-items: center;
+
+}
+.content__table_body td {
+  padding: 10px 0px;
+}
+.approve {
+  background-color: #5cbd4c;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  color: white;
+}
+.btn {
+  padding: 6px 8px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+}
+.btn i {
+  font-size: 20px;
+  color: white;
+}
+.gold {
+  background-color: #f4924b;
+}
+.blue {
+  background-color: #1b59f8;
+}
+.green {
+  background-color: #5cbd4c;
+}
+
+.paging {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 20px;
+}
+.paging--active {
+  background-color: #d72134 !important;
+  color: white !important;
+}
+
+.paging button {
+  padding: 10px 14px;
+  margin: 0px 8px;
+  border: none;
+  background-color: rgb(241, 241, 241);
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.menu__dropwdown {
+  width: 250px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  position: relative;
+  padding: 2px;
+  display: none;
+  transition: all 0.5s;
+}
+.menu__dropdown_logo {
+  padding: 30px;
+  width: 100%;
+}
+.menu__dropdown_logo img {
+  width: 100%;
+}
+.menu__dropwdown .menu__title {
+  text-align: left;
+  padding: 0px 20px;
+}
+.menu__dropwdown .menu__items {
+  text-align: left;
+  margin: 0px;
+  padding: 10px 0px;
+  display: block;
+  text-decoration: none;
+}
+.menu__dropwdown .menu__items .menu__icon {
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  justify-content: space-between;
+}
+.menu__dropwdown .menu__items .menu__icon .menu__dropdown_icon {
+  display: flex;
+  align-items: center;
+}
+.menu__dropwdown .menu__items .menu__icon .menu__dropdown_icon p {
+  color: black;
+  margin-left: 10px;
+  font-size: 18px;
+  margin-top: 4px;
+}
+.active {
+  color: #d72134 !important;
+}
+.menu__icon_open i {
+  font-size: 20px;
+  margin-top: 6px;
+  transition: all 0.3s;
+}
+.menu__dropdown_nav {
+  padding-left: 44px;
+  font-size: 14px;
+  margin-top: 10px;
+  display: none;
+  transition: all 0.5s;
+}
+.menu__dropdown_list {
+  list-style: none;
+}
+.menu__dropdown_list li {
+  color: black;
+  padding: 10px 0px;
+}
+.icon__notification {
+  width: 15px;
+  height: 15px;
+  background-color: #d72134;
+  border-radius: 50%;
+  margin-top: 4px;
+}
+
+.menu__regime {
+  display: flex;
+  align-items: center;
+  margin: 10px 40px 0px 20px;
+  padding: 10px 12px;
+  justify-content: center;
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+.regime__light,
+.regime__dark {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.regime__dark {
+  margin-left: 10px;
+  background: gray;
+  color: black;
+  padding: 6px 10px;
+  border-radius: 40px;
+}
+.regime__light {
+  background-color: white;
+  padding: 6px 10px;
+  border-radius: 40px;
+  color: black;
+}
+.regime__light p,
+.regime__dark p {
+  margin-left: 10px;
+}
+/* Toggle */
+#statistics .show {
+  display: block;
+}
+
+.show .menu__icon_open i {
+  transform: rotate(-180deg);
+}
+.show ~ .menu__dropdown_nav {
+  display: block;
+}
+
+#btn-dropdown {
+  position: absolute;
+  left: 234px;
+  top: 40px;
+}
+#btn-dropdown button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #d72134;
+  color: black;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+}
+#btn-dropdown button i {
+  font-size: 16px;
+  transition: all 0.5s;
+}
+
+#btn-menu {
+  position: absolute;
+  left: 78px;
+  top: 30px;
+}
+
+#btn-menu button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #d72134;
+  color: black;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+}
+#btn-menu button i {
+  font-size: 16px;
+  transition: all 0.5s;
+}
+.generality__options {
+  display: flex;
+  align-items: center;
+}
+.btn__addmember button {
+  display: flex;
+  align-items: center;
+
+  padding: 14px 16px;
+  border: none;
+  outline: none;
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.btn__addmember button p {
+  margin-left: 6px;
+}
+.btn__addfile {
+  margin: 0px 24px;
+}
+.btn__addfile button {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: none;
+  color: white;
+  background-color: green;
+  cursor: pointer;
+}
+.btn__addfile button p {
+  margin-left: 6px;
+}
+
+.select__options select {
+  padding: 8px 6px;
+  border-radius: 10px;
+}
+.container__info {
+  height: 560px;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+.info__img {
+  background-image: url("./assets/img/Bird.jpg");
+  width: 20%;
+  float: left;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.info__content {
+  background-color: white;
+  padding: 100px 0px 100px 100px;
+  float: right;
+  width: 80%;
+  height: 100%;
+}
+.info__title {
+  margin-left: 32px;
+}
+.info__title h1 {
+
+  padding-bottom: 6px;
+}
+.info {
+  font-size: 16px;
+  color: gray;
+  margin: 6px 0px 40px 0px;
+  border-top: 4px solid red;
+}
+
+
+.info__list li {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  font-size: 16px;
+  margin: 40px 0px;
+}
+.info__list li p {
+  margin: 0px 80px 0px 20px;
+  color: gray;
+  font-size: 18px;
+  text-align: left;
+}
+.info__list li span {
+  width: 12px;
+  height: 12px;
+  border: 1px solid gray;
+  border-radius: 50%;
+}
+
+.info__user_img {
+  position: absolute;
+  top: 50px;
+  left: 190px;
+  border-radius: 50%;
+  border: 4px solid white;
+  width: 164px;
+  height: 164px;
+}
+.info__user_img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.btn_edit-info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.btn_edit-info button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: white;
+  border-radius: 40px;
+}
+
+</style>
+
 <div class="menu" id="menu">
     <div class="menu__logo">
         <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/12/Icon-Dai-Hoc-Van-Lang.png"
@@ -19,11 +575,13 @@
             <i class="fa-regular fa-bell"></i>
         </div>
     </div>
-    <div class="menu__items">
-        <div class="menu__icon  ">
-            <i class="fa-regular fa-calendar"></i>
-        </div>
-    </div>
+    <%= link_to subject_index_path, class: "menu__items menu__items--separation" do %>
+      <div class="menu__items">
+          <div class="menu__icon  ">
+              <i class="fa-regular fa-calendar"></i>
+          </div>
+      </div>
+    <% end %>
     <%= link_to users_path, class: "menu__items menu__items--separation" do %>
         <div class="menu__icon">
         <i class="fa-regular fa-user"></i>
@@ -163,8 +721,8 @@
   var elements = document.getElementsByClassName("menu__items");
   for (const element of elements) {
     element.addEventListener('click', function handleClick() {
-      for (const element of elements) {
-        element.classList.remove('menu__active');
+      for (const e of elements) {
+        e.classList.remove('menu__active');
       }
       element.classList.add('menu__active');
     });

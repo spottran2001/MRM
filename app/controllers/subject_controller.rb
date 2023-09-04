@@ -2,7 +2,7 @@ class SubjectController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @subjects = Subject.where(user_id: current_user.id).order(:created_at)
+    @subjects = Subject.all.order(:created_at)
   end
 
   def create
@@ -14,7 +14,7 @@ class SubjectController < ApplicationController
   end
 
   def destroy
-    if User.where(subject_id: @subject.id).present? || ReportTemplate.where(subject_id: @subject.id).present?
+    if User.where(subject_id: params[:id]).present? || ReportTemplate.where(subject_id: params[:id]).present?
       raise 'You can not delete this subject because it has been used already'
     end
     @subject.destroy!
