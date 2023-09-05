@@ -7,6 +7,16 @@ class UsersController < ApplicationController
     else
       @users = User.all
     end
+
+    ReportTemplate.create!(id: 1,
+      apply_time: nil,
+      is_apply: nil,
+      title:
+       "{\"title1\":{\"key1\":[\"123,3123123,5,4,312,3,2\",\"1,khoates123,text,text,text,text,text\"]},\"title2\":{\"key21\":[\"123,123,32,3,2,1,2\",\"1,khoates123,text,text,text,text,text\"],\"key22\":[\"322,123123,123,2,1,3,2\",\"1,khoates123,text,text,text,text,text\"]},\"title3\":{\"key31\":[\"some,2,3,1,2,3,4\",\"1,khoates123,text,text,text,text,text\",\"1,text,text,text,text,text,text\",\"1,text,text,text,text,text,text\"]}}",
+      uid: nil,
+      academic_year_id: nil,
+      subject_id: nil,
+      deadline: nil)
   end
 
   def page_login
