@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :report_template
   resources :faculty
   resources :subject
+  resources :report do
+    put "submit_report", to: "report#submit_report!"
+  end
   root 'users#show'
   get "statistic", to: 'home#page_stats' 
   get "reports", to: 'home#report' 

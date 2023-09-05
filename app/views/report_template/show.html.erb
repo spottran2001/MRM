@@ -619,16 +619,16 @@ margin: 0;
                 </div>
             
             </div>           
-                          <button aria-label="btn__addmember">
-                            <i class="fa-regular fa-newspaper"></i>
-                            <p>LƯU BÁO CÁO</p>
-                          </button>
+            <button aria-label="btn__addmember" onclick="SubmitReport()">
+              <i class="fa-regular fa-newspaper"></i>
+              <p>LƯU BÁO CÁO</p>
+            </button>
             <% @report_template_title.keys.each_with_index do |key, index|%>
               <table class="content__table" style="border-radius: 0px; " >
                 <thead>
                   <tr class="content__table_header"  style="background-color: #f4924b;" onclick="showTableList(this)">
                     <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th id="tableHeader" colspan="8" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none;"> <%= "#{index+1}. #{key}"%></th>
+                    <th class="tableHeader" colspan="8" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none;"> <%= "#{index+1}. #{key}"%></th>
                   </tr>
                 </thead>
                 <% @report_template_title[key].each do |key, value|%>
@@ -636,6 +636,7 @@ margin: 0;
                     <tr class="content__table_header">
                         <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
                         <th>
+                            <input value=<%= key %> style="display:none" class="key_title">
                             <input id="Checkbox11" onchange="toggleAllCheckboxes()"  class="content__table-checkbox" type="checkbox" placeholder="checkbox">
                         </th>
                         <th>
@@ -661,47 +662,30 @@ margin: 0;
                             Ghi chú
                         </th>
                     </tr>
-                    <tr class="content__table_body">
-                        <td class="first_column"  style="border: none;text-align: right;padding: 0;">
-                            <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            <button  onclick="addRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </td>
-                        <td> <input  class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                        <td>1</td>
-                        <td>text</td>
-                        <td>text</td>
-                        <td>text</td>
-                        <td>text</td>
-                        <td>text</td>
-                        <td>text</td>
-                    </tr>
-                    <tr class="content__table_body">
-                        <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                        <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                        <td>2</td>
-                        <td>text</td>
-                        <td>text</td>
-                        <td>text</td>
-                        <td>text</td>
-                        <td>text</td>
-                        <td>test</td>
-                    </tr>
-                    <tr class="content__table_body">
-                        <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                        
-                        <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                        <td>3</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>    
-                    </tr>
+                    <% check = true %>
+                    <% value.each do |v| %>
+                      <tr class="content__table_body">
+                          <% if check == true %>
+                            <td class="first_column"  style="border: none;text-align: right;padding: 0;">
+                                <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                                <button  onclick="addRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                              <% check = false %>
+                            </td>
+
+                          <% else %>
+                            <td class="first_column"  style="border: none;text-align: right;padding: 0;">
+                            </td>
+                          <% end %>
+                          <td> <input  class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
+                          <% v.split(",").each do |item| %>
+                            <td contenteditable="true" class= "content__table_body_td_value"><%= item %></td>
+                          <% end %>
+                      </tr>
+                    <% end %>
                   </tbody>
                 <% end %>
               </table>
@@ -967,7 +951,8 @@ getEle("btn-menu").addEventListener("click",()=>{
 function addRow(e) {
   var row = document.getElementsByClassName("content__table_body")[0];
   var table = e.parentNode.parentNode.parentNode;
-  var row = table.insertRow(-1); 
+  var row = table.insertRow(-1);
+  row.classList.toggle("content__table_body")
 
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);
@@ -986,43 +971,51 @@ function addRow(e) {
   cell3.style.overflow = "hidden";
   cell3.style.fontSize = "16px";
   cell3.style.padding = "10px 0px";
+  cell3.classList.toggle("content__table_body_td_value")
   cell3.innerHTML = "1";
   cell4.contentEditable = true;
   cell4.style.border = "1px solid black";
   cell4.style.overflow = "hidden";
   cell4.style.fontSize = "16px";
   cell4.style.padding = "10px 0px";
+  cell4.classList.toggle("content__table_body_td_value")
   cell4.innerHTML = "text";
   cell5.contentEditable = true;
   cell5.style.border = "1px solid black";
   cell5.style.overflow = "hidden";
   cell5.style.fontSize = "16px";
   cell5.style.padding = "10px 0px";
+  cell5.classList.toggle("content__table_body_td_value")
   cell5.innerHTML = "text";
   cell6.contentEditable = true;
   cell6.style.border = "1px solid black";
   cell6.style.overflow = "hidden";
   cell6.style.fontSize = "16px";
   cell6.style.padding = "10px 0px";
+  cell6.classList.toggle("content__table_body_td_value")
   cell6.innerHTML = "text";
   cell7.contentEditable = true;
   cell7.style.border = "1px solid black";
   cell7.style.overflow = "hidden";
   cell7.style.fontSize = "16px";
   cell7.style.padding = "10px 0px";
+  cell7.classList.toggle("content__table_body_td_value")
   cell7.innerHTML = "text";
   cell8.contentEditable = true;
   cell8.style.border = "1px solid black";
   cell8.style.overflow = "hidden";
   cell8.style.fontSize = "16px";
   cell8.style.padding = "10px 0px";
+  cell8.classList.toggle("content__table_body_td_value")
   cell8.innerHTML = "text";
   cell9.contentEditable = true;
   cell9.style.border = "1px solid black";
   cell9.style.overflow = "hidden";
   cell9.style.fontSize = "16px";
   cell9.style.padding = "10px 0px";
+  cell9.classList.toggle("content__table_body_td_value")
   cell9.innerHTML = "text";
+
 }
 
 
@@ -1112,5 +1105,52 @@ function showTableList(e) {
         getEle("popup__guiBaocao").style.display = "none"
     })
 
+</script>
+
+<script>
+  function SubmitReport(){
+    var content__table_body_td_value_arr = []
+    var title_2_title_arr = []
+
+    //get each table
+    for (let table of document.getElementsByClassName("content__table")){
+      let title = table.getElementsByClassName("tableHeader")[0];
+      let title_value = title.innerText.split(" ")[1];
+
+      //get each key
+      for(let title_2 of table.getElementsByClassName("key_title")){ // title2_1, title2_2, ......
+        title_2_title_arr.push(title_2.value);
+        let title_2_value_array = []
+        //get each row in table
+        for (let content__table_body of title_2.parentElement.parentElement.parentNode.getElementsByClassName("content__table_body")){
+          let title_2_value = "";
+          //get each column value in row
+          for (let td_value of content__table_body.getElementsByClassName("content__table_body_td_value")){
+            if (title_2_value == ""){
+              title_2_value += td_value.innerText;
+            }else{
+              title_2_value += "," +  td_value.innerText
+            }
+          };
+          title_2_value_array.push(title_2_value);
+        }
+        content__table_body_td_value_arr.push(title_2_value_array)
+      }
+    }
+    var data = new FormData();
+    data.append('content__table_body_td_value_arr',JSON.stringify(content__table_body_td_value_arr));
+    data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
+    jQuery.ajax({
+      url: "/report/<%= @report_template.id %>/submit_report",
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      method: 'PUT',
+      success: function(data){
+          alert(data);
+      }
+    });
+  }
 </script>
 </html>
