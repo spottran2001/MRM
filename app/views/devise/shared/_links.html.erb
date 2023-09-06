@@ -2,308 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Login</title>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700&display=swap");
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-body {
-  font-family: "Raleway", sans-serif;
-}
-
-main {
-  height: 100vh;
-}
-
-header {
-  padding: 0px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header__logo img {
-  width: 350px;
-}
-.header__name h1 {
-  text-transform: uppercase;
-  font-size: 24px;
-  font-weight: 400;
-  color: #000000;
-}
-footer {
-  margin-top: 300px;
-}
-.footer {
-  background-image: url("./assets/img/Texture.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 275px 0px;
-}
-.form__container {
-  height: 500px;
-  width: 48%;
-  border-radius: 8px;
-  box-shadow: 0 0px 10px 0px rgb(0 0 0 / 0.25);
-  right: 60px;
-}
-.form__left {
-  float: left;
-  width: 40%;
-  background-image: url("../app/assets/images/Bird.jpg");
-  height: 500px;
-  background-size: cover;
-  border-bottom-left-radius: 8px;
-  border-top-left-radius: 8px;
-}
-.form__right {
-  width: 60%;
-  float: right;
-  border-bottom-right-radius: 8px;
-  border-top-right-radius: 8px;
-  background-color: white;
-  height: 100%;
-}
-
-.form__content {
-  padding: 40px 20px;
-}
-.form__content h2 {
-  text-align: center;
-  color: #d72134;
-}
-.form__control {
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin: 30px 0px;
-  padding: 0px 10px;
-}
-.form__control i {
-  position: absolute;
-  font-size: 20px;
-  top: 6px;
-  color: silver;
-  padding-left: 8px;
-}
-.form__input:focus ~ i {
-  color: #d72134;
-}
-.form__input {
-  width: 100%;
-  padding: 10px 0px 10px 40px;
-  outline: none;
-  border: none;
-  border-bottom: 3px solid silver;
-  font-size: 14px;
-}
-.form__input:focus ~ .underline::before {
-  transform: scale(1);
-}
-
-.underline {
-  position: absolute;
-  width: 100%;
-  height: 3px;
-
-  bottom: 0;
-}
-.underline::before {
-  content: "";
-  position: absolute;
-  background-color: #d72134;
-  width: 100%;
-  height: 100%;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.form__checkbox {
-  padding: 0px 10px;
-  margin-left: 10px;
-}
-.form__checkbox input {
-  display: none;
-}
-.form__checkbox label {
-  margin-left: 10px;
-  color: #d72134;
-  font-size: 20px;
-  font-weight: 500;
-  display: block;
-  position: relative;
-}
-.form__checkbox label::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  border: 3px solid #d72134;
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  margin-right: 10px;
-  top: 5px;
-}
-.form__checkbox label i {
-  position: absolute;
-  left: 2px;
-  top: 5px;
-  font-size: 20px;
-  display: none;
-}
-.form__checkbox input:checked ~ i {
-  display: block;
-}
-.form__btn {
-  width: 100%;
-  padding: 0px 20px;
-  margin-top: 40px;
-  text-align: center;
-}
-.form__btn button {
-  width: 76%;
-  padding: 12px 0px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  background-color: #d72134;
-  border: 1px solid #d72134;
-  border-radius: 40px;
-  box-shadow: 0 1px 25px -12px #d72134;
-}
-
-.form__office {
-  display: flex;
-  align-items: center;
-  margin-top: 40px;
-  justify-content: center;
-  border-radius: 10px;
-  width: 100%;
-}
-.office__logo {
-  width: 50px;
-  border: 1px solid red;
-  border-top-left-radius: 40px;
-  border-bottom-left-radius: 40px;
-  overflow: hidden;
-}
-.office__logo img {
-  width: 100%;
-}
-.office__btn {
-  width: 60%;
-}
-.office__btn button {
-  background-color: #d72134;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  padding: 12px 0px;
-  color: white;
-  font-size: 16px;
-  width: 100%;
-  font-weight: bold;
-  border-top-right-radius: 40px;
-  border-bottom-right-radius: 40px;
-  text-align: left;
-}
-/* Repon mobile */
-@media screen and (max-width: 740px) {
-  .header__logo img {
-    width: 150px;
-  }
-  .header__name h1 {
-    font-size: 14px;
-  }
-  .form__container {
-    width: 100%;
-    position: relative;
-    right: 0;
-    margin-top: 10px;
-  }
-  .form__checkbox {
-    padding: 0;
-  }
-  footer {
-    margin: 0px 0px;
-  }
-  .footer {
-    padding: 200px 0px;
-  }
-}
-
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- CSS -->
+    <!-- Mobile CSS -->
+    <%= stylesheet_link_tag "login_page", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="../login_page.css">
+    <title>Đăng nhập</title>
 </head>
 <body>
-    <main>
-        <header>
-            <div class="header__logo">
-                <img src="https://www.vlu.edu.vn/_next/static/media/logo.8e5334db.svg" alt="logo">
-            </div>
-            <div class="header__name">
-                <h1>Trường Đại Học Văn Lang</h1>
-            </div>
-        </header>
-        <div style="display:flex; justify-content:center;">
-          <div class="form__container">
-              <div class="form__left"></div>
-              <div class="form__right">
-                  <div class="form__content">
-                      <form>
-                          <h2>WELCOME</h2>
-                          <div class="form__control">
-                              <input class="form__input" id="password" placeholder="Tên đăng nhập"/>
-                              <i class="fa-solid fa-user"></i>
-                              <div class="underline"></div>
-                          </div>
-                          <div class="form__control">
-                              <input class="form__input" id="password" placeholder="Mật khẩu"/>
-                              <i class="fa-solid fa-lock" ></i>
-                              <div class="underline"></div>
-                          </div>
-                          <div class="form__checkbox">
-                          
-                              <label for="remember">
-                                  <input type="checkbox" id="remember" name="remember" class="checkbox__input">
-                                  Ghi nhớ đăng nhập
-                                  <i class="fa-solid fa-check"></i>
-                                
-                              </label>
-                          </div>
-                          <div class="form__btn">
-                              <button>ĐĂNG NHẬP</button>
-                          </div>
-                          <div class="form__office">
-                            <div class="office__btn">
-                              <div class="office__logo">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsETm6bPgfW7M7yODuAhM-1CzeKhPWGQ11DNuR8ImKRknieRkf4JXdgS8ySZlJ-M-yvbE&usqp=CAU" alt="">
-                              </div>
-                              <form class="button_to" method="post" action="/users/auth/azure_activedirectory_v2">
-                              </form>
-                              <%- if devise_mapping.omniauthable? %>
-                                <%- resource_class.omniauth_providers.each do |provider| %>
-                                  <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
-                                <% end %>
-                              <% end %>
-                            </div>
-                          </div>
-                      </form>
-                  </div>
-              </div>
-          </div>
+   <main class="main">
+    <!-- HEADER -->
+      <header class="header">
+        <div class="header__logo">
+          <%= image_tag("logo.png") %>
         </div>
-        <footer>
-            <div class="footer">
+        <div class="header__name">
+          <p>VANLANG</p>
+          <p>UNIVERSITY</p>
+        </div>
+      </header>
+      <!--  CONTENT LOGIN -->
+      <div class="content" style="padding:0px; margin:0px">
+          <div class="content__img">
+            <%= image_tag("Bird.jpg") %>
+          </div>
+          <div class="content__login">
+            <p>WELCOME</p>
+            <p>TRƯỜNG ĐẠI HỌC VĂN LANG</p>
+            <div class="login__office">
+              <div class="office__img">
+                <%= image_tag("microsoft.png") %>
+              </div>
+              <%- if devise_mapping.omniauthable? %>
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                  <%= button_to "OFFICE 365", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "login_button", style: "border:none" %><br />
+                <% end %>
+              <% end %>
             </div>
-        </footer>
-
-    </main>
+          </div>
+      </div>
+      <!-- FOOTER -->
+      <footer class="footer">
+        
+      </footer>
+   </main>
 </body>
 </html>

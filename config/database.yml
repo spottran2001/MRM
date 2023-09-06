@@ -7,6 +7,16 @@ default: &default
 development:
   <<: *default
   database: dev_db
+
+# default: &default
+#   adapter: sqlserver
+#   host: 170.187.226.105
+#   username: sa
+#   password: Spot2212
+
+# development:
+#   <<: *default
+#   database: production_db
   
 test:
   <<: *default
