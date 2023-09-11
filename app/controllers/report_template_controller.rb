@@ -2,10 +2,12 @@ class ReportTemplateController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    ReportTemplate.all.order(:created_at)
   end
 
   def create
+  end
+
+  def new
     @report_template = ReportTemplate.create!(
       title: JSON.generate(params[:title]),
       uid: params[:uid],

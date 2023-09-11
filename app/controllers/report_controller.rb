@@ -19,4 +19,14 @@ class ReportController < ApplicationController
     end
     report_template.update!(title: JSON.generate(report_title))
   end
+
+
+  #baocaonhanvien
+  def new
+
+  end
+
+  #quanlikibaocaostaff
+  def index
+  end
 end
