@@ -612,7 +612,7 @@ margin: 0;
                     </div>
                     <div class="btn__addmember" style="margin: 0px 20px">
                       
-                          <button aria-label="btn__addmember">
+                          <button aria-label="btn__addmember" onclick="SubmitReport()">
                             <i class="fa-regular fa-newspaper"></i>
                             <p>LƯU BÁO CÁO</p>
                           </button>
@@ -630,14 +630,14 @@ margin: 0;
             <table class="content__table" style="border-radius: 0px; " >
                 <thead >  <tr class="content__table_header"  style="background-color: #f4924b; ">
                     <th class="first_column" style="border: none;text-align: right;padding: 0;">
-                        <button onclick="addTable()" style="display: block;width: 100%;padding: 2px 0px;">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <button onclick="delTable(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
+                      <button onclick="addTable()" style="display: block;width: 100%;padding: 2px 0px;">
+                        <i class="fa-solid fa-plus"></i>
+                      </button>
+                      <button onclick="delTable(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
                     </th>
-                    <th class="tableHeader" contenteditable="true" colspan="1" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none; width:100%; border:none">1. CÔNG VIỆC THỰC HIỆN THEO KPI </th>
+                    <th class="tableHeader" contenteditable="true" colspan="1" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none; width:100%; border:none"></th>
                 </tr></thead>
               <tbody class="tableBody">
                 <tr class="content__table_header">
@@ -649,8 +649,7 @@ margin: 0;
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </th>
-                    <th>
-                        <input class="Checkbox" onchange="toggleAllCheckboxes()"  class="content__table-checkbox" type="checkbox" placeholder="checkbox">
+                    <th class= "first_thread_content"contenteditable="true">
                     </th>
                      <th class="first_column" style="border: none;text-align: right;padding: 0;">
                         <button onclick="addColumn(this)" style="display: block;width: 100%;padding: 2px 0px;">
@@ -662,8 +661,6 @@ margin: 0;
                     </th>
                 </tr>
               </tbody>
-               
-
             </table>
         </div>
         <div id="popup__guiBaocao">
@@ -701,78 +698,6 @@ getEle("btn-menu").addEventListener("click",()=>{
     getEle("menu").style.transform = "translateX(-10000px)"
 })
 
-// add row to table
-function addRow(e) {
-  var row = document.getElementsByClassName("content__table_body")[0];
-  var table = e.parentNode.parentNode.parentNode;
-  var row = table.insertRow(-1);
-  row.classList.toggle("content__table_body")
-
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  var cell5 = row.insertCell(4);
-  var cell6 = row.insertCell(5);
-  var cell7 = row.insertCell(6);
-  var cell8 = row.insertCell(7);
-  var cell9 = row.insertCell(8);
-  
-  cell1.classList.add("first_column");
-  cell2.innerHTML = '<input class="content__table-checkbox" type="checkbox" placeholder="checkbox">';
-  cell3.contentEditable = true;
-  cell3.style.border = "1px solid black";
-  cell3.style.overflow = "hidden";
-  cell3.style.fontSize = "16px";
-  cell3.style.padding = "10px 0px";
-  cell3.classList.toggle("content__table_body_td_value")
-  cell3.innerHTML = "1";
-  cell4.contentEditable = true;
-  cell4.style.border = "1px solid black";
-  cell4.style.overflow = "hidden";
-  cell4.style.fontSize = "16px";
-  cell4.style.padding = "10px 0px";
-  cell4.classList.toggle("content__table_body_td_value")
-  cell4.innerHTML = "text";
-  cell5.contentEditable = true;
-  cell5.style.border = "1px solid black";
-  cell5.style.overflow = "hidden";
-  cell5.style.fontSize = "16px";
-  cell5.style.padding = "10px 0px";
-  cell5.classList.toggle("content__table_body_td_value")
-  cell5.innerHTML = "text";
-  cell6.contentEditable = true;
-  cell6.style.border = "1px solid black";
-  cell6.style.overflow = "hidden";
-  cell6.style.fontSize = "16px";
-  cell6.style.padding = "10px 0px";
-  cell6.classList.toggle("content__table_body_td_value")
-  cell6.innerHTML = "text";
-  cell7.contentEditable = true;
-  cell7.style.border = "1px solid black";
-  cell7.style.overflow = "hidden";
-  cell7.style.fontSize = "16px";
-  cell7.style.padding = "10px 0px";
-  cell7.classList.toggle("content__table_body_td_value")
-  cell7.innerHTML = "text";
-  cell8.contentEditable = true;
-  cell8.style.border = "1px solid black";
-  cell8.style.overflow = "hidden";
-  cell8.style.fontSize = "16px";
-  cell8.style.padding = "10px 0px";
-  cell8.classList.toggle("content__table_body_td_value")
-  cell8.innerHTML = "text";
-  cell9.contentEditable = true;
-  cell9.style.border = "1px solid black";
-  cell9.style.overflow = "hidden";
-  cell9.style.fontSize = "16px";
-  cell9.style.padding = "10px 0px";
-  cell9.classList.toggle("content__table_body_td_value")
-  cell9.innerHTML = "text";
-
-}
-
-
 // delete row form table
 function delRow(e) {
   var table = e.parentNode.parentNode.parentNode;
@@ -783,62 +708,6 @@ function delRow(e) {
   }
 }
 
-function toggleAllCheckboxes() {
-  var masterCheckbox = document.getElementById("Checkbox11");
-  var checkboxes = document.querySelectorAll("#myTable .content__table-checkbox");
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].checked = masterCheckbox.checked;
-  }
-}
-
-// Checkbox bảng 1.2
-function toggleAllCheckboxes12() {
-  var masterCheckbox = document.getElementById("Checkbox12");
-  var checkboxes = document.querySelectorAll("#myTable12 .content__table-checkbox");
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].checked = masterCheckbox.checked;
-  }
-}
-// Checkbox bảng 1.3
-function toggleAllCheckboxes13() {
-  var masterCheckbox = document.getElementById("Checkbox13");
-  var checkboxes = document.querySelectorAll("#myTable13 .content__table-checkbox");
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].checked = masterCheckbox.checked;
-  }
-}
-// Checkbox bảng 1.4
-function toggleAllCheckboxes14() {
-  var masterCheckbox = document.getElementById("Checkbox14");
-  var checkboxes = document.querySelectorAll("#myTable14 .content__table-checkbox");
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].checked = masterCheckbox.checked;
-  }
-}
-// Checkbox bảng 1.5
-function toggleAllCheckboxes15() {
-  var masterCheckbox = document.getElementById("Checkbox15");
-  var checkboxes = document.querySelectorAll("#myTable15 .content__table-checkbox");
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].checked = masterCheckbox.checked;
-  }
-}
-// Checkbox bảng 2.1
-function toggleAllCheckboxes21() {
-  var masterCheckbox = document.getElementById("Checkbox21");
-  var checkboxes = document.querySelectorAll("#myTable21 .content__table-checkbox");
-
-  for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].checked = masterCheckbox.checked;
-  }
-}
-
-// open/close table
 function showTableList(e) {
   for (table of e.parentNode.parentNode.children){
     table.classList.toggle("showTable");
@@ -863,34 +732,75 @@ function showTableList(e) {
 
 <script>
   function SubmitReport(){
-    var content__table_body_td_value_arr = []
+    var table_keys = []
     var title_2_title_arr = []
-
+    var check_condition = true
     //get each table
     for (let table of document.getElementsByClassName("content__table")){
+      let tbody_title_2_title_arr = []
       let title = table.getElementsByClassName("tableHeader")[0];
-      let title_value = title.innerText.split(" ")[1];
-
-      //get each key
-      for(let title_2 of table.getElementsByClassName("key_title")){ // title2_1, title2_2, ......
-        title_2_title_arr.push(title_2.value);
-        let title_2_value_array = []
-        //get each row in table
-        for (let content__table_body of title_2.parentElement.parentElement.parentNode.getElementsByClassName("content__table_body")){
-          let title_2_value = "";
-          //get each column value in row
-          for (let td_value of content__table_body.getElementsByClassName("content__table_body_td_value")){
-            if (title_2_value == ""){
-              title_2_value += td_value.innerText;
+      let title_value = title.innerText;
+      if (!title_value){
+        alert("Please fill the title")
+        check_condition = false
+        break;
+      }else{
+        table_keys.push(title_value)
+        for(let tbody of table.getElementsByTagName("tbody")){ // title2_1, title2_2, ......
+          let tbody_content = ""
+          for (let th_element of tbody.getElementsByTagName("th")){
+            if (th_element.classList.value == "first_thread_content"){
+              if (!th_element.innerText){
+                alert("Please fill the title_2")
+                check_condition = false
+                break;
+              }else{
+                tbody_content += th_element.innerText
+              }
             }else{
-              title_2_value += "," +  td_value.innerText
+              if(th_element.classList.value == ""){
+                if (th_element.innerText != ""){
+                  tbody_content += "," + th_element.innerText
+                }else{
+                  tbody_content += "," + " "
+                }
+              }
             }
-          };
-          title_2_value_array.push(title_2_value);
+          }
+          tbody_title_2_title_arr.push(tbody_content)
+          let title_2_value_array = []
+          //get each row in table
+          // for (let content__table_body of title_2.parentElement.parentElement.parentNode.getElementsByClassName("content__table_body")){
+          //   let title_2_value = "";
+          //   //get each column value in row
+          //   for (let td_value of content__table_body.getElementsByClassName("content__table_body_td_value")){
+          //     if (title_2_value == ""){
+          //       title_2_value += td_value.innerText;
+          //     }else{
+          //       title_2_value += "," +  td_value.innerText
+          //     }
+          //   };
+          //   title_2_value_array.push(title_2_value);
+          // }
+          // content__table_body_td_value_arr.push(title_2_value_array)
         }
-        content__table_body_td_value_arr.push(title_2_value_array)
       }
+      title_2_title_arr.push(tbody_title_2_title_arr)
     }
+    var data = new FormData();
+    data.append('table_keys',JSON.stringify(table_keys));
+    data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
+    jQuery.ajax({
+      url: "/report_template",
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      method: 'POST',
+      success: function(data){
+          alert("Tao thanh cong");
+      }
+    });
   }
 </script>
 
@@ -913,6 +823,14 @@ function showTableList(e) {
     var table = document.getElementsByClassName("tableBody")[0];
     var clone = table.cloneNode(true)
     e.parentNode.parentNode.parentNode.parentNode.appendChild(clone)
+    var bodyThreads = e.parentNode.parentNode.parentNode.parentNode.getElementsByTagName("tbody")
+    var newThread = bodyThreads[bodyThreads.length - 1]
+    //clear data form clone
+    for (let data of newThread.getElementsByTagName("th")) {
+      if (data.classList.value != "first_column"){
+        data.innerHTML = ""
+      }
+    }
   }
   function delThread(e){
     if (e.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("tableBody").length == 1){
@@ -923,12 +841,14 @@ function showTableList(e) {
   }
   
   function addColumn(e){
-    var th = document.createElement("th")
-    th.contentEditable = true
-    th.innerText = "test"
-    var row = e.parentNode.parentNode
-    var childNodesCount = row.childNodes.length
-    row.insertBefore(th, row.childNodes[childNodesCount-2])
+    var tbody_list = e.parentNode.parentNode.parentNode.parentNode.getElementsByTagName('tbody')
+    var childNodesCount = e.parentNode.parentNode.childNodes.length
+    for (let tbody of tbody_list){
+      let th = document.createElement("th")
+      th.contentEditable = true
+      let row = tbody.getElementsByClassName("content__table_header")[0]
+      row.insertBefore(th, row.childNodes[childNodesCount-2])
+    }
     var col_span = e.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[3].colSpan
     e.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[3].colSpan = col_span + 1
   }
@@ -939,7 +859,11 @@ function showTableList(e) {
     if (childNodesCount <= 3){
       alert("Can not remove this column")
     }else{
-      e.parentNode.parentNode.removeChild(e.parentNode.parentNode.children[childNodesCount-2])
+      var tbody_list = e.parentNode.parentNode.parentNode.parentNode.getElementsByTagName('tbody')
+      for (let tbody of tbody_list){
+        let row = tbody.getElementsByClassName("content__table_header")[0]
+        row.removeChild(row.getElementsByTagName('th')[childNodesCount-2])
+      }
       e.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[3].colSpan = col_span - 1
     }
   }

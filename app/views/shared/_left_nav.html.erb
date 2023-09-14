@@ -565,11 +565,13 @@
             <i class="fa-solid fa-chart-simple"></i>
         </div>
     </a>
-    <div class="menu__items">
+     <%= link_to report_template_index_path, class: "menu__items menu__items--separation" do %>
+      <div class="menu__items">
         <div class="menu__icon  ">
             <i class="fa-regular fa-clipboard"></i>
         </div>
-    </div>
+      </div>
+    <% end %>
     <div class="menu__items">
         <div class="menu__icon  ">
             <i class="fa-regular fa-bell"></i>

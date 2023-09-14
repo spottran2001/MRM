@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_31_072142) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_13_075144) do
   create_table "faculties", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -37,17 +37,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_072142) do
   create_table "report_templates", force: :cascade do |t|
     t.datetime "apply_time"
     t.boolean "is_apply"
-    t.string "title"
     t.integer "uid"
     t.integer "academic_year_id"
     t.integer "subject_id"
     t.date "deadline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "data"
   end
 
   create_table "reports", force: :cascade do |t|
-    t.string "template_keys"
     t.datetime "last_submit_time"
     t.datetime "confirm_time"
     t.datetime "return_time"
@@ -58,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_072142) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.text "data"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
