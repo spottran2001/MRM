@@ -91,14 +91,17 @@
     .Modal__inner{
         width: 800px;
         background-color: white;
-        height: 100%;
         border: 2px solid black;
         border-radius: 12px;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .Modal__header{
-        background-color: #d72134;
+        width: 800px;
+        background-color: #DC546C;
         padding: 20px;
         display: flex;
         color: white;
@@ -106,7 +109,7 @@
         align-items: center;
         border-bottom: 2px solid black;
         font-weight: 500 ;
-        letter-spacing: 0.3;
+   
     }
     .Modal__header p {
         font-size: 16px;
@@ -118,9 +121,9 @@
     }
     .modal__body{
         padding: 40px 20px;
-        display: grid;
-        grid-template-columns: 25% 70%;
-        gap: 36px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
     }
     .body__img{
         position: relative;
@@ -145,6 +148,7 @@
         margin-right: 6px;
     }
     .body__img span{
+        border-radius: 12px;
         width: 200px;
         display: block;
         border: 2px solid #dadada;
@@ -191,10 +195,10 @@
         border-radius: 12px;
     }
     .btn__modal:first-child{
-        background-color: #5cbd4c;
+        background-color: #DC546C;
     }
     .btn__modal:last-child{
-        background-color: #d72134;
+        background-color: #6C8DE0;
     }
 
 
@@ -785,7 +789,15 @@ margin: 0;
   font-size: 16px;
   transition: all 0.5s;
 }
-
+.select_role{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.left_role{
+  padding-right: 4rem;
+}
 </style>
 <body>
     <main class="container">
@@ -896,9 +908,9 @@ margin: 0;
                     <div class="modal__body">
                         <div class="body__img">
                             <span></span>
-                            <button><i class="fa-solid fa-plus"></i> UPLOAD</button>
+                            <button><i class="fa-solid fa-upload"></i> UPLOAD</button>
                         </div>
-                        <div class="body__content">
+                        <div class="body__content" style="width: 65%">
                           <div>
                             <ul style="list-style: none;">
                                 <li>    
@@ -923,10 +935,9 @@ margin: 0;
                                         <p id="selectedKhoaModal">Chọn khoa</p>
                                         <i class="fa-solid fa-angle-down"></i>
                                         <div class="option__modalbody" id="option__khoa">
-                                                <p class="khoa">Giảng viên/Nhân viên</p>
-                                                <p class="khoa">Phụ trách bộ môn</p>
-                                                <p class="khoa">Ban chủ nhiệm khoa</p>
-                                            
+                                                <p class="khoa">Công nghệ thông tin</p>
+                                                <p class="khoa">Xây dựng</p>
+                                                <p class="khoa">Kế toán</p>
                                         </div>
                                     </div>
                                 </li>
@@ -941,9 +952,7 @@ margin: 0;
                                         <i class="fa-solid fa-angle-down"></i>
                                         <div class="option__modalbody" id="option__bomon">
                                             <p class="bomon">Vật lý đại cương</p>
-                                            <p class="bomon">Đại số tuyến tính</p>
-                                            <p class="bomon">Kỹ thuật phần mềm</p>
-                                        
+                                            <p class="bomon">Đại số tuyến tính</p>                                     
                                     </div>
                                     </div>
                                 </li>
@@ -953,15 +962,15 @@ margin: 0;
                                         Vai trò
                                       </p>
                                     </div>
-                                    <div class="select__modalbody" id="select_vaitro">
-                                      <p id="selectedVaitroModal">Chọn vai trò</p>
-                                      <i class="fa-solid fa-angle-down"></i>
-                                      <div class="option__modalbody" id="option__vaitro">
-                                        <p class="vaitro">Vật lý đại cương</p>
-                                        <p class="vaitro">Đại số tuyến tính</p>
-                                        <p class="vaitro">Kỹ thuật phần mềm</p>
+                                    <div class="select_role" id="select_vaitro">                            
+                                      <div class="left_role"> 
+                                        <label><input type="checkbox" id="vaitro1" class="vaitro"> Nhân viên</label>
+                                        <label><input type="checkbox" id="vaitro1" class="vaitro"> Giảng viên</label>                                                       
                                       </div>
-                                    </div>
+                                      <div class="right_role">
+                                        <label><input type="checkbox" id="vaitro1" class="vaitro"> Phụ trách bộ môn</label>
+                                        <label><input type="checkbox" id="vaitro1" class="vaitro"> Ban chủ nhiệm khoa</label>         
+                                      </div>  
                                 </li>
                                 <li>
                                   <div>
@@ -973,11 +982,8 @@ margin: 0;
                                     <p id="setededDonvi">Chọn đơn vị</p>
                                     <i class="fa-solid fa-angle-down"></i>
                                     <div class="option__modalbody" id="option__donvi">
-                                      <p class="donvi">Vật lý đại cương</p>
-                                      <p class="donvi">Đại số tuyến tính</p>
-                                      <p class="donvi">Đại số tuyến tính</p>
-                                      <p class="donvi">Đại số tuyến tính</p>
-                                      <p class="donvi">Đại số tuyến tính</p>
+                                      <p class="donvi">VLU</p>
+                                      <p class="donvi">VL Tech</p>
                                     </div>
                                   </div>
                                 </li>
