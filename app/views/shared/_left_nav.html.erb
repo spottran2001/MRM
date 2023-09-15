@@ -39,9 +39,7 @@
   color: #dadada;
   display: block;
 }
-.menu__items--separation {
-  margin-bottom: 40px;
-}
+
 .menu__icon i {
   font-size: 20px;
 }
@@ -54,6 +52,7 @@
   border-left: 2px solid #d72134;
   color: #d72134 !important;
 }
+
 
 /* Content */
 
@@ -305,6 +304,8 @@
   margin-left: 10px;
   font-size: 18px;
   margin-top: 4px;
+  display: flex;
+  align-items: center;
 }
 .active {
   color: #d72134 !important;
@@ -551,6 +552,9 @@
   background-color: white;
   border-radius: 40px;
 }
+.menu__dropdown_list li:hover {
+    color: #D72134; /* Màu chữ khi di chuột vào */
+}
 
 </style>
 
@@ -565,22 +569,28 @@
             <i class="fa-solid fa-chart-simple"></i>
         </div>
     </a>
-     <%= link_to report_template_index_path, class: "menu__items menu__items--separation" do %>
+     <%= link_to report_template_index_path, class: "menu__items" do %>
       <div class="menu__items">
         <div class="menu__icon  ">
-            <i class="fa-regular fa-clipboard"></i>
+        <i class="fa-regular fa-calendar"></i>
+            
         </div>
       </div>
     <% end %>
-    <div class="menu__items">
+    <%#<div class="menu__items">
         <div class="menu__icon  ">
             <i class="fa-regular fa-bell"></i>
         </div>
-    </div>
-    <%= link_to subject_index_path, class: "menu__items menu__items--separation" do %>
+    </div>%>
+    <div class="menu__items">
+          <div class="menu__icon  ">
+              <i class="fa-regular fa-clipboard"></i>
+          </div>
+      </div>
+    <%= link_to subject_index_path, class: "menu__items" do %>
       <div class="menu__items">
           <div class="menu__icon  ">
-              <i class="fa-regular fa-calendar"></i>
+              <i class="fa-solid fa-boxes-stacked"></i>
           </div>
       </div>
     <% end %>
@@ -590,6 +600,7 @@
         </div>
     <% end %>
     <div class="menu__items">
+    <p class="menu__title" style="color: black;">SETTING</p>
         <div class="menu__icon  ">
             <i class="fa-regular fa-sun"></i>
         </div>
@@ -620,7 +631,7 @@
         <div class="menu__icon " id="statistics">
             <div class="menu__dropdown_icon">
             <i class="fa-solid fa-chart-simple"></i>
-            <p >Thống Kê</p>
+            <p style="display: flex; align-items: center">Thống Kê</p>
             </div>
             <div class="menu__icon_open">
             <i class="fa-solid fa-angle-up"></i>
@@ -628,17 +639,18 @@
         </div>
         <nav class="menu__dropdown_nav ">
             <ul class="menu__dropdown_list">
-                <li>Giảng viên - nhân viên</li>
-                <li>Phụ trách bộ môn</li>
-                <li>Khoa</li>
+                <li>Nhân Viên</li>
+                <li>Giảng Viên</li>
+                <li>Phụ Trách Bộ Môn</li>
+                <li>Ban Chủ Nhiệm Khoa</li>
             </ul>
         </nav>
     </div>
     <div class="menu__items" style="margin: 32px 0px;">
         <div class="menu__icon" id="report">
             <div class="menu__dropdown_icon">
-                <i class="fa-regular fa-clipboard"></i>
-                <p >Quản lý báo cáo</p>
+                <i class="fa-regular fa-calendar"></i>
+                <p >Quản lý kỳ báo cáo</p>
                 </div>
                 <div class="menu__icon_open">
                 <i class="fa-solid fa-angle-up"></i>
@@ -647,14 +659,23 @@
         </div>
         <nav class="menu__dropdown_nav">
             <ul class="menu__dropdown_list">
-                <li>1. Công việc thực hiện theo KPI</li>
-                <li>2. Tinh thần trách nhiệm với nhà trường</li>
-                <li>3. Đánh giá</li>
-                <li>4. Kế hoạch công việc </li>
+                <li>Nhân Viên</li>
+                <li>Giảng Viên</li>
+                <li>Phụ Trách Bộ Môn</li>
+                <li>Ban Chủ Nhiệm Khoa</li>
             </ul>
         </nav>
     </div>
-    <div class="menu__items">
+    <div class="menu__items" style="margin: 32px 0px;">
+        <div class="menu__icon  ">
+            <div class="menu__dropdown_icon">
+            <i class="fa-regular fa-clipboard"></i>            
+                <p>Lập báo cáo</p>
+            </div>
+        </div>
+    </div>
+    
+    <%#<div class="menu__items">
         <div class="menu__icon  ">
             
             <div class="menu__dropdown_icon">
@@ -663,14 +684,13 @@
             </div>
             <div class="icon__notification"></div>
         </div>
-    </div>
+    </div>%>
     <div class="menu__items" style="margin: 32px 0px;">
         <div class="menu__icon  ">
             <div class="menu__dropdown_icon">
-                <i class="fa-regular fa-calendar"></i>
+            <i class="fa-solid fa-boxes-stacked"></i>
                 <p>Quản lý phòng ban</p>
             </div>
-            
         </div>
     </div>
     <%= link_to users_url, class: "menu__items menu__items--separation" do %>

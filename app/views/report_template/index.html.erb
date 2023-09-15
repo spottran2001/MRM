@@ -869,7 +869,7 @@
               <p>
                 Nhân viên/Giảng viên
               </p>
-  
+
             </div>
             <div class="user__img">
               <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo" alt="">
@@ -879,11 +879,11 @@
             </div>
           </div>
         </div>
-        <h1 class="content__name" style="font-weight:200;">Quản lý kỳ báo cáo năm 2023</h1>
+        <h1 class="content__name">Quản lý năm báo cáo</h1>
         <div class="content__generality">
           <div class="generality__options">
             <div class="select__options">
-              <select aria-label="select__options">
+              <%#<select aria-label="select__options">
                   <option selected value="0">Tổng</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -894,19 +894,15 @@
                   <option value="7">7</option>
                   <option value="8">8</option>
                   <option value="9">9</option>
-              </select>
+              </select>%>
           </div>
 
             <div class="btn__addfile">
               <%= button_to new_report_template_path, method: :get, style: "background-color: #FDB42D;", class: "btn__addfile" do %>
                 <i class="fa-solid fa-plus"></i>
-                <p>Lập báo cáo</p>
+                <p>Tạo kỳ</p>
               <% end %>
 
-              <%# <button aria-label="btn__addfile" onclick="ShowModaladd()" style="background-color: #FDB42D;">
-                <i class="fa-solid fa-plus"></i>
-                <p>Lập báo cáo</p>
-              </button> %>
             </div>
           </div>
           
