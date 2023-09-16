@@ -544,6 +544,60 @@
 }
 .generality__options button {min-width: 120px; padding: 0px !important; margin: 0px !important; min-height:70px; display: flex; justify-content: center; }
 .generality__options button p {padding: 0px; margin: 0px}
+.popup__SendFeedback {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+.popup__inner_feedback {
+  background-color: white;
+  width: 50%;
+  border: 2px solid black;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  height: 48%;
+  display: none;
+}
+.popup_header_feedback {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid black;
+  padding: 10px;
+  align-items: center;
+  background-color: #dc546c;
+  color: white;
+  border-radius: 12px 12px 0px 0px;
+}
+.popup_body_feedback {
+  padding: 2rem 4rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+.popup_footer_feedback {
+  display: flex;
+  justify-content: end;
+  padding: 0rem 4rem 2rem 0rem;
+}
+.popup_footer_feedback button {
+  padding: 10px 40px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
 </style>
 <body>
     <main class="container">
@@ -588,7 +642,7 @@
                         <%= button_to "BỘ MÔN", faculty_index_path, method: :get, style: "background-color: #EC8C9C;height: 68px;", class: "btn__addfile"%>
                     </div>
                     <div class="btn__addfile">
-                        <button aria-label="btn__addfile" style="background-color: #678EF8;">
+                        <button aria-label="btn__department" id="btn__department" style="background-color: #678EF8;" onclick="showFeedbackPopup()">
                             <i class="fa-solid fa-plus"></i>
                             <p>THÊM</p>
                         </button>
@@ -613,7 +667,7 @@
                         Khoa
                     </th>
                     <th>
-                        thời gian tạo
+                        Thời gian tạo
                     </th>               
                     <th>
 
@@ -646,11 +700,59 @@
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
-            <div class="Modal__AddMember" id="Modal__AddMember">
-            
+            <div id="popup_SendFeedback" class="popup__SendFeedback">
+          <div
+            id="popup__inner_feedback"
+            style="
+              background-color: white;
+              border-radius: 12px;
+              border-bottom: 2px solid black;
+              width: 40%;
+              height: auto;
+            "
+          >
+            <div class="popup_header_feedback">
+              <p style="padding: 10px">THÊM KHOA</p>
+              <i
+                id="close__popupFeedBabk"
+                style="cursor: pointer; padding: 10px; font-size: 25px"
+                class="fa-regular fa-circle-xmark fa-sm"
+                onclick="hideFeedbackPopup()"
+              ></i>
+            </div>
+            <div class="popup_body_feedback">
+              <select class="Khoa" style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem">
+                <option value="0" disabled selected hidden>Chọn khoa</option>
+                <option value="1">Công nghệ thông tin</option>
+                <option value="2">Kế toán</option>
+                <option value="3">Quản trị kinh doanh</option>
+                <option value="4">Thiết kế thời trang</option>
+              </select>
+              <select class="Bộ Môn" style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem">
+                <option value="0" disabled selected hidden>Chọn bộ môn</option>
+                <option value="1">Kỹ thuật phần mềm</option>
+                <option value="2">Vật lý đại cương</option>
+                <option value="3">Đại số tuyến tính</option>
+                <option value="4">Anh văn 1</option>
+              </select>
+            </div>
+            <div class="popup_footer_feedback">
+              <button
+                class="btn__closeFeedback"
+                style="background-color: #dc546c"
+                onclick="hideFeedbackPopup()"
+              >
+                HỦY
+              </button>
+              <!-- Đây là nút hủy -->
+              <button style="background-color: #6c8de0; margin-left: 2rem">
+                GỬI
+              </button>
+              <!-- Đây là nút gửi -->
+            </div>
+          </div>
         </div>
-        </div>
-      
+       
     </main>
 </body>
 <script >
@@ -680,5 +782,11 @@ getEle("btn-menu").addEventListener("click",()=>{
     getEle("menu").style.transform = "translateX(-10000px)"
 })
 
+function showFeedbackPopup() {
+  document.getElementById("popup_SendFeedback").style.display = "flex";
+}
+function hideFeedbackPopup() {
+  document.getElementById("popup_SendFeedback").style.display = "none";
+}
 </script>
 </html>
