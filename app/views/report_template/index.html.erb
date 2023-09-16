@@ -26,6 +26,7 @@
       box-sizing: border-box;
   
     }
+
   
     /* MENU */
     .menu {
@@ -109,7 +110,6 @@
       display: inline-block;
       margin-left: 10px;
       color: #f34f68;
-      border-bottom: 3px solid #f34f68;
       padding: 12px 0px;
     }
   
@@ -127,6 +127,7 @@
     .user__info {
       margin-right: 10px;
       font-size: 16px;
+      text-align: right;
     }
   
     .user__info p:first-child {
@@ -304,7 +305,7 @@
     }
   
     .paging--active {
-      background-color: #d72134 !important;
+      background-color: #DC546C !important;
       color: white !important;
     }
   
@@ -526,18 +527,18 @@
       margin: 0px 24px;
     }
   
-    .btn__addfile button {
+    .btn__CreateReport button {
       display: flex;
       align-items: center;
       padding: 14px 16px;
       border-radius: 12px;
       border: none;
       color: white;
-      background-color: green;
+      background-color: #678EF8;
       cursor: pointer;
     }
   
-    .btn__addfile button p {
+    .btn__CreateReport button p {
       margin-left: 6px;
     }
   
@@ -874,9 +875,7 @@
             <div class="user__img">
               <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo" alt="">
             </div>
-            <div class="user__detail">
-              <i class="fa-solid fa-angle-down"></i>
-            </div>
+
           </div>
         </div>
         <h1 class="content__name">Quản lý năm báo cáo</h1>
@@ -897,10 +896,10 @@
               </select>%>
           </div>
 
-            <div class="btn__addfile">
-              <%= button_to new_report_template_path, method: :get, style: "background-color: #FDB42D;", class: "btn__addfile" do %>
+            <div class="btn__CreateReport">
+              <%= button_to new_report_template_path, method: :get, style: "display: flex; align-items: center; ; padding: 10px", class: "btn__CreateReport" do %>
                 <i class="fa-solid fa-plus"></i>
-                <p>Tạo kỳ</p>
+                <p  style="display: flex; align-items: center; padding: 5px" >Tạo kỳ</p>
               <% end %>
 
             </div>
@@ -914,145 +913,25 @@
           </div>
         </div>
         <div class="container__board">
-              <div class="Frame3046" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
-                <div class="Rectangle307" style="width: 24px; height: 117px; left: 117px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle308" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div class="Rectangle310" style="width: 24px; height: 24px; left: 34px; top: 58px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div style="width: 12px; height: 12px; left: 15px; top: 96px; position: absolute; color: white">
+              <div class="Frame1" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
+                <div class="Rectangle1" style="width: 24px; height: 117px; left: 117px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
+                <div class="Rectangle1" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
+                <div class="Rectangle1" style="width: 24px; height: 24px; left: 34px; top: 58px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
+                <div class="calendar1" style="width: 12px; height: 12px; left: 15px; top: 93px; position: absolute; color: white">
                   <i class="fa-regular fa-calendar"></i>
                 </div>
                 <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm 2023</div>
-                <div class="Rectangle304" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
-                <div class="Rectangle306" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle305" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle309" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="DanhSChKBOCO" style="left: 43px; top: 64px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">Danh sách kỳ báo cáo</div>
-                <div class="01202301012024" style="left: 43px; top: 98px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">01/01/2023 - 01/01/2024</div>
-                <div class="FileText" style="width: 12px; height: 12px; left: 16px; top: 64px; position: absolute">
-                  <div class="Vector" style="width: 8px; height: 10px; left: 2px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 3px; height: 3px; left: 7px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 8.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 7px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 5.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 1px; height: 0px; left: 4px; top: 4px; position: absolute; border: 0.50px white solid"></div>
+                <div class="Rectangle1" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
+                <div class="Rectangle1" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
+                <div class="Rectangle1" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
+                <div class="Rectangle1" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
+                <div class="DanhSChKBOCO" style="left: 43px; top: 60px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word">Danh sách kỳ báo cáo</div>
+                <div class="Nam2023" style="left: 43px; top: 94px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word">01/01/2023 - 01/01/2024</div>
+                <div class="FileText1" style="width: 12px; height: 12px; left: 16px; top: 58px; position: absolute; color: white">
+                  <i class="fa-regular fa-file-lines"></i>
                 </div>
               </div>
-              <div class="Frame3046" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
-                <div class="Rectangle307" style="width: 24px; height: 117px; left: 117px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle308" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div class="Rectangle310" style="width: 24px; height: 24px; left: 34px; top: 58px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div style="width: 12px; height: 12px; left: 15px; top: 96px; position: absolute; color: white">
-                  <i class="fa-regular fa-calendar"></i>
-                </div>
-                <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm 2022</div>
-                <div class="Rectangle304" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
-                <div class="Rectangle306" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle305" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle309" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="DanhSChKBOCO" style="left: 43px; top: 64px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">Danh sách kỳ báo cáo</div>
-                <div class="01202301012024" style="left: 43px; top: 98px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">01/01/2022 - 01/01/2022</div>
-                <div class="FileText" style="width: 12px; height: 12px; left: 16px; top: 64px; position: absolute">
-                  <div class="Vector" style="width: 8px; height: 10px; left: 2px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 3px; height: 3px; left: 7px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 8.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 7px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 5.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 1px; height: 0px; left: 4px; top: 4px; position: absolute; border: 0.50px white solid"></div>
-                </div>
-              </div>
-              <div class="Frame3046" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
-                <div class="Rectangle307" style="width: 24px; height: 117px; left: 117px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle308" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div class="Rectangle310" style="width: 24px; height: 24px; left: 34px; top: 58px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div style="width: 12px; height: 12px; left: 15px; top: 96px; position: absolute; color: white">
-                  <i class="fa-regular fa-calendar"></i>
-                </div>
-                <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm 2021</div>
-                <div class="Rectangle304" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
-                <div class="Rectangle306" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle305" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle309" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="DanhSChKBOCO" style="left: 43px; top: 64px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">Danh sách kỳ báo cáo</div>
-                <div class="01202301012024" style="left: 43px; top: 98px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">01/01/2021 - 01/01/2022</div>
-                <div class="FileText" style="width: 12px; height: 12px; left: 16px; top: 64px; position: absolute">
-                  <div class="Vector" style="width: 8px; height: 10px; left: 2px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 3px; height: 3px; left: 7px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 8.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 7px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 5.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 1px; height: 0px; left: 4px; top: 4px; position: absolute; border: 0.50px white solid"></div>
-                </div>
-              </div>
-              <div class="Frame3046" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
-                <div class="Rectangle307" style="width: 24px; height: 117px; left: 117px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle308" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div class="Rectangle310" style="width: 24px; height: 24px; left: 34px; top: 58px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div style="width: 12px; height: 12px; left: 15px; top: 96px; position: absolute; color: white">
-                  <i class="fa-regular fa-calendar"></i>
-                </div>
-                <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm 2020</div>
-                <div class="Rectangle304" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
-                <div class="Rectangle306" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle305" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle309" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="DanhSChKBOCO" style="left: 43px; top: 64px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">Danh sách kỳ báo cáo</div>
-                <div class="01202301012024" style="left: 43px; top: 98px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">01/01/2020 - 01/01/2021</div>
-                <div class="FileText" style="width: 12px; height: 12px; left: 16px; top: 64px; position: absolute">
-                  <div class="Vector" style="width: 8px; height: 10px; left: 2px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 3px; height: 3px; left: 7px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 8.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 7px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 5.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 1px; height: 0px; left: 4px; top: 4px; position: absolute; border: 0.50px white solid"></div>
-                </div>
-              </div>
-              <div class="Frame3046" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
-                <div class="Rectangle307" style="width: 24px; height: 117px; left: 117px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle308" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div class="Rectangle310" style="width: 24px; height: 24px; left: 34px; top: 58px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div style="width: 12px; height: 12px; left: 15px; top: 96px; position: absolute; color: white">
-                  <i class="fa-regular fa-calendar"></i>
-                </div>
-                <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm 2019</div>
-                <div class="Rectangle304" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
-                <div class="Rectangle306" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle305" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle309" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="DanhSChKBOCO" style="left: 43px; top: 64px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">Danh sách kỳ báo cáo</div>
-                <div class="01202301012024" style="left: 43px; top: 98px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">01/01/2019 - 01/01/2020</div>
-                <div class="FileText" style="width: 12px; height: 12px; left: 16px; top: 64px; position: absolute">
-                  <div class="Vector" style="width: 8px; height: 10px; left: 2px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 3px; height: 3px; left: 7px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 8.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 7px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 5.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 1px; height: 0px; left: 4px; top: 4px; position: absolute; border: 0.50px white solid"></div>
-                </div>
-              </div>
-              <div class="Frame3046" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
-                <div class="Rectangle307" style="width: 24px; height: 117px; left: 117px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle308" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div class="Rectangle310" style="width: 24px; height: 24px; left: 34px; top: 58px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-                <div style="width: 12px; height: 12px; left: 15px; top: 96px; position: absolute; color: white">
-                  <i class="fa-regular fa-calendar"></i>
-                </div>
-                <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm 2018</div>
-                <div class="Rectangle304" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
-                <div class="Rectangle306" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle305" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="Rectangle309" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-                <div class="DanhSChKBOCO" style="left: 43px; top: 64px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">Danh sách kỳ báo cáo</div>
-                <div class="01202301012024" style="left: 43px; top: 98px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">01/01/2018 - 01/01/2019</div>
-                <div class="FileText" style="width: 12px; height: 12px; left: 16px; top: 64px; position: absolute">
-                  <div class="Vector" style="width: 8px; height: 10px; left: 2px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 3px; height: 3px; left: 7px; top: 1px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 8.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 7px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 4px; height: 0px; left: 4px; top: 5.50px; position: absolute; border: 0.50px white solid"></div>
-                  <div class="Vector" style="width: 1px; height: 0px; left: 4px; top: 4px; position: absolute; border: 0.50px white solid"></div>
-                </div>
-              </div>
-            </div>
+        </div>
         <div class="paging">
           <button aria-label="pagin">
             <i class="fa-solid fa-chevron-left"></i>
@@ -1065,95 +944,7 @@
           <button aria-label="pagin">
             <i class="fa-solid fa-chevron-right"></i>
           </button>
-        </div>
-        <div class="Modal__container" id="Modal__addbomon">
-          <div class="modal__content">
-            <div class="modal__header">
-              <p>THÊM BỘ MÔN</p>
-              <i onclick="hiddenModaladd()" class="fa-regular fa-circle-xmark"></i>
-            </div>
-            <div class="modal__body">
-              <div class="select__container">
-                <p>
-                  Bộ môn
-                </p>
-                <div class="modal__select" id="modalSelectBomon">
-                  <p id="selectedBomon">Chọn bộ môn</p>
-                  <i class="fa-solid fa-angle-down"></i>
-                  <ul id="nav__bomon" class="slect__nav bomon">
-                    <li>Vật lý đại cương</li>
-                    <li>Đại số tuyến tính</li>
-                    <li>Kỹ năng mềm</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="select__container">
-                <p>
-                  Khoa
-                </p>
-                <div class="modal__select" id="modalSelectKhoa">
-                  <p id="selectedKhoa">Chọn khoa</p>
-                  <i class="fa-solid fa-angle-down"></i>
-                  <ul id="nav__khoa" class="slect__nav khoa">
-                    <li>Kế toán</li>
-                    <li>Kiến trúc</li>
-                    <li>Du lịch</li>
-                    <li>Quản trị kinh doanh</li>
-                    <li>Luật</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="modal__footer">
-              <button onclick="hiddenModaladd()">HỦY</button>
-              <button>LƯU</button>
-            </div>
-          </div>
-        </div>
-        <div class="Modal__container" id="Modal__khoa">
-          <div class="modal__content">
-            <div class="modal__header">
-              <p>Thêm Khoa</p>
-              <i onclick="hiddenModalEdit()" class="fa-regular fa-circle-xmark"></i>
-            </div>
-            <div class="modal__body">
-              <div class="select__container">
-                <p>
-                  Bộ môn
-                </p>
-                <div class="modal__select" id="modalSelectEditBomon">
-                  <p id="selectedEditBomon" style="color:black;">Kỹ Thuật Phần Mềm</p>
-                  <i class="fa-solid fa-angle-down"></i>
-                  <ul id="nav__editBoMon" class="slect__nav editBomon">
-                    <li>Vật lý đại cương</li>
-                    <li>Đại số tuyến tính</li>
-                    <li>Kỹ năng mềm</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="select__container">
-                <p>
-                  Khoa
-                </p>
-                <div class="modal__select" id="modalSelectEditKhoa">
-                  <p id="selectedEditKhoa" style="color: black;">Công nghệ thông tin</p>
-                  <i class="fa-solid fa-angle-down"></i>
-                  <ul id="nav__editKhoa" class="slect__nav editkhoa">
-                    <li>Kế toán</li>
-                    <li>Kiến trúc</li>
-                    <li>Du lịch</li>
-                    <li>Quản trị kinh doanh</li>
-                    <li>Luật</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="modal__footer">
-              <button onclick="hiddenModalEdit()">HỦY</button>
-              <button>LƯU</button>
-            </div>
-          </div>
-        </div>
+        </div>     
         </div>
     </main>
 </body>
