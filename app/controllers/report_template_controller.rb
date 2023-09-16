@@ -13,7 +13,8 @@ class ReportTemplateController < ApplicationController
       title_2_title_arr[index].each_with_index do |title_2_arr, i|
         title_2_value = title_2_arr.split(",")
         data[key] = {} unless data[key]
-        data[key][title_2_value[0]] = title_2_value.drop(1)
+        data[key][title_2_value[0]] = {} if data[key][title_2_value[0]].blank?
+        data[key][title_2_value[0]][:title] = title_2_value.drop(1)
       end
     end
     ReportTemplate.create(data: JSON.generate(data))

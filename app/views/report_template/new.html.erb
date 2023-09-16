@@ -787,20 +787,22 @@ function showTableList(e) {
       }
       title_2_title_arr.push(tbody_title_2_title_arr)
     }
-    var data = new FormData();
-    data.append('table_keys',JSON.stringify(table_keys));
-    data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
-    jQuery.ajax({
-      url: "/report_template",
-      data: data,
-      cache: false,
-      contentType: false,
-      processData: false,
-      method: 'POST',
-      success: function(data){
-          alert("Tao thanh cong");
-      }
-    });
+    if (check_condition){
+      var data = new FormData();
+      data.append('table_keys',JSON.stringify(table_keys));
+      data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
+      jQuery.ajax({
+        url: "/report_template",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        success: function(data){
+            alert("Tao thanh cong");
+        }
+      });
+    }
   }
 </script>
 

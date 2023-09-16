@@ -665,9 +665,15 @@ margin: 0;
                         <% value["content"].each do |content_value|%>
                           <tr class="content__table_body">
                               <td class="first_column"  style="border: none;text-align: right;padding: 0;">
+                                  <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                                      <i class="fa-solid fa-trash"></i>
+                                  </button>
+                                  <button  onclick="addRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                                      <i class="fa-solid fa-plus"></i>
+                                  </button>
                               </td>
                               <% content_value.each do |c| %>
-                                <td class= "content__table_body_td_value"> <%= c %></td>
+                                <td contenteditable="true" class= "content__table_body_td_value"> <%= c %></td>
                               <% end %>
                           </tr>
                         <% end %>
@@ -1031,4 +1037,65 @@ function showTableList(e) {
 
 </script>
 
+<script>
+  function SubmitReport(){
+    var content__table_body_td_value_arr = []
+    var title_2_title_arr = []
+    // all value of td
+    var sum_td = []
+
+    //get each table
+    for (let table of document.getElementsByClassName("content__table")){
+      let title = table.getElementsByClassName("tableHeader")[0];
+      let title_value = title.innerText;
+      content__table_body_td_value_arr.push(title_value)
+      let table_row_td = []
+
+      //title in table
+
+      var title_table = []
+      //get each key
+      var row_table = []
+      for(let title_2 of table.getElementsByClassName("key_title")){ // title2_1, title2_2, ......
+        title_table.push(title_2.innerText);
+        // value each tbody
+        var title_2_value_array = []
+        //row data in tbody
+        //get each row in table
+        for (let content__table_body of title_2.parentNode.parentNode.getElementsByClassName("content__table_body")){
+          // value each row
+          let title_2_value = [];
+          //get each column value in row
+          for (let td_value of content__table_body.getElementsByClassName("content__table_body_td_value")){
+            if (td_value.innerText){
+              title_2_value.push(td_value.innerText)
+            }else{
+              title_2_value.push(" ")
+            }
+          };
+          title_2_value_array.push(title_2_value);
+        }
+        row_table.push(title_2_value_array)
+      }
+      title_2_title_arr.push(title_table)
+      sum_td.push(row_table)
+    }
+    var data = new FormData();
+    data.append('content__table_body_td_value_arr',JSON.stringify(content__table_body_td_value_arr));
+    data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
+    data.append('sum_td',JSON.stringify(sum_td));
+    jQuery.ajax({
+      url: "/report/<%= @report_template.id %>/submit_report",
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      method: 'PUT',
+      success: function(data){
+          alert("chinh sua thanh cong");
+          window.location.replace("/report/<%= @report_template.id %>");
+      }
+    });
+  }
+</script>
 </html>

@@ -630,12 +630,7 @@ display: none;
                 <thead>
                   <tr class="content__table_header"  style="background-color: #f4924b;" onclick="showTableList(this)">
                     <th class="first_column" style="border: none;text-align: right;padding: 0; background-color: currentColor;">
-                      <button onclick="addTable()" style="display: block;width: 100%; border-right:none; border-bottom:none">
-                        <i class="fa-solid fa-plus"></i>
-                      </button>
-                      <button onclick="delTable(this)" style="display: block;width: 100%; border-right:none">
-                        <i class="fa-solid fa-trash"></i>
-                      </button>
+                     
                     </th>
                     <th class="tableHeader" colspan="<%= @report_template_title[key].first.last.length+1 %>" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none; border-top:none; border-left:none; border-right:none">
                       <%= "#{index+1}. #{key}"%>
@@ -646,12 +641,7 @@ display: none;
                   <tbody class="tableBody">
                     <tr class="content__table_header">
                       <th class="first_column" style="border: none;text-align: right;padding: 0; background-color: currentColor;">
-                        <button onclick="addThread(this)" style="display: block;width: 100%; border-right:none; border-bottom:none">
-                          <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <button onclick="delThread(this)" style="display: block;width: 100%; border-right:none">
-                          <i class="fa-solid fa-trash"></i>
-                        </button>
+                        
                       </th>
                       <th class="first_thread_content">
                         <%= key %>
@@ -661,14 +651,6 @@ display: none;
                         <%= v %>
                       </th>
                       <% end %>
-                      <th class="first_column" style="border: none;text-align: right;padding: 0; background-color: currentColor;">
-                          <button onclick="addColumn(this)" style="display: block;width: 100%; border-left:none; border-bottom:none">
-                              <i class="fa-solid fa-plus"></i>
-                          </button>
-                          <button onclick="delColumn(this)" style="display: block;width: 100%; border-left:none">
-                              <i class="fa-solid fa-trash"></i>
-                          </button>
-                      </th>
                     </tr>
                   </tbody>
                 <% end %>
