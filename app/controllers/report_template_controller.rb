@@ -3,6 +3,7 @@ class ReportTemplateController < ApplicationController
   protect_from_forgery with: :null_session
 
   def index
+    @report_templates = ReportTemplate.all.order(:created_at)
   end
 
   def create
@@ -10,11 +11,10 @@ class ReportTemplateController < ApplicationController
     table_keys = JSON.parse(params["table_keys"])
     title_2_title_arr = JSON.parse(params["title_2_title_arr"])
     table_keys.each_with_index do |key, index|
-      title_2_title_arr[index].each_with_index do |title_2_arr, i|
-        title_2_value = title_2_arr.split(",")
+      title_2_title_arr[index].each do |title_2_arr|
         data[key] = {} unless data[key]
-        data[key][title_2_value[0]] = {} if data[key][title_2_value[0]].blank?
-        data[key][title_2_value[0]][:title] = title_2_value.drop(1)
+        data[key][title_2_arr[0]] = {} if data[key][title_2_arr[0]].blank?
+        data[key][title_2_arr[0]][:title] = title_2_arr.drop(1)
       end
     end
     ReportTemplate.create(data: JSON.generate(data))
@@ -24,11 +24,22 @@ class ReportTemplateController < ApplicationController
   end
 
   def edit
-    @report_template
+    @report_template_title = JSON.parse(ReportTemplate.find(params[:id]).data)
+    @report_template = ReportTemplate.find(params[:id])
   end
 
   def update
-    @report_template.udpate(update_params)
+    data = {}
+    table_keys = JSON.parse(params["table_keys"])
+    title_2_title_arr = JSON.parse(params["title_2_title_arr"])
+    table_keys.each_with_index do |key, index|
+      title_2_title_arr[index].each do |title_2_arr|
+        data[key] = {} unless data[key]
+        data[key][title_2_arr[0]] = {} if data[key][title_2_arr[0]].blank?
+        data[key][title_2_arr[0]][:title] = title_2_arr.drop(1)
+      end
+    end
+    ReportTemplate.find(params[:id]).update(data: JSON.generate(data))
   end
   
   def show

@@ -651,7 +651,7 @@ margin: 0;
                     </th>
                     <th class= "first_thread_content"contenteditable="true">
                     </th>
-                     <th class="first_column" style="border: none;text-align: right;padding: 0;">
+                    <th class="first_column" style="border: none;text-align: right;padding: 0;">
                         <button onclick="addColumn(this)" style="display: block;width: 100%;padding: 2px 0px;">
                             <i class="fa-solid fa-plus"></i>
                         </button>
@@ -747,7 +747,7 @@ function showTableList(e) {
       }else{
         table_keys.push(title_value)
         for(let tbody of table.getElementsByTagName("tbody")){ // title2_1, title2_2, ......
-          let tbody_content = ""
+          let tbody_content = []
           for (let th_element of tbody.getElementsByTagName("th")){
             if (th_element.classList.value == "first_thread_content"){
               if (!th_element.innerText){
@@ -755,20 +755,20 @@ function showTableList(e) {
                 check_condition = false
                 break;
               }else{
-                tbody_content += th_element.innerText
+                tbody_content.push(th_element.innerText)
               }
             }else{
               if(th_element.classList.value == ""){
                 if (th_element.innerText != ""){
-                  tbody_content += "," + th_element.innerText
+                  tbody_content.push(th_element.innerText)
                 }else{
-                  tbody_content += "," + " "
+                  tbody_content.push(" ")
                 }
               }
             }
           }
           tbody_title_2_title_arr.push(tbody_content)
-          let title_2_value_array = []
+          // let title_2_value_array = []
           //get each row in table
           // for (let content__table_body of title_2.parentElement.parentElement.parentNode.getElementsByClassName("content__table_body")){
           //   let title_2_value = "";
@@ -800,6 +800,7 @@ function showTableList(e) {
         method: 'POST',
         success: function(data){
             alert("Tao thanh cong");
+            window.location.replace("/report_template");
         }
       });
     }

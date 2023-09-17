@@ -176,7 +176,7 @@ margin: 0;
   margin-left: 20px;
 }
 
-.breadcrumb__name {
+.breadcrumb__ReportingPeriod {
   display: inline-block;
   margin-left: 10px;
   color: #f34f68;
@@ -194,6 +194,7 @@ margin: 0;
 .user__info {
   margin-right: 10px;
   font-size: 16px;
+  text-align: right;
 }
 .user__info p:first-child {
   text-align: right;
@@ -365,7 +366,8 @@ margin: 0;
   width: 250px;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   position: relative;
-display: none;
+  padding: 2px;
+  display: none;
   transition: all 0.5s;
 }
 .menu__dropdown_logo {
@@ -567,30 +569,29 @@ display: none;
 
         <div class="content">
             <div class="content__title">
+                
                 <div class="content__breadcrumb">
                     MENU
-                    <p class="breadcrumb__name" style="color: black; border-bottom: none;">/</p>
-                    <p class="breadcrumb__name" style="color: black; border-bottom: none;">QUẢN LÝ TÀI KHOẢN</p>
-                    <p class="breadcrumb__name" style="color: black; border-bottom: none;">/</p>
-                    <p class="breadcrumb__name">BÁO CÁO THÁNG</p>
+                    <p class="breadcrumb__ReportingPeriod" style="color: black; border-bottom: none;">/</p>
+                    <p class="breadcrumb__ReportingPeriod" style="color: black; border-bottom: none;">QUẢN LÝ KỲ BÁO CÁO</p>
+                    <p class="breadcrumb__ReportingPeriod" style="color: black; border-bottom: none;">/</p>
+                    <p class="breadcrumb__ReportingPeriod">BÁO CÁO THÁNG</p>
                 </div>
                 <div class="content__user">
                     <div class="user_icon">
                         <i class="fa-regular fa-bell"></i>
                     </div>
                     <div class="user__info">
-                        <p>Nhân viên / Giảng viên</p>
-                        <p>
+                    <p>
                             thanhnhan@vanlanguni.vn
                         </p>
+                        <p>Nhân viên / Giảng viên</p>
+                        
                         
                     </div>
                     <div class="user__img">
                         <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo"
                             alt="">
-                    </div>
-                    <div class="user__detail">
-                        <i class="fa-solid fa-angle-down"></i>
                     </div>
                 </div>
             </div>
@@ -625,15 +626,20 @@ display: none;
                     </div>
                 </div>
             
-            </div>         
+            </div>
             <% @report_template_title.keys.each_with_index do |key, index|%>
               <table class="content__table" style="border-radius: 0px;" >
                 <thead>
                   <tr class="content__table_header"  style="background-color: #f4924b;" onclick="showTableList(this)">
                     <th class="first_column" style="border: none;text-align: right;padding: 0;">
-                     
+                      <button onclick="addTable()" style="display: block;width: 100%;padding: 2px 0px;">
+                        <i class="fa-solid fa-plus"></i>
+                      </button>
+                      <button onclick="delTable(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
                     </th>
-                    <th class="tableHeader" colspan="<%= @report_template_title[key].first.last.values.last.length+1 %>" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none; border-top:none; border-left:none; border-right:none">
+                    <th class="tableHeader" contenteditable="true" colspan="<%= @report_template_title[key].first.last.values.last.length+1 %>" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none; border-top:none; border-left:none; border-right:none">
                       <%= "#{index+1}. #{key}"%>
                     </th>
                   </tr>
@@ -642,242 +648,34 @@ display: none;
                   <tbody class="tableBody">
                     <tr class="content__table_header">
                       <th class="first_column" style="border: none;text-align: right;padding: 0;">
-                        
+                        <button onclick="addThread(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <button onclick="delThread(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
                       </th>
-                      <th class="first_thread_content">
+                      <th class="first_thread_content" contenteditable="true">
                         <%= k %>
                       </th>
                       <% v["title"].each do |title_value|%>
-                      <th>
+                      <th contenteditable="true">
                         <%= title_value %>
                       </th>
                       <% end %>
+                      <th class="first_column" style="border: none;text-align: right;padding: 0;">
+                        <button onclick="addColumn(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <button onclick="delColumn(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                      </th>
                     </tr>
                   </tbody>
                 <% end %>
               </table>
             <% end %>
-            
-            <%# <table class="content__table" style="border-radius: 0px; " >
-                <thead >  <tr class="content__table_header"  style="background-color: #f4924b; "  onclick="showTableList(this)">
-                    <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th id="tableHeader" colspan="8" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none;">1. CÔNG VIỆC THỰC HIỆN THEO KPI </th>
-                </tr></thead>
-              <tbody id="tableBody"  class="list_table">
-                <tr class="content__table_header">
-                    <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th>
-                        <input id="Checkbox11" onchange="toggleAllCheckboxes()"  class="content__table-checkbox" type="checkbox" placeholder="checkbox">
-                    </th>
-                    <th>
-                        1.1
-                    </th>
-                    <th>
-                        Công tác giảng dạy
-                    </th>
-                    <th>
-                        Trống
-                        <p>tiết / giờ</p>
-                    </th>
-                    <th>
-                        Lớp / nhóm
-                    </th>
-                    <th>
-                        Thứ
-                    </th>
-                    <th>
-                        Ca
-                    </th>
-                    <th>
-                        Ghi chú
-                    </th>
-                </tr>
-                <tr class="content__table_body">
-                    <td class="first_column"  style="border: none;text-align: right;padding: 0;">
-                        <button  onclick="delRow(this)" style="display: block;width: 100%;">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <button  onclick="addRow(this)" style="display: block;width: 100%;">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    <td> <input  class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>1</td>
-                    <td>text</td>
-                    <td>text</td>
-                    <td>text</td>
-                    <td>text</td>
-                    <td>text</td>
-                    <td>text</td>
-                </tr>
-                <tr class="content__table_body">
-                    <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>2</td>
-                    <td>text</td>
-                    <td>text</td>
-                    <td>text</td>
-                    <td>text</td>
-                    <td>text</td>
-                    <td>test</td>
-                </tr>
-                <tr class="content__table_body">
-                    <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>3</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>    
-                </tr>
-              </tbody>
-               
-
-            </table> %>
-<%# 
-            <table id="myTable12" class="content__table" style="border-radius: 0px;margin-top: 30px;" loading="lazy">
-                <tr class="content__table_header">
-                    <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                    <th style="border-top-left-radius: 12px;">
-                        <input id="Checkbox12" onchange="toggleAllCheckboxes12()" class="content__table-checkbox" type="checkbox" placeholder="checkbox">
-                    </th>
-                    <th>
-                        1.2
-                    </th>
-                    <th style ="text-align: left;">
-                        Công tác nghiên cứu khóa học
-                    </th>
-
-                    <th>
-                        Tạp chí
-                    </th>
-                    <th>
-                        Hạng
-                    </th>
-                    <th style="border-top-right-radius: 12px;">
-                        Kết quả
-                    </th>
-            
-                </tr>
-            <tbody id="tablenhom1">
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td colspan="2" class="color_row">Nhóm 1</td>
-                    <td class="color_row" style="text-align: left;">Nghiên cứu công bố quốc tế (CBQT)     </td>
-                    <td class="color_row">test</td>
-                    <td class="color_row">test</td>
-                    <td class="color_row">test</td>
-                </tr>
-                <tr class="content__table_body">
-                    <td style="border: none;text-align: right;padding: 0;">
-                        <button id="delete" onclick="delRow12()" style="display: block;width: 100%;">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <button id="add" onclick="addRow12()" style="display: block;width: 100%;">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    
-                    <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>1</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>2</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-    
-                </tr>
-            </tbody>
-                
-               <tbody id="tablenhom2">
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td colspan="2" class="color_row">Nhóm 2</td>
-                    <td class="color_row" style="text-align: left;">  Nghiên cứu chuyển giao công nghệ cho doanh nghiệp và xã hội </td>
-                    <td class="color_row">text</td>
-                    <td class="color_row">text</td>
-                    <td class="color_row">text</td>
-    
-                </tr>
-                <tr class="content__table_body">
-                    <td style="border: none;text-align: right;padding: 0;">
-                        <button id="delete" onclick="delRow12nhom2()" style="display: block;width: 100%;">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <button onclick="addRow12nhom2()"style="display: block;width: 100%;">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    
-                    <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>1</td>
-                    <td style="text-align: left;">text</td>
-                    <td>text</td>
-                    <td>text</td>
-                    <td>text</td>
-                </tr>
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>2</td>
-                    <td style="text-align: left;">text</td>
-                    <td>text</td>
-                    <td>text</td>
-                    <td>text</td>
-    
-                </tr>
-               </tbody>
-              
-
-             <tbody id="tablenhom3">
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td colspan="2" class="color_row">Nhóm 3</td>
-                    <td class="color_row" style="text-align: left;">Nghiên cứu phục vụ giảng dạy và nâng cao kĩ năng nghề nghiệp</td>
-                    <td class="color_row">test</td>
-                    <td class="color_row">test</td>
-                    <td class="color_row">test</td>
-    
-                </tr>
-                <tr class="content__table_body">
-                    <td style="border: none;text-align: right;padding: 0;">
-                        <button id="delete" onclick="delRow12nhom3()" style="display: block;width: 100%;">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                        <button onclick="addRow12nhom3()" style="display: block;width: 100%;">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </td>
-                    
-                    <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>1</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-                </tr>
-                <tr class="content__table_body">
-                    <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                    <td><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                    <td>2</td>
-                    <td style="text-align: left;">test</td>
-                    <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
-    
-                </tr>
-             </tbody>
-            </table> %>
         </div>
         <div id="popup__guiBaocao">
             <div id="popup__inner">
@@ -963,7 +761,7 @@ function showTableList(e) {
       }else{
         table_keys.push(title_value)
         for(let tbody of table.getElementsByTagName("tbody")){ // title2_1, title2_2, ......
-          let tbody_content = ""
+          let tbody_content = []
           for (let th_element of tbody.getElementsByTagName("th")){
             if (th_element.classList.value == "first_thread_content"){
               if (!th_element.innerText){
@@ -971,20 +769,20 @@ function showTableList(e) {
                 check_condition = false
                 break;
               }else{
-                tbody_content += th_element.innerText
+                tbody_content.push(th_element.innerText)
               }
             }else{
               if(th_element.classList.value == ""){
                 if (th_element.innerText != ""){
-                  tbody_content += "," + th_element.innerText
+                  tbody_content.push(th_element.innerText)
                 }else{
-                  tbody_content += "," + " "
+                  tbody_content.push(" ")
                 }
               }
             }
           }
           tbody_title_2_title_arr.push(tbody_content)
-          let title_2_value_array = []
+          // let title_2_value_array = []
           //get each row in table
           // for (let content__table_body of title_2.parentElement.parentElement.parentNode.getElementsByClassName("content__table_body")){
           //   let title_2_value = "";
@@ -1003,20 +801,23 @@ function showTableList(e) {
       }
       title_2_title_arr.push(tbody_title_2_title_arr)
     }
-    var data = new FormData();
-    data.append('table_keys',JSON.stringify(table_keys));
-    data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
-    jQuery.ajax({
-      url: "/report_template",
-      data: data,
-      cache: false,
-      contentType: false,
-      processData: false,
-      method: 'POST',
-      success: function(data){
-          alert("Tao thanh cong");
-      }
-    });
+    if (check_condition){
+      var data = new FormData();
+      data.append('table_keys',JSON.stringify(table_keys));
+      data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
+      jQuery.ajax({
+        url: "/report_template/<%= @report_template.id %>",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'PUT',
+        success: function(data){
+            alert("Tao thanh cong");
+            window.location.replace("/report_template");
+        }
+      });
+    }
   }
 </script>
 
@@ -1036,11 +837,11 @@ function showTableList(e) {
   }
 
   function addThread(e){
-    var table = document.getElementsByClassName("tableBody")[0];
+    var table = e.parentNode.parentNode.parentNode;
     var clone = table.cloneNode(true)
-    e.parentNode.parentNode.parentNode.parentNode.appendChild(clone)
-    var bodyThreads = e.parentNode.parentNode.parentNode.parentNode.getElementsByTagName("tbody")
-    var newThread = bodyThreads[bodyThreads.length - 1]
+    var newThread = e.parentNode.parentNode.parentNode.parentNode.appendChild(clone)
+    // var bodyThreads = e.parentNode.parentNode.parentNode.parentNode.getElementsByTagName("tbody")
+    // var newThread = bodyThreads[bodyThreads.length - 1]
     //clear data form clone
     for (let data of newThread.getElementsByTagName("th")) {
       if (data.classList.value != "first_column"){
