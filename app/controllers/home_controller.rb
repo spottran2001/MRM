@@ -30,4 +30,7 @@ class HomeController < ApplicationController
       user.update!(params[:phone_number]) #add this column to database!
     end
   end
+
+  def staff
+  end
 end

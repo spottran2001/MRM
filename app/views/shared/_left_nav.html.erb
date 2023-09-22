@@ -400,6 +400,7 @@
 #btn-dropdown button i {
   font-size: 16px;
   transition: all 0.5s;
+  color: white
 }
 
 #btn-menu {
@@ -422,6 +423,7 @@
 #btn-menu button i {
   font-size: 16px;
   transition: all 0.5s;
+  color: white
 }
 .generality__options {
   display: flex;
@@ -568,19 +570,22 @@
             <i class="fa-solid fa-chart-simple"></i>
         </div>
     </a>
+    <a href="#" class="menu__items">
+        <div class="menu__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+                stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 3V21" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </a>
      <%= link_to report_template_index_path, class: "menu__items" do %>
       <div class="menu__items">
         <div class="menu__icon  ">
-        <i class="fa-regular fa-calendar"></i>
-            
+          <i class="fa-regular fa-calendar"></i>  
         </div>
       </div>
     <% end %>
-    <%#<div class="menu__items">
-        <div class="menu__icon  ">
-            <i class="fa-regular fa-bell"></i>
-        </div>
-    </div>%>
     <div class="menu__items">
           <div class="menu__icon  ">
               <i class="fa-regular fa-clipboard"></i>
@@ -593,22 +598,24 @@
           </div>
       </div>
     <% end %>
-    <%= link_to users_path, class: "menu__items menu__items--separation" do %>
-        <div class="menu__icon">
-        <i class="fa-regular fa-user"></i>
-        </div>
+    <%= link_to users_path, class: "menu__items" do %>
+        <div class="menu__items">
+          <div class="menu__icon  ">
+              <i class="fa-regular fa-user"></i>
+          </div>
+      </div>
     <% end %>
+    <a href="#" class="menu__items">
+        <div class="menu__icon">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+    </a>
     <div class="menu__items">
     <p class="menu__title" style="color: black;">SETTING</p>
         <div class="menu__icon  ">
             <i class="fa-regular fa-sun"></i>
         </div>
     </div>
-    <a href="#" class="menu__items">
-        <div class="menu__icon">
-            <i class="fa-solid fa-gear"></i>
-        </div>
-    </a>
     
     <div class="menu__items">
         <%= button_to destroy_user_session_path, method: :delete, style: "background-color: white; color: #dadada; border:none", class: "menu__icon" do %>
@@ -629,21 +636,35 @@
     <div class="menu__items">
         <div class="menu__icon " id="statistics">
             <div class="menu__dropdown_icon">
-            <i class="fa-solid fa-chart-simple"></i>
+              <i class="fa-solid fa-chart-simple"></i>
             <p style="display: flex; align-items: center">Thống Kê</p>
             </div>
-            <div class="menu__icon_open">
-            <i class="fa-solid fa-angle-up"></i>
-            </div>
+            <%#<div class="menu__icon_open">
+              <i class="fa-solid fa-angle-up"></i>
+            </div>%>
         </div>
-        <nav class="menu__dropdown_nav ">
+        <%#<nav class="menu__dropdown_nav ">
             <ul class="menu__dropdown_list">
                 <li>Nhân Viên</li>
                 <li>Giảng Viên</li>
                 <li>Phụ Trách Bộ Môn</li>
                 <li>Ban Chủ Nhiệm Khoa</li>
             </ul>
-        </nav>
+        </nav>%>
+    </div>
+    <div class="menu__items" style="margin: 32px 0px;">
+        <div class="menu__icon  ">
+            <div class="menu__dropdown_icon"> 
+              <i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+                stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 3V21" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              </i>        
+              <p>Quản lý biểu mẫu báo cáo chung</p>
+            </div>
+        </div>
     </div>
     <div class="menu__items" style="margin: 32px 0px;">
         <div class="menu__icon" id="report">
@@ -651,19 +672,19 @@
                 <i class="fa-regular fa-calendar"></i>
                 <p >Quản lý kỳ báo cáo</p>
                 </div>
-                <div class="menu__icon_open">
+                <%#<div class="menu__icon_open">
                 <i class="fa-solid fa-angle-up"></i>
-                </div>
+                </div>%>
                 
         </div>
-        <nav class="menu__dropdown_nav">
+        <%#<nav class="menu__dropdown_nav">
             <ul class="menu__dropdown_list">
                 <li>Nhân Viên</li>
                 <li>Giảng Viên</li>
                 <li>Phụ Trách Bộ Môn</li>
                 <li>Ban Chủ Nhiệm Khoa</li>
             </ul>
-        </nav>
+        </nav>%>
     </div>
     <div class="menu__items" style="margin: 32px 0px;">
         <div class="menu__icon  ">
@@ -692,7 +713,7 @@
             </div>
         </div>
     </div>
-    <%= link_to users_url, class: "menu__items menu__items--separation" do %>
+    <%= link_to users_url, class: "menu__items menu__items--separation",style:"margin: 18px 0px 32px 0px;" do %>
         <div class="menu__icon">
             <div class="menu__dropdown_icon">
                 <i class="fa-regular fa-user"></i>
@@ -700,6 +721,14 @@
             </div>
         </div>
     <% end %>
+    <div class="menu__items" style="margin: 18px 0px 32px 0px;">
+      <div class="menu__icon">
+          <div class="menu__dropdown_icon">
+              <i class="fa-solid fa-gear"></i>
+              <p>Quản lý cấu hình</p>
+          </div>
+      </div>
+    </div>
     <div class="menu__items" style="margin-top: 40px;cursor: default;">
         <p class="menu__title" style="color: black;">SETTING</p>
         <div class="menu__regime">
@@ -713,21 +742,12 @@
                 
             </div>
         </div>
-    </div>
-    <a href="#" class="menu__items" style="margin: 18px 0px 32px 0px;">
-        <div class="menu__icon">
-            <div class="menu__dropdown_icon">
-                <i class="fa-solid fa-gear"></i>
-                <p>Thiết lập</p>
-            </div>
-        </div>
-    </a>
-    
+    </div>  
     <div class="menu__items">
         <div class="menu__icon  ">
-            <%= button_to destroy_user_session_path, method: :delete, style: "margin-left: 10px; background-color: #FFBF24", class: "menu__dropdown_icon" do %>
+            <%= button_to destroy_user_session_path, method: :delete, style: "padding: 0.5rem; text-color: white; color: white; background-color: #dc546c; border: none; border-radius: 12px", class: "menu__dropdown_icon" do %>
                 <i class="fa-solid fa-right-to-bracket"></i>
-                <p>Đăng xuất</p>
+                <p style="color: white">Đăng xuất</p>
             <% end %>
         </div>
     </div>

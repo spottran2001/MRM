@@ -40,4 +40,5 @@ class ReportController < ApplicationController
   #quanlikibaocaostaff
   def index
   end
+
 end

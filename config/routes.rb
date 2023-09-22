@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users do
     put "read_notifications", to: "users#read_notification"
   end
+  get "staff", to: "home#staff"
   resources :report_template
   resources :faculty
   resources :subject
