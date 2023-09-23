@@ -33,4 +33,8 @@ class HomeController < ApplicationController
 
   def staff
   end
+
+  def generalReportForm
+  end
+
 end

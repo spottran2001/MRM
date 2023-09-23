@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+
+<style>
+    html,body {
+      height: 100%;
+    margin: 0;
+    }
+    .container {
+      display: flex;
+      height: 100%;
+      max-width: 100%;
+    }
+  
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  
+    }
+
+  
+    /* MENU */
+    .menu {
+      background-color: white;
+      width: 100px;
+      max-height: 100%;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      transition: all 0.5s;
+      display: block;
+      position: relative;
+    }
+  
+    .menu__title {
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  
+    .menu__logo {
+      width: 100%;
+      padding: 20px;
+    }
+  
+    .menu__logo img {
+      width: 100%;
+    }
+  
+    .menu__items {
+      width: 100%;
+      text-align: center;
+      padding: 20px 0px 20px;
+      cursor: pointer;
+      color: #dadada;
+      display: block;
+    }
+  
+    .menu__items--separation {
+        margin-bottom: 50px;
+        padding-bottom: 90px;
+    }
+  
+    .menu__icon i {
+      font-size: 20px;
+    }
+  
+    .menu__icon {
+      padding: 6px 0px;
+    }
+  
+    .menu__active {
+      border-left: 2px solid #d72134;
+      color: #d72134 !important;
+    }
+  
+    /* Content */
+  
+    .content {
+      background-color: #f5f5f5;
+      width: 100%;
+      padding: 30px 60px 20px 30px;
+    }
+  
+    .content__title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .content__name {
+      padding: 40px 0px 10px 40px;
+      font-size: 30px;
+    }
+  
+    .content__breadcrumb {
+      font-size: 16px;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+  
+    .breadcrumb__name {
+      display: inline-block;
+      margin-left: 10px;
+      color: #f34f68;
+      padding: 12px 0px;
+    }
+  
+    .content__user {
+      display: flex;
+      align-items: center;
+    }
+  
+    .user_icon {
+      font-size: 24px;
+      margin-right: 14px;
+      margin-top: 6px;
+    }
+  
+    .user__info {
+      margin-right: 10px;
+      font-size: 16px;
+      text-align: right;
+    }
+  
+    .user__info p:first-child {
+      text-align: right;
+    }
+  
+    .user__img img {
+      border-radius: 50%;
+      width: 40px;
+      height: 100%;
+    }
+  
+    .user__img {
+      margin-right: 10px;
+    }
+  
+    .user__detail {
+      font-size: 20px;
+      cursor: pointer;
+      color: gray;
+    }
+  
+    .content__generality {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin: 20px 0px;
+      padding: 14px 20px;
+      background: #f1f1f1;
+      border-radius: 8px;
+    }
+  
+    .generality__total {
+      display: flex;
+      align-items: center;
+    }
+  
+    .generality__select {
+      margin-left: 10px;
+      margin-right: 20px;
+    }
+  
+    .generality__select select {
+      width: 60px;
+      height: 40px;
+      border-radius: 4px;
+  
+      outline: none;
+    }
+  
+    .content__btn {
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      border-radius: 10px;
+    }
+  
+    .content__btn button {
+      cursor: pointer;
+      padding: 12px 20px;
+      outline: none;
+      border-radius: 10px;
+      font-size: 16px;
+      background-color: white;
+      border: 1px solid gray;
+      color: black;
+    }
+  
+    .content__btn button i {
+      margin-left: 6px;
+    }
+  
+    .generality__search {
+      position: relative;
+    }
+  
+    .generality__search_icon {
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      font-size: 12px;
+      color: gray;
+      cursor: pointer;
+      padding: 10px;
+    }
+  
+    .generality__search input {
+      padding: 14px 40px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 20px 0px;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+    }
+  
+    .content__table {
+      width: 100%;
+      text-align: center;
+      border: none;
+      border-spacing: 0px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 25px;
+    }
+  
+    .content__table th {
+      color: white;
+      padding: 20px 10px;
+    }
+  
+    .content__table_header {
+      background-color: #dc546c;
+      font-size: 16px;
+    }
+  
+    .content__table-checkbox {
+      margin-top: 4px;
+    }
+  
+    .content__table-checkbox-report {
+      margin-left: 5px;
+  
+    }
+  
+    .content__table_body {
+      font-size: 16px;
+    }
+  
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+  
+    }
+  
+    .content__table_body td {
+      padding: 10px 0px;
+    }
+  
+    .approve {
+      background-color: #5cbd4c;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      color: white;
+    }
+  
+    .btn {
+      padding: 6px 8px;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      border-radius: 4px;
+    }
+  
+    .btn i {
+      font-size: 20px;
+      color: white;
+    }
+  
+    .gold {
+      background-color: #f4924b;
+    }
+  
+    .blue {
+      background-color: #1b59f8;
+    }
+  
+    .green {
+      background-color: #5cbd4c;
+    }
+  
+    .paging {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      margin-top: 20px;
+    }
+  
+    .paging--active {
+      background-color: #DC546C !important;
+      color: white !important;
+    }
+  
+    .paging button {
+      padding: 10px 14px;
+      margin: 0px 8px;
+      border: none;
+      background-color: rgb(241, 241, 241);
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 10px;
+      outline: none;
+    }
+  
+    .menu__dropwdown {
+      width: 250px;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      position: relative;
+      padding: 2px;
+      display: none;
+      transition: all 0.5s;
+    }
+  
+    .menu__dropdown_logo {
+      padding: 30px;
+      width: 100%;
+    }
+  
+    .menu__dropdown_logo img {
+      width: 100%;
+    }
+  
+    .menu__dropwdown .menu__title {
+      text-align: left;
+      padding: 0px 20px;
+    }
+  
+    .menu__dropwdown .menu__items {
+      text-align: left;
+      margin: 0px;
+      padding: 10px 0px;
+      display: block;
+      text-decoration: none;
+    }
+  
+    .menu__dropwdown .menu__items .menu__icon {
+      display: flex;
+      align-items: center;
+      padding: 0px 20px;
+      justify-content: space-between;
+    }
+  
+    .menu__dropwdown .menu__items .menu__icon .menu__dropdown_icon {
+      display: flex;
+      align-items: center;
+    }
+  
+    .menu__dropwdown .menu__items .menu__icon .menu__dropdown_icon p {
+      color: black;
+      margin-left: 10px;
+      font-size: 18px;
+      margin-top: 4px;
+    }
+  
+    .active {
+      color: #d72134 !important;
+    }
+  
+    .menu__icon_open i {
+      font-size: 20px;
+      margin-top: 6px;
+      transition: all 0.3s;
+    }
+  
+    .menu__dropdown_nav {
+      padding-left: 44px;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none;
+      transition: all 0.5s;
+    }
+  
+    .menu__dropdown_list {
+      list-style: none;
+    }
+  
+    .menu__dropdown_list li {
+      color: black;
+      padding: 10px 0px;
+    }
+  
+    .icon__notification {
+      width: 15px;
+      height: 15px;
+      background-color: #d72134;
+      border-radius: 50%;
+      margin-top: 4px;
+    }
+  
+    .menu__regime {
+      display: flex;
+      align-items: center;
+      margin: 10px 40px 0px 20px;
+      padding: 10px 12px;
+      justify-content: center;
+      background: #f5f5f5;
+      border-radius: 10px;
+    }
+  
+    .regime__light,
+    .regime__dark {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    .regime__dark {
+      margin-left: 10px;
+      background: gray;
+      color: black;
+      padding: 6px 10px;
+      border-radius: 40px;
+    }
+  
+    .regime__light {
+      background-color: white;
+      padding: 6px 10px;
+      border-radius: 40px;
+      color: black;
+    }
+  
+    .regime__light p,
+    .regime__dark p {
+      margin-left: 10px;
+    }
+  
+    /* Toggle */
+    #statistics .show {
+      display: block;
+    }
+  
+    .show .menu__icon_open i {
+      transform: rotate(-180deg);
+    }
+  
+    .show~.menu__dropdown_nav {
+      display: block;
+    }
+  
+    #btn-dropdown {
+      position: absolute;
+      left: 234px;
+      top: 40px;
+    }
+  
+    #btn-dropdown button {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #d72134;
+      color: black;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      text-align: center;
+    }
+  
+    #btn-dropdown button i {
+      font-size: 16px;
+      transition: all 0.5s;
+    }
+  
+    #btn-menu {
+      position: absolute;
+      left: 78px;
+      top: 30px;
+    }
+  
+    #btn-menu button {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #d72134;
+      color: black;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      text-align: center;
+    }
+  
+    #btn-menu button i {
+      font-size: 16px;
+      transition: all 0.5s;
+    }
+  
+    .generality__options {
+      display: flex;
+      align-items: center;
+    }
+  
+    .btn__addmember button {
+      display: flex;
+      align-items: center;
+  
+      padding: 14px 16px;
+      border: none;
+      outline: none;
+      background-color: blue;
+      color: white;
+      cursor: pointer;
+      border-radius: 12px;
+    }
+  
+    .btn__addmember button p {
+      margin-left: 6px;
+    }
+  
+    .btn__addfile {
+      margin: 0px 24px;
+    }
+  
+    .btn__CreateReport button {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: none;
+      color: white;
+      background-color: #678EF8;
+      cursor: pointer;
+    }
+  
+    .btn__CreateReport button p {
+      margin-left: 6px;
+    }
+  
+    .select__options select {
+      padding: 8px 6px;
+      border-radius: 10px;
+    }
+  
+    .container__info {
+      height: 560px;
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+  
+    .info__img {
+      background-image: url("./assets/img/Bird.jpg");
+      width: 20%;
+      float: left;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+  
+    .info__content {
+      background-color: white;
+      padding: 100px 0px 100px 100px;
+      float: right;
+      width: 80%;
+      height: 100%;
+    }
+  
+    .info__title {
+      margin-left: 32px;
+    }
+  
+    .info__title h1 {
+  
+      padding-bottom: 6px;
+    }
+  
+    .info {
+      font-size: 16px;
+      color: gray;
+      margin: 6px 0px 40px 0px;
+      border-top: 4px solid red;
+    }
+  
+  
+    .info__list li {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      font-size: 16px;
+      margin: 40px 0px;
+    }
+  
+    .info__list li p {
+      margin: 0px 80px 0px 20px;
+      color: gray;
+      font-size: 18px;
+      text-align: left;
+    }
+  
+    .info__list li span {
+      width: 12px;
+      height: 12px;
+      border: 1px solid gray;
+      border-radius: 50%;
+    }
+  
+    .info__user_img {
+      position: absolute;
+      top: 50px;
+      left: 190px;
+      border-radius: 50%;
+      border: 4px solid white;
+      width: 164px;
+      height: 164px;
+    }
+  
+    .info__user_img img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  
+    .btn_edit-info {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+  
+    .btn_edit-info button {
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      background-color: white;
+      border-radius: 40px;
+    }
+  
+    /* Modal */
+    .Modal__container {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(0 0 0 / 0.5);
+      
+  
+    }
+    #Modal__addbomon{
+      display: none;
+    }
+  
+    .modal__content {
+      background-color: white;
+      width: 500px;
+      border-radius: 12px;
+      border: 2px solid black;
+      overflow: hidden;
+      height: 420px;
+    }
+  
+    .modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: #DC546C;
+      border-bottom: 2px solid black;
+      color: white;
+    }
+  
+    .modal__header p {
+      letter-spacing: 0.5px;
+    }
+  
+    .modal__header i {
+      font-size: 20px;
+      cursor: pointer;
+    }
+  
+    .modal__body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+  
+    }
+  
+    .select__container {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 20% 80%;
+  
+    }
+  
+    .modal__select {
+      display: flex;
+      align-items: center;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
+      width: 100%;
+      justify-content: space-between;
+      position: relative;
+      user-select: none;
+      cursor: pointer;
+    }
+  
+    .modal__select p {
+      color: #dadada;
+    }
+  
+    .slect__nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      list-style: none;
+      background-color: white;
+      border: 2px solid #dadada;
+      width: 100%;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      display: none;
+      z-index: 999;
+  
+    }
+  
+    .slect__nav li {
+      padding: 10px 20px;
+      display: block;
+      cursor: pointer;
+      transition: 0.2s all;
+    }
+  
+    .slect__nav li:hover {
+      background-color: #dadada;
+    }
+  
+    .showSelect {
+      display: block !important;
+    }
+  
+    .boderRadiusShow {
+      border-bottom-left-radius: 0px !important;
+      border-bottom-right-radius: 0px !important;
+    }
+  
+    .modal__footer {
+      padding: 0px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+  
+    .modal__footer button {
+      padding: 12px 40px;
+      color: white;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+  
+    .modal__footer button:first-child {
+      background-color: #f34f68;
+    }
+  
+    .modal__footer button:last-child {
+      background-color: #1b59f8;
+    }
+    #Modal__khoa{
+      display: none;
+    }
+    .status_submit{
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 12px;
+        background-color:#ADDDFF ;
+        color:white;
+    }
+    .status_ontime{
+        display: inline-block;
+        padding: 5px 10px;
+        background-color:#5CBD4C ;
+        color:white;
+        border-radius: 12px;
+    }
+    .status_late{
+        display: inline-block;
+        padding: 5px 10px;
+        background-color:#FFC123 ;
+        color:white;
+        border-radius: 12px;
+    }
+    .container__board{
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 40px;
+     
+    }
+    .board__item{
+        background-color: white;
+       box-shadow: 0 4px 4px 1px #d72134;
+       padding: 20px 0px;
+       border-radius: 12px;
+    }
+    .board__year{
+        padding: 4px 30px;
+        color: white;
+        border-top-right-radius: 14px;
+        border-bottom-right-radius: 14px;
+        background-color: #d72134;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+        display: inline-block;
+        margin-bottom: 18px;
+    }
+    .content__board{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 20px 0px;
+    }
+   .board__icon{
+        padding: 6px 10px;
+        border-top-right-radius: 14px;
+        border-bottom-right-radius: 14px;
+        color: white;
+       
+        background-color: #d72134;
+    }
+    .board__icon i{
+        margin-right: 2px;
+    }
+    .content__board p{
+        letter-spacing: 0.5px;
+    }
+    <%#pop tạo biểu mẫu chung %>
+/* Ẩn popup ban đầu */
+.generalReportForm {
+            display: none !important ;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0 0 0 / 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+}
+
+    .Modal__inner{
+        width: 800px;
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .Modal__header{
+        width: 800px;
+        background-color: #DC546C;
+        padding: 20px;
+        display: flex;
+        color: white;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid black;
+        font-weight: 500 ;
+   
+    }
+    .Modal__header p {
+        font-size: 16px;
+        
+    }
+    .Modal__header i{
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .modal__body{
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .select__modalbody{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        padding: 10px 20px;
+        justify-content: space-between;
+        border: 2px solid #dadada;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+    .select__modalbody p{
+        color: black;
+        font-weight: 500;
+        letter-spacing: 0.3;
+    }
+
+    .body__content ul li{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .body__btn{
+        margin-top: 60px;
+        display: flex;
+        align-items: center;
+        gap: 100px;
+    }
+    .btn__modal{
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 12px 0px;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+        border-radius: 12px;
+    }
+    .btn__modal:first-child{
+        background-color: #DC546C;
+    }
+    .btn__modal:last-child{
+        background-color: #6C8DE0;
+    }
+
+
+    /* Select  */
+    .select__modalbody{
+        position: relative;
+       
+        
+    }
+    .option__modalbody{
+        position: absolute;
+        border: 2px solid #dadada;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        top: 100%;
+        left: 0;
+        width: 100%;  
+        background-color: white;
+        z-index: 10;   
+        display: none;
+       user-select: none;
+    }
+    .option__modalbody p{
+        padding: 14px 20px;
+        font-weight: 500;
+    } 
+    .option__modalbody p:hover{
+       background-color: #dadada;
+    }
+    .show__option{
+        display: block!important;
+    }
+    .show__modal{
+        display: flex!important;
+    }
+    .radiusSelect{
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    .generality__options {
+  display: flex;
+  align-items: center;
+}
+.select_role{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+.left_role{
+    padding-right: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+.right_role{
+  display: flex;
+  flex-direction: column;
+}
+.nameGeneralReportForm{
+    padding-left: 0rem;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 2px solid #dadada;
+}
+  </style>
+<body>
+    <main class="container" >
+        <%= render "shared/left_nav"%>
+
+        <div class="content">
+        <div class="content__title">  
+          <div class="content__breadcrumb">
+            MENU
+            <p class="breadcrumb__name" style="color: black; border-bottom: none;">/</p>
+            <p class="breadcrumb__name" style="color: black; border-bottom: none;">QUẢN LÝ BIỂU MẪU BÁO CÁO CHUNG</p>
+            <p class="breadcrumb__name" style="color: black; border-bottom: none;">/</p>
+            <p class="breadcrumb__name">NHÂN VIÊN</p>
+          </div>
+          <div class="content__user">
+            <div class="user_icon">
+              <i class="fa-regular fa-bell"></i>
+            </div>
+            <div class="user__info">
+              <p>thanhnhan@vanlanguni.vn</p>
+              <p>
+                Admin
+              </p>
+
+            </div>
+            <div class="user__img">
+              <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo" alt="user">
+            </div>
+
+          </div>
+        </div>
+        <h1 class="content__name">Quản lý biểu mẫu báo cáo chung Nhân Viên</h1>
+        <div class="content__generality">
+            <div class="generality__options">
+                <div class="btn__CreateReport" style="display: flex; align-items: center; padding: 10px">
+                    <button aria-label="btn__CreateReport" id="openModalButton" style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
+                        <i class="fa-solid fa-plus"></i>
+                        <p style="display: flex; align-items: center; padding: 5px">TẠO BIỂU MẪU CHUNG</p>
+                    </button>
+                </div>
+            </div>
+          
+          <div class="generality__search">
+            <div class="generality__search_icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <input type="text" placeholder="Tìm kiếm kỳ báo cáo">
+          </div>
+        </div>
+        <div class="container__board">  
+                <div class="Frame1" style="width: 322px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
+                  <div class="Rectangle1" style="width: 24px; height: 117px; left: 117px; top: 14px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
+                  <div class="Rectangle2.1" style="width: 24px; height: 24px; left: 24px; top: 45px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px 12px 0px 0px"></div>
+                  <div class="Rectangle2.2" style="width: 24px; height: 24px; left: 24px; top: 72px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px 12px 0px 0px"></div>
+                  <div class="Rectangle2.3" style="width: 24px; height: 24px; left: 24px; top: 100px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px 12px 0px 0px"></div>
+                  <div class="title" style="left: 21px; top: 16px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Nhân Viên 1</div>
+                  <div class="Rectangle3" style="width: 11px; height: 70.40px; left: 290px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
+                  <div class="Rectangle4" style="width: 11px; height: 125.04px; left: 245.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
+                  <div class="Rectangle5" style="width: 11px; height: 92.18px; left: 240.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
+                  <div class="Rectangle6" style="width: 11px; height: 116.56px; left: 200px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
+                  <div class="DanhSChKBOCO" style="left: 30px; top: 44px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word">Danh sách kỳ báo cáo năm 2023</div>
+                  <div class="DanhSChKBOCO" style="left: 30px; top: 73px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word">Kỳ báo cáo năm 2023</div>
+                  <div class="DanhSChKBOCO" style="left: 30px; top: 100px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word">Đang hoạt động</div>
+                  <div class="FileText1" style="font-size: 15px; left: 5px; top: 44px; position: absolute; color: white">
+                    <i class="fa-regular fa-calendar"></i>
+                  </div>
+                  <div class="FileText1" style="font-size: 13px; left: 5px; top: 73px; position: absolute; color: white">
+                    <i class="fa-solid fa-book-open fa-s"></i>
+                  </div>
+                  <div class="FileText1" style="font-size: 14px; left: 5px; top: 100px; position: absolute; color: white">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                  </div>
+                </div>
+
+                <div class="Frame1" style="width: 322px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
+                  <div class="Rectangle1" style="width: 24px; height: 117px; left: 117px; top: 14px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
+                  <div class="Rectangle2.1" style="width: 24px; height: 24px; left: 24px; top: 45px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px 12px 0px 0px"></div>
+                  <div class="Rectangle2.2" style="width: 24px; height: 24px; left: 24px; top: 72px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px 12px 0px 0px"></div>
+                  <div class="Rectangle2.3" style="width: 24px; height: 24px; left: 24px; top: 100px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px 12px 0px 0px"></div>
+                  <div class="title" style="left: 21px; top: 16px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Nhân Viên 2</div>
+                  <div class="Rectangle3" style="width: 11px; height: 70.40px; left: 290px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
+                  <div class="Rectangle4" style="width: 11px; height: 125.04px; left: 245.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
+                  <div class="Rectangle5" style="width: 11px; height: 92.18px; left: 240.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
+                  <div class="Rectangle6" style="width: 11px; height: 116.56px; left: 200px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
+                  <div class="DanhSChKBOCO" style="left: 30px; top: 44px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word">Danh sách kỳ báo cáo năm 2023</div>
+                  <div class="DanhSChKBOCO" style="left: 30px; top: 73px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word">Kỳ báo cáo năm 2023</div>
+                  <div class="DanhSChKBOCO" style="left: 30px; top: 100px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word">Tạm dừng hoạt động</div>
+                  <div class="FileText1" style="font-size: 15px; left: 5px; top: 44px; position: absolute; color: white">
+                    <i class="fa-regular fa-calendar"></i>
+                  </div>
+                  <div class="FileText1" style="font-size: 13px; left: 5px; top: 73px; position: absolute; color: white">
+                    <i class="fa-solid fa-book-open fa-s"></i>
+                  </div>
+                  <div class="FileText1" style="font-size: 14px; left: 5px; top: 100px; position: absolute; color: white">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                  </div>
+                </div>
+
+                
+        </div>
+        <%#<div class="paging">
+          <button aria-label="pagin">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="paging--active" aria-label="pagin">1</button> 
+          <button aria-label="pagin">2</button>
+          <button aria-label="pagin">3</button>
+          <button aria-label="pagin">...</button>
+          <button aria-label="pagin">100</button>
+          <button aria-label="pagin">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>  %>   
+        <div class="generalReportForm" id="generalReportForm">
+        <div></div>
+            <div class="Modal__inner">
+                <div class="Modal__content">
+                    <div class="Modal__header">
+                        <p>TẠO BIỂU MẪU CHUNG</p>
+                        <i class="fa-regular fa-circle-xmark" id="close__modalIcon"></i>
+                    </div>
+                    <div class="modal__body">
+                        <div class="body__content" style="width: 80%">
+                          <div>
+                            <ul style="list-style: none; padding-left: 0rem">
+                                <div>
+                                    <div>
+                                        <p>Tên biểu mẫu chung</p>
+                                    </div>
+                                    <div>
+                                       <input class="nameGeneralReportForm" placeholder="Nhập tên biểu mẫu">
+                                    </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem">
+                                    <div>
+                                        <p>
+                                            Năm báo cáo
+                                        </p>
+                                    </div>
+                                    <div class="select__modalbody" id="select__khoa" >
+                                        <p id="selectedKhoaModal">Chọn năm</p>
+                                        <i class="fa-solid fa-angle-down"></i>
+                                        <div class="option__modalbody" id="option__khoa">
+                                                <p class="khoa">2023</p>
+                                                <p class="khoa">2022</p>
+                                                <p class="khoa">2021</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding-bottom: 1rem">                   
+                                        <p>
+                                            Tên kỳ báo cáo
+                                        </p>                                 
+                                    <div class="select__modalbody" id ="select__bomon">
+                                        <p id="selectedBomonModalS">Chọn kỳ báo cáo</p>
+                                        <i class="fa-solid fa-angle-down"></i>
+                                        <div class="option__modalbody" id="option__bomon">
+                                            <p class="bomon">Danh sách kỳ báo cáo năm 2023</p>
+                                            <p class="bomon">Danh sách kỳ báo cáo năm 2022</p>                                     
+                                    </div>
+                                    </div>
+                                </div>
+                                <div>                                  
+                                      <p>
+                                        Vai trò
+                                      </p>                      
+                                    <div class="select_role" id="select_vaitro">                            
+                                      <div class="left_role"> 
+                                        <label><input type="checkbox" id="vaitro1" class="vaitro"> Nhân viên</label>
+                                        <label><input type="checkbox" id="vaitro1" class="vaitro"> Giảng viên</label>                                                       
+                                      </div>
+                                      <div class="right_role">
+                                        <label><input type="checkbox" id="vaitro1" class="vaitro"> Phụ trách bộ môn</label>
+                                        <label><input type="checkbox" id="vaitro1" class="vaitro"> Ban chủ nhiệm khoa</label>         
+                                      </div>  
+                                </div>   
+                            </ul>
+                          </div>
+                          <div class="body__btn">
+                            <button class="btn__modal" id="btn__closeModal">HỦY</button>
+                            <button class="btn__modal">LƯU</button>
+                          </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+      </div>
+        </div>
+        
+    </main>
+</body>
+
+<script>
+function getEle(id) {
+    return document.getElementById(id);
+}
+document.addEventListener("DOMContentLoaded", function () {
+    const openModalButton = document.getElementById("openModalButton");
+    const generalReportForm = document.getElementById("generalReportForm");
+    const closeModalIcon = document.getElementById("close__modalIcon");
+    const closeModalButton = document.getElementById("btn__closeModal");
+
+    openModalButton.addEventListener("click", function () {
+        generalReportForm.classList.add("show__modal");
+    });
+
+    closeModalIcon.addEventListener("click", function () {
+        generalReportForm.classList.remove("show__modal");
+    });
+
+    closeModalButton.addEventListener("click", function () {
+        generalReportForm.classList.remove("show__modal");
+    });
+});
+const khoa = document.querySelectorAll(".khoa")
+    getEle("select__khoa").addEventListener("click",()=>{
+        getEle("option__khoa").classList.toggle("show__option")
+        getEle("select__khoa").classList.toggle("radiusSelect")
+
+    })
+    
+    khoa.forEach(e=>{
+        e.addEventListener("click",(e)=>{
+          getEle("selectedKhoaModal").innerHTML = e.target.innerText
+        })
+    })
+    const bomon = document.querySelectorAll(".bomon")
+    getEle("select__bomon").addEventListener("click",()=>{
+        getEle("option__bomon").classList.toggle("show__option")
+        getEle("select__bomon").classList.toggle("radiusSelect")
+
+    })
+    
+    bomon.forEach(e=>{
+        e.addEventListener("click",(e)=>{
+          getEle("selectedBomonModal").innerHTML = e.target.innerText
+        })
+    })
+
+
+  </script>
+</html>
