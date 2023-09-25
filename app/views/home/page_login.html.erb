@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- CSS -->
     <link rel="stylesheet" href="./LoginStyle.css">
     <!-- Mobile CSS -->
     <link media="screen and (max-width: 640px)" rel="stylesheet" href="./LoginMobile.css">
-    
     <title>Đăng nhập</title>
-</head>
-<body>
-   <main class="main">
-    <!-- HEADER -->
+  </head>
+  <body>
+    <main class="main">
+      <!-- HEADER -->
       <header class="header">
         <div class="header__logo">
           <img src="./assets/logo.png" alt="">
@@ -24,30 +23,29 @@
       </header>
       <!--  CONTENT LOGIN -->
       <div class="content">
-          <div class="content__img">
-            <img src="./assets/Bird.jpg" alt="">
-          </div>
-          <div class="content__login">
-            <p>WELCOME</p>
-            <p>TRƯỜNG ĐẠI HỌC VĂN LANG</p>
-            <div class="login__office">
-              <div class="office__img">
-                <img src="./assets/microsoft.png" alt="">
-              </div>
-                <form class="button_to" method="post" action="/users/auth/azure_activedirectory_v2">
-                </form>
-                <%- if devise_mapping.omniauthable? %>
-                  <%- resource_class.omniauth_providers.each do |provider| %>
-                    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
-                  <% end %>
-                <% end %>
+        <div class="content__img">
+          <img src="./assets/Bird.jpg" alt="">
+        </div>
+        <div class="content__login">
+          <p>WELCOME</p>
+          <p>TRƯỜNG ĐẠI HỌC VĂN LANG</p>
+          <div class="login__office">
+            <div class="office__img">
+              <img src="./assets/microsoft.png" alt="">
             </div>
+            <form class="button_to" method="post" action="/users/auth/azure_activedirectory_v2">
+            </form>
+            <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+            <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
+            <% end %>
+            <% end %>
           </div>
+        </div>
       </div>
       <!-- FOOTER -->
       <footer class="footer">
-        
       </footer>
-   </main>
-</body>
+    </main>
+  </body>
 </html>

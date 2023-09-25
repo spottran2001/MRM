@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://site-assets.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<style>
+.container {
+  max-width: 100%;
+  display: flex;
+}
+.content {
+  background-color: #f5f5f5;
+  width: 100%;
+  padding: 30px 60px 20px 30px;
+}
+.content__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content__name {
+  padding: 40px 0px 10px 40px;
+  font-size: 30px;
+}
+
+.body__content {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  overflow: auto;
+}
+.filter-left {
+  display: flex;
+  gap: 10px;
+}
+.filter-left .select-row:last-child .select-field {
+  background: #f290a5;
+}
+.createdAt,
+.updatedAt {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.content__user {
+  display: flex;
+  align-items: center;
+}
+.user__info {
+  margin-right: 10px;
+  font-size: 16px;
+}
+.user__info P {
+  text-align: right;
+}
+.user__img img {
+  border-radius: 50%;
+  width: 40px;
+  height: 100%;
+}
+.user__img {
+  margin-right: 10px;
+}
+.breadcrumb__Report {
+  display: inline-block;
+  margin-left: 10px;
+  color: #f34f68;
+  padding: 12px 0px;
+}
+.periodReport{
+  padding: 0.5rem;
+  border-radius: 12px
+}
+.calendarReport {
+    padding: 0.5rem;
+  border-radius: 12px
+}
+
+<%# global%>
+.body__heading {
+  text-align: left;
+  font-weight: 500;
+  color: #000000;
+  user-select: none;
+  margin: 0;
+  font-size: 36px !important;
+  margin: 42px 20px 27px;
+}
+.table-filter,
+.detail__report {
+  width: 100%;
+  min-width: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 12px;
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-bottom: 23px;
+}
+.select-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.select-row p,
+.select-row select,
+.select-row option,
+.total__report {
+  font-weight: 600;
+}
+.select-row .select-field {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e0e7ed;
+  background: #c73951;
+}
+.select-row .select-field {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e0e7ed;
+  background: #c73951;
+}
+.select-row .select-field option {
+  background: #fff;
+}
+.filter-right {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+}
+.filter-right .search__input {
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: inherit;
+}
+.td-action {
+  display: flex;
+  gap: 20px;
+}
+.btn-tooltip {
+  display: none;
+  position: absolute;
+  width: 8rem;
+  top: -3rem;
+  line-height: 1.8;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  border-radius: 0.5rem;
+  background-color: #86a8e7;
+  z-index: 99;
+}
+.btn:hover .btn-tooltip {
+  display: block;
+  opacity: 1 !important;
+}
+.paging {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 20px;
+}
+.paging--active {
+  background-color: #d72134 !important;
+  color: white !important;
+}
+.paging button {
+  padding: 10px 14px;
+  margin: 0px 8px;
+  border: none;
+  background-color: rgb(241, 241, 241);
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px;
+  outline: none;
+}
+</style>
+<body>
+    <main class="container">  
+    <%= render "shared/left_nav"%>
+        <div class="content__body">
+            <div class="content__title">
+                <div class="content__breadcrumb">
+                    MENU
+                    <p class="breadcrumb__Report" style="color: black; border-bottom: none;">/</p>
+                    <p class="breadcrumb__Report" style="color: black; border-bottom: none;">QUẢN LÝ BIỂU MẪU BÁO CÁO CHUNG</p>
+                    <p class="breadcrumb__Report" style="color: black; border-bottom: none;">/</p>
+                    <p class="breadcrumb__Report">NHÂN VIÊN</p>
+                </div>
+                <div class="content__user">
+                    <div class="user_icon">
+                        <i class="fa-regular fa-bell"></i>
+                    </div>
+                    <div class="user__info">                       
+                        <p>
+                            thanhnhan@vanlanguni.vn
+                        </p>    
+                        <p>Nhân viên / Giảng viên</p>                 
+                    </div>
+                    <div class="user__img">
+                        <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo"
+                            alt="">
+                    </div>
+                </div>
+            </div>
+          <h1 class="body__heading">Quản lý kỳ báo cáo 2023</h1>
+          <div class="body__content">
+            <div class="table-filter">
+              <div class="filter-left">
+                <div class="select-row">
+                  <p>Hạn báo cáo</p>
+                  <input class="periodReport" type="date">
+                  <p>Lịch</p>
+                  <input class="calendarReport" type="date">
+                  <select class="select-field">
+                    <option selected>Trạng thái</option>
+                    <option value="1">Chờ duyệt</option>
+                    <option value="2">Lưu nháp</option>
+                    <option value="3">Đã duyệt</option>
+                  </select>
+                </div>
+              </div>
+              <div class="filter-right">
+                <input
+                  class="search__input"
+                  type="text"
+                  placeholder="Tìm kiếm báo cáo"
+                />
+              </div>
+            </div>
+            <table id="table_test" class="display">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Kỳ báo cáo</th>
+                  <th>Hạn báo cáo</th>
+                  <th>Thời gian tạo</th>
+                  <th>Thời gian sửa</th>
+                  <th>Trạng Thái</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="">
+                  <td>1</td>
+                  <td>Kỳ báo cáo tháng 1</td>
+                  <td>06/09/2023</td>
+                  <td>
+                    <div class="createdAt">
+                      <div class="date">05/09/2023</div>
+                      <div class="time">2:00AM</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="updatedAt">
+                      <div class="date">05/09/2023</div>
+                      <div class="time">2:00AM</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="status status-success">Đúng hạn</div>
+                  </td>
+                  <td>
+                    <div class="td-action">
+                      <a
+                        href="DetailPeriodReport.html"
+                        id="business_detail"
+                        class="business_detail"
+                      >
+                        <div class="btn btn--update">
+                          <span class="btn-tooltip">Xem chi tiết</span>
+                          <i
+                            class="btn-icon btn-icon--edit fa-regular fa-file-lines"
+                          ></i>
+                        </div>
+                      </a>
+                      <a onclick="">
+                        <div class="btn btn--detail">
+                          <span class="btn-tooltip">Sao chép</span>
+                          <i
+                            class="btn-icon btn-icon--edit fa-regular fa-copy"
+                          ></i>
+                        </div>
+                      </a>
+                      <a onclick="">
+                        <div class="btn btn--download">
+                          <span class="btn-tooltip">Tải xuống</span>
+                          <i class="btn-icon btn-icon--edit bi bi-download"></i>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="">
+                  <td>2</td>
+                  <td>Kỳ báo cáo tháng 1</td>
+                  <td>06/09/2023</td>
+                  <td>
+                    <div class="createdAt">
+                      <div class="date">05/09/2023</div>
+                      <div class="time">2:00AM</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="updatedAt">
+                      <div class="date">05/09/2023</div>
+                      <div class="time">2:00AM</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="status status-done">Đã duyệt</div>
+                  </td>
+                  <td>
+                    <div class="td-action">
+                      <a href="" id="business_detail" class="business_detail">
+                        <div class="btn btn--update">
+                          <span class="btn-tooltip">Xem chi tiết</span>
+                          <i
+                            class="btn-icon btn-icon--edit fa-regular fa-file-lines"
+                          ></i>
+                        </div>
+                      </a>
+                      <a onclick="">
+                        <div class="btn btn--detail">
+                          <span class="btn-tooltip">Sao chép</span>
+                          <i
+                            class="btn-icon btn-icon--edit fa-regular fa-copy"
+                          ></i>
+                        </div>
+                      </a>
+                      <a onclick="">
+                        <div class="btn btn--download">
+                          <span class="btn-tooltip">Tải xuống</span>
+                          <i class="btn-icon btn-icon--edit bi bi-download"></i>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="">
+                  <td>2</td>
+                  <td>Kỳ báo cáo tháng 1</td>
+                  <td>06/09/2023</td>
+                  <td>
+                    <div class="createdAt">
+                      <div class="date">05/09/2023</div>
+                      <div class="time">2:00AM</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="updatedAt">
+                      <div class="date">05/09/2023</div>
+                      <div class="time">2:00AM</div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="status status-pending">Chờ duyệt</div>
+                  </td>
+                  <td>
+                    <div class="td-action">
+                      <a href="" id="business_detail" class="business_detail">
+                        <div class="btn btn--update">
+                          <span class="btn-tooltip">Xem chi tiết</span>
+                          <i
+                            class="btn-icon btn-icon--edit fa-regular fa-file-lines"
+                          ></i>
+                        </div>
+                      </a>
+                      <a onclick="">
+                        <div class="btn btn--detail">
+                          <span class="btn-tooltip">Sao chép</span>
+                          <i
+                            class="btn-icon btn-icon--edit fa-regular fa-copy"
+                          ></i>
+                        </div>
+                      </a>
+                      <a onclick="">
+                        <div class="btn btn--download">
+                          <span class="btn-tooltip">Tải xuống</span>
+                          <i class="btn-icon btn-icon--edit bi bi-download"></i>
+                        </div>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="paging">
+              <button aria-label="pagin">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="paging--active" aria-label="pagin">1</button>
+              <button aria-label="pagin">2</button>
+              <button aria-label="pagin">3</button>
+              <button aria-label="pagin">...</button>
+              <button aria-label="pagin">100</button>
+              <button aria-label="pagin">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+    </main>
+
+</body>
+</html>
