@@ -537,7 +537,7 @@
           </div>
         </div>
         <h1 class="content__name">Quản Lý Tài Khoản</h1>
-        <div class="container__info" style="height: 750px;">
+        <div class="container__info" style="height: 780px;">
           <div class="info__img">
           </div>
           <%= simple_form_for @user, method: :put, url: user_path(@user) do |f| %>
@@ -558,11 +558,11 @@
                   <p style="margin-right: 4.5rem" >Mã số</p>
                   197XX123456
                 </li>
-                <%#<li>
+                <li>
                   <span></span>
                   <p style="margin-right: 5.5rem" >SĐT</p>
-                  <%= f.input :phone_number, label: false, required: false, input_html: { autocomplete: "phone-number", style: "padding: 0.5rem; border-radius: 12px; width: 125%" }
-                </li>%>
+                  <%= f.input :phone_number, label: false, required: false, input_html: { autocomplete: "phone-number", style: "padding: 0.5rem; border-radius: 12px; width: 125%" }%>
+                </li>
                 <li>
                   <span></span>
                   <p style="margin-right: 5rem" >Khoa</p>
