@@ -52,6 +52,10 @@ class ReportTemplateController < ApplicationController
     @report_template.update(is_apply: true)
   end
 
+  def report_template_management
+
+  end
+
   private
 
   def current_template

@@ -529,57 +529,62 @@
       alt="">
   </div>
   <p class="menu__title">MENU</p>
+  
   <a href="#" class="menu__items">
     <div class="menu__icon">
       <i class="fa-solid fa-chart-simple"></i>
     </div>
   </a>
-  <a href="#" class="menu__items">
-    <div class="menu__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
-          stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M9 3V21" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-  </a>
+  <% if current_user.role == 'admin' %>
+    <%= link_to report_template_management_path, class: "menu__items" do %>
+      <div class="menu__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+            stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 3V21" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    <% end %>
+  <% end %>
   <%= link_to report_template_index_path, class: "menu__items" do %>
-  <div class="menu__items">
-    <div class="menu__icon  ">
-      <i class="fa-regular fa-calendar"></i>  
+    <div class="menu__items">
+      <div class="menu__icon  ">
+        <i class="fa-regular fa-calendar"></i>  
+      </div>
     </div>
-  </div>
   <% end %>
   <div class="menu__items">
     <div class="menu__icon  ">
       <i class="fa-regular fa-clipboard"></i>
     </div>
   </div>
-  <%= link_to subject_index_path, class: "menu__items" do %>
-  <div class="menu__items">
-    <div class="menu__icon  ">
-      <i class="fa-solid fa-boxes-stacked"></i>
+  <% if current_user.role == 'admin' %>
+    <%= link_to subject_index_path, class: "menu__items" do %>
+      <div class="menu__items">
+        <div class="menu__icon  ">
+          <i class="fa-solid fa-boxes-stacked"></i>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to users_path, class: "menu__items" do %>
+    <div class="menu__items">
+      <div class="menu__icon  ">
+        <i class="fa-regular fa-user"></i>
+      </div>
     </div>
-  </div>
+    <% end %>
+    <a href="#" class="menu__items">
+      <div class="menu__icon">
+        <i class="fa-solid fa-gear"></i>
+      </div>
+    </a>
   <% end %>
-  <%= link_to users_path, class: "menu__items" do %>
-  <div class="menu__items">
-    <div class="menu__icon  ">
-      <i class="fa-regular fa-user"></i>
+    <div class="menu__items">
+      <p class="menu__title" style="color: black;">SETTING</p>
+      <div class="menu__icon  ">
+        <i class="fa-regular fa-sun"></i>
+      </div>
     </div>
-  </div>
-  <% end %>
-  <a href="#" class="menu__items">
-    <div class="menu__icon">
-      <i class="fa-solid fa-gear"></i>
-    </div>
-  </a>
-  <div class="menu__items">
-    <p class="menu__title" style="color: black;">SETTING</p>
-    <div class="menu__icon  ">
-      <i class="fa-regular fa-sun"></i>
-    </div>
-  </div>
   <div class="menu__items">
     <%= button_to destroy_user_session_path, method: :delete, style: "background-color: white; color: #dadada; border:none", class: "menu__icon" do %>
     <i class="fa-solid fa-right-to-bracket"></i>
@@ -615,20 +620,22 @@
       </ul>
       </nav>%>
   </div>
-  <div class="menu__items" style="margin: 32px 0px;">
-    <div class="menu__icon  ">
-      <div class="menu__dropdown_icon">
-        <i>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
-              stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9 3V21" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </i>
-        <p>Quản lý biểu mẫu báo cáo chung</p>
+  <% if current_user.role == 'admin' %>
+    <%= link_to report_template_management_path, class: "menu__items", style: "margin: 32px 0px;" do %>
+      <div class="menu__icon  ">
+        <div class="menu__dropdown_icon">
+          <i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+                stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 3V21" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </i>
+          <p>Quản lý biểu mẫu báo cáo chung</p>
+        </div>
       </div>
-    </div>
-  </div>
+    <% end %>
+  <% end %>
   <div class="menu__items" style="margin: 32px 0px;">
     <div class="menu__icon" id="report">
       <div class="menu__dropdown_icon">
@@ -666,30 +673,32 @@
         <div class="icon__notification"></div>
     </div>
     </div>%>
-  <div class="menu__items" style="margin: 32px 0px;">
-    <div class="menu__icon  ">
-      <div class="menu__dropdown_icon">
-        <i class="fa-solid fa-boxes-stacked"></i>
-        <p>Quản lý phòng ban</p>
+  <% if current_user.role == 'admin' %>
+    <div class="menu__items" style="margin: 32px 0px;">
+      <div class="menu__icon  ">
+        <div class="menu__dropdown_icon">
+          <i class="fa-solid fa-boxes-stacked"></i>
+          <p>Quản lý phòng ban</p>
+        </div>
       </div>
     </div>
-  </div>
-  <%= link_to users_url, class: "menu__items menu__items--separation",style:"margin: 18px 0px 32px 0px;" do %>
-  <div class="menu__icon">
-    <div class="menu__dropdown_icon">
-      <i class="fa-regular fa-user"></i>
-      <p>Quản lý tài khoản</p>
-    </div>
-  </div>
-  <% end %>
-  <div class="menu__items" style="margin: 18px 0px 32px 0px;">
+    <%= link_to users_url, class: "menu__items menu__items--separation",style:"margin: 18px 0px 32px 0px;" do %>
     <div class="menu__icon">
       <div class="menu__dropdown_icon">
-        <i class="fa-solid fa-gear"></i>
-        <p>Quản lý cấu hình</p>
+        <i class="fa-regular fa-user"></i>
+        <p>Quản lý tài khoản</p>
       </div>
     </div>
-  </div>
+    <% end %>
+    <div class="menu__items" style="margin: 18px 0px 32px 0px;">
+      <div class="menu__icon">
+        <div class="menu__dropdown_icon">
+          <i class="fa-solid fa-gear"></i>
+          <p>Quản lý cấu hình</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <div class="menu__items" style="margin-top: 90px;cursor: default;">
     <p class="menu__title" style="color: black;">SETTING</p>
     <div class="menu__regime">
