@@ -568,10 +568,9 @@
                   <p style="margin-right: 5rem" >Khoa</p>
                   <%#<%= @user.faculty&.name || "N/A" %>
                   <select class="userFacculty" id="userRole" style="width: 20%">
-                    <option value="1">Công nghệ thông tin</option>
-                    <option value="2">Quản trị kinh doanh</option>
-                    <option value="3">Kế toán</option>
-                    <option value="4">Quan hệ công chúng</option>
+                    <% Subject.all.each do |s| %>
+                      <option value="<%= s.id %>"><%= s.name %></option>
+                    <% end %>
                   </select>
                 </li>
                 <li>
@@ -579,10 +578,9 @@
                   <p style="margin-right: 3.5rem">Bộ môn</p>
                   <%#<%= @user.subject&.name || "N/A" %>
                   <select class="userSuject" id="userRole" style="width: 20%">
-                    <option value="1">Kỹ thuật phần mềm</option>
-                    <option value="2">Xác xuất thống kê</option>
-                    <option value="3">Vật lý đại cương</option>
-                    <option value="4">Toán cao cấp</option>
+                    <% Faculty.all.each do |f| %>
+                      <option value="<%= f.id %>"><%= f.name %></option>
+                    <% end %>
                   </select>
                 </li>
                 <li>
@@ -618,6 +616,4 @@
       </div>
     </main>
   </body>
-  <!-- JS -->
-  <script src="./index.js"></script>
 </html>

@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_13_075144) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_29_164019) do
   create_table "faculties", force: :cascade do |t|
     t.string "name"
+    t.integer "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,6 +45,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_13_075144) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "data"
+    t.string "name"
+    t.string "year"
+    t.string "role"
   end
 
   create_table "reports", force: :cascade do |t|

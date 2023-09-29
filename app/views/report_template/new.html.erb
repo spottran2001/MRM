@@ -711,14 +711,15 @@
               <p id="selectedYearModal">Chọn năm báo cáo</p>
               <i class="fa-solid fa-angle-down"></i>
               <div class="option__modalbody" id="option__period">
+                <p class="selectYear">2025</p>
+                <p class="selectYear">2024</p>
                 <p class="selectYear">2023</p>
                 <p class="selectYear">2022</p>
                 <p class="selectYear">2021</p>
-                <p class="selectYear">2020</p>
               </div>
             </div>
         </div>
-        <div class="assignRoles">
+        <div class="assignRoles" style="display: none">
           <span style= "font-weight: 800; padding-right: 1rem">Kỳ báo cáo </span>
             <div class="select__modalbody" id="select__year" >
               <p id="selectedPeriodModal">Chọn kỳ báo cáo</p>
@@ -936,8 +937,25 @@
         }
         title_2_title_arr.push(tbody_title_2_title_arr)
       }
+      var template_name = document.getElementsByClassName("formName")[0].value
+      var template_role = document.getElementById("selectedKhoaModal").innerText
+      var template_year = document.getElementById("selectedYearModal").innerText
+      if (template_name == '') {
+        check_condition = false
+        alert("Vui long dien ten cho bieu mau")
+      }else if (template_role == 'Chọn vai trò'){
+        check_condition = false
+        alert("Vui long chon vai tro")
+      } else if (template_year == 'Chọn năm báo cáo') {
+        check_condition = false
+        alert("Vui long chon nam bao cao")
+      }
+      
       if (check_condition){
         var data = new FormData();
+        data.append('template_name',JSON.stringify(template_name));
+        data.append('template_role',JSON.stringify(template_role));
+        data.append('template_year',JSON.stringify(template_year));
         data.append('table_keys',JSON.stringify(table_keys));
         data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
         jQuery.ajax({
@@ -1029,7 +1047,7 @@
       })
     })
 
-    const selectYear = document.querySelectorAll(".selectYear")
+const selectYear = document.querySelectorAll(".selectYear")
       getEle("select__year").addEventListener("click",()=>{
         getEle("option__year").classList.toggle("show__option2")
         getEle("select__year").classList.toggle("radiusSelect2")
@@ -1038,7 +1056,7 @@
         getEle("selectedYearModal").innerHTML = e.target.innerText
       })
     })
-
+  
     const selectPeriod = document.querySelectorAll(".selectPeriod")
       getEle("select__period").addEventListener("click",()=>{
         getEle("option__period").classList.toggle("show__option3")

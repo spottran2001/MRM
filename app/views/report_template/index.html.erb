@@ -784,13 +784,13 @@
             <div class="calendar1" style="width: 12px; height: 12px; left: 15px; top: 93px; position: absolute; color: white">
               <i class="fa-regular fa-calendar"></i>
             </div>
-            <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm 2023</div>
+            <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm <%= r.year %></div>
             <div class="Rectangle1" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
             <div class="Rectangle1" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
             <div class="Rectangle1" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
             <div class="Rectangle1" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
-            <div class="DanhSChKBOCO" style="left: 43px; top: 60px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word">Danh sách kỳ báo cáo</div>
-            <div class="Nam2023" style="left: 43px; top: 94px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word">01/01/2023 - 01/01/2024</div>
+            <div class="DanhSChKBOCO" style="left: 43px; top: 60px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.name %></div>
+            <div class="Nam2023" style="left: 43px; top: 94px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.created_at.strftime('%d/%m/%Y') %> - <%= r.updated_at.strftime('%d/%m/%Y') %></div>
             <div class="FileText1" style="width: 12px; height: 12px; left: 16px; top: 58px; position: absolute; color: white">
               <i class="fa-regular fa-file-lines"></i>
             </div>
