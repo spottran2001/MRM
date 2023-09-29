@@ -717,6 +717,167 @@
     .content__board p {
       letter-spacing: 0.5px;
     }
+
+    /* CSS cho popup */
+<%#pop tạo biểu mẫu chung %>
+        /* Ẩn popup ban đầu */
+        .generalReportForm {
+      display: none !important ;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(0 0 0 / 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .Modal__inner {
+      width: 800px;
+      background-color: white;
+      border: 2px solid black;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .Modal__header {
+      width: 800px;
+      background-color: #dc546c;
+      padding: 20px;
+      display: flex;
+      color: white;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid black;
+      font-weight: 500;
+    }
+    .Modal__header p {
+      font-size: 16px;
+    }
+    .Modal__header i {
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .modal__body {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+    .select__modalbody {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      padding: 10px 20px;
+      justify-content: space-between;
+      border: 2px solid #dadada;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .select__modalbody p {
+      color: black;
+      font-weight: 500;
+      letter-spacing: 0.3;
+    }
+    .body__content ul li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    .body__btn {
+      margin-top: 50px;
+      display: flex;
+      align-items: center;
+      gap: 150px;
+    }
+    .btn__modal {
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 12px 0px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center
+    }
+    .btn__modal:first-child {
+      background-color: #dc546c;
+    }
+    .btn__modal:last-child {
+      background-color: #6c8de0;
+    }
+    /* Select  */
+    .select__modalbody {
+      position: relative;
+    }
+    .option__modalbody {
+      position: absolute;
+      border: 2px solid #dadada;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      z-index: 10;
+      display: none;
+      user-select: none;
+    }
+    .option__modalbody p {
+      padding: 14px 20px;
+      font-weight: 500;
+    }
+    .option__modalbody p:hover {
+      background-color: #dadada;
+    }
+    .show__option {
+      display: block !important;
+    }
+    .show__modal {
+      display: flex !important;
+    }
+    .radiusSelect {
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+    .select_role {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: center;
+    }
+    .left_role {
+      padding-right: 4rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .right_role {
+      display: flex;
+      flex-direction: column;
+    }
+    .nameGeneralReportForm {
+      padding-left: 0rem;
+      width: 100%;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
+    }
+    .contentTimeCreate{
+      display: flex;
+      justify-content: space-between;
+
+    }
+
   </style>
   <body>
     <main class="container" >
@@ -761,10 +922,106 @@
                 </select>%>
             </div>
             <div class="btn__CreateReport">
-              <%= button_to new_report_template_path, method: :get, style: "display: flex; align-items: center; ; padding: 10px", class: "btn__CreateReport" do %>
-              <i class="fa-solid fa-plus"></i>
-              <p  style="display: flex; align-items: center; padding: 5px" >Tạo kỳ</p>
-              <% end %>
+              <div class="btn__CreateReport" style="display: flex; align-items: center; padding: 10px">
+              <button aria-label="btn__CreateReport" id="openModalButton" style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
+                <i class="fa-solid fa-plus"></i>
+                <p style="display: flex; align-items: center; ">TẠO KỲ</p>
+              </button>
+            </div>
+            <%#popup tạo kỳ%>
+
+            <div class="generalReportForm" id="generalReportForm">
+          <div></div>
+          <div class="Modal__inner">
+            <div class="Modal__content">
+              <div class="Modal__header">
+                <p>TẠO KỲ BÁO CÁO</p>
+                <i class="fa-regular fa-circle-xmark" id="close__modalIcon"></i>
+              </div>
+              <div class="modal__body">
+                <div class="body__content" style="width: 80%">
+                  <div>
+                    <ul style="list-style: none; padding-left: 0rem">
+                      <div>
+                        <div>
+                          <p>Tên kỳ báo cáo</p>
+                        </div>
+                        <div>
+                          <input class="nameGeneralReportForm" placeholder="Nhập tên kỳ báo cáo">
+                        </div>
+                      </div>
+                  </div>
+                  <div style="padding-bottom: 1rem">
+                    <div>
+                      <p>
+                        Năm báo cáo
+                      </p>
+                    </div>
+                    <div class="select__modalbody" id="select__khoa" >
+                      <p id="selectedKhoaModal">Chọn năm</p>
+                      <i class="fa-solid fa-angle-down"></i>
+                      <div class="option__modalbody" id="option__khoa">
+                        <p class="khoa">2023</p>
+                        <p class="khoa">2022</p>
+                        <p class="khoa">2021</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="contentTimeCreate" style="padding-bottom: 1rem">
+                    <div class="contentTimeCreateLeft">   
+                      <p>Thời gian bắt đầu</p>                 
+                      <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem">     
+                      <div>
+                        <p>
+                          Ngày bắt đầu
+                        </p>
+                      </div>
+                      <div class="select__modalbody" id="select__startDay">
+                          <p id="selectedstartDayModal">Chọn ngày bắt đầu</p>
+                          <i class="fa-solid fa-angle-down"></i>
+                        <div class="option__modalbody" id="option__startDay">
+                          <p class="startDay">5</p>
+                          <p class="startDay">10</p>
+                          <p class="startDay">15</p>
+                        </div>
+                      </div>     
+                      <div>
+                          <p>Ngày hạn báo cáo</p>
+                        </div>
+                        <div>
+                          <input class="nameGeneralReportForm" placeholder="Nhập ngày hạn báo cáo" style="padding-bottom: 1rem">
+                        </div>            
+                    </div>
+                    <div class="contentTimeCreateRight">
+                      <p>Thời gian kết thúc</p>
+                      <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem"> 
+                      <div>
+                        <p>
+                          Ngày kết thúc
+                        </p>
+                      </div>
+                      <div class="select__modalbody" id="select__endDay" >
+                          <p id="selectedendDayModal">Chọn ngày kết thúc</p>
+                          <i class="fa-solid fa-angle-down"></i>
+                        <div class="option__modalbody" id="option__endDay">
+                          <p class="endDay">5</p>
+                          <p class="endDay">10</p>
+                          <p class="endDay">15</p>
+                        </div>
+                      </div>     
+                    </div>
+                  </div>                                              
+                  </ul>
+                  <div class="body__btn">
+                    <button class="btn__modal" id="btn__closeModal">HỦY</button>
+                    <button class="btn__modal">LƯU</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+            
             </div>
           </div>
           <div class="generality__search">
@@ -814,4 +1071,65 @@
       </div>
     </main>
   </body>
+  <script>
+  // JavaScript
+function getEle(id) {
+        return document.getElementById(id);
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        const openModalButton = document.getElementById("openModalButton");
+        const generalReportForm = document.getElementById("generalReportForm");
+        const closeModalIcon = document.getElementById("close__modalIcon");
+        const closeModalButton = document.getElementById("btn__closeModal");
+
+        openModalButton.addEventListener("click", function () {
+            generalReportForm.classList.add("show__modal");
+        });
+
+        closeModalIcon.addEventListener("click", function () {
+            generalReportForm.classList.remove("show__modal");
+        });
+
+        closeModalButton.addEventListener("click", function () {
+            generalReportForm.classList.remove("show__modal");
+        });
+    });
+    const khoa = document.querySelectorAll(".khoa")
+        getEle("select__khoa").addEventListener("click",()=>{
+            getEle("option__khoa").classList.toggle("show__option")
+            getEle("select__khoa").classList.toggle("radiusSelect")
+
+        })
+
+        khoa.forEach(e=>{
+            e.addEventListener("click",(e)=>{
+              getEle("selectedKhoaModal").innerHTML = e.target.innerText
+            })
+        })
+        const startDay = document.querySelectorAll(".startDay")
+        getEle("select__startDay").addEventListener("click",()=>{
+            getEle("option__startDay").classList.toggle("show__option")
+            getEle("select__startDay").classList.toggle("radiusSelect")
+
+        })
+
+        startDay.forEach(e=>{
+            e.addEventListener("click",(e)=>{
+              getEle("selectedstartDayModal").innerHTML = e.target.innerText
+            })
+        })
+        const endDay = document.querySelectorAll(".endDay")
+        getEle("select__endDay").addEventListener("click",()=>{
+            getEle("option__endDay").classList.toggle("show__option")
+            getEle("select__endDay").classList.toggle("radiusSelect")
+
+        })
+
+        endDay.forEach(e=>{
+            e.addEventListener("click",(e)=>{
+              getEle("selectedendDayModal").innerHTML = e.target.innerText
+            })
+        })
+
+  </script>
 </html>

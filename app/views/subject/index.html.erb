@@ -575,6 +575,13 @@
       color: white;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     }
+        .nameGeneralReportForm {
+      padding-left: 0rem;
+      width: 100%;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
+    }
   </style>
   <body>
     <main class="container">
@@ -632,9 +639,6 @@
       <table class="content__table" id="table_phongban">
         <tr class="content__table_header">
           <th>
-            <input class="content__table-checkbox" type="checkbox" placeholder="checkbox" id="checkbox_pban" onchange="toggleAllCheckboxesPban()">
-          </th>
-          <th>
             STT
           </th>
           <th>
@@ -648,7 +652,6 @@
         </tr>
         <% @subjects.each do |s| %>
         <tr class="content__table_body">
-          <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
           <td><%= s.id %></td>
           <td><%= s.name %></td>
           <td><%= s.created_at.strftime('%d %B %Y %r') %></td>
@@ -694,13 +697,9 @@
               ></i>
           </div>
           <div class="popup_body_feedback">
-            <select class="Khoa" style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem">
-              <option value="0" disabled selected hidden>Chọn khoa</option>
-              <option value="1">Công nghệ thông tin</option>
-              <option value="2">Kế toán</option>
-              <option value="3">Quản trị kinh doanh</option>
-              <option value="4">Thiết kế thời trang</option>
-            </select>
+            <div style="border-radius: 12px; margin-bottom: 1rem">
+                <input class="nameGeneralReportForm" placeholder="Nhập tên khoa">
+            </div>
             <select class="Bộ Môn" style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem">
               <option value="0" disabled selected hidden>Chọn bộ môn</option>
               <option value="1">Kỹ thuật phần mềm</option>

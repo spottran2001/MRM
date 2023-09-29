@@ -505,6 +505,21 @@
       padding: 0.5rem;
       border-radius: 12px;
     }
+    .select_role {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: center;
+    }
+    .left_role {
+      padding-right: 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .right_role {
+      display: flex;
+      flex-direction: column;
+    }
 
 
   </style>
@@ -587,12 +602,16 @@
                   <span></span>
                   <p style="margin-right: 4rem; ">Vai trò</p>
                   <%#<%= @user.role || "N/A" %>              
-                  <select class="userRole" id="userRole" style="width: 20%">
-                    <option value="Staff">Nhân Viên</option>
-                    <option value="Lecturers">Giảng Viên</option>
-                    <option value="Subject">Phụ trách bộ môn</option>
-                    <option value="Department">Ban chủ nhiệm khoa</option>
-                  </select>
+                  <div class="select_role" id="select_vaitro">                            
+                    <div class="left_role"> 
+                      <label><input type="checkbox" id="vaitro1" class="vaitro"> Nhân viên</label>
+                      <label><input type="checkbox" id="vaitro1" class="vaitro"> Giảng viên</label>                                                       
+                    </div>
+                    <div class="right_role">
+                      <label><input type="checkbox" id="vaitro1" class="vaitro"> Phụ trách bộ môn</label>
+                      <label><input type="checkbox" id="vaitro1" class="vaitro"> Ban chủ nhiệm khoa</label>         
+                    </div>  
+                  </div>   
                 </li>
                 <li>
                   <span></span>

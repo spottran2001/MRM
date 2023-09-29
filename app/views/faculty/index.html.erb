@@ -595,6 +595,13 @@
       color: white;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     }
+    .nameGeneralReportForm {
+      padding-left: 0rem;
+      width: 100%;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
+    }
   </style>
   <body>
     <main class="container">
@@ -713,20 +720,16 @@
               ></i>
           </div>
           <div class="popup_body_feedback">
+            <div style="border-radius: 12px; margin-bottom: 1rem">
+              <input class="nameGeneralReportForm" placeholder="Nhập tên bộ môn">
+            </div>
             <select class="Khoa" style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem">
               <option value="0" disabled selected hidden>Chọn khoa</option>
               <option value="1">Công nghệ thông tin</option>
               <option value="2">Kế toán</option>
               <option value="3">Quản trị kinh doanh</option>
               <option value="4">Thiết kế thời trang</option>
-            </select>
-            <select class="Bộ Môn" style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem">
-              <option value="0" disabled selected hidden>Chọn bộ môn</option>
-              <option value="1">Kỹ thuật phần mềm</option>
-              <option value="2">Vật lý đại cương</option>
-              <option value="3">Đại số tuyến tính</option>
-              <option value="4">Anh văn 1</option>
-            </select>
+            </select>        
           </div>
           <div class="popup_footer_feedback">
             <button
