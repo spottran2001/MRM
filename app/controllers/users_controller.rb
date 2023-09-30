@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  protect_from_forgery with: :null_session
 
   def index
     if current_user.role != "admin"
@@ -31,20 +32,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if current_user.role != 'admin'
-      @user.update!(update_phone_params)
+    params['user']['role'].drop(1)
+    if current_user.role == 'admin'
+      @user.update!(role: params['user']['role'].join(','), phone_number: params['user']['phone_number'])
     else
-      @user.update!(update_phone_params) #add this column to database!
+      @user.update!(phone_number: params['user']['phone_number']) #add this column to database!
     end
     redirect_to users_path
   end
 
   def generate_report
     raise "you dont have permission to do this " if current_user.role != 'admin'
-  end
-
-  def update_phone_params
-    params.require(:user).permit(:phone_number)
   end
 
   def read_notification

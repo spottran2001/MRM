@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   belongs_to :faculty, optional: true
   belongs_to :subject, optional: true
+  has_many :reports
   has_many :notifications
 
   def self.from_omniauth(auth)

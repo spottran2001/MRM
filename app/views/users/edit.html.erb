@@ -601,17 +601,26 @@
                 <li>
                   <span></span>
                   <p style="margin-right: 4rem; ">Vai trò</p>
-                  <%#<%= @user.role || "N/A" %>              
-                  <div class="select_role" id="select_vaitro">                            
+                  <%#<%= @user.role || "N/A" %>       
+                  
+                  <% if current_user.role == 'admin' %>
+                    <%= f.input :role,
+                      as: :check_boxes, 
+                      include_hidden: false,
+                      collection: ["Nhân viên", "Giảng viên", "Phụ trách bộ môn", "Ban chủ nhiệm khoa"] %>
+                  <% end %>
+                  
+                  <%# <%= f.input :role, label_method: :name, as: :checkboxes, collection: ['Nhân viên', 'Giảng viên']  %>        
+                  <%# <div class="select_role" id="select_vaitro">                            
                     <div class="left_role"> 
-                      <label><input type="checkbox" id="vaitro1" class="vaitro"> Nhân viên</label>
-                      <label><input type="checkbox" id="vaitro1" class="vaitro"> Giảng viên</label>                                                       
+                      <label><input type="checkbox" id="vaitro1" class="vaitro" value="Nhân viên"> Nhân viên</label>
+                      <label><input type="checkbox" id="vaitro1" class="vaitro" value="Giảng viên"> Giảng viên</label>                                                       
                     </div>
                     <div class="right_role">
-                      <label><input type="checkbox" id="vaitro1" class="vaitro"> Phụ trách bộ môn</label>
-                      <label><input type="checkbox" id="vaitro1" class="vaitro"> Ban chủ nhiệm khoa</label>         
+                      <label><input type="checkbox" id="vaitro1" class="vaitro" value="Phụ trách bộ môn"> Phụ trách bộ môn</label>
+                      <label><input type="checkbox" id="vaitro1" class="vaitro" value="Ban chủ nhiệm khoa"> Ban chủ nhiệm khoa</label>         
                     </div>  
-                  </div>   
+                  </div>    %>
                 </li>
                 <li>
                   <span></span>

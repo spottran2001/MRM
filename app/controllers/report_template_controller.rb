@@ -60,14 +60,14 @@ class ReportTemplateController < ApplicationController
       subject_template_data = ReportTemplate.find(subject_template_id).data
       faculty_template_data = ReportTemplate.find(faculty_template_id).data
       teacher_template_data = ReportTemplate.find(teacher_template_id).data
-      User.where(role: ['staff', 'subject', 'faculty', 'teach']).each do |u|
-        if u.role == 'staff'
+      User.all.each do |u|
+        if u.role.include?('Nhân viên')
           u.template.create(data: staff_template_data)
-        elsif u.role == 'subject'
+        elsif u.role.include?('Giảng viên')
           u.template.create(data: subject_template_data)
-        elsif u.role == 'faculty'
+        elsif u.role.include?('Phụ trách bộ môn')
           u.template.create(data: faculty_template_data)
-        elsif u.role == 'teacher'
+        elsif u.role.include?('Ban chủ nhiệm khoa')
           u.template.create(data: teacher_template_data)
         end
       end
@@ -75,7 +75,7 @@ class ReportTemplateController < ApplicationController
   end
 
   def report_template_management
-
+    @report_templates = ReportTemplate.all
   end
 
   private

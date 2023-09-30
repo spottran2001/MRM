@@ -935,18 +935,23 @@
             </th>
             <th>
             </th>
-          </tr>          
-          <tr class="content__table_body">
-            <td>1</td>
-            <td>Biểu mẫu nhân viên</td>
-            <td>Nhân viên</td>
-            <td>dd/mm/yyyy 2:00AM</td>
-            <td>dd/mm/yyyy 2:00PM</td>
-            <td>
-              <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
-              <button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>
-            </td>
-          </tr>
+          </tr> 
+          <% @report_templates.each do |r| %>
+            <tr class="content__table_body">
+              <td><%= r.id %></td>
+              <td><%= r.name %></td>
+              <td><%= r.role %></td>
+              <td><%= r.created_at.strftime('%d/%m/%Y %T') %></td>
+              <td><%= r.updated_at.strftime('%d/%m/%Y %T') %></td>
+              <td>
+                <%= link_to report_template_path(r), style: "text-decoration:none" do %>
+                  <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
+                <% end %>
+                <button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+          <% end %>
+          
           
         </table>
         <div class="paging">

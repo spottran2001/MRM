@@ -684,12 +684,12 @@
         <div class="enterContent">
           <div class="assignRoles">
           <span style= "font-weight: 800; padding-right: 1rem">Tên biểu mẫu chung: </span>
-          <input class="formName" type="text" placeholder="Nhập tên biểu mẫu">
+          <input class="formName" type="text" placeholder="Nhập tên biểu mẫu" value= "<%= @report_template.name %>">
         </div>
         <div class="assignRoles">
           <span style= "font-weight: 800; padding-right: 1rem">Vai trò: </span>
             <div class="select__modalbody" id="select__khoa" >
-              <p id="selectedKhoaModal">Chọn vai trò</p>
+              <p id="selectedKhoaModal"><%=  @report_template.role %></p>
               <i class="fa-solid fa-angle-down"></i>
               <div class="option__modalbody" id="option__khoa">
                 <p class="khoa">Nhân viên</p>
@@ -702,17 +702,18 @@
         <div class="assignRoles">
           <span style= "font-weight: 800; padding-right: 1rem">Năm báo cáo </span>
             <div class="select__modalbody" id="select__period" >
-              <p id="selectedYearModal">Chọn năm báo cáo</p>
+              <p id="selectedYearModal"><%=  @report_template.year %></p>
               <i class="fa-solid fa-angle-down"></i>
               <div class="option__modalbody" id="option__period">
+                <p class="selectYear">2025</p>
+                <p class="selectYear">2024</p>
                 <p class="selectYear">2023</p>
                 <p class="selectYear">2022</p>
                 <p class="selectYear">2021</p>
-                <p class="selectYear">2020</p>
               </div>
             </div>
         </div>
-        <div class="assignRoles">
+        <div class="assignRoles" style="display:none">
           <span style= "font-weight: 800; padding-right: 1rem">Kỳ báo cáo </span>
             <div class="select__modalbody" id="select__year" >
               <p id="selectedPeriodModal">Chọn kỳ báo cáo</p>
@@ -739,11 +740,11 @@
                 </div>      
                 <div class="timeCreate" style="padding-right: 4rem">
                   <span style= "font-weight: 800; padding-right: 1rem">Thời gian tạo: </span>
-                  <span>DD/MM/YYYY 2:00AM</span>
+                  <span><%= @report_template.created_at.strftime('%d/%m/%Y %T')%></span>
                 </div>
                 <div class="timeEdit" style="padding-right: 4rem">
                   <span style= "font-weight: 800; padding-right: 1rem">Thời gian sửa: </span>
-                  <span>DD/MM/YYYY 2:00PM</span>
+                  <span><%= @report_template.updated_at.strftime('%d/%m/%Y %T')%></span>
                 </div>            
             </div>
           </div>
