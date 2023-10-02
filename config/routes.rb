@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   end
   get "staff", to: "home#staff"
   get 'page_stats', to: "home#page_stats"
-  resources :report_template
   get "report_template_management", to: "report_template#report_template_management"
+  resources :report_template
   resources :faculty
   resources :subject
   resources :report do
