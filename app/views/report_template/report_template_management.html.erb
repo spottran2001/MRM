@@ -944,7 +944,7 @@
               <td><%= r.created_at.strftime('%d/%m/%Y %T') %></td>
               <td><%= r.updated_at.strftime('%d/%m/%Y %T') %></td>
               <td>
-                <%= link_to report_template_path(r), style: "text-decoration:none" do %>
+                <%= link_to edit_report_template_path(r), style: "text-decoration:none" do %>
                   <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
                 <% end %>
                 <button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>

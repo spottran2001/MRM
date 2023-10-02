@@ -1,6 +1,7 @@
 class ReportTemplateController < ApplicationController
   before_action :authenticate_user!
   protect_from_forgery with: :null_session
+  skip_before_action :verify_authenticity_token
 
   def index
     @report_templates = ReportTemplate.all.order(:created_at)
@@ -60,14 +61,14 @@ class ReportTemplateController < ApplicationController
       subject_template_data = ReportTemplate.find(subject_template_id).data
       faculty_template_data = ReportTemplate.find(faculty_template_id).data
       teacher_template_data = ReportTemplate.find(teacher_template_id).data
-      User.all.each do |u|
-        if u.role.include?('Nhân viên')
+      User.where(role: ['staff', 'subject', 'faculty', 'teach']).each do |u|
+        if u.role == 'staff'
           u.template.create(data: staff_template_data)
-        elsif u.role.include?('Giảng viên')
+        elsif u.role == 'subject'
           u.template.create(data: subject_template_data)
-        elsif u.role.include?('Phụ trách bộ môn')
+        elsif u.role == 'faculty'
           u.template.create(data: faculty_template_data)
-        elsif u.role.include?('Ban chủ nhiệm khoa')
+        elsif u.role == 'teacher'
           u.template.create(data: teacher_template_data)
         end
       end
