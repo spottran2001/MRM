@@ -857,7 +857,7 @@
       align-items: center;
     }
     .left_role {
-      padding-right: 4rem;
+      padding-right: 20rem;
       display: flex;
       flex-direction: column;
     }
@@ -875,7 +875,6 @@
     .contentTimeCreate{
       display: flex;
       justify-content: space-between;
-
     }
 
   </style>
@@ -967,6 +966,18 @@
                       </div>
                     </div>
                   </div>
+                  <p id="selectedendDayModal">Vai trò</p>
+                      <div class="select_role" id="select_vaitro" style="padding-bottom: 1rem">
+                        
+                        <div class="left_role"> 
+                          <label><input type="checkbox" id="vaitro1" class="vaitro"> Nhân viên</label>
+                          <label><input type="checkbox" id="vaitro1" class="vaitro"> Giảng viên</label>                                                       
+                        </div>
+                        <div class="right_role">
+                          <label><input type="checkbox" id="vaitro1" class="vaitro"> Phụ trách bộ môn</label>
+                          <label><input type="checkbox" id="vaitro1" class="vaitro"> Ban chủ nhiệm khoa</label>         
+                        </div>   
+                      </div>
                   <div class="contentTimeCreate" style="padding-bottom: 1rem">
                     <div class="contentTimeCreateLeft">   
                       <p>Thời gian bắt đầu</p>                 
@@ -1008,9 +1019,10 @@
                           <p class="endDay">10</p>
                           <p class="endDay">15</p>
                         </div>
-                      </div>     
-                    </div>
-                  </div>                                              
+                      </div>  
+                      
+                  </div>     
+                   </div>                                           
                   </ul>
                   <div class="body__btn">
                     <button class="btn__modal" id="btn__closeModal">HỦY</button>
