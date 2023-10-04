@@ -877,27 +877,7 @@
     <main class="container" >
       <%= render "shared/left_nav"%>
       <div class="content">
-        <div class="content__title">
-          <div class="content__breadcrumb">
-            MENU
-            <p class="breadcrumb__name" style="color: black; border-bottom: none;">/</p>
-            <p class="breadcrumb__name">QUẢN LÍ BIỂU MẪU BÁO CÁO CHUNG</p>
-          </div>
-          <div class="content__user">
-            <div class="user_icon">
-              <i class="fa-regular fa-bell"></i>
-            </div>
-            <div class="user__info">
-              <p>thanhnhan@vanlanguni.vn</p>
-              <p>
-                Admin
-              </p>
-            </div>
-            <div class="user__img">
-              <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo" alt="user">
-            </div>
-          </div>
-        </div>
+        <%= render 'shared/header' %>
         <h1 class="content__name">Quản lý biểu mẫu báo cáo chung</h1>
         <div class="content__generality">
           <div class="generality__options">
@@ -934,6 +914,9 @@
               Thời gian sửa
             </th>
             <th>
+              trang thai
+            </th>
+            <th>
             </th>
           </tr> 
           <% @report_templates.each do |r| %>
@@ -943,18 +926,21 @@
               <td><%= r.role %></td>
               <td><%= r.created_at.strftime('%d/%m/%Y %T') %></td>
               <td><%= r.updated_at.strftime('%d/%m/%Y %T') %></td>
+              <td><%= r.is_apply ? 'duyet' : 'nhap'%></td>
               <td>
                 <%= link_to edit_report_template_path(r), style: "text-decoration:none" do %>
                   <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
                 <% end %>
-                <button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>
+                <%= link_to report_template_path(r), style: "text-decoration:none" do %>
+                  <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
+                <% end %>
               </td>
             </tr>
           <% end %>
           
           
         </table>
-        <div class="paging">
+        <div class="paging d-none">
           <button aria-label="pagin">
           <i class="fa-solid fa-chevron-left"></i>
           </button>
@@ -967,7 +953,7 @@
           <i class="fa-solid fa-chevron-right"></i>
           </button>
         </div>
-        <%#<div class="paging">
+        <%#<div class="paging d-none">
           <button aria-label="pagin">
             <i class="fa-solid fa-chevron-left"></i>
           </button>

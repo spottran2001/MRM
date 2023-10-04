@@ -624,30 +624,7 @@
     <main class="container">
       <%= render "shared/left_nav"%>
       <div class="content">
-        <div class="content__title">
-          <div class="content__breadcrumb">
-            MENU
-            <p class="breadcrumb__ReportingPeriod" style="color: black; border-bottom: none;">/</p>
-            <p class="breadcrumb__ReportingPeriod" style="color: black; border-bottom: none;">QUẢN LÝ KỲ BÁO CÁO</p>
-            <p class="breadcrumb__ReportingPeriod" style="color: black; border-bottom: none;">/</p>
-            <p class="breadcrumb__ReportingPeriod">CHỈNH SỬA BÁO CÁO THÁNG</p>
-          </div>
-          <div class="content__user">
-            <div class="user_icon">
-              <i class="fa-regular fa-bell"></i>
-            </div>
-            <div class="user__info">
-              <p>
-                thanhnhan@vanlanguni.vn
-              </p>
-              <p>Nhân viên / Giảng viên</p>
-            </div>
-            <div class="user__img">
-              <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo"
-                alt="">
-            </div>
-          </div>
-        </div>
+        <%= render 'shared/header' %>
         <h1 class="content__name">CHỈNH SỬA BÁO CÁO THÁNG</h1>
         <div class="enterContent">
             <div class="assignRoles">
@@ -657,7 +634,7 @@
           <div class="assignRoles">
             <span style= "font-weight: 800; padding-right: 1rem">Vai trò: </span>
               <div class="select__modalbody" id="select__khoa" >
-                <p id="selectedKhoaModal">Chọn vai trò</p>
+                <p id="selectedKhoaModal"><%= @report_template.role %></p>
                 <i class="fa-solid fa-angle-down"></i>
                 <div class="option__modalbody" id="option__khoa">
                   <p class="khoa">Nhân viên</p>
@@ -670,7 +647,7 @@
           <div class="assignRoles">
             <span style= "font-weight: 800; padding-right: 1rem">Năm báo cáo </span>
               <div class="select__modalbody" id="select__period" >
-                <p id="selectedYearModal">Chọn năm</p>
+                <p id="selectedYearModal"><%= @report_template.year %></p>
                 <i class="fa-solid fa-angle-down"></i>
                 <div class="option__modalbody" id="option__period">
                   <p class="selectYear">2025</p>
@@ -700,7 +677,7 @@
             <div class="generality__search_icon">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <input type="text" placeholder="Tìm kiếm báo cáo">
+            <input type="text" placeholder="Tìm kiếm báo cáo" disabled>
           </div>%>
           <div class="reportTitleStatus">                      
                 <div class="statusCreateReport" style="padding-right: 4rem">
@@ -736,6 +713,8 @@
               </button>
             </div>%>
             <div id="send_baocao" class="btn__addmember" >
+      
+
               <button aria-label="send_baocao" style=" background-color: #ADDDFF;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 
                 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
                 <i class="fa-regular fa-paper-plane"></i>
@@ -812,7 +791,9 @@
           </div>
           <div class="popup_foiter">
             <button id="btn__closeBaocao" style="background-color: #dc546c;">HỦY</button>
-            <button style="background-color: #f4924b;">GỬI</button>
+            <%= button_to report_template_submit_report_temp_path(@report_template), method: :put, style: "background-color: #f4924b;" do %>
+                <p>GỬI</p>
+                <% end %>
           </div>
         </div>
       </div>
@@ -923,10 +904,16 @@
         }
         title_2_title_arr.push(tbody_title_2_title_arr)
       }
+      var template_name = document.getElementsByClassName("formName")[0].value
+      var template_role = document.getElementById("selectedKhoaModal").innerText
+      var template_year = document.getElementById("selectedYearModal").innerText
       if (check_condition){
         var data = new FormData();
         data.append('table_keys',JSON.stringify(table_keys));
         data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
+        data.append('template_name',JSON.stringify(template_name));
+        data.append('template_role',JSON.stringify(template_role));
+        data.append('template_year',JSON.stringify(template_year));
         jQuery.ajax({
           url: "/report_template/<%= @report_template.id %>",
           data: data,
@@ -935,8 +922,8 @@
           processData: false,
           method: 'PUT',
           success: function(data){
-              alert("Tao thanh cong");
-              window.location.replace("/report_template");
+              alert("chinh sua thanh cong");
+              window.location.replace("/report_template_management");
           }
         });
       }

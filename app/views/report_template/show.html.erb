@@ -652,64 +652,30 @@
     <main class="container">
       <%= render "shared/left_nav"%>
       <div class="content">
-        <div class="content__title">
-          <div class="content__breadcrumb">
-            MENU
-            <p class="breadcrumb__name" style="color: black; border-bottom: none;">/</p>
-            <p class="breadcrumb__name" style="color: black; border-bottom: none;">QUẢN LÝ KỲ BÁO CÁO</p>
-            <p class="breadcrumb__name" style="color: black; border-bottom: none;">/</p>
-            <p class="breadcrumb__name">LẬP BÁO CÁO THÁNG</p>
-          </div>
-          <div class="content__user">
-            <div class="user_icon">
-              <i class="fa-regular fa-bell"></i>
-            </div>
-            <div class="user__info">
-             
-              <p>
-                thanhnhan@vanlanguni.vn
-              </p>
-               <p>Nhân viên / Giảng viên</p>
-            </div>
-            <div class="user__img">
-              <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo"
-                alt="">
-            </div>
-            <div class="user__detail">
-              <i class="fa-solid fa-angle-down"></i>
-            </div>
-          </div>
-        </div>
+        <%= render 'shared/header' %>
         <h1 class="content__name">LẬP BÁO CÁO THÁNG</h1>
         <div class="enterContent">
           <div class="assignRoles">
           <span style= "font-weight: 800; padding-right: 1rem">Tên biểu mẫu chung: </span>
-          <input class="formName" type="text" placeholder="Nhập tên biểu mẫu" value= "<%= @report_template.name %>">
+          <input class="formName" type="text" placeholder="Nhập tên biểu mẫu" value= "<%= @report_template.name %>" disabled >
         </div>
         <div class="assignRoles">
           <span style= "font-weight: 800; padding-right: 1rem">Vai trò: </span>
-            <div class="select__modalbody" id="select__khoa" >
+            <div class="select__modalbody" id="select__khoa" disabled>
               <p id="selectedKhoaModal"><%=  @report_template.role %></p>
               <i class="fa-solid fa-angle-down"></i>
-              <div class="option__modalbody" id="option__khoa">
-                <p class="khoa">Nhân viên</p>
-                <p class="khoa">Giảng viên</p>
-                <p class="khoa">Phụ trách bộ môn</p>
-                <p class="khoa">Bạn chủ nhiệm khoa</p>
+              <div class="option__modalbody" id="option__khoa" disabled>
+                
               </div>
             </div>
         </div>
         <div class="assignRoles">
           <span style= "font-weight: 800; padding-right: 1rem">Năm báo cáo </span>
-            <div class="select__modalbody" id="select__period" >
-              <p id="selectedYearModal"><%=  @report_template.year %></p>
+            <div class="select__modalbody" id="select__period" disabled>
+              <p id="selectedYearModal" disabled ><%=  @report_template.year %></p>
               <i class="fa-solid fa-angle-down"></i>
-              <div class="option__modalbody" id="option__period">
-                <p class="selectYear">2025</p>
-                <p class="selectYear">2024</p>
-                <p class="selectYear">2023</p>
-                <p class="selectYear">2022</p>
-                <p class="selectYear">2021</p>
+              <div class="option__modalbody" id="option__period" >
+               
               </div>
             </div>
         </div>
@@ -732,7 +698,7 @@
             <%#<div class="generality__search_icon">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <input type="text" placeholder="Tìm kiếm báo cáo">%>
+            <input type="text" placeholder="Tìm kiếm báo cáo" disabled>%>
             <div class="reportTitleStatus">                      
                 <div class="statusCreateReport" style="padding-right: 4rem">
                   <span style= "font-weight: 800; padding-right: 1rem">Trạng thái: </span>
@@ -756,20 +722,8 @@
                 <p>UPLOAD FILE</p>
               </button>
             </div>%>
-            <div id="send_baocao" class="btn__addmember" >
-              <button aria-label="send_baocao" style=" background-color: #ADDDFF;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 
-                0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
-                <i class="fa-regular fa-paper-plane"></i>
-                <p>GỬI</p>
-              </button>
-            </div>
-            <div class="btn__addmember" style="margin: 0px 20px;">
-              <button aria-label="btn__addmember" style=" background-color: #678EF8; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 
-                0px 4px 4px 0px rgba(0, 0, 0, 0.25);" onclick="SubmitReport()">
-                <i class="fa-regular fa-floppy-disk"></i>
-                <p>LƯU NHÁP</p>
-              </button>
-            </div>
+            
+           
           </div>
         </div>
         <% @report_template_title.keys.each_with_index do |key, index|%>

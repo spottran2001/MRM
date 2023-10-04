@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_29_164019) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_04_162155) do
   create_table "faculties", force: :cascade do |t|
     t.string "name"
     t.integer "uid"
@@ -62,6 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_164019) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.text "data"
+    t.string "year"
+    t.string "role"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 

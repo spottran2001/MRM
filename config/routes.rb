@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get "staff", to: "home#staff"
   get 'page_stats', to: "home#page_stats"
   get "report_template_management", to: "report_template#report_template_management"
-  resources :report_template
+  resources :report_template do
+    put 'submit_report_temp', to: 'report_template#submit_report'
+  end
   resources :faculty
   resources :subject
   resources :report do

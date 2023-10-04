@@ -528,10 +528,10 @@
   </div>
   <div class="content__user">
     <div class="user_icon" id="userIcon">
-      <%= button_to user_read_notifications_path(current_user), method: :put, style: "background-color: #F5F5F5; border:none" do %>
+      <%= button_to user_read_notifications_path(current_user), method: :put, style: "background-color: #F5F5F5; border:none", id: 'notification-button' do %>
       <i class="fa-regular fa-bell"></i>
       <% end %>
-      <div id="userNotifi">
+      <div id="userNotifi" class="d-none">
         <% current_user.notifications.each do |noti|%>
         <div class="notifi__Item">
           <div class="notifi__mess">
@@ -557,3 +557,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.getElementById('notification-button').addEventListener('click', ()=> {
+    if (document.getElementById('userNotifi').classList.contains('d-none')){
+      document.getElementById('userNotifi').classList.remove('d-none')
+    }else{
+      document.getElementById('userNotifi').classList.add('d-none')
+    }
+  })
+</script>

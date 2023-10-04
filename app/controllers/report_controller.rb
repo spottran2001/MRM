@@ -40,6 +40,7 @@ class ReportController < ApplicationController
 
   #quanlikibaocaostaff
   def index
+    @report = current_user.reports.order(:created_at)
   end
 
 end

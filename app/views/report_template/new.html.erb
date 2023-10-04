@@ -662,30 +662,7 @@
     <main class="container">
       <%= render "shared/left_nav"%>
       <div class="content">
-        <div class="content__title">
-          <div class="content__breadcrumb">
-            MENU
-            <p class="breadcrumb__ReportingPeriod" style="color: black; border-bottom: none;">/</p>
-            <p class="breadcrumb__ReportingPeriod" style="color: black; border-bottom: none;">QUẢN LÝ BIỂU MẪU BÁO CÁO CHUNG</p>
-            <p class="breadcrumb__ReportingPeriod" style="color: black; border-bottom: none;">/</p>
-            <p class="breadcrumb__ReportingPeriod">BIỂU MẪU NHÂN VIÊN 1</p>
-          </div>
-          <div class="content__user">
-            <div class="user_icon">
-              <i class="fa-regular fa-bell"></i>
-            </div>
-            <div class="user__info">
-              <p>
-                thanhnhan@vanlanguni.vn
-              </p>
-              <p>Ban giám hiệu trường</p>
-            </div>
-            <div class="user__img">
-              <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo"
-                alt="">
-            </div>
-          </div>
-        </div>
+        <%= render 'shared/header' %>
         <h1 class="content__name">BIỂU MẪU NHÂN VIÊN 1</h1>
         <div class="enterContent">
           <div class="assignRoles">
@@ -738,7 +715,7 @@
             <%#<div class="generality__search_icon">
               <i class="fa-solid fa-magnifying-glass"></i>
               </div>
-              <input type="text" placeholder="Tìm kiếm báo cáo">%>
+              <input type="text" placeholder="Tìm kiếm báo cáo" disabled>%>
             <div class="reportTitleStatus">                      
                 <div class="statusCreateReport" style="padding-right: 4rem">
                   <span style= "font-weight: 800; padding-right: 1rem">Trạng thái: </span>

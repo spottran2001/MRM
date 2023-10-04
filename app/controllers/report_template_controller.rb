@@ -34,6 +34,9 @@ class ReportTemplateController < ApplicationController
 
   def update
     data = {}
+    template_name = JSON.parse(params["template_name"])
+    template_role = JSON.parse(params["template_role"])
+    template_year = JSON.parse(params["template_year"])
     table_keys = JSON.parse(params["table_keys"])
     title_2_title_arr = JSON.parse(params["title_2_title_arr"])
     table_keys.each_with_index do |key, index|
@@ -43,12 +46,18 @@ class ReportTemplateController < ApplicationController
         data[key][title_2_arr[0]][:title] = title_2_arr.drop(1)
       end
     end
-    ReportTemplate.find(params[:id]).update(data: JSON.generate(data))
+    ReportTemplate.find(params[:id]).update(data: JSON.generate(data),role: template_role, name: template_name, year: template_year)
   end
   
   def show
     @report_template_title = JSON.parse(ReportTemplate.find(params[:id]).data)
     @report_template = ReportTemplate.find(params[:id])
+  end
+
+  def submit_report
+    template = ReportTemplate.find(params[:report_template_id])
+    template.update!(is_apply: true)
+    redirect_to report_template_management_path
   end
 
   def apply_temple
@@ -57,19 +66,19 @@ class ReportTemplateController < ApplicationController
     ActiveRecord::Base.transaction do 
       #YearTemplate(staff_template_id, subject_template_id, faculty_template_id, teacher_template_id,start_date, end_date, deadline)
       staff_template_id, subject_template_id, faculty_template_id, teacher_template_id,start_date, end_date, deadline = ''
-      staff_template_data = ReportTemplate.find(staff_template_id).data
-      subject_template_data = ReportTemplate.find(subject_template_id).data
-      faculty_template_data = ReportTemplate.find(faculty_template_id).data
-      teacher_template_data = ReportTemplate.find(teacher_template_id).data
+      staff_template = ReportTemplate.find(staff_template_id)
+      subject_template = ReportTemplate.find(subject_template_id)
+      faculty_template = ReportTemplate.find(faculty_template_id)
+      teacher_template = ReportTemplate.find(teacher_template_id)
       User.where(role: ['staff', 'subject', 'faculty', 'teach']).each do |u|
         if u.role == 'staff'
-          u.template.create(data: staff_template_data)
+          u.template.create(data: staff_template.data, year: staff_template.year, role: staff_template.role)
         elsif u.role == 'subject'
-          u.template.create(data: subject_template_data)
+          u.template.create(data: subject_template.data, year: subject_template.year, role: subject_template.role)
         elsif u.role == 'faculty'
-          u.template.create(data: faculty_template_data)
+          u.template.create(data: faculty_template.data, year: faculty_template.year, role: faculty_template.role)
         elsif u.role == 'teacher'
-          u.template.create(data: teacher_template_data)
+          u.template.create(data: teacher_template.data, year: teacher_template.year, role: teacher_template.role)
         end
       end
     end
