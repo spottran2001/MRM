@@ -34,6 +34,9 @@ class HomeController < ApplicationController
   def staff
   end
 
+  def edit
+  end
+
   def generalReportForm
   end
 

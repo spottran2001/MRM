@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users do
     put "read_notifications", to: "users#read_notification"
   end
+  get "edit", to: "home#edit"
   get "staff", to: "home#staff"
   get 'page_stats', to: "home#page_stats"
   get "report_template_management", to: "report_template#report_template_management"
