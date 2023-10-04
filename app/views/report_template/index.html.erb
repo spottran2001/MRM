@@ -852,7 +852,7 @@
     }
     .select_role {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: start;
       align-items: center;
     }
@@ -968,60 +968,52 @@
                   </div>
                   <p id="selectedendDayModal">Vai trò</p>
                       <div class="select_role" id="select_vaitro" style="padding-bottom: 1rem">
-                        
-                        <div class="left_role"> 
-                          <label><input type="checkbox" id="vaitro1" class="vaitro"> Nhân viên</label>
-                          <label><input type="checkbox" id="vaitro1" class="vaitro"> Giảng viên</label>                                                       
-                        </div>
-                        <div class="right_role">
-                          <label><input type="checkbox" id="vaitro1" class="vaitro"> Phụ trách bộ môn</label>
-                          <label><input type="checkbox" id="vaitro1" class="vaitro"> Ban chủ nhiệm khoa</label>         
-                        </div>   
+                          <div class="select__modalbody" id="select__nhanvien" >
+                              <p id="selectedNhanVienModal">Chọn nhân viên</p>
+                              <i class="fa-solid fa-angle-down"></i>
+                            <div class="option__modalbody" id="option__nhanvien">
+                              <p class="nhanvien">Ng Văn A</p>
+                              <p class="nhanvien">Ng Văn B</p>
+                              <p class="nhanvien">Ng Văn C</p>
+                            </div>
+                          </div> 
+
+                          <div class="select__modalbody" id="select__giangvien">
+                              <p id="selectedGiangVienModal">Chọn giảng viên</p>
+                              <i class="fa-solid fa-angle-down"></i>
+                            <div class="option__modalbody" id="option__giangvien">
+                              <p class="giangvien">Ng Văn A</p>
+                              <p class="giangvien">Ng Văn B</p>
+                              <p class="giangvien">Ng Văn C</p>
+                            </div>
+                          </div>   
+
+                          <div class="select__modalbody" id="select__phutrachbomon">
+                              <p id="selectedBoMonModal">Chọn phụ trách bộ môn</p>
+                              <i class="fa-solid fa-angle-down"></i>
+                            <div class="option__modalbody" id="option__phutrachbomon">
+                              <p class="phutrachbomon">Ng Văn A</p>
+                              <p class="phutrachbomon">Ng Văn B</p>
+                              <p class="phutrachbomon">Ng Văn C</p>
+                            </div>
+                          </div>   
+
+                          <div class="select__modalbody" id="select__banchunhiemkhoa">
+                              <p id="selectedKhoaModal">Chọn ban chủ nhiệm khoa</p>
+                              <i class="fa-solid fa-angle-down"></i>
+                            <div class="option__modalbody" id="option__banchunhiemkhoa">
+                              <p class="banchunhiemkhoa">Ng Văn A</p>
+                              <p class="banchunhiemkhoa">Ng Văn B</p>
+                              <p class="banchunhiemkhoa">Ng Văn C</p>
+                            </div>
+                          </div>                                                         
+                         
                       </div>
                   <div class="contentTimeCreate" style="padding-bottom: 1rem">
                     <div class="contentTimeCreateLeft">   
-                      <p>Thời gian bắt đầu</p>                 
-                      <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem">     
-                      <div>
-                        <p>
-                          Ngày bắt đầu
-                        </p>
-                      </div>
-                      <div class="select__modalbody" id="select__startDay">
-                          <p id="selectedstartDayModal">Chọn ngày bắt đầu</p>
-                          <i class="fa-solid fa-angle-down"></i>
-                        <div class="option__modalbody" id="option__startDay">
-                          <p class="startDay">5</p>
-                          <p class="startDay">10</p>
-                          <p class="startDay">15</p>
-                        </div>
-                      </div>     
-                      <div>
-                          <p>Ngày hạn báo cáo</p>
-                        </div>
-                        <div>
-                          <input class="nameGeneralReportForm" placeholder="Nhập ngày hạn báo cáo" style="padding-bottom: 1rem">
-                        </div>            
+                      <p>Thời gian tạo</p>                 
+                      <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem">                        
                     </div>
-                    <div class="contentTimeCreateRight">
-                      <p>Thời gian kết thúc</p>
-                      <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem"> 
-                      <div>
-                        <p>
-                          Ngày kết thúc
-                        </p>
-                      </div>
-                      <div class="select__modalbody" id="select__endDay" >
-                          <p id="selectedendDayModal">Chọn ngày kết thúc</p>
-                          <i class="fa-solid fa-angle-down"></i>
-                        <div class="option__modalbody" id="option__endDay">
-                          <p class="endDay">5</p>
-                          <p class="endDay">10</p>
-                          <p class="endDay">15</p>
-                        </div>
-                      </div>  
-                      
-                  </div>     
                    </div>                                           
                   </ul>
                   <div class="body__btn">
@@ -1118,28 +1110,52 @@ function getEle(id) {
               getEle("selectedKhoaModal").innerHTML = e.target.innerText
             })
         })
-        const startDay = document.querySelectorAll(".startDay")
-        getEle("select__startDay").addEventListener("click",()=>{
-            getEle("option__startDay").classList.toggle("show__option")
-            getEle("select__startDay").classList.toggle("radiusSelect")
+        const nhanvien = document.querySelectorAll(".nhanvien")
+        getEle("select__nhanvien").addEventListener("click",()=>{
+            getEle("option__nhanvien").classList.toggle("show__option")
+            getEle("select__nhanvien").classList.toggle("radiusSelect")
 
         })
 
-        startDay.forEach(e=>{
+        nhanvien.forEach(e=>{
             e.addEventListener("click",(e)=>{
-              getEle("selectedstartDayModal").innerHTML = e.target.innerText
+              getEle("selectedNhanVienModal").innerHTML = e.target.innerText
             })
         })
-        const endDay = document.querySelectorAll(".endDay")
-        getEle("select__endDay").addEventListener("click",()=>{
-            getEle("option__endDay").classList.toggle("show__option")
-            getEle("select__endDay").classList.toggle("radiusSelect")
+        const giangvien = document.querySelectorAll(".giangvien")
+        getEle("select__giangvien").addEventListener("click",()=>{
+            getEle("option__giangvien").classList.toggle("show__option")
+            getEle("select__giangvien").classList.toggle("radiusSelect")
 
         })
 
-        endDay.forEach(e=>{
+        nhanvien.forEach(e=>{
             e.addEventListener("click",(e)=>{
-              getEle("selectedendDayModal").innerHTML = e.target.innerText
+              getEle("selectedGiangVienModal").innerHTML = e.target.innerText
+            })
+        })
+        const phutrachbomon = document.querySelectorAll(".phutrachbomon")
+        getEle("select__phutrachbomon").addEventListener("click",()=>{
+            getEle("option__phutrachbomon").classList.toggle("show__option")
+            getEle("select__phutrachbomon").classList.toggle("radiusSelect")
+
+        })
+
+        phutrachbomon.forEach(e=>{
+            e.addEventListener("click",(e)=>{
+              getEle("selectedBoMonModal").innerHTML = e.target.innerText
+            })
+        })
+        const banchunhiemkhoa = document.querySelectorAll(".banchunhiemkhoa")
+        getEle("select__banchunhiemkhoa").addEventListener("click",()=>{
+            getEle("option__banchunhiemkhoa").classList.toggle("show__option")
+            getEle("select__phutrachbomon").classList.toggle("radiusSelect")
+
+        })
+
+        banchunhiemkhoa.forEach(e=>{
+            e.addEventListener("click",(e)=>{
+              getEle("selectedKhoaModal").innerHTML = e.target.innerText
             })
         })
 
