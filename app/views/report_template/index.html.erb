@@ -979,7 +979,7 @@
                           </div>   
 
                           <div class="select__modalbody" id="select__banchunhiemkhoa">
-                              <p id="selectedKhoaModal">Chọn ban chủ nhiệm khoa</p>
+                              <p id="selectedBanChuNhiemKhoaModal">Chọn ban chủ nhiệm khoa</p>
                               <i class="fa-solid fa-angle-down"></i>
                             <div class="option__modalbody" id="option__banchunhiemkhoa">
                               <p class="banchunhiemkhoa">Ng Văn A</p>
@@ -1109,7 +1109,7 @@ function getEle(id) {
 
         })
 
-        nhanvien.forEach(e=>{
+        giangvien.forEach(e=>{
             e.addEventListener("click",(e)=>{
               getEle("selectedGiangVienModal").innerHTML = e.target.innerText
             })
@@ -1129,13 +1129,13 @@ function getEle(id) {
         const banchunhiemkhoa = document.querySelectorAll(".banchunhiemkhoa")
         getEle("select__banchunhiemkhoa").addEventListener("click",()=>{
             getEle("option__banchunhiemkhoa").classList.toggle("show__option")
-            getEle("select__phutrachbomon").classList.toggle("radiusSelect")
+            getEle("select__banchunhiemkhoa").classList.toggle("radiusSelect")
 
         })
-
+  
         banchunhiemkhoa.forEach(e=>{
             e.addEventListener("click",(e)=>{
-              getEle("selectedKhoaModal").innerHTML = e.target.innerText
+              getEle("selectedBanChuNhiemKhoaModal").innerHTML = e.target.innerText
             })
         })
 
