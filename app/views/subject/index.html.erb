@@ -418,7 +418,7 @@
       border-radius: 12px;
       border: none;
       color: white;
-      background-color: green;
+      background-color: #678ef8;
       cursor: pointer;
     }
     .btn__addfile button p {
@@ -509,18 +509,6 @@
       background-color: white;
       border-radius: 40px;
     }
-    .generality__options button {
-      min-width: 120px;
-      padding: 0px !important;
-      margin: 0px !important;
-      min-height: 70px;
-      display: flex;
-      justify-content: center;
-    }
-    .generality__options button p {
-      padding: 0px;
-      margin: 0px;
-    }
     .popup__SendFeedback {
       position: fixed;
       top: 0;
@@ -591,13 +579,13 @@
       <h1 class="content__name">Quản lý phòng ban</h1>
       <div class="content__generality">
         <div class="generality__options">
-          <div class="btn__addmember">
+          <div class="btn__addfile">
             <button id="open-popup-btn" style="background-color: #DC546C;">
               <p>KHOA</p>
             </button>
           </div>
           <div class="btn__addfile">
-            <%= button_to "BỘ MÔN", faculty_index_path, method: :get, style: "background-color: #EC8C9C;height: 68px;", class: "btn__addfile"%>
+            <%= button_to "BỘ MÔN", faculty_index_path, method: :get, style: "background-color: #EC8C9C;"%>
           </div>
           <div class="btn__addfile">
             <button aria-label="btn__department" id="btn__department" style="background-color: #678EF8;" onclick="showFeedbackPopup()">
@@ -676,14 +664,7 @@
           <div class="popup_body_feedback">
             <div style="border-radius: 12px; margin-bottom: 1rem">
                 <input class="nameGeneralReportForm" placeholder="Nhập tên khoa">
-            </div>
-            <select class="Bộ Môn" style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem">
-              <option value="0" disabled selected hidden>Chọn bộ môn</option>
-              <option value="1">Kỹ thuật phần mềm</option>
-              <option value="2">Vật lý đại cương</option>
-              <option value="3">Đại số tuyến tính</option>
-              <option value="4">Anh văn 1</option>
-            </select>
+            </div>           
           </div>
           <div class="popup_footer_feedback">
             <button

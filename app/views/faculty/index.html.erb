@@ -412,6 +412,7 @@
     .generality__options {
       display: flex;
       align-items: center;
+      justify-content: space-between
     }
     .btn__addmember button {
       display: flex;
@@ -529,18 +530,6 @@
       background-color: white;
       border-radius: 40px;
     }
-    .generality__options button {
-      min-width: 120px;
-      padding: 0px !important;
-      margin: 0px !important;
-      min-height: 70px;
-      display: flex;
-      justify-content: center;
-    }
-    .generality__options button p {
-      padding: 0px;
-      margin: 0px;
-    }
     .popup__SendFeedback {
       position: fixed;
       top: 0;
@@ -611,8 +600,8 @@
         <h1 class="content__name">Quản lý phòng ban</h1>
         <div class="content__generality">
           <div class="generality__options">
-            <div class="btn__addmember">
-              <%= button_to "KHOA", subject_index_path, method: :get, style: "background-color: #EC8C9C;height: 68px;"%>
+            <div class="btn__addfile">
+              <%= button_to "KHOA", subject_index_path, method: :get, style: "background-color: #EC8C9C;"%>
             </div>
             <div class="btn__addfile">
               <button id="open-popup-btn" style="background-color: #DC546C;">
@@ -697,16 +686,16 @@
               ></i>
           </div>
           <div class="popup_body_feedback">
-            <div style="border-radius: 12px; margin-bottom: 1rem">
-              <input class="nameGeneralReportForm" placeholder="Nhập tên bộ môn">
-            </div>
-            <select class="Khoa" style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem">
+            <select class="Khoa" style="border-radius: 12px; padding: 0.8em; margin-bottom: 1rem">
               <option value="0" disabled selected hidden>Chọn khoa</option>
               <option value="1">Công nghệ thông tin</option>
               <option value="2">Kế toán</option>
               <option value="3">Quản trị kinh doanh</option>
               <option value="4">Thiết kế thời trang</option>
-            </select>        
+            </select>
+            <div style="border-radius: 12px; margin-bottom: 1rem">
+              <input class="nameGeneralReportForm" placeholder="Nhập tên bộ môn">
+            </div>                  
           </div>
           <div class="popup_footer_feedback">
             <button

@@ -917,7 +917,7 @@
               Thời gian sửa
             </th>
             <th>
-              trang thai
+              Trạng thái
             </th>
             <th>
             </th>
@@ -929,7 +929,7 @@
               <td><%= r.role %></td>
               <td><%= r.created_at.strftime('%d/%m/%Y %T') %></td>
               <td><%= r.updated_at.strftime('%d/%m/%Y %T') %></td>
-              <td><%= r.is_apply ? 'duyet' : 'nhap'%></td>
+              <td><%= r.is_apply ? 'Duyệt' : 'Nháp'%></td>
               <td>             
                 <%= link_to report_template_path(r), style: "text-decoration:none" do %>
                   <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
