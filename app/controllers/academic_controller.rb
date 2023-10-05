@@ -4,4 +4,8 @@ class AcademicController < ApplicationController
   def index
     @academic = Academic.all.order(:created_at)
   end
+
+  def show 
+    @academic = Academic.find(params[:id])
+  end
 end
