@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_04_162155) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_05_160746) do
+  create_table "academics", force: :cascade do |t|
+    t.string "name"
+    t.integer "staff_report_id"
+    t.integer "subject_report_id"
+    t.integer "faculty_report_id"
+    t.integer "teacher_report_id"
+    t.string "report_type"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "faculties", force: :cascade do |t|
     t.string "name"
     t.integer "uid"
@@ -64,6 +77,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_162155) do
     t.text "data"
     t.string "year"
     t.string "role"
+    t.string "name"
+    t.bigint "report_template_id"
+    t.index ["report_template_id"], name: "index_reports_on_report_template_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 

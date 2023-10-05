@@ -792,8 +792,8 @@
           <div class="popup_foiter">
             <button id="btn__closeBaocao" style="background-color: #dc546c;">HỦY</button>
             <%= button_to report_template_submit_report_temp_path(@report_template), method: :put, style: "background-color: #f4924b;" do %>
-                <p>GỬI</p>
-                <% end %>
+              <p>GỬI</p>
+            <% end %>
           </div>
         </div>
       </div>
@@ -922,8 +922,8 @@
           processData: false,
           method: 'PUT',
           success: function(data){
-              alert("chinh sua thanh cong");
-              window.location.replace("/report_template_management");
+            alert("chinh sua thanh cong");
+            window.location.replace("/report_template_management");
           }
         });
       }

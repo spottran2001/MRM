@@ -930,18 +930,18 @@
                           <p>Tên kỳ báo cáo</p>
                         </div>
                         <div>
-                          <input class="nameGeneralReportForm" placeholder="Nhập tên kỳ báo cáo">
+                          <input class="nameGeneralReportForm" placeholder="Nhập tên kỳ báo cáo" id="academicName">
                         </div>
                       </div>
                   </div>
                   <div class="contentTimeCreate" style="padding-bottom: 1rem">
                     <div class="contentTimeCreateLeft">   
                       <p>Thời gian bắt đầu</p>                 
-                      <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem">                        
+                      <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem" id="academicStart">                        
                     </div>
                     <div class="contentTimeCreateRight">   
                       <p>Thời gian kết thúc</p>                 
-                      <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem">                        
+                      <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem" id="academicEnd">                        
                     </div>
                   </div>  
                   
@@ -952,9 +952,9 @@
                               <p id="selectedNhanVienModal">Chọn mẫu báo cáo nhân viên</p>
                               <i class="fa-solid fa-angle-down"></i>
                             <div class="option__modalbody" id="option__nhanvien">
-                              <p class="nhanvien">Biểu mẫu nhân viên 1</p>
-                              <p class="nhanvien">Biểu mẫu nhân viên 2</p>
-                              <p class="nhanvien">Biểu mẫu nhân viên 3</p>
+                              <% Report.all.each do |r| %>
+                                <p class="nhanvien" value="<%= r.id %>"> <%= r.name %> </p>
+                              <% end %>
                             </div>
                           </div> 
                         </div>
@@ -964,9 +964,9 @@
                               <p id="selectedGiangVienModal">Chọn mẫu báo cáo giảng viên</p>
                               <i class="fa-solid fa-angle-down"></i>
                             <div class="option__modalbody" id="option__giangvien">
-                              <p class="giangvien">Biểu mẫu giảng viên 1</p>
-                              <p class="giangvien">Biểu mẫu giảng viên 2</p>
-                              <p class="giangvien">Biểu mẫu giảng viên 3</p>
+                              <% Report.all.each do |r| %>
+                                <p class="giangvien" value="<%= r.id %>"> <%= r.name %> </p>
+                              <% end %>
                             </div>
                           </div>   
                         </div>
@@ -976,9 +976,9 @@
                               <p id="selectedBoMonModal">Chọn mẫu báo cáo phụ trách bộ môn</p>
                               <i class="fa-solid fa-angle-down"></i>
                             <div class="option__modalbody" id="option__phutrachbomon">
-                              <p class="phutrachbomon">Biểu mẫu phụ trách bộ môn 1</p>
-                              <p class="phutrachbomon">Biểu mẫu phụ trách bộ môn 2</p>
-                              <p class="phutrachbomon">Biểu mẫu phụ trách bộ môn 3</p>
+                              <% Report.all.each do |r| %>
+                                <p class="phutrachbomon" value="<%= r.id %>"> <%= r.name %> </p>
+                              <% end %>
                             </div>
                           </div>   
                         </div>
@@ -987,19 +987,17 @@
                           <p id="selectedBanChuNhiemKhoaModal">Chọn mẫu báo cáo ban chủ nhiệm khoa</p>
                           <i class="fa-solid fa-angle-down"></i>
                           <div class="option__modalbody" id="option__banchunhiemkhoa">
-                            <p class="banchunhiemkhoa">Biểu mẫu phụ trách khoa 1</p>
-                            <p class="banchunhiemkhoa">Biểu mẫu phụ trách khoa 2</p>
-                            <p class="banchunhiemkhoa">Biểu mẫu phụ trách khoa 3</p>
+                            <% Report.all.each do |r| %>
+                              <p class="banchunhiemkhoa" value="<%= r.id %>"> <%= r.name %> </p>
+                            <% end %>
                           </div>
                         </div>                                                         
-                       
-
                       </div>
                                                            
                   </ul>
                   <div class="body__btn">
                     <button class="btn__modal" id="btn__closeModal">HỦY</button>
-                    <button class="btn__modal">LƯU</button>
+                    <button class="btn__modal" id="academicSubmit">LƯU</button>
                   </div>
                 </div>
               </div>
@@ -1128,6 +1126,19 @@ function getEle(id) {
               getEle("selectedBanChuNhiemKhoaModal").innerHTML = e.target.innerText
             })
         })
-
+    $(document.getElementsByClassName("nhanvien")).each(function(){
+      this.addEventListener("click",(e)=>{
+        document.getElementById("selectedNhanVienModal").setAttribute("key", this.getAttribute("value"))
+      })
+    })
+    document.getElementById("academicSubmit").addEventListener("click", ()=> {
+      let name = document.getElementById("academicName").value
+      let start_date = document.getElementById("academicStart").value
+      let end_data = document.getElementById("academicEnd").value
+      let staff_id = document.getElementById("selectedNhanVienModal").value
+      let teacher_id = document.getElementById("selectedGiangVienModal").value
+      let subject_id = document.getElementById("selectedBoMonModal").value
+      let faculty_id = document.getElementById("selectedBanChuNhiemKhoaModal").value
+    })
   </script>
 </html>

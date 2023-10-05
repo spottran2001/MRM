@@ -607,19 +607,21 @@
             <th>
             </th>
           </tr>
-          <tr class="content__table_body">
-            <td>1</td>
-            <td>Biểu mẫu nhân viên</td>
-            <td>Nhân viên</td>
-            <td>22/10/2023 02:00PM</td>
-            <td>22/10/2023 02:00AM</td>
-            <td>Duyệt</td>
-            <td>
-              <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
-              <button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>
-              <%#<button class="btn" aria-label="btn"><i class="fa-solid fa-trash"></i></button>%>
-            </td>
-          </tr>
+          <% @report.each do |r|%>
+            <tr class="content__table_body">
+              <td><%= r.id %></td>
+              <td><%= r.name%></td>
+              <td><%= r.report_type%></td>
+              <td><%= r.created_at.strftime('%d/%m/%Y %T')%></td>
+              <td><%= r.updated_at.strftime('%d/%m/%Y %T')%></td>
+              <td><%= r.status %></td>
+              <td>
+                <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
+                <button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>
+                <%#<button class="btn" aria-label="btn"><i class="fa-solid fa-trash"></i></button>%>
+              </td>
+            </tr>
+          <% end %>
           
         </table>
         <%#<div class="container__board">
