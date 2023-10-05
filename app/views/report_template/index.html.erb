@@ -1131,6 +1131,21 @@ function getEle(id) {
         document.getElementById("selectedNhanVienModal").setAttribute("key", this.getAttribute("value"))
       })
     })
+    $(document.getElementsByClassName("giangvien")).each(function(){
+      this.addEventListener("click",(e)=>{
+        document.getElementById("selectedGiangVienModal").setAttribute("key", this.getAttribute("value"))
+      })
+    })
+    $(document.getElementsByClassName("phutrachbomon")).each(function(){
+      this.addEventListener("click",(e)=>{
+        document.getElementById("selectedBoMonModal").setAttribute("key", this.getAttribute("value"))
+      })
+    })
+    $(document.getElementsByClassName("banchunhiemkhoa")).each(function(){
+      this.addEventListener("click",(e)=>{
+        document.getElementById("selectedBanChuNhiemKhoaModal").setAttribute("key", this.getAttribute("value"))
+      })
+    })
     document.getElementById("academicSubmit").addEventListener("click", ()=> {
       let name = document.getElementById("academicName").value
       let start_date = document.getElementById("academicStart").value
