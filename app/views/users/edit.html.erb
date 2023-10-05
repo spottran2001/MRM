@@ -458,8 +458,6 @@
     .info__list li span {
       width: 12px;
       height: 12px;
-      border: 1px solid gray;
-      border-radius: 50%;
     }
     .info__user_img {
       position: absolute;
@@ -553,13 +551,13 @@
                 <li>
                   <span></span>
                   <p style="margin-right: 5.5rem" >SĐT</p>
-                  <%= f.input :phone_number, label: false, required: false, input_html: { autocomplete: "phone-number", style: "padding: 0.5rem; border-radius: 12px; width: 125%" }%>
+                  <%= f.input :phone_number, label: false, required: false, input_html: { autocomplete: "phone-number", style: "padding: 0.5rem; border-radius: 12px" }%>
                 </li>
                 <li>
                   <span></span>
                   <p style="margin-right: 5rem" >Khoa</p>
                   <%#<%= @user.faculty&.name || "N/A" %>
-                  <select class="userFacculty" id="userRole" style="width: 20%">
+                  <select class="userFacculty" id="userRole">
                     <% Subject.all.each do |s| %>
                       <option value="<%= s.id %>"><%= s.name %></option>
                     <% end %>
@@ -569,7 +567,7 @@
                   <span></span>
                   <p style="margin-right: 3.5rem">Bộ môn</p>
                   <%#<%= @user.subject&.name || "N/A" %>
-                  <select class="userSuject" id="userRole" style="width: 20%">
+                  <select class="userSuject" id="userRole">
                     <% Faculty.all.each do |f| %>
                       <option value="<%= f.id %>"><%= f.name %></option>
                     <% end %>
@@ -602,7 +600,7 @@
                 <li>
                   <span></span>
                   <p style="margin-right: 4rem;">Đơn vị</p>               
-                  <select class="userUnit" id="userRole" style="width: 20%">
+                  <select class="userUnit" id="userRole">
                     <option value="1">VLU</option>
                     <option value="2">VL Tech</option>
                   </select>
