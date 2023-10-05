@@ -65,7 +65,13 @@ class ReportTemplateController < ApplicationController
     #@report_template.update(is_apply: true)
     ActiveRecord::Base.transaction do 
       #YearTemplate(staff_template_id, subject_template_id, faculty_template_id, teacher_template_id,start_date, end_date, deadline)
-      staff_template_id, subject_template_id, faculty_template_id, teacher_template_id,start_date, end_date, deadline = ''
+      staff_template_id = params["staff_id"]
+      subject_template_id = params["subject_id"]
+      faculty_template_id = params["faculty_id"]
+      teacher_template_id = params["teacher_id"]
+      start_date = params["start_date"]
+      end_date = params["end_date"]
+      name = params["name"]
       staff_template = ReportTemplate.find(staff_template_id)
       subject_template = ReportTemplate.find(subject_template_id)
       faculty_template = ReportTemplate.find(faculty_template_id)
@@ -76,13 +82,13 @@ class ReportTemplateController < ApplicationController
         name: name
       )
       User.all.each do |u|
-        if u.role.includes?('staff') 
+        if u.role&.include?('staff')
           u.reports.create(data: staff_template.data, year: staff_template.year, role: 'Nhan Vien', name: name, report_template_id: staff_template_id)
-        elsif u.role == 'subject'
+        elsif u.role&.include?('subject')
           u.reports.create(data: subject_template.data, year: subject_template.year, role: 'Bo mon', name: name, report_template_id: subject_template_id)
-        elsif u.role == 'faculty'
+        elsif u.role&.include?('faculty')
           u.reports.create(data: faculty_template.data, year: faculty_template.year, role: 'Ban chu nhiem khoa', name: name, report_template_id: faculty_template_id)
-        elsif u.role == 'teacher'
+        elsif u.role&.include?('teacher')
           u.reports.create(data: teacher_template.data, year: teacher_template.year, role: 'Giang vien', name: name, report_template_id: teacher_template_id)
         end
       end

@@ -546,7 +546,7 @@
       </div>
     <% end %>
   <% end %>
-  <%= link_to report_template_index_path, class: "menu__items" do %>
+  <%= link_to academic_index_path, class: "menu__items" do %>
     <div class="menu__items">
       <div class="menu__icon  ">
         <i class="fa-regular fa-calendar"></i>  
@@ -636,7 +636,7 @@
       </div>
     <% end %>
   <% end %>
-  <div class="menu__items" style="margin: 32px 0px;">
+  <%= link_to academic_index_path, class: "menu__items", style: "margin: 32px 0px;" do %>
     <div class="menu__icon" id="report">
       <div class="menu__dropdown_icon">
         <i class="fa-regular fa-calendar"></i>
@@ -646,6 +646,8 @@
         <i class="fa-solid fa-angle-up"></i>
         </div>%>
     </div>
+  <% end %>
+
     <%#<nav class="menu__dropdown_nav">
       <ul class="menu__dropdown_list">
           <li>Nhân Viên</li>
@@ -654,7 +656,6 @@
           <li>Ban Chủ Nhiệm Khoa</li>
       </ul>
       </nav>%>
-  </div>
   <div class="menu__items" style="margin: 32px 0px;">
     <div class="menu__icon  ">
       <div class="menu__dropdown_icon">

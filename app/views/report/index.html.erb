@@ -610,15 +610,18 @@
           <% @report.each do |r|%>
             <tr class="content__table_body">
               <td><%= r.id %></td>
-              <td><%= r.name%></td>
-              <td><%= r.report_type%></td>
-              <td><%= r.created_at.strftime('%d/%m/%Y %T')%></td>
-              <td><%= r.updated_at.strftime('%d/%m/%Y %T')%></td>
+              <td><%= r.name %></td>
+              <td><%= r.role %></td>
+              <td><%= r.created_at.strftime('%d/%m/%Y %T') %></td>
+              <td><%= r.updated_at.strftime('%d/%m/%Y %T') %></td>
               <td><%= r.status %></td>
               <td>
-                <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
-                <button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>
-                <%#<button class="btn" aria-label="btn"><i class="fa-solid fa-trash"></i></button>%>
+                <%= link_to report_path(r), class: "btn yellow" do %>
+                  <i class="fa-regular fa-file"></i>
+                <% end %>
+                <%= link_to edit_report_path(r), class: "btn yellow" do %>
+                  <i class="fa-solid fa-pen"></i>
+                <% end %>
               </td>
             </tr>
           <% end %>

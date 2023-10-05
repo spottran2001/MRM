@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   resources :report_template do
     put 'submit_report_temp', to: 'report_template#submit_report'
   end
+  post 'report_template/apply_temple', to: 'report_template#apply_temple'
   resources :faculty
+  resources :academic
   resources :subject
   resources :report do
     put "submit_report", to: "report#submit_report!"

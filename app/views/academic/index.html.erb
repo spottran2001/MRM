@@ -952,7 +952,7 @@
                               <p id="selectedNhanVienModal">Chọn mẫu báo cáo nhân viên</p>
                               <i class="fa-solid fa-angle-down"></i>
                             <div class="option__modalbody" id="option__nhanvien">
-                              <% Report.all.each do |r| %>
+                              <% ReportTemplate.all.each do |r| %>
                                 <p class="nhanvien" value="<%= r.id %>"> <%= r.name %> </p>
                               <% end %>
                             </div>
@@ -964,7 +964,7 @@
                               <p id="selectedGiangVienModal">Chọn mẫu báo cáo giảng viên</p>
                               <i class="fa-solid fa-angle-down"></i>
                             <div class="option__modalbody" id="option__giangvien">
-                              <% Report.all.each do |r| %>
+                              <% ReportTemplate.all.each do |r| %>
                                 <p class="giangvien" value="<%= r.id %>"> <%= r.name %> </p>
                               <% end %>
                             </div>
@@ -976,7 +976,7 @@
                               <p id="selectedBoMonModal">Chọn mẫu báo cáo phụ trách bộ môn</p>
                               <i class="fa-solid fa-angle-down"></i>
                             <div class="option__modalbody" id="option__phutrachbomon">
-                              <% Report.all.each do |r| %>
+                              <% ReportTemplate.all.each do |r| %>
                                 <p class="phutrachbomon" value="<%= r.id %>"> <%= r.name %> </p>
                               <% end %>
                             </div>
@@ -987,7 +987,7 @@
                           <p id="selectedBanChuNhiemKhoaModal">Chọn mẫu báo cáo ban chủ nhiệm khoa</p>
                           <i class="fa-solid fa-angle-down"></i>
                           <div class="option__modalbody" id="option__banchunhiemkhoa">
-                            <% Report.all.each do |r| %>
+                            <% ReportTemplate.all.each do |r| %>
                               <p class="banchunhiemkhoa" value="<%= r.id %>"> <%= r.name %> </p>
                             <% end %>
                           </div>
@@ -1015,8 +1015,8 @@
           </div>
         </div>
         <div class="container__board">
-          <% @report_templates.each do |r| %>
-          <%= link_to report_template_path(r) do %>
+          <% @academic.each do |r| %>
+          <%= link_to academic_path(r) do %>
           <div class="Frame1" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
             <div class="Rectangle1" style="width: 24px; height: 117px; left: 117px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
             <div class="Rectangle1" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
@@ -1024,7 +1024,7 @@
             <div class="calendar1" style="width: 12px; height: 12px; left: 15px; top: 93px; position: absolute; color: white">
               <i class="fa-regular fa-calendar"></i>
             </div>
-            <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm <%= r.year %></div>
+            <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm </div>
             <div class="Rectangle1" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
             <div class="Rectangle1" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
             <div class="Rectangle1" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
@@ -1131,7 +1131,7 @@ function getEle(id) {
         document.getElementById("selectedNhanVienModal").setAttribute("key", this.getAttribute("value"))
       })
     })
-    $(document.getElementsByClassName("giangvien")).each(function(){
+     $(document.getElementsByClassName("giangvien")).each(function(){
       this.addEventListener("click",(e)=>{
         document.getElementById("selectedGiangVienModal").setAttribute("key", this.getAttribute("value"))
       })
@@ -1146,7 +1146,7 @@ function getEle(id) {
         document.getElementById("selectedBanChuNhiemKhoaModal").setAttribute("key", this.getAttribute("value"))
       })
     })
-    document.getElementById("academicSubmit").addEventListener("click", ()=> {
+   document.getElementById("academicSubmit").addEventListener("click", ()=> {
       let name = document.getElementById("academicName").value
       let start_date = document.getElementById("academicStart").value
       let end_data = document.getElementById("academicEnd").value
