@@ -548,18 +548,31 @@
       </div>
     <% end %>
   <% end %>
-  <%= link_to academic_index_path, class: "menu__items" do %>
-    <div class="menu__items">
-      <div class="menu__icon  ">
-        <i class="fa-regular fa-calendar"></i>  
+  
+  <% if current_user.role == 'admin' %>
+    <%= link_to academic_index_path, class: "menu__items" do %>
+      <div class="menu__items">
+        <div class="menu__icon  ">
+          <i class="fa-regular fa-calendar"></i>  
+        </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <%= link_to report_index_path, class: "menu__items" do %>
+      <div class="menu__items">
+        <div class="menu__icon  ">
+          <i class="fa-regular fa-calendar"></i>  
+        </div>
+      </div>
+    <% end %>
   <% end %>
-  <div class="menu__items">
-    <div class="menu__icon  ">
-      <i class="fa-regular fa-clipboard"></i>
-    </div>
-  </div>
+  <% if current_user.role != 'admin' %>
+    <%= link_to user_path(current_user), class: "menu__items" do %>
+      <div class="menu__icon  ">
+        <i class="fa-regular fa-clipboard"></i>
+      </div>
+    <% end %>
+  <% end %>
   <% if current_user.role == 'admin' %>
     <%= link_to subject_index_path, class: "menu__items" do %>
       <div class="menu__items">
@@ -575,11 +588,13 @@
       </div>
     </div>
     <% end %>
-    <a href="#" class="menu__items">
-      <div class="menu__icon">
-        <i class="fa-solid fa-gear"></i>
-      </div>
-    </a>
+  
+  <a href="#" class="menu__items">
+    <div class="menu__icon">
+      <i class="fa-solid fa-gear"></i>
+    </div>
+  </a>
+  
   <% end %>
     <div class="menu__items">
       <p class="menu__title" style="color: black;">SETTING</p>

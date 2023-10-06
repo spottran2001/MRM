@@ -509,7 +509,7 @@
                   <span></span>
                   <p style="padding-right: 2.4rem">Email</p>
                   <%= @user.email || "N/A" %>
-                </li>
+                </li> 
                 <li>
                   <span></span>
                   <p style="padding-right: 2rem">Mã số</p>
@@ -548,7 +548,7 @@
           <div class="info__user_img">
             <%= image_tag("https://toigingiuvedep.vn/wp-content/uploads/2021/07/hinh-ve-don-gian-va-de-thuong-nhat.jpg")%>
           </div>
-          <div class="btn_edit-info">
+          <div class="btn_edit-info d-none">
             <%= button_to  "CHỈNH SỬA" ,edit_user_path(@user), method: :get%>
           </div>
         </div>

@@ -822,11 +822,11 @@
             <td> <%= u.id %> </td>
             <td> <%= u.name %> </td>
             <td> <%= u.email %> </td>
-            <td> <%= u.role || "N/A"  %> </td>
-            <td> <%= u.subject || "N/A"  %> </td>
+            <td> <%= u.get_role.split(",").join(", ") || "N/A"  %> </td>
+            <td> <%= u.subject.name || "N/A"  %> </td>
             <td>
               <%#<p class="approve" style="background-color: #C4C4C4;color: black;"><%= u.faculty || "N/A" ></p>%>
-              <%= u.faculty || "N/A" %>
+              <%= u.faculty.name || "N/A" %>
             </td>
             <td>
               <%= button_to edit_user_path(u), method: :get, style: "background-color: #FFBF24", class: "btn btn-secondary" do %>
