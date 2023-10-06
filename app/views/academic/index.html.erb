@@ -12,11 +12,13 @@
     body {
       height: 100%;
       margin: 0;
+      overflow: hidden
     }
     .container {
       display: flex;
       height: 100%;
       max-width: 100%;
+      padding: 0px;
     }
     * {
       margin: 0;
@@ -784,6 +786,7 @@
       color: black;
       font-weight: 500;
       letter-spacing: 0.3;
+      margin-bottom: 0px
     }
     .body__content ul li {
       display: flex;
@@ -832,6 +835,8 @@
       z-index: 10;
       display: none;
       user-select: none;
+      overflow-Y: scroll;
+      height: 150px
     }
     .option__modalbody p {
       padding: 14px 20px;
@@ -887,7 +892,7 @@
       <%= render "shared/left_nav"%>
       <div class="content">
         <%= render 'shared/header' %>
-        <h1 class="content__name">Quản lý năm báo cáo</h1>
+        <h1 class="content__name">QUẢN LÝ KỲ BÁO CÁO</h1>
         <div class="content__generality">
           <div class="generality__options">
             <div class="select__options">
@@ -907,8 +912,8 @@
             <div class="btn__CreateReport">
               <div class="btn__CreateReport" style="display: flex; align-items: center; padding: 10px">
               <button aria-label="btn__CreateReport" id="openModalButton" style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
-                <i class="fa-solid fa-plus"></i>
-                <p style="display: flex; align-items: center; ">TẠO KỲ</p>
+                <i class="fa-solid fa-plus" style="display: flex; align-items: center; padding-right: 0.5rem "></i>
+                TẠO KỲ
               </button>
             </div>
             <%#popup tạo kỳ%>
@@ -945,9 +950,10 @@
                     </div>
                   </div>  
                   
-                  <p id="selectedendDayModal">Mẫu báo cáo theo vai trò</p>
+                  <p id="selectedendDayModal">Mẫu báo cáo theo vai trò: </p>
                       <div class="select_role" id="select_vaitro" style="padding-bottom: 1rem">
                         <div class="content_nhanvien">
+                          <p style="padding-right: 1rem; margin-bottom: 0rem; width: 100%;  display: flex; align-items: center">1. Nhân viên</p> 
                           <div class="select__modalbody" id="select__nhanvien" >
                               <p id="selectedNhanVienModal">Chọn mẫu báo cáo nhân viên</p>
                               <i class="fa-solid fa-angle-down"></i>
@@ -959,6 +965,7 @@
                           </div> 
                         </div>
 
+                        <p style="padding-right: 1rem; margin-bottom: 0rem; width: 100%;  display: flex; align-items: center">2. Giảng viên</p> 
                         <div class="content_nhanvien">
                           <div class="select__modalbody" id="select__giangvien">
                               <p id="selectedGiangVienModal">Chọn mẫu báo cáo giảng viên</p>
@@ -971,6 +978,7 @@
                           </div>   
                         </div>
 
+                        <p style="padding-right: 1rem; margin-bottom: 0rem; width: 100%;  display: flex; align-items: center">3. Phụ trách bộ môn</p> 
                         <div class="content_nhanvien">
                           <div class="select__modalbody" id="select__phutrachbomon">
                               <p id="selectedBoMonModal">Chọn mẫu báo cáo phụ trách bộ môn</p>
@@ -983,6 +991,7 @@
                           </div>   
                         </div>
 
+                        <p style="padding-right: 1rem; margin-bottom: 0rem; width: 100%;  display: flex; align-items: center">4. Ban chủ nhiệm Khoa</p> 
                         <div class="select__modalbody" id="select__banchunhiemkhoa">
                           <p id="selectedBanChuNhiemKhoaModal">Chọn mẫu báo cáo ban chủ nhiệm khoa</p>
                           <i class="fa-solid fa-angle-down"></i>

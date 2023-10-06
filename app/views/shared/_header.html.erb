@@ -519,6 +519,31 @@
     background-color: white;
     border-radius: 40px;
   }
+  .notifi__Item {
+  padding: 10px;
+  }
+  .notifi__Item i {
+  color: white;
+  }
+  .notifi__mess {
+    background-color: #5cbd4c;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 14px 22px;
+  }
+  .mess_content p:first-child {
+  color: white;
+  font-size: 18px;
+  }
+
+  .mess_content p:last-child {
+    font-size: 14px;
+    color: white;
+    margin-top: 10px;
+  }
 </style>
 <div class="content__title">
   <div class="content__breadcrumb">
@@ -533,7 +558,7 @@
       <% end %>
       <div id="userNotifi" class="d-none">
         <% current_user.notifications.each do |noti|%>
-        <div class="notifi__Item">
+        <div id="notifi-content" class="notifi__Item" >
           <div class="notifi__mess">
             <i class="fa-solid fa-check"></i>
             <div class="mess_content">
@@ -559,11 +584,11 @@
 </div>
 
 <script>
-  document.getElementById('notification-button').addEventListener('click', ()=> {
-    if (document.getElementById('userNotifi').classList.contains('d-none')){
-      document.getElementById('userNotifi').classList.remove('d-none')
-    }else{
-      document.getElementById('userNotifi').classList.add('d-none')
-    }
-  })
+  const userIcon = document.querySelector(.userIcon);
+  const userNotifi = document.querySelector(.userNotifi);
+  userIcon.addEventListener("click", () => {
+    userIcon.classList.toggle("color__primary");
+    userNotifi.classList.toggle("Notify__block");
+  });
 </script>
+

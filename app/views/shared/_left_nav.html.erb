@@ -286,6 +286,7 @@
     margin-top: 0px;
     display: flex;
     align-items: center;
+    margin-bottom: 5px
   }
   .active {
     color: #d72134 !important;
@@ -347,6 +348,7 @@
   .regime__light p,
   .regime__dark p {
     margin-left: 10px;
+    margin-bottom:5px
   }
   /* Toggle */
   #statistics .show {
@@ -601,7 +603,7 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Logo_VLU_2022.png" alt="">
   </div>
   <p class="menu__title">MENU</p>
-  <div class="menu__items">
+  <div class="menu__items" style="margin: 30px 0px;">
     <div class="menu__icon " id="statistics">
       <div class="menu__dropdown_icon">
         <i class="fa-solid fa-chart-simple"></i>
@@ -621,7 +623,7 @@
       </nav>%>
   </div>
   <% if current_user.role == 'admin' %>
-    <%= link_to report_template_management_path, class: "menu__items", style: "margin: 32px 0px;" do %>
+    <%= link_to report_template_management_path, class: "menu__items" ,style:"margin: 30px 0px;" do %>
       <div class="menu__icon  ">
         <div class="menu__dropdown_icon">
           <i>
@@ -636,7 +638,7 @@
       </div>
     <% end %>
   <% end %>
-  <%= link_to academic_index_path, class: "menu__items", style: "margin: 32px 0px;" do %>
+  <%= link_to academic_index_path, class: "menu__items", style:"margin: 30px 0px;" do %>
     <div class="menu__icon" id="report">
       <div class="menu__dropdown_icon">
         <i class="fa-regular fa-calendar"></i>
@@ -656,7 +658,7 @@
           <li>Ban Chủ Nhiệm Khoa</li>
       </ul>
       </nav>%>
-  <div class="menu__items" style="margin: 32px 0px;">
+  <div class="menu__items" style="margin: 30px 0px;">
     <div class="menu__icon  ">
       <div class="menu__dropdown_icon">
         <i class="fa-regular fa-clipboard"></i>            
@@ -675,7 +677,7 @@
     </div>
     </div>%>
   <% if current_user.role == 'admin' %>
-    <div class="menu__items" style="margin: 32px 0px;">
+    <div class="menu__items" style="margin: 30px 0px;">
       <div class="menu__icon  ">
         <div class="menu__dropdown_icon">
           <i class="fa-solid fa-boxes-stacked"></i>
@@ -683,7 +685,7 @@
         </div>
       </div>
     </div>
-    <%= link_to users_url, class: "menu__items menu__items--separation",style:"margin: 18px 0px 32px 0px;" do %>
+    <%= link_to users_url, class: "menu__items menu__items--separation",style:"margin: 30px 0px;" do %>
     <div class="menu__icon">
       <div class="menu__dropdown_icon">
         <i class="fa-regular fa-user"></i>
@@ -691,7 +693,7 @@
       </div>
     </div>
     <% end %>
-    <div class="menu__items" style="margin: 18px 0px 32px 0px;">
+    <div class="menu__items" style="margin: 30px 0px;">
       <div class="menu__icon">
         <div class="menu__dropdown_icon">
           <i class="fa-solid fa-gear"></i>
@@ -700,7 +702,7 @@
       </div>
     </div>
   <% end %>
-  <div class="menu__items" style="margin-top: 90px;cursor: default;">
+  <div class="menu__items">
     <p class="menu__title" style="color: black;">SETTING</p>
     <div class="menu__regime">
       <div class="regime__light" style="cursor: pointer;">

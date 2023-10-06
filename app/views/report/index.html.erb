@@ -11,11 +11,13 @@
     body {
       margin: 0;
       height: 100%;
+      overflow: hidden;
     }
     .container {
       display: flex;
       height: 100%;
       max-width: 100% !important;
+      padding: 0px;
     }
     /* Notification User */
     .user_icon {
@@ -569,12 +571,12 @@
       <%= render "shared/left_nav"%>
       <div class="content">
         <%= render 'shared/header' %>
-        <h1 class="content__name">Quản lý năm báo cáo</h1>
+        <h1 class="content__name">DANH SÁCH KỲ BÁO CÁO</h1>
         <div class="content__generality" >
           <div class="btn__CreateReport">
             <button aria-label="btn__CreateReport" id="openModalButton" style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
-              <i class="fa-solid fa-plus"></i>
-              <p style="display: flex; align-items: center; ">TẠO KỲ</p>
+              <i class="fa-solid fa-plus" style="padding-right: 0.5rem"></i>
+              TẠO KỲ
             </button>
           </div>
           <div class="generality__search">
@@ -616,7 +618,7 @@
               <td><%= r.updated_at.strftime('%d/%m/%Y %T') %></td>
               <td><%= r.status %></td>
               <td>
-                <%= link_to report_path(r), class: "btn yellow" do %>
+                <%= link_to report_path(r), class: "btn gold" do %>
                   <i class="fa-regular fa-file"></i>
                 <% end %>
                 <%= link_to edit_report_path(r), class: "btn yellow" do %>

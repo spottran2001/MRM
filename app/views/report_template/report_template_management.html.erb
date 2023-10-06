@@ -12,11 +12,13 @@
     body {
       height: 100%;
       margin: 0;
+      overflow: hidden
     }
     .container {
       display: flex;
       max-height: 100vh;
       max-width: 100%;
+      padding: 0px;
     }
     * {
       margin: 0;
@@ -72,6 +74,7 @@
       background-color: #f5f5f5;
       width: 100%;
       padding: 30px 60px 20px 30px;
+      overflow-Y: scroll 
     }
     .content__title {
       display: flex;
@@ -196,10 +199,6 @@
       color: white;
       padding: 20px 10px;
     }
-    .content__table_header {
-      background-color: #dc546c;
-      font-size: 16px;
-    }
     .content__table-checkbox {
       margin-top: 4px;
     }
@@ -208,6 +207,19 @@
     }
     .content__table_body {
       font-size: 16px;
+      background-color: #E5E5E5;
+    }
+    th {
+    background-color: #dc546c;
+    color: white; /* Để làm cho văn bản trắng trên nền đỏ */
+    }
+    /* Định dạng hàng chẵn */
+    tr:nth-child(even) {
+    background-color: #F1F1F1;
+    }
+    /* Định dạng hàng lẻ */
+    tr:nth-child(odd) {
+      background-color: #E5E5E5;
     }
     .checkbox-row {
       display: flex;
@@ -881,12 +893,12 @@
       <%= render "shared/left_nav"%>
       <div class="content">
         <%= render 'shared/header' %>
-        <h1 class="content__name">Quản lý biểu mẫu báo cáo chung</h1>
+        <h1 class="content__name">QUẢN LÝ BIỂU MẪU BÁO CÁO CHUNG</h1>
         <div class="content__generality">
           <div class="generality__options">
             <div class="btn__CreateReport" style="display: flex; align-items: center; padding: 10px">
-            <%= button_to new_report_template_path, method: :get, style: "box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25); height: 100px", class: "btn__CreateReport  d-flex justify-content-center" do %>
-              <i class="fa-solid fa-plus"></i>
+            <%= button_to new_report_template_path, method: :get, style: "box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);", class: "btn__CreateReport  d-flex justify-content-center" do %>
+              <i class="fa-solid fa-plus" style=" padding-right: 0.5rem"></i>
               TẠO BIỂU MẪU CHUNG
             <% end %>
             </div>
@@ -895,7 +907,7 @@
             <div class="generality__search_icon">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <input type="text" placeholder="Tìm kiếm kỳ báo cáo">
+            <input type="text" placeholder="Tìm kiếm kỳ báo cáo" disabled>
           </div>
         </div>
         
