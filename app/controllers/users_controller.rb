@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     if params["current_user_role"].include?('admin')
       @user.update!(role: role.join(','), phone_number: params['phoneNumber'], faculty_id: params['faculty'] ,subject_id: params['subject'] )
     else
-      @user.update!(phone_number: paramsparams['phoneNumber']) #add this column to database!
+      @user.update!(phone_number: params['phoneNumber']) #add this column to database!
     end
   end
 
