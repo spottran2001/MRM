@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :users do
     put "read_notifications", to: "users#read_notification"
+    put "report_apply"
   end
   get "edit", to: "home#edit"
   get "staff", to: "home#staff"
@@ -19,6 +20,9 @@ Rails.application.routes.draw do
   resources :academic
   resources :subject
   resources :report do
+    put "save_draft", to: 'report#save_draft'
+    put "return_report", to: 'report#return_report'
+    put "report_apply", to: 'report#report_apply'
     put "submit_report", to: "report#submit_report!"
   end
   root 'users#show'

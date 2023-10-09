@@ -76,25 +76,24 @@ class ReportTemplateController < ApplicationController
       subject_template = ReportTemplate.find(subject_template_id)
       faculty_template = ReportTemplate.find(faculty_template_id)
       teacher_template = ReportTemplate.find(teacher_template_id)
-      academic = Academic.create(
+      report_type = ReportType.find_by(name_type: 'khoi tao', report_type: 'chua bao cao')
+      User.where(role: ['staff', 'subject', 'faculty', 'teach']).each do |u|
+        if u.role == 'staff'
+          u.reports.create(data: staff_template.data, year: staff_template.year, role: staff_template.role, name: name, report_types_id: report_type.id)
+        elsif u.role == 'subject'
+          u.reports.create(data: subject_template.data, year: subject_template.year, role: subject_template.role, name: name, report_types_id: report_type.id)
+        elsif u.role == 'faculty'
+          u.reports.create(data: faculty_template.data, year: faculty_template.year, role: faculty_template.role, name: name, report_types_id: report_type.id)
+        elsif u.role == 'teacher'
+          u.reports.create(data: teacher_template.data, year: teacher_template.year, role: teacher_template.role, name: name, report_types_id: report_type.id)
+        end
+      end
+
+      Academic.create(
         staff_report_id: staff_template_id, subject_report_id: subject_template_id,
         faculty_report_id: faculty_template_id, teacher_report_id: teacher_template_id,
         name: name
       )
-      User.all.each do |u|
-        if u.role&.include?('staff')
-          u.reports.create(data: staff_template.data, year: staff_template.year, role: 'Nhan Vien', name: name, report_template_id: staff_template_id)
-        end
-        if u.role&.include?('subject')
-          u.reports.create(data: subject_template.data, year: subject_template.year, role: 'Bo mon', name: name, report_template_id: subject_template_id)
-        end
-        if u.role&.include?('faculty')
-          u.reports.create(data: faculty_template.data, year: faculty_template.year, role: 'Ban chu nhiem khoa', name: name, report_template_id: faculty_template_id)
-        end
-        if u.role&.include?('teacher')
-          u.reports.create(data: teacher_template.data, year: teacher_template.year, role: 'Giang vien', name: name, report_template_id: teacher_template_id)
-        end
-      end
     end
   end
 

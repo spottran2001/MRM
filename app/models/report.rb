@@ -1,9 +1,12 @@
 class Report < ApplicationRecord
+  extend Enumerize
+
   belongs_to :user
   belongs_to :submiter_admin, class_name: 'User', foreign_key: 'submiter_id', primary_key: 'id', optional: true
   belongs_to :returner_admin, class_name: 'User', foreign_key: 'returner_id', primary_key: 'id', optional: true
   has_many :report_details
   belongs_to :report_template
+  belongs_to :report_type
 
   # validate :check_subject
 
