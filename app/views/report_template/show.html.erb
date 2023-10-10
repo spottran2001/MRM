@@ -738,7 +738,7 @@
         <% @report_template_title.keys.each_with_index do |key, index|%>
         <table class="content__table" style="border-radius: 0px;" >
           <thead>
-            <tr class="content__table_header"  style="background-color: #f4924b;" onclick="showTableList(this)">
+            <tr class="content__table_header"  style="background-color: #006D77;" onclick="showTableList(this)">
               <th class="first_column" style="border: none;text-align: right;padding: 0;">
               </th>
               <th class="tableHeader" colspan="<%= @report_template_title[key].first.last.values.last.length+1 %>" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none; border-top:none; border-left:none; border-right:none">
@@ -748,7 +748,7 @@
           </thead>
           <% @report_template_title[key].each do |k, v|%>
           <tbody class="tableBody">
-            <tr class="content__table_header">
+            <tr class="content__table_header"  style="background-color: #83C5BE;">
               <th class="first_column" style="border: none;text-align: right;padding: 0;">
               </th>
               <th class="first_thread_content">

@@ -459,7 +459,7 @@
       flex-direction: row;
     }
     .user-left {
-      padding-right: 5rem;
+      padding-right: 20rem;
     }
     .info__list li {
       display: flex;
@@ -549,7 +549,8 @@
         <div class="container__info" style="height: 780px;">
           <div class="info__img">
             <div class="content__img">
-            <%= image_tag("Bird.jpg") %>        
+              <%= image_tag("Bird.jpg") %>    
+            </div>    
           </div>
           <%= simple_form_for @user, method: :put, url: user_path(@user) do |f| %>
           <div class="info__content" style="padding: 100px 0px 50px 180px;">
@@ -638,7 +639,7 @@
             <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo" alt="">
           </div>
           <div class="btn_edit-info">
-            <button style= "padding: 10px 20px;border: none; cursor: pointer; outline: none; background-color: #DC546C; border-radius: 12px; color: white; position: absolute; top: 550px; left: 970px; display: flex; flex-direction: row; align-items: center; width: 180px;" type="button" id="userEditButton">
+            <button style= "padding: 10px 20px;border: none; cursor: pointer; outline: none; background-color: #DC546C; border-radius: 12px; color: white; position: absolute; top: 520px; left: 1450px; display: flex; flex-direction: row; align-items: center; width: 180px;" type="button" id="userEditButton">
               <i class="fa-regular fa-floppy-disk" style="padding-right: 0.5rem"></i>
               LƯU CHỈNH SỬA
             </button>
