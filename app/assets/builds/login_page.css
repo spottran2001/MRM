@@ -14,6 +14,9 @@ body{
     justify-content: space-between;
     height: 100vh;
     position: relative;
+    background-image: url(./assets/vlu-sanchinh-a.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 /* HEADER */
 .header{
@@ -31,13 +34,17 @@ body{
     object-fit: contain;
 }
 .header__name{
-    margin-bottom: 12px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 .header__name p{
     color: #D72134;
     font-weight: 700;
     font-size: 30px;
-    text-shadow: 0px 2px 0px #dadada;
+    line-height: normal;
+    font-family: Tahoma;
+    text-shadow:  0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .header__name p:first-child{
     margin-bottom: 4px;
@@ -51,10 +58,9 @@ body{
     position: absolute;
     border-radius: 12px;
     overflow: hidden;
-    right: 4%;
-    top: 10%;
-    box-shadow: 0px 0px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    
+    right: 30%;
+    top: 25%;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 .content__img{
     width: 100%;
@@ -93,7 +99,7 @@ body{
     margin-top: 20px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     cursor: pointer;
 }
 .login_button{
@@ -117,9 +123,12 @@ body{
 
 .login__office img{}
 /* FOOTER */
-.footer{
+/* .footer{
     background-image: url(./assets/Texture.jpg);
-    padding: 180px;
-    background-repeat: no-repeat;
-    background-size: cover;
+    pabackground-repeat: no-repeat;
+    background-size: cover;dding: 180px;
+    
+} */
+.all__login{
+    
 }

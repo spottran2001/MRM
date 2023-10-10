@@ -12,38 +12,40 @@
   <body>
     <main class="main">
       <!-- HEADER -->
-      <header class="header">
-        <div class="header__logo">
-          <%= image_tag("logo.png") %>
-        </div>
-        <div class="header__name">
-          <p>VANLANG</p>
-          <p>UNIVERSITY</p>
-        </div>
-      </header>
-      <!--  CONTENT LOGIN -->
-      <div class="content" style="padding:0px; margin:0px">
-        <div class="content__img">
-          <%= image_tag("Bird.jpg") %>
-        </div>
-        <div class="content__login">
-          <p>WELCOME</p>
-          <p>TRƯỜNG ĐẠI HỌC VĂN LANG</p>
-          <div class="login__office">
-            <div class="office__img">
-              <%= image_tag("microsoft.png") %>
+      <div class="all__login">
+        <header class="header">
+          <div class="header__logo">
+            <%= image_tag("logo.png") %>
+          </div>
+          <div class="header__name">
+            <p>VANLANG</p>
+            <p>UNIVERSITY</p>
+          </div>
+        </header>
+        <!--  CONTENT LOGIN -->
+        <div class="content" style="padding:0px; margin:0px">
+          <div class="content__img">
+            <%= image_tag("Bird.jpg") %>
+          </div>
+          <div class="content__login">
+            <p>QUẢN LÝ BÁO CÁO THÁNG</p>
+            <p>ĐĂNG NHẬP</p>        
+            <div class="login__office">
+              <div class="office__img">
+                <%= image_tag("microsoft.png") %>
+              </div>
+              <%- if devise_mapping.omniauthable? %>
+              <%- resource_class.omniauth_providers.each do |provider| %>
+              <%= button_to "OFFICE 365", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "login_button", style: "border:none" %><br />
+              <% end %>
+              <% end %>
             </div>
-            <%- if devise_mapping.omniauthable? %>
-            <%- resource_class.omniauth_providers.each do |provider| %>
-            <%= button_to "OFFICE 365", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "login_button", style: "border:none" %><br />
-            <% end %>
-            <% end %>
           </div>
         </div>
+        <!-- FOOTER -->
+        <footer class="footer">
+        </footer>
       </div>
-      <!-- FOOTER -->
-      <footer class="footer">
-      </footer>
     </main>
   </body>
 </html>

@@ -573,7 +573,7 @@
         <%= render 'shared/header' %>
         <h1 class="content__name">DANH SÁCH KỲ BÁO CÁO</h1>
         <div class="content__generality" >
-          
+          <div class="btn"></div>
           <div class="generality__search">
             <div class="generality__search_icon">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -614,7 +614,7 @@
               <td><%= r.status %></td>
               <td>
                 <%= link_to report_path(r), class: "btn gold" do %>
-                  <i class="fa-regular fa-file"></i>
+                  <i class="fa-solid fa-eye"></i>
                 <% end %>
                 <%= link_to edit_report_path(r), class: "btn yellow" do %>
                   <i class="fa-solid fa-pen"></i>
