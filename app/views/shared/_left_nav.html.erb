@@ -587,7 +587,7 @@
         </div>
       <% end %>
     <% else %>
-      <%= link_to report_index_path, class: "menu__items" do %>
+      <%= link_to report_index_path, class: "menu__items pt-4" do %>
         <div class="menu__items">
           <div class="menu__icon  ">
             <i class="fa-regular fa-calendar"></i>  
@@ -617,14 +617,13 @@
         </div>
       </div>
       <% end %>
-    
     <a href="#" class="menu__items">
       <div class="menu__icon">
         <i class="fa-solid fa-gear"></i>
       </div>
     </a>
-  </div>
   <% end %>
+  </div>
   <div class="menu-bottom">
       <div class="menu__items">
         <p class="menu__title" style="color: black;"><i class="fa-solid fa-screwdriver-wrench"></i></p>
@@ -733,12 +732,12 @@
         </div>
       </div>
       <%= link_to users_url, class: "menu__items menu__items--separation",style:"margin: 30px 0px;" do %>
-      <div class="menu__icon">
-        <div class="menu__dropdown_icon">
-          <i class="fa-regular fa-user"></i>
-          <p>Quản lý tài khoản</p>
+        <div class="menu__icon">
+          <div class="menu__dropdown_icon">
+            <i class="fa-regular fa-user"></i>
+            <p>Quản lý tài khoản</p>
+          </div>
         </div>
-      </div>
       <% end %>
       <div class="menu__items" style="margin: 30px 0px;">
         <div class="menu__icon">
@@ -748,8 +747,8 @@
           </div>
         </div>
       </div>
+    <% end %>
   </div>     
-  <% end %>
   <div class="menu-bottom">
     <div class="menu__items">
       <p class="menu__title">CÀI ĐẶT</p>
@@ -767,8 +766,8 @@
     <div class="menu__items">
       <div class="menu__icon  ">
         <%= button_to destroy_user_session_path, method: :delete, style: "padding: 0.5rem; text-color: white; color: white; background-color: #dc546c; border: none; border-radius: 12px", class: "menu__dropdown_icon" do %>
-        <i class="fa-solid fa-right-to-bracket" style="color: #fff"></i>
-        <p style="color: white">Đăng xuất</p>
+          <i class="fa-solid fa-right-to-bracket" style="color: #fff"></i>
+          <p style="color: white">Đăng xuất</p>
         <% end %>
       </div>
     </div>

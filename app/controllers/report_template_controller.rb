@@ -82,14 +82,14 @@ class ReportTemplateController < ApplicationController
         faculty_report_id: faculty_template_id, teacher_report_id: teacher_template_id,
         name: name
       )
-      User.where(role: ['staff', 'subject', 'faculty', 'teach']).each do |u|
-        if u.role == 'staff'
+      User.each do |u|
+        if u.include?('staff')
           u.reports.create(data: staff_template.data, year: staff_template.year, role: staff_template.role, name: name, report_types_id: report_type.id, academic_id: academic.id)
-        elsif u.role == 'subject'
+        elsif u.include?('subject')
           u.reports.create(data: subject_template.data, year: subject_template.year, role: subject_template.role, name: name, report_types_id: report_type.id, academic_id: academic.id)
-        elsif u.role == 'faculty'
+        elsif u.include?('faculty')
           u.reports.create(data: faculty_template.data, year: faculty_template.year, role: faculty_template.role, name: name, report_types_id: report_type.id, academic_id: academic.id)
-        elsif u.role == 'teacher'
+        elsif u.include?('teacher')
           u.reports.create(data: teacher_template.data, year: teacher_template.year, role: teacher_template.role, name: name, report_types_id: report_type.id, academic_id: academic.id)
         end
       end
