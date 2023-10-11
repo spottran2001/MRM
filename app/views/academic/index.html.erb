@@ -996,7 +996,7 @@
                           <p id="selectedBanChuNhiemKhoaModal">Chọn mẫu báo cáo ban chủ nhiệm khoa</p>
                           <i class="fa-solid fa-angle-down"></i>
                           <div class="option__modalbody" id="option__banchunhiemkhoa">
-                            <% ReportTemplate.where(role: "Bạn chủ nhiệm khoa", is_apply: true).each do |r| %>
+                            <% ReportTemplate.where(role: "Ban chủ nhiệm khoa", is_apply: true).each do |r| %>
                               <p class="banchunhiemkhoa" value="<%= r.id %>"> <%= r.name %> </p>
                             <% end %>
                           </div>
