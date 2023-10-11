@@ -76,7 +76,7 @@ class ReportTemplateController < ApplicationController
       subject_template = ReportTemplate.find(subject_template_id)
       faculty_template = ReportTemplate.find(faculty_template_id)
       teacher_template = ReportTemplate.find(teacher_template_id)
-      report_type = ReportType.find_by(name_type: 'khoi tao', report_type: 'chua bao cao')
+      report_type = ReportType.find_by(name_type: 'khoi tao', type_report: 'chua bao cao')
       academic = Academic.create(
         staff_report_id: staff_template_id, subject_report_id: subject_template_id,
         faculty_report_id: faculty_template_id, teacher_report_id: teacher_template_id,
