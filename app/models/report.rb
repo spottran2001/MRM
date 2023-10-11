@@ -15,4 +15,12 @@ class Report < ApplicationRecord
   #     errors.add(:base, "This template is not a valid for this user")
   #   end
   # end
+
+  def get_status
+    if status == "shopper"
+      return "Moi tao"
+    else
+      return status
+    end
+  end
 end
