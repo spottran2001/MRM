@@ -18,8 +18,7 @@ class ReportController < ApplicationController
         end
       end
     end
-    report.update!(data: JSON.generate(report_data))
-    #redirect_to :controller => 'report', :action => 'show', :param => {id: report.id}
+    report.update!(data: JSON.generate(report_data), status: 'Luu nhap')
   end
 
   def save_draft
@@ -42,22 +41,23 @@ class ReportController < ApplicationController
   end
 
   def send_report
-    report_value = {}
-    title_keys = JSON.parse(params["title_2_title_arr"])
-    td_value_arr = JSON.parse(params["content__table_body_td_value_arr"])
-    sum_td = JSON.parse(params["sum_td"])
-    report_data = JSON.parse(report.data)
-    report_data.keys.each_with_index do |key, index|
-      report_data[key].keys.each_with_index do |k, i|
-        report_data[key][k]["content"] = []
-        sum_td[index][i].each do |td|
-          report_data[key][k]["content"] << td
-        end
-      end
-    end
-    report = Report.find(params["report_id"])
-    report_type_id = ReportType.find_by_id(name_type: "cho duyet", type_report: "dang bao cao").id
-    @report.update(report_type_id: report_type_id)  
+    # report_value = {}
+    # title_keys = JSON.parse(params["title_2_title_arr"])
+    # td_value_arr = JSON.parse(params["content__table_body_td_value_arr"])
+    # sum_td = JSON.parse(params["sum_td"])
+    # report_data = JSON.parse(report.data)
+    # report_data.keys.each_with_index do |key, index|
+    #   report_data[key].keys.each_with_index do |k, i|
+    #     report_data[key][k]["content"] = []
+    #     sum_td[index][i].each do |td|
+    #       report_data[key][k]["content"] << td
+    #     end
+    #   end
+    # end
+    @report = Report.find(params["report_id"])
+    # report_type_id = ReportType.find_by_id(name_type: "cho duyet", type_report: "dang bao cao").id
+    @report.update(report_type_id: 3)  
+    @report.update(status: "Da gui")  
   end
 
   def return_report

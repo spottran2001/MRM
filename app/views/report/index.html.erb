@@ -623,7 +623,7 @@
               <td><%= r.role %></td>
               <td><%= r.created_at.strftime('%d/%m/%Y %T') %></td>
               <td><%= r.updated_at.strftime('%d/%m/%Y %T') %></td>
-              <td><%= r.status %></td>
+              <td><%= r.get_status %></td>
               <td>
                 <%= link_to report_path(r), class: "btn gold" do %>
                   <i class="fa-solid fa-eye"></i>

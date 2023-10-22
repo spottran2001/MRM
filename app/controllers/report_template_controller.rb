@@ -82,10 +82,8 @@ class ReportTemplateController < ApplicationController
         faculty_report_id: faculty_template_id, teacher_report_id: teacher_template_id,
         name: name
       )
-      binding.pry
       User.all.each do |u|
         if u.role.include?('staff')
-          binding.pry
           u.reports.create!(data: staff_template.data, year: staff_template.year, role: staff_template.role, name: name, report_type_id: report_type.id, academic_id: academic.id, report_template_id: staff_template_id)
         elsif u.role.include?('subject')
           u.reports.create!(data: subject_template.data, year: subject_template.year, role: subject_template.role, name: name, report_type_id: report_type.id, academic_id: academic.id, report_template_id: subject_template_id)
@@ -94,7 +92,6 @@ class ReportTemplateController < ApplicationController
         elsif u.role.include?('teacher')
           u.reports.create!(data: teacher_template.data, year: teacher_template.year, role: teacher_template.role, name: name, report_type_id: report_type.id, academic_id: academic.id, report_template_id: teacher_template_id)
         end
-        binding.pry
       end
 
       
