@@ -59,7 +59,6 @@ gem 'devise', '~> 4.9'
 gem 'omniauth-azure-activedirectory-v2'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'omniauth-rails_csrf_protection'
-gem 'pry'
 gem 'simple_form'
 gem 'htmlbeautifier'
 gem 'capistrano', '~> 3.11'
@@ -83,6 +82,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'pry'
 end
 
 group :test do
