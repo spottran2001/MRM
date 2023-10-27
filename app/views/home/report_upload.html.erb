@@ -538,6 +538,103 @@
       flex-direction: row;
       justify-content: space-between;
     }
+
+    <%# popup attachment%>
+    .popup_Attachment {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .popup_header_attachment {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid black;
+      padding: 20px;
+      align-items: center;
+      background-color: #dc546c;
+      color: white;
+      border-radius: 12px 12px 0px 0px;
+    }
+    .popup_body_attachment {
+      padding: 2rem 4rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      border: none;
+    }
+    .popup_footer_attachment {
+      display: flex;
+      justify-content: end;
+      padding: 0rem 4rem 2rem 0rem;
+    }
+    .popup_footer_attachment button {
+      padding: 10px 40px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+
+    <%#format danh sách attachment%>
+    #fileList {
+    list-style: none; /* Loại bỏ dấu chấm đầu dòng */
+    padding: 0; /* Loại bỏ padding mặc định */
+    }
+    #fileList div {
+        border-radius: 12px;
+        border: 1px solid #ccc;
+        margin: 5px; 
+        padding: 10px; 
+        background-color: #f9f9f9; 
+        display: flex; 
+        align-items: center; 
+    }
+    #fileList a {
+        text-decoration: none; /* Loại bỏ đường gạch chân cho liên kết */
+        color: #333;
+    }
+    #fileList button {
+        border-radius: 12px;
+        margin-left: 10px;
+        background-color: #dc546c; 
+        color: white; 
+        border: none; 
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+    #fileList button:hover {
+        border: 1px solid #dc546c;
+        background-color: white;
+        color: #dc546c;
+    }
+    <%#custome nút chọn tệp%>
+    .file_upload_container {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+    .file_upload {
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 12px;
+        margin-right: 2rem;
+    }
+
+    .file_upload:hover {
+        background: #f5f5f5;
+    }
   </style>
   <body>
     <main class="container">
@@ -568,11 +665,11 @@
           </div>
           <div class="generality__options">
             <div class="btn__addfile"  style="margin: 0px;">
-              <button aria-label="btn__addfile" style="background-color: #8ACBF4 ;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 
-                0px 4px 4px 0px rgba(0, 0, 0, 0.25);">
-                <i class="fa-regular fa-file" style="padding-right: 0.5rem"></i>
-                UPLOAD FILE
-              </button> 
+                <button aria-label="btn__addfile" style="background-color: #fff; color:#678EF8; border: 1px solid #678EF8;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);" onclick="showAttachment()">
+                    <i class="fa-solid fa-paperclip" style="padding-right: 0.5rem"></i>
+                    TỆP ĐÍNH KÈM
+                </button>
             </div>
             <div id="send_baocao" class="btn__addmember">
               <button aria-label="send_baocao" style="margin: 2rem; background-color: #ADDDFF ;
@@ -582,38 +679,40 @@
               </button>
             </div>
             <div class="btn__addfile" style="margin: 0px;" >
-              <button aria-label="btn__addmember" style="background-color: #678EF8;
-                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);" 
-                onclick="SubmitReport()">
-                <i class="fa-regular fa-floppy-disk" style="padding-right: 0.5rem"></i>
-                LƯU NHÁP
-              </button>
+                <button aria-label="btn__addmember" style="background-color: #678EF8;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);" 
+                    onclick="SubmitReport()">
+                    <i class="fa-regular fa-floppy-disk" style="padding-right: 0.5rem"></i>
+                    LƯU NHÁP
+                </button>
             </div>
+
+            
           </div>
         </div>
-        <% @report_template_title.keys.each_with_index do |key, index|%>
+        
         <table class="content__table" style="border-radius: 0px; " >
           <thead>
             <tr class="content__table_header"  style="background-color: #006D77;" onclick="showTableList(this)">
               <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
               <th class="tableHeader" colspan="8" style="text-align: left;cursor: pointer;user-select: none; border-top-left-radius: 12px;
-               border-top-right-radius: 12px; border: none"> <%= "#{index+1}. #{key}"%></th>
+               border-top-right-radius: 12px; border: none"></th>
             </tr>
           </thead>
-          <% @report_template_title[key].each do |key, value|%>
+         
           <tbody class="list_table">
             <tr class="content__table_header" style="background-color: #83C5BE;">
               <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
               <th class = "key_title">
-                <%= key %>
+                
               </th>
-              <% value["title"].each do |v| %>
+              
               <th>
-                <%= v %>
+
               </th>
-              <% end %>
+   
             </tr>
-            <% if value["content"].blank? %>
+            
             <tr class="content__table_body" style="background-color: #EDF6F9;">
               <td class="first_column"  style="border: none;text-align: right;padding: 0;">
                 <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
@@ -623,12 +722,12 @@
                 <i class="fa-solid fa-plus"></i>
                 </button>
               </td>
-              <% (value["title"].size + 1).times do |i|%>
+        
               <td contenteditable="true" class= "content__table_body_td_value"></td>
-              <% end %>
+   
             </tr>
-            <% else %>
-            <% value["content"].each do |content_value|%>
+           
+            
             <tr class="content__table_body">
               <td class="first_column"  style="border: none;text-align: right;padding: 0;">
                 <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
@@ -638,16 +737,15 @@
                 <i class="fa-solid fa-plus"></i>
                 </button>
               </td>
-              <% content_value.each do |c| %>
-              <td contenteditable="true" class= "content__table_body_td_value"> <%= c %></td>
-              <% end %>
+              
+              <td contenteditable="true" class= "content__table_body_td_value"> </td>
+              
             </tr>
-            <% end %>
-            <% end %>
+      
           </tbody>
-          <% end %>
+    
         </table>
-        <% end %>
+   
         <%# <table class="content__table" style="border-radius: 0px; " >
           <thead >  <tr class="content__table_header"  style="background-color: #f4924b; "  onclick="showTableList(this)">
               <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
@@ -868,22 +966,68 @@
               </tr>
            </tbody>
           </table> %>
-      </div>
-      <div id="popup__guiBaocao">
-        <div id="popup__inner">
-          <div class="popup_header">
-            GỬI BÁO CÁO
-            <i id="close__popupBaocao" style="cursor: pointer;padding: 10px;" class="fa-regular fa-circle-xmark"></i>
-          </div>
-          <div class="popup_body">
-            <p>Bạn có chắc gửi biểu này ?</p>
-          </div>
-          <div class="popup_foiter">
-            <button id="btn__closeBaocao" style="background-color: #dc546c;">HỦY</button>
-            <button style="background-color: #6C8DE0;">GỬI</button>
-          </div>
         </div>
-      </div>
+        <div id="popup_Attachment" class="popup_Attachment">
+            <div
+                id="popup__inner_feedback"
+                style="
+                background-color: white;
+                border-radius: 12px;
+                border-bottom: 2px solid black;
+                width: 60%;
+                height: auto;
+                "
+            >
+                <div class="popup_header_attachment">
+                    TỆP ĐÍNH KÈM CỦA BÁO CÁO THÁNG
+                    <i
+                        id="close__popupFeedBabk"
+                        style="cursor: pointer; padding: 10px; font-size: 25px"
+                        class="fa-regular fa-circle-xmark fa-sm"
+                        onclick="hideAttachment()"
+                    ></i>
+                </div>
+                <div class="popup_body_attachment">
+                    <h5>Tiêu đề bảng 1</h5>
+                    <div class="file_upload_container">
+                        <label for="fileInput" class="file_upload">
+                            <span id="fileLabel">Chọn tệp</span>
+                        </label>
+                        <input type="file" id="fileInput" multiple style="display:none; ">
+                        Số lượng tệp đã chọn: <span id="fileCount">0</span>
+                    </div>
+                    <div id="fileList"></div>
+                </div>
+                <div class="popup_footer_attachment">
+                    <button
+                        class="btn__closeFeedback"
+                        style="background-color: #dc546c"
+                        onclick="hideAttachment()"
+                        >
+                    HỦY
+                    </button>
+                    <button style="background-color: #6c8de0; margin-left: 2rem">
+                    LƯU
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="popup__guiBaocao">
+            <div id="popup__inner">
+            <div class="popup_header">
+                GỬI BÁO CÁO
+                <i id="close__popupBaocao" style="cursor: pointer;padding: 10px;" class="fa-regular fa-circle-xmark"></i>
+            </div>
+            <div class="popup_body">
+                <p>Bạn có chắc gửi biểu này ?</p>
+            </div>
+            <div class="popup_foiter">
+                <button id="btn__closeBaocao" style="background-color: #dc546c;">HỦY</button>
+                <button style="background-color: #6C8DE0;">GỬI</button>
+            </div>
+            </div>
+        </div>
     </main>
   </body>
   <script>
@@ -1048,17 +1192,68 @@
       data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
       data.append('sum_td',JSON.stringify(sum_td));
       jQuery.ajax({
-        url: "/report/<%= @report_template.id %>/submit_report",
+
         data: data,
         cache: false,
         contentType: false,
         processData: false,
-        method: 'PUT',
-        success: function(data){
-            alert("chinh sua thanh cong");
-            window.location.replace("/report/<%= @report_template.id %>");
-        }
+        method: 'PUT'
       });
     }
+
+    //popupAttachment
+    function showAttachment() {
+    document.getElementById("popup_Attachment").style.display = "flex";
+    }
+    function hideAttachment() {
+    document.getElementById("popup_Attachment").style.display = "none";
+    }
+
+    //handle uploadfile
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.getElementById('fileList');
+    const fileCountSpan = document.getElementById('fileCount');
+
+    fileInput.addEventListener('change', updateFileList);
+
+    function updateFileList() {
+        fileList.innerHTML = '';
+        const files = fileInput.files;
+        const updatedFiles = Array.from(files);
+
+        fileCountSpan.textContent = files.length; // Hiển thị số lượng tệp đã chọn
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const listItem = document.createElement('div');
+            const fileLink = document.createElement('a');
+            fileLink.textContent = file.name;
+            fileLink.href = URL.createObjectURL(file);
+            fileLink.download = file.name;
+
+            // Tạo một button cho phép xóa tệp
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'XÓA';
+            deleteButton.addEventListener('click', () => deleteFile(i, updatedFiles));
+
+            listItem.appendChild(fileLink);
+            listItem.appendChild(deleteButton);
+            fileList.appendChild(listItem);
+        }
+    }
+
+    function deleteFile(index, updatedFiles) {
+        if (index >= 0) {
+            updatedFiles.splice(index, 1); // Xóa tệp khỏi danh sách
+            const dataTransfer = new DataTransfer();
+            updatedFiles.forEach((file) => dataTransfer.items.add(file));
+            fileInput.files = dataTransfer.files;
+
+            // Cập nhật danh sách tệp
+            updateFileList();
+        }
+    }
+
+
   </script>
 </html>

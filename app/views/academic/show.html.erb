@@ -589,6 +589,18 @@
       border-radius: 12px;
       border: 2px solid #dadada;
     }
+    .btn[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      padding: 5px;
+      border-radius: 5px;
+      left: 100%;
+      top: 100%;
+      white-space: nowrap;
+      z-index: 1;
+      background-color: red;
+      color: white;      
+    } 
   </style>
   <body>
     <main class="container">
@@ -609,7 +621,7 @@
                 <div class="generality__search_icon">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-                <input type="text" placeholder="Tìm kiếm báo cáo" disabled>
+                <input type="text" id="searchInput" placeholder="Tìm kiếm báo cáo">
             </div>        
         </div>
         <table class="content__table" id="table_phongban">
@@ -631,10 +643,7 @@
               Thời gian sửa
             </th>
             <th>
-              Trạng thái
-            </th>
-            <th>
-              Loại trạng thái
+              Trạng thái kỳ báo cáo
             </th>
             <th>
             </th>
@@ -645,11 +654,9 @@
             <td>Nhân viên</td>
             <td>dd/mm/yyy 2:00AM</td>
             <td>dd/mm/yyy 2:00PM</td>
-            <td>Chờ duyệt</td>
-            <td>Đang báo cáo</td>
+            <td>Hoạt động</td>
             <td>
-              <button class="btn gold" aria-label="btn"><i class="fa-solid fa-eye"></i></i></button>
-              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
+              <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>           
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>
@@ -659,11 +666,9 @@
             <td>Giảng viên</td>
             <td>dd/mm/yyy 2:00AM</td>
             <td>dd/mm/yyy 2:00PM</td>
-            <td>Lưu nháp</td>
-            <td>Chưa báo cáo</td>
+            <td>Ngừng hoạt động</td>
             <td>
-              <button class="btn gold" aria-label="btn"><i class="fa-solid fa-eye"></i></button>
-              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
+              <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></button>
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>   
@@ -673,13 +678,11 @@
             <td>Phụ trách bộ môn</td>
             <td>dd/mm/yyy 2:00AM</td>
             <td>dd/mm/yyy 2:00PM</td>
-            <td>Cần bổ sung</td>
-            <td>Đang báo cáo</td>
+            <td>Hoạt động</td>
             <td>
-              <button class="btn gold" aria-label="btn"><i class="fa-solid fa-eye"></i></button>
-              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
+              <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></button>
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
-            </td>           `
+            </td> 
           </tr>  
           <tr class="content__table_body">
             <td>4</td>
@@ -687,15 +690,26 @@
             <td>Ban chủ nhiệm khoa</td>
             <td>dd/mm/yyy 2:00AM</td>
             <td>dd/mm/yyy 2:00PM</td>
-            <td>Đã duyệt</td>
-            <td>Đúng hạn</td>
+            <td>Ngừng hoạt động</td>
             <td>
-              <button class="btn gold" aria-label="btn"><i class="fa-solid fa-eye"></i></button>
-              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
+              <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></button>
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>                               
         </table>
+        <div class="paging d-none">
+          <button aria-label="pagin">
+          <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="paging--active" aria-label="pagin">1</button>
+          <button aria-label="pagin">2</button>
+          <button aria-label="pagin">3</button>
+          <button aria-label="pagin">...</button>
+          <button aria-label="pagin">100</button>
+          <button aria-label="pagin">
+          <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
     </main>
   </body>
   <script >
@@ -725,5 +739,46 @@
         getEle("menu").style.transform = "translateX(-10000px)"
     })
     
+    //search dữ liệu trong bảng 
+    // Lấy input tìm kiếm và bảng
+        const searchInput = document.getElementById('searchInput');
+        const table = document.getElementById('table_phongban');
+        const rows = table.querySelectorAll('tr');
+
+        // Lưu trạng thái ban đầu của các hàng
+        const initialDisplayStates = [...rows].map(row => row.style.display);
+
+        // Sử lý sự kiện tìm kiếm
+        searchInput.addEventListener('input', function () {
+          const searchTerm = searchInput.value.trim().toLowerCase();
+
+          rows.forEach((row, index) => {
+            // Bỏ qua hàng tiêu đề
+            if (row.classList.contains('content__table_header')) return;
+
+            const columns = row.querySelectorAll('td');
+            let found = false;
+
+            // Kiểm tra nội dung trong cột và ẩn/hiện dựa trên kết quả tìm kiếm
+            columns.forEach((column, columnIndex) => {
+              if (column.textContent.trim().toLowerCase().includes(searchTerm)) {
+                found = true;
+                row.style.display = ''; // Hiển thị hàng
+              } else if (found === false && columnIndex === columns.length - 1) {
+                row.style.display = 'none'; // Ẩn hàng nếu không tìm thấy kết quả
+              }
+            });
+          });
+        });
+
+        // Sử lý sự kiện xóa trường tìm kiếm
+        searchInput.addEventListener('keyup', function (event) {
+          if (event.key === 'Escape' && searchInput.value !== '') {
+            searchInput.value = ''; // Xóa nội dung tìm kiếm
+            rows.forEach((row, index) => {
+              row.style.display = initialDisplayStates[index]; // Hiển thị lại dữ liệu ban đầu
+            });
+          }
+        });
   </script>
 </html>

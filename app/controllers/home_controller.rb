@@ -31,13 +31,30 @@ class HomeController < ApplicationController
     end
   end
 
-  def staff
-  end
-
   def edit
   end
 
   def generalReportForm
   end
 
+  def list_staff
+  end
+
+  def list_lecturer
+  end
+
+  def list_subject
+  end
+
+  def list_faculty
+  end
+
+  def review_report
+  end
+
+  def configuration_page
+  end
+
+  def report_upload
+  end
 end
