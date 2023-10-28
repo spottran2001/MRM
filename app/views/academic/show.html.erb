@@ -648,51 +648,71 @@
             <th>
             </th>
           </tr>
+          <% staff_report = @academic.staff_template %>
           <tr class="content__table_body">
-            <td>1</td>
-            <td>Kỳ báo cáo năm 2023</td>
-            <td>Nhân viên</td>
-            <td>dd/mm/yyy 2:00AM</td>
-            <td>dd/mm/yyy 2:00PM</td>
-            <td>Hoạt động</td>
+            <td><%= staff_report.id %></td>
+            <td><%= staff_report.name %></td>
+            <td><%= staff_report.role %></td>
+            <td><%= staff_report.created_at.strftime('%d %B %Y') %></td>
+            <td><%= staff_report.updated_at.strftime('%d %B %Y') %></td>
+            <td>Vua tao</td>
+            <td>Dang hoat dong</td>
             <td>
-              <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>           
+              <%= link_to report_template_path(staff_report), style: "text-decoration:none" do %>
+                <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
+              <% end %>
+              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>
+          <% teacher_report = @academic.teacher_report %>
           <tr class="content__table_body">
-            <td>2</td>
-            <td>Kỳ báo cáo năm 2023</td>
-            <td>Giảng viên</td>
-            <td>dd/mm/yyy 2:00AM</td>
-            <td>dd/mm/yyy 2:00PM</td>
-            <td>Ngừng hoạt động</td>
+            <td><%= teacher_report.id %></td>
+            <td><%= teacher_report.name %></td>
+            <td><%= teacher_report.role %></td>
+            <td><%= teacher_report.created_at.strftime('%d %B %Y') %></td>
+            <td><%= teacher_report.updated_at.strftime('%d %B %Y') %></td>
+            <td>Vua tao</td>
+            <td>Dang hoat dong</td>
             <td>
-              <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></button>
+                <%= link_to report_template_path(teacher_report), style: "text-decoration:none" do %>
+                  <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
+                <% end %>
+              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
-          </tr>   
+          </tr>
+          <% subject_report = @academic.subject_report %>
           <tr class="content__table_body">
-            <td>3</td>
-            <td>Kỳ báo cáo năm 2023</td>
-            <td>Phụ trách bộ môn</td>
-            <td>dd/mm/yyy 2:00AM</td>
-            <td>dd/mm/yyy 2:00PM</td>
-            <td>Hoạt động</td>
+            <td><%= subject_report.id %></td>
+            <td><%= subject_report.name %></td>
+            <td><%= subject_report.role %></td>
+            <td><%= subject_report.created_at.strftime('%d %B %Y') %></td>
+            <td><%= subject_report.updated_at.strftime('%d %B %Y') %></td>
+            <td>Vua tao</td>
+            <td>Dang hoat dong</td>
             <td>
-              <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></button>
+                <%= link_to report_template_path(subject_report), style: "text-decoration:none" do %>
+                  <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
+                <% end %>
+              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
-            </td> 
-          </tr>  
+            </td>           
+          </tr>
+          <% faculty_report = @academic.faculty_report %>
           <tr class="content__table_body">
-            <td>4</td>
-            <td>Kỳ báo cáo năm 2023</td>
-            <td>Ban chủ nhiệm khoa</td>
-            <td>dd/mm/yyy 2:00AM</td>
-            <td>dd/mm/yyy 2:00PM</td>
-            <td>Ngừng hoạt động</td>
+            <td><%= faculty_report.id %></td>
+            <td><%= faculty_report.name %></td>
+            <td><%= faculty_report.role %></td>
+            <td><%= faculty_report.created_at.strftime('%d %B %Y') %></td>
+            <td><%= faculty_report.updated_at.strftime('%d %B %Y') %></td>
+            <td>Vua tao</td>
+            <td>Dang hoat dong</td>
             <td>
-              <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></button>
+                <%= link_to report_template_path(faculty_report), style: "text-decoration:none" do %>
+                  <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
+                <% end %>
+              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>                               

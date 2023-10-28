@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :subject
   resources :report do
     put "save_draft", to: 'report#save_draft'
+    put "send_report", to: 'report#send_report'
     put "return_report", to: 'report#return_report'
     put "report_apply", to: 'report#report_apply'
     put "submit_report", to: "report#submit_report!"

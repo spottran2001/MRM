@@ -880,7 +880,7 @@
           </div>
           <div class="popup_foiter">
             <button id="btn__closeBaocao" style="background-color: #dc546c;">HỦY</button>
-            <button style="background-color: #6C8DE0;">GỬI</button>
+            <button id="edit-report-gui" style="background-color: #6C8DE0;">GỬI</button>
           </div>
         </div>
       </div>
@@ -1001,6 +1001,20 @@
     
   </script>
   <script>
+    document.getElementById("edit-report-gui").addEventListener("click",()=>{
+      jQuery.ajax({
+        url: "/report/<%= @report_template.id %>/send_report",
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'PUT',
+        success: function(data){
+            alert("Gui thanh cong");
+            window.location.replace("/report/<%= @report_template.id %>");
+        }
+      });
+    })
+
     function SubmitReport(){
       var content__table_body_td_value_arr = []
       var title_2_title_arr = []
