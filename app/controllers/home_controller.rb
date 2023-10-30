@@ -57,4 +57,7 @@ class HomeController < ApplicationController
 
   def report_upload
   end
+
+  def report_chart
+  end
 end

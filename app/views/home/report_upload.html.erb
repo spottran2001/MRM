@@ -570,6 +570,8 @@
       display: flex;
       flex-direction: column;
       border: none;
+      overflow-Y: scroll;
+      height: auto;
     }
     .popup_footer_attachment {
       display: flex;
@@ -590,6 +592,8 @@
     #fileList {
     list-style: none; /* Loại bỏ dấu chấm đầu dòng */
     padding: 0; /* Loại bỏ padding mặc định */
+    overflow-Y: scroll;
+    height: 200px
     }
     #fileList div {
         border-radius: 12px;
@@ -601,7 +605,7 @@
         align-items: center; 
     }
     #fileList a {
-        text-decoration: none; /* Loại bỏ đường gạch chân cho liên kết */
+        <%#text-decoration: none;%> /* Loại bỏ đường gạch chân cho liên kết */
         color: #333;
     }
     #fileList button {

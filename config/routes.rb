@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     put "read_notifications", to: "users#read_notification"
     put "report_apply"
   end 
+  get "report_chart", to: "home#report_chart"
   get "report_upload", to: "home#report_upload"
   get "configuration_page", to: "home#configuration_page"
   get "review_report", to: "home#review_report"
