@@ -415,6 +415,16 @@
       overflow: hidden;
       position: relative;
     }
+    .content__img{
+      width: 100%;
+      height: 100%;
+    }
+    .content__img img{
+      width: 100%;
+      height: 40.5rem;
+      object-fit: cover;
+      object-position: center;
+    }
     .info__img {
       background-image: url("../app/assets/images/Bird.jpg");
       width: 20%;
@@ -426,7 +436,7 @@
     }
     .info__content {
       background-color: white;
-      padding: 100px 0px 100px 200px;
+      padding: 40px 0px 100px 200px;
       float: right;
       width: 80%;
       height: 100%;
@@ -443,6 +453,13 @@
       color: gray;
       margin: 6px 0px 40px 0px;
       padding-top: 6px;
+    }
+    .info__list {
+      display: flex;
+      flex-direction: row;
+    }
+    .user-left {
+      padding-right: 20rem;
     }
     .info__list li {
       display: flex;
@@ -528,93 +545,104 @@
       <%= render "shared/left_nav"%>
       <div class="content">
         <%= render 'shared/header' %>
-        <h1 class="content__name">Quản Lý Tài Khoản</h1>
+        <h1 class="content__name">CHỈNH SỬA TÀI KHOẢN</h1>
         <div class="container__info" style="height: 780px;">
           <div class="info__img">
+            <div class="content__img">
+              <%= image_tag("Bird.jpg") %>    
+            </div>    
           </div>
           <%= simple_form_for @user, method: :put, url: user_path(@user) do |f| %>
-          <div class="info__content">
+          <div class="info__content" style="padding: 100px 0px 50px 180px;">
             <div class="info__title">
               <h1><%= @user.name %></h1>
               <p class="info" style="font-weight: 500; font-size: 20px;">Thông tin</p>
             </div>
             <nav class="info__nav">
               <ul class="info__list">
-                <li>
-                  <span></span>
-                  <p style="margin-right: 5rem" >Email</p>
-                  <%= @user.email || "N/A" %>
-                </li>
-                <li>
-                  <span></span>
-                  <p style="margin-right: 4.5rem" >Mã số</p>
-                  197XX123456
-                </li>
-                <li>
-                  <span></span>
-                  <p style="margin-right: 5.5rem" >SĐT</p>
-                  <%= f.input :phone_number, label: false, required: false, input_html: { autocomplete: "phone-number", style: "padding: 0.5rem; border-radius: 12px" }%>
-                </li>
-                <li>
-                  <span></span>
-                  <p style="margin-right: 5rem" >Khoa</p>
-                  <%#<%= @user.faculty&.name || "N/A" %>
-                  <select class="userFacculty" id="userRole">
-                    <% Subject.all.each do |s| %>
-                      <option value="<%= s.id %>"><%= s.name %></option>
-                    <% end %>
-                  </select>
-                </li>
-                <li>
-                  <span></span>
-                  <p style="margin-right: 3.5rem">Bộ môn</p>
-                  <%#<%= @user.subject&.name || "N/A" %>
-                  <select class="userSuject" id="userRole">
-                    <% Faculty.all.each do |f| %>
-                      <option value="<%= f.id %>"><%= f.name %></option>
-                    <% end %>
-                  </select>
-                </li>
-                <li>
-                  <span></span>
-                  <p style="margin-right: 4rem; ">Vai trò</p>
-                  <%#<%= @user.role || "N/A" %>       
-                  
-                  <%# if current_user.role == 'admin' 
-                    <%= f.input :role,
-                      as: :check_boxes, 
-                      include_hidden: false,
-                      collection: ["Nhân viên", "Giảng viên", "Phụ trách bộ môn", "Ban chủ nhiệm khoa"] 
-                  <% end %>
-                  
-                  <%# <%= f.input :role, label_method: :name, as: :checkboxes, collection: ['Nhân viên', 'Giảng viên']  %>        
-                  <div class="select_role" id="select_vaitro">                            
-                    <div class="left_role"> 
-                      <label><input type="checkbox" id="vaitro1" class="vaitro" value="Nhân viên"> Nhân viên</label>
-                      <label><input type="checkbox" id="vaitro1" class="vaitro" value="Giảng viên"> Giảng viên</label>                                                       
-                    </div>
-                    <div class="right_role">
-                      <label><input type="checkbox" id="vaitro1" class="vaitro" value="Phụ trách bộ môn"> Phụ trách bộ môn</label>
-                      <label><input type="checkbox" id="vaitro1" class="vaitro" value="Ban chủ nhiệm khoa"> Ban chủ nhiệm khoa</label>         
-                    </div>  
-                  </div>   
-                </li>
-                <li>
-                  <span></span>
-                  <p style="margin-right: 4rem;">Đơn vị</p>               
-                  <select class="userUnit" id="userRole">
-                    <option value="1">VLU</option>
-                    <option value="2">VL Tech</option>
-                  </select>
-                </li>               
+                  <div class="user-left">
+                    <li>
+                      <span></span>
+                      <p style="margin-right: 5rem" >Email</p>
+                      <%= @user.email || "N/A" %>
+                    </li>
+                    <li>
+                      <span></span>
+                      <p style="margin-right: 4.5rem" >Mã số</p>
+                      197XX123456
+                    </li>
+                    <li>
+                      <span></span>
+                      <p style="margin-right: 5.5rem" >SĐT</p>
+                      <%= f.input :phone_number, label: false, required: false, input_html: { autocomplete: "phone-number", style: "padding: 0.5rem; border-radius: 12px" }%>
+                    </li>
+                    <li>
+                      <span></span>
+                      <p style="margin-right: 5rem" >Khoa</p>
+                      <%#<%= @user.faculty&.name || "N/A" %>
+                      <select class="userFacculty" id="userFaculty" <%= @is_admin ? "" : "disabled"%>>
+                        <% Faculty.all.each do |s| %>
+                          <option value="<%= s.id %>"><%= s.name %></option>
+                        <% end %>
+                      </select>
+                    </li>
+                  </div>
+                  <div class="user-right">
+                    <li>
+                      <span></span>
+                      <p style="margin-right: 3.5rem">Bộ môn</p>
+                      <%#<%= @user.subject&.name || "N/A" %>
+                      <select class="userSuject" id="userSubject"  <%= @is_admin ? "" : "disabled"%>>
+                        <% Subject.all.each do |f| %>
+                          <option value="<%= f.id %>"><%= f.name %></option>
+                        <% end %>
+                      </select>
+                    </li>
+                    <li>
+                      <span></span>
+                      <p style="margin-right: 4rem; ">Vai trò</p>
+                      <%#<%= @user.role || "N/A" %>       
+                      
+                      <%# if current_user.role == 'admin' 
+                        <%= f.input :role,
+                          as: :check_boxes, 
+                          include_hidden: false,
+                          collection: ["Nhân viên", "Giảng viên", "Phụ trách bộ môn", "Ban chủ nhiệm khoa"] 
+                      <% end %>
+                      
+                      <%# <%= f.input :role, label_method: :name, as: :checkboxes, collection: ['Nhân viên', 'Giảng viên']  %>    
+                      <div class="select_role" id="select_vaitro">                            
+                        <div class="left_role"> 
+                          <label><input type="checkbox" id="vaitro1" class="vaitro" value="staff"  <%= @is_admin ? "" : "disabled"%>> Nhân viên</label>
+                          <label><input type="checkbox" id="vaitro1" class="vaitro" value="teacher"  <%= @is_admin ? "" : "disabled"%>> Giảng viên</label>                                                       
+                        </div>
+                        <div class="right_role">
+                          <label><input type="checkbox" id="vaitro1" class="vaitro" value="subject"  <%= @is_admin ? "" : "disabled"%>> Phụ trách bộ môn</label>
+                          <label><input type="checkbox" id="vaitro1" class="vaitro" value="faculty"  <%= @is_admin ? "" : "disabled"%>> Ban chủ nhiệm khoa</label>         
+                        </div>  
+                      </div>   
+                    </li>
+                    <li>
+                      <span></span>
+                      <p style="margin-right: 4rem;">Đơn vị</p>               
+                      <select class="userUnit" id="userUnit" <%= @is_admin ? "" : "disabled"%>>
+                        <option value="1">VLU</option>
+                        <option value="2">VL Tech</option>
+                      </select>
+                    </li>  
+                  </div>
+                             
               </ul>
             </nav>
           </div>
-          <div class="info__user_img">
+          <div class="info__user_img" style="left: 370px;">
             <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo" alt="">
           </div>
           <div class="btn_edit-info">
-            <%= f.submit 'Lưu Chỉnh Sửa', style: 'padding: 10px 20px;border: none; cursor: pointer; outline: none; background-color: #DC546C; border-radius: 40px; color: white;', data: { disable_with: "Please wait..." } %>
+            <button style= "padding: 10px 20px;border: none; cursor: pointer; outline: none; background-color: #DC546C; border-radius: 12px; color: white; position: absolute; top: 520px; left: 1450px; display: flex; flex-direction: row; align-items: center; width: 180px;" type="button" id="userEditButton">
+              <i class="fa-regular fa-floppy-disk" style="padding-right: 0.5rem"></i>
+              LƯU CHỈNH SỬA
+            </button>
           </div>
           <% end %>
         </div>
@@ -622,3 +650,38 @@
     </main>
   </body>
 </html>
+
+<script>
+  document.getElementById("userEditButton").addEventListener('click', ()=> {
+    let phoneNumber = document.getElementById("user_phone_number").value
+    let subject = document.getElementById("userSubject").value
+    let faculty = document.getElementById("userFaculty").value
+    let role = ""
+
+    $(`input[type='checkbox']:checked`).each(function(){
+      role += this.value + ","
+    })
+
+
+    // api
+    var data = new FormData();
+    data.append('phoneNumber',phoneNumber);
+    data.append('subject',subject);
+    data.append('faculty',faculty);
+    data.append('role',role);
+    data.append('current_user_role', "<%= current_user.role %>");
+
+    jQuery.ajax({
+      url: "/users/<%= @user.id %>",
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      method: 'PUT',
+      success: function(data){
+        alert("Chinh sua thanh cong");
+        window.location.replace("/users");
+      }
+    });
+  })
+</script>

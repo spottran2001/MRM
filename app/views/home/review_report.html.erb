@@ -7,16 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </head>
   <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      overflow: hidden
-    }
     .container {
       max-width: 100%;
       display: flex;
-      padding: 0px
+      padding: 0px;
     }
     .content__table th {
       color: white;
@@ -74,7 +68,7 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      height: 36%;
+      height: 30%;
     }
     .popup_header {
       display: flex;
@@ -111,6 +105,7 @@
     body {
       height: 100%;
       margin: 0;
+      overflow: hidden;
     }
     /* MENU */
     .menu {
@@ -160,7 +155,7 @@
       background-color: #f5f5f5;
       width: 100%;
       padding: 30px 60px 20px 30px;
-      overflow-Y: scroll
+      overflow-Y: scroll;
     }
     .content__title {
       display: flex;
@@ -176,7 +171,7 @@
       font-weight: bold;
       margin-left: 20px;
     }
-    .breadcrumb__name {
+    .breadcrumb__Report {
       display: inline-block;
       margin-left: 10px;
       color: #f34f68;
@@ -194,9 +189,8 @@
     .user__info {
       margin-right: 10px;
       font-size: 16px;
-      text-align: right;
     }
-    .user__info p:first-child {
+    .user__info p {
       text-align: right;
     }
     .user__img img {
@@ -218,7 +212,6 @@
       justify-content: space-between;
       width: 100%;
       margin: 20px 0px;
-      padding: 14px 20px;
       background: #f1f1f1;
       border-radius: 8px;
     }
@@ -280,10 +273,6 @@
       border-radius: 12px;
       overflow: hidden;
       margin-top: 25px;
-    }
-    .content__table th {
-      color: white;
-      padding: 20px 10px;
     }
     .content__table_header {
       background-color: #dc546c;
@@ -356,6 +345,7 @@
       width: 250px;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
       position: relative;
+      padding: 2px;
       display: none;
       transition: all 0.5s;
     }
@@ -542,228 +532,252 @@
       padding: 8px 6px;
       border-radius: 10px;
     }
-    .enterContent{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between
-    }
-    .assignRoles{
-      display: flex;
-      flex-direction: row;
-      align-items: center
-    }
-    .formName {
-      padding: 0.7rem;
-      border-radius: 12px;
-      border: 2px solid #e0e7ed;
-    }
-    .select__modalbody {
-      display: flex;
-      width: 14rem;
-      align-items: center;
-      padding: 10px 20px;
-      justify-content: space-between;
-      border: 2px solid #dadada;
-      border-radius: 12px;
-      cursor: pointer;
-      background-color: white
-    }
-    .select__modalbody p {
-      color: black;
-      font-weight: 500;
-      letter-spacing: 0.3;
-      margin-bottom: 0rem
-    }
-    .body__content ul li {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-    .body__btn {
-      margin-top: 60px;
-      display: flex;
-      align-items: center;
-      gap: 100px;
-    }
-    .btn__modal {
-      width: 100%;
-      border: none;
-      outline: none;
-      padding: 12px 0px;
-      cursor: pointer;
-      font-weight: bold;
-      color: white;
-      border-radius: 12px;
-    }
-    .btn__modal:first-child {
-      background-color: #dc546c;
-    }
-    .btn__modal:last-child {
-      background-color: #6c8de0;
-    }
-    /* Select  */
-    .select__modalbody {
-      position: relative;
-    }
-    .option__modalbody {
-      position: absolute;
-      border: 2px solid #dadada;
-      border-bottom-left-radius: 12px;
-      border-bottom-right-radius: 12px;
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background-color: white;
-      z-index: 10;
-      display: none;
-      user-select: none;
-    }
-    .option__modalbody p {
-      padding: 14px 20px;
-      font-weight: 500;
-    }
-    .option__modalbody p:hover {
-      background-color: #dadada;
-    }
-    .show__option1 {
-      display: block !important;
-    }
-    .show__modal {
-      display: flex !important;
-    }
-    .radiusSelect1 {
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
-    }
-    .show__option2 {
-      display: block !important;
-    }
-    .radiusSelect2 {
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
-    }
-    .show__option3 {
-      display: block !important;
-    }
-    .radiusSelect3 {
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
-    }
     .reportTitleStatus {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+    }
+    .deadlineReport {
+      display: flex;
+      flex-direction: row;
+    }
+    /* POPUP-SEND APPROVE AND APPROVE NO */
+    .popup_SendApprove {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .popup_SendApproveNo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .popup__inner_feedback {
+      background-color: white;
+      width: 50%;
+      border: 2px solid black;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      height: 48%;
+      display: none;
+    }
+    .popup_header_feedback {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid black;
+      padding: 10px;
+      align-items: center;
+      background-color: #dc546c;
+      color: white;
+      border-radius: 12px 12px 0px 0px;
+    }
+    .popup_body_feedback {
+      padding: 2rem 4rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      border: none;
+    }
+    .popup_footer_feedback {
+      display: flex;
+      justify-content: end;
+      padding: 0rem 4rem 2rem 0rem;
+    }
+    .popup_footer_feedback button {
+      padding: 10px 40px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+    .feedback__btn {
+      background-color: #f4924b;
+    }
+    .btn_submit {
+      display: flex;
+      flex-direction:row;
     }
   </style>
   <body>
     <main class="container">
       <%= render "shared/left_nav"%>
       <div class="content">
-        <%= render 'shared/header' %>
-        <h1 class="content__name">CHI TIẾT BIỂU MẪU BÁO CÁO CHUNG</h1>
-        <div class="enterContent">
-          <div class="assignRoles">
-          <span style= "font-weight: 800; padding-right: 1rem">Tên biểu mẫu chung: </span>
-          <input class="formName" type="text" placeholder="Nhập tên biểu mẫu" value= "<%= @report_template.name %>" disabled >
+       <%= render 'shared/header' %>
+        <h1 class="content__name">QUẢN LÝ KỲ BÁO CÁO THÁNG</h1>
+        <div class="statusCreateReport" style="padding-right: 2rem">
+            <span style= "font-weight: 800; padding-right: 1rem">Vai trò: </span>
+            <span>Giảng viên</span>
         </div>
-        <div class="assignRoles">
-          <span style= "font-weight: 800; padding-right: 1rem">Vai trò: </span>
-            <div class="select__modalbody" id="select__khoa" disabled>
-              <p id="selectedKhoaModal"><%=  @report_template.role %></p>
-              <i class="fa-solid fa-angle-down"></i>
-              <div class="option__modalbody" id="option__khoa" disabled>
-                
+        <div class="content__generality" >
+          
+            <div class="reportTitleStatus">
+              <div class="statusCreateReport" style="padding-right: 2rem">
+                <span style= "font-weight: 800; padding-right: 1rem">Trạng thái: </span>
+                <span>Khởi tạo</span>
+              </div>
+              <div class="timeCreate" style="padding-right: 2rem">
+                <span style= "font-weight: 800; padding-right: 1rem">Thời gian nộp: </span>
+                <span>DD/MM/YYYY 2:00AM</span>
               </div>
             </div>
-        </div>
-        <div class="assignRoles">
-          <span style= "font-weight: 800; padding-right: 1rem">Năm báo cáo </span>
-            <div class="select__modalbody" id="select__period" disabled>
-              <p id="selectedYearModal" disabled ><%=  @report_template.year %></p>
-              <i class="fa-solid fa-angle-down"></i>
-              <div class="option__modalbody" id="option__period" >
-               
-              </div>
+
+            <div class="btn_submit">
+              <div id="send_Feedback" class="btn__addfile">
+              <button
+                aria-label="send_Feedback"
+                class="feedback__btn"
+                onclick="showFeedbackPopup2()"
+                style="background-color: #DC546C;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
+                >           
+              <i class="fa-regular fa-circle-xmark" style="padding-right: 1rem"></i>
+              KHÔNG DUYỆT
+              </button>
             </div>
-        </div>
-        <div class="assignRoles" style="display:none">
-          <span style= "font-weight: 800; padding-right: 1rem">Kỳ báo cáo </span>
-            <div class="select__modalbody" id="select__year" >
-              <p id="selectedPeriodModal">Chọn kỳ báo cáo</p>
-              <i class="fa-solid fa-angle-down"></i>
-              <div class="option__modalbody" id="option__year">
-                <p class="selectPeriod">Kỳ báo cáo năm 2023</p>
-                <p class="selectPeriod">Kỳ báo cáo năm 2022</p>
-                <p class="selectPeriod">Kỳ báo cáo năm 2021</p>
-                <p class="selectPeriod">Kỳ báo cáo năm 2020</p>
-              </div>
+            <div id="send_Feedback" class="btn__addfile">
+              <button
+                aria-label="send_Feedback"
+                class="feedback__btn"
+                onclick="showFeedbackPopup1()"
+                style="background-color: #678EF8;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
+                >
+              <i class="fa-regular fa-circle-check" style="padding-right: 1rem"></i>
+              DUYỆT
+              </button>
             </div>
-        </div>
-        </div>
-        <div class="content__generality">
-          <div class="generality__search">
-            <%#<div class="generality__search_icon">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <input type="text" placeholder="Tìm kiếm báo cáo" disabled>%>
-            <div class="reportTitleStatus">                      
-                <div class="statusCreateReport" style="padding-right: 4rem">
-                  <span style= "font-weight: 800; padding-right: 1rem">Trạng thái: </span>
-                  <span>Khởi tạo</span>                        
-                </div>      
-                <div class="timeCreate" style="padding-right: 4rem">
-                  <span style= "font-weight: 800; padding-right: 1rem">Thời gian tạo: </span>
-                  <span><%= @report_template.created_at.strftime('%d/%m/%Y %T')%></span>
-                </div>
-                <div class="timeEdit" style="padding-right: 4rem">
-                  <span style= "font-weight: 800; padding-right: 1rem">Thời gian sửa: </span>
-                  <span><%= @report_template.updated_at.strftime('%d/%m/%Y %T')%></span>
-                </div>            
             </div>
           </div>
-          
-          <div class="generality__options">
-            <%#<div class="btn__addfile" style="margin: 0px;" >
-              <button aria-label="btn__addfile">
-                <i class="fa-regular fa-file"></i>
-                <p>UPLOAD FILE</p>
-              </button>
+          <div class="generality__options" style="padding: 14px 20px;">
+            <%#<div class="generality__search">
+                <div class="generality__search_icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <input type="text" placeholder="Tìm kiếm báo cáo" disabled>
             </div>%>
             
-           
+            <!-- POPUP PHẢN HỒI -->
+            <div id="popup_SendApprove" class="popup_SendApprove">
+              <div
+                id="popup__inner_feedback"
+                style="
+                background-color: white;
+                border-radius: 12px;
+                border-bottom: 2px solid black;
+                width: 60%;
+                height: auto;
+                "
+                >
+                <div class="popup_header_feedback">
+                  <p style="padding: 10px">PHẢN HỒI BÁO CÁO DUYỆT</p>
+                  <i
+                    id="close__popupFeedBabk"
+                    style="cursor: pointer; padding: 10px; font-size: 25px"
+                    class="fa-regular fa-circle-xmark fa-sm"
+                    onclick="hideFeedbackPopup1()"
+                    ></i>
+                </div>
+                <div class="popup_body_feedback">
+                  <textarea
+                    name="content_feedback"
+                    id=""
+                    cols="30"
+                    rows="10"
+                    placeholder="Nhập thông tin phản hồi"
+                    style="
+                    border-radius: 12px;
+                    padding: 1rem;
+                    margin-bottom: 1rem;
+                    resize: none;
+                    "
+                    ></textarea>
+                </div>
+                <div class="popup_footer_feedback">
+                  <button
+                    class="btn__closeFeedback"
+                    style="background-color: #dc546c"
+                    onclick="hideFeedbackPopup1()"
+                    >
+                  HỦY
+                  </button>
+                  <button style="background-color: #6c8de0; margin-left: 2rem">
+                  GỬI
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="popup_SendApproveNo" class="popup_SendApproveNo">
+              <div
+                id="popup__inner_feedback"
+                style="
+                background-color: white;
+                border-radius: 12px;
+                border-bottom: 2px solid black;
+                width: 60%;
+                height: auto;
+                "
+                >
+                <div class="popup_header_feedback">
+                  <p style="padding: 10px">PHẢN HỒI BÁO CÁO KHÔNG DUYỆT</p>
+                  <i
+                    id="close__popupFeedBabk"
+                    style="cursor: pointer; padding: 10px; font-size: 25px"
+                    class="fa-regular fa-circle-xmark fa-sm"
+                    onclick="hideFeedbackPopup2()"
+                    ></i>
+                </div>
+                <div class="popup_body_feedback">
+                  <textarea
+                    name="content_feedback"
+                    id=""
+                    cols="30"
+                    rows="10"
+                    placeholder="Nhập thông tin phản hồi"
+                    style="
+                    border-radius: 12px;
+                    padding: 1rem;
+                    margin-bottom: 1rem;
+                    resize: none;
+                    "
+                    ></textarea>
+                </div>
+                <div class="popup_footer_feedback">
+                  <button
+                    class="btn__closeFeedback"
+                    style="background-color: #dc546c"
+                    onclick="hideFeedbackPopup2()"
+                    >
+                  HỦY
+                  </button>
+                  <button style="background-color: #6c8de0; margin-left: 2rem">
+                  GỬI
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <% @report_template_title.keys.each_with_index do |key, index|%>
-        <table class="content__table" style="border-radius: 0px;" >
-          <thead>
-            <tr class="content__table_header"  style="background-color: #006D77;" onclick="showTableList(this)">
-              <th class="first_column" style="border: none;text-align: right;padding: 0;">
-              </th>
-              <th class="tableHeader" colspan="<%= @report_template_title[key].first.last.values.last.length+1 %>" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none; border-top:none; border-left:none; border-right:none">
-                <%= "#{index+1}. #{key}"%>
-              </th>
-            </tr>
-          </thead>
-          <% @report_template_title[key].each do |k, v|%>
-          <tbody class="tableBody">
-            <tr class="content__table_header"  style="background-color: #83C5BE;">
-              <th class="first_column" style="border: none;text-align: right;padding: 0;">
-              </th>
-              <th class="first_thread_content">
-                <%= k %>
-              </th>
-              <% v["title"].each do |title_value|%>
-              <th>
-                <%= title_value %>
-              </th>
-              <% end %>
-            </tr>
-          </tbody>
-          <% end %>
-        </table>
-        <% end %>
+        
         <%# <table class="content__table" style="border-radius: 0px; " >
           <thead >  <tr class="content__table_header"  style="background-color: #f4924b; "  onclick="showTableList(this)">
               <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
@@ -800,10 +814,10 @@
           </tr>
           <tr class="content__table_body">
               <td class="first_column"  style="border: none;text-align: right;padding: 0;">
-                  <button  onclick="delRow(this)" style="display: block;width: 100%;">
+                  <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
                       <i class="fa-solid fa-trash"></i>
                   </button>
-                  <button  onclick="addRow(this)" style="display: block;width: 100%;">
+                  <button  onclick="addRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
                       <i class="fa-solid fa-plus"></i>
                   </button>
               </td>
@@ -878,7 +892,7 @@
               </tr>
               <tr class="content__table_body">
                   <td style="border: none;text-align: right;padding: 0;">
-                      <button id="delete" onclick="delRow12()" style="display: block;width: 100%;">
+                      <button id="delete" onclick="delRow12()" style="display: block;width: 100%;padding: 2px 0px;">
                           <i class="fa-solid fa-trash"></i>
                       </button>
                       <button id="add" onclick="addRow12()" style="display: block;width: 100%;">
@@ -917,7 +931,7 @@
               </tr>
               <tr class="content__table_body">
                   <td style="border: none;text-align: right;padding: 0;">
-                      <button id="delete" onclick="delRow12nhom2()" style="display: block;width: 100%;">
+                      <button id="delete" onclick="delRow12nhom2()" style="display: block;width: 100%;padding: 2px 0px;">
                           <i class="fa-solid fa-trash"></i>
                       </button>
                       <button onclick="addRow12nhom2()"style="display: block;width: 100%;">
@@ -957,7 +971,7 @@
               </tr>
               <tr class="content__table_body">
                   <td style="border: none;text-align: right;padding: 0;">
-                      <button id="delete" onclick="delRow12nhom3()" style="display: block;width: 100%;">
+                      <button id="delete" onclick="delRow12nhom3()" style="display: block;width: 100%;padding: 2px 0px;">
                           <i class="fa-solid fa-trash"></i>
                       </button>
                       <button onclick="addRow12nhom3()" style="display: block;width: 100%;">
@@ -989,14 +1003,14 @@
         <div id="popup__inner">
           <div class="popup_header">
             <p style="padding: 10px;">GỬI BÁO CÁO</p>
-            <i id="close__popupBaocao" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark"></i>
+            <i id="close__popupBaocao" style="cursor: pointer;padding: 15px;" class="fa-regular fa-circle-xmark"></i></fa-regular>
           </div>
           <div class="popup_body">
             <p>Bạn có chắc gửi biểu này ?</p>
           </div>
           <div class="popup_foiter">
             <button id="btn__closeBaocao" style="background-color: #dc546c;">HỦY</button>
-            <button style="background-color: #f4924b;">GỬI</button>
+            <button style="background-color: #6C8DE0;">GỬI</button>
           </div>
         </div>
       </div>
@@ -1019,16 +1033,82 @@
         getEle("menu").style.transform = "translateX(-10000px)"
     })
     
-    // delete row form table
-    function delRow(e) {
-      var table = e.parentNode.parentNode.parentNode;
-      var lastRowIndex = table.rows.length - 1; 
-    
-      if (lastRowIndex > 0) {
-        table.deleteRow(lastRowIndex); 
+    // add row to table
+    function addRow(e) {
+      var row  = e.parentNode.parentNode.cloneNode(true)
+      e.parentNode.parentNode.parentNode.appendChild(row)
+      var tr_size = e.parentNode.parentNode.parentNode.getElementsByTagName("tr").length
+      for (let td of e.parentNode.parentNode.parentNode.getElementsByTagName("tr")[(tr_size - 1)]){
+        td.innerHTML = ""
       }
     }
     
+    
+    // delete row form table
+    function delRow(e) {
+      if (e.parentNode.parentNode.parentNode.getElementsByClassName("content__table_body") <= 1) {
+        alert("Can not delete")
+      }else{
+        e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode)
+      }
+    }
+    
+    function toggleAllCheckboxes() {
+      var masterCheckbox = document.getElementById("Checkbox11");
+      var checkboxes = document.querySelectorAll("#myTable .content__table-checkbox");
+    
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = masterCheckbox.checked;
+      }
+    }
+    
+    // Checkbox bảng 1.2
+    function toggleAllCheckboxes12() {
+      var masterCheckbox = document.getElementById("Checkbox12");
+      var checkboxes = document.querySelectorAll("#myTable12 .content__table-checkbox");
+    
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = masterCheckbox.checked;
+      }
+    }
+    // Checkbox bảng 1.3
+    function toggleAllCheckboxes13() {
+      var masterCheckbox = document.getElementById("Checkbox13");
+      var checkboxes = document.querySelectorAll("#myTable13 .content__table-checkbox");
+    
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = masterCheckbox.checked;
+      }
+    }
+    // Checkbox bảng 1.4
+    function toggleAllCheckboxes14() {
+      var masterCheckbox = document.getElementById("Checkbox14");
+      var checkboxes = document.querySelectorAll("#myTable14 .content__table-checkbox");
+    
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = masterCheckbox.checked;
+      }
+    }
+    // Checkbox bảng 1.5
+    function toggleAllCheckboxes15() {
+      var masterCheckbox = document.getElementById("Checkbox15");
+      var checkboxes = document.querySelectorAll("#myTable15 .content__table-checkbox");
+    
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = masterCheckbox.checked;
+      }
+    }
+    // Checkbox bảng 2.1
+    function toggleAllCheckboxes21() {
+      var masterCheckbox = document.getElementById("Checkbox21");
+      var checkboxes = document.querySelectorAll("#myTable21 .content__table-checkbox");
+    
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = masterCheckbox.checked;
+      }
+    }
+    
+    // open/close table
     function showTableList(e) {
       for (table of e.parentNode.parentNode.children){
         table.classList.toggle("showTable");
@@ -1049,171 +1129,21 @@
         getEle("popup__guiBaocao").style.display = "none"
     })
     
-  </script>
-  <script>
-    function SubmitReport(){
-      var table_keys = []
-      var title_2_title_arr = []
-      var check_condition = true
-      //get each table
-      for (let table of document.getElementsByClassName("content__table")){
-        let tbody_title_2_title_arr = []
-        let title = table.getElementsByClassName("tableHeader")[0];
-        let title_value = title.innerText;
-        if (!title_value){
-          alert("Please fill the title")
-          check_condition = false
-          break;
-        }else{
-          table_keys.push(title_value)
-          for(let tbody of table.getElementsByTagName("tbody")){ // title2_1, title2_2, ......
-            let tbody_content = ""
-            for (let th_element of tbody.getElementsByTagName("th")){
-              if (th_element.classList.value == "first_thread_content"){
-                if (!th_element.innerText){
-                  alert("Please fill the title_2")
-                  check_condition = false
-                  break;
-                }else{
-                  tbody_content += th_element.innerText
-                }
-              }else{
-                if(th_element.classList.value == ""){
-                  if (th_element.innerText != ""){
-                    tbody_content += "," + th_element.innerText
-                  }else{
-                    tbody_content += "," + " "
-                  }
-                }
-              }
-            }
-            tbody_title_2_title_arr.push(tbody_content)
-            let title_2_value_array = []
-            //get each row in table
-            // for (let content__table_body of title_2.parentElement.parentElement.parentNode.getElementsByClassName("content__table_body")){
-            //   let title_2_value = "";
-            //   //get each column value in row
-            //   for (let td_value of content__table_body.getElementsByClassName("content__table_body_td_value")){
-            //     if (title_2_value == ""){
-            //       title_2_value += td_value.innerText;
-            //     }else{
-            //       title_2_value += "," +  td_value.innerText
-            //     }
-            //   };
-            //   title_2_value_array.push(title_2_value);
-            // }
-            // content__table_body_td_value_arr.push(title_2_value_array)
-          }
-        }
-        title_2_title_arr.push(tbody_title_2_title_arr)
-      }
-      var data = new FormData();
-      data.append('table_keys',JSON.stringify(table_keys));
-      data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
-      jQuery.ajax({
-        url: "/report_template",
-        data: data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        method: 'POST',
-        success: function(data){
-            alert("Tao thanh cong");
-        }
-      });
+    //popupSendApprove
+    function showFeedbackPopup1() {
+    document.getElementById("popup_SendApprove").style.display = "flex";
     }
-  </script>
-  <script>
-    function addTable(){
-      var table = document.getElementsByClassName("content__table")[0];
-      var clone = table.cloneNode(true)
-      document.getElementsByClassName("content")[0].appendChild(clone)
+    function hideFeedbackPopup1() {
+    document.getElementById("popup_SendApprove").style.display = "none";
     }
-    
-    function delTable(e){
-      if (document.getElementsByClassName("content__table").length == 1){
-        alert("Can not remove this table")
-      }else{
-        e.parentNode.parentNode.parentNode.parentNode.remove()
-      }
-    }
-    
-    function addThread(e){
-      var table = document.getElementsByClassName("tableBody")[0];
-      var clone = table.cloneNode(true)
-      e.parentNode.parentNode.parentNode.parentNode.appendChild(clone)
-      var bodyThreads = e.parentNode.parentNode.parentNode.parentNode.getElementsByTagName("tbody")
-      var newThread = bodyThreads[bodyThreads.length - 1]
-      //clear data form clone
-      for (let data of newThread.getElementsByTagName("th")) {
-        if (data.classList.value != "first_column"){
-          data.innerHTML = ""
-        }
-      }
-    }
-    function delThread(e){
-      if (e.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("tableBody").length == 1){
-        alert("Can not remove this thread")
-      }else{
-        e.parentNode.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode.parentNode)
-      }
-    }
-    
-    function addColumn(e){
-      var tbody_list = e.parentNode.parentNode.parentNode.parentNode.getElementsByTagName('tbody')
-      var childNodesCount = e.parentNode.parentNode.childNodes.length
-      for (let tbody of tbody_list){
-        let th = document.createElement("th")
-        th.contentEditable = true
-        let row = tbody.getElementsByClassName("content__table_header")[0]
-        row.insertBefore(th, row.childNodes[childNodesCount-2])
-      }
-      var col_span = e.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[3].colSpan
-      e.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[3].colSpan = col_span + 1
-    }
-    
-    function delColumn(e){
-      var col_span = e.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[3].colSpan
-      var childNodesCount = e.parentNode.parentNode.children.length
-      if (childNodesCount <= 3){
-        alert("Can not remove this column")
-      }else{
-        var tbody_list = e.parentNode.parentNode.parentNode.parentNode.getElementsByTagName('tbody')
-        for (let tbody of tbody_list){
-          let row = tbody.getElementsByClassName("content__table_header")[0]
-          row.removeChild(row.getElementsByTagName('th')[childNodesCount-2])
-        }
-        e.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[3].colSpan = col_span - 1
-      }
-    }
-    const khoa = document.querySelectorAll(".khoa")
-      getEle("select__khoa").addEventListener("click",()=>{
-        getEle("option__khoa").classList.toggle("show__option1")
-        getEle("select__khoa").classList.toggle("radiusSelect1")
-      })       
-    khoa.forEach(e=>{e.addEventListener("click",(e)=>{
-        getEle("selectedKhoaModal").innerHTML = e.target.innerText
-      })
-    })
 
-    const selectYear = document.querySelectorAll(".selectYear")
-      getEle("select__year").addEventListener("click",()=>{
-        getEle("option__year").classList.toggle("show__option2")
-        getEle("select__year").classList.toggle("radiusSelect2")
-      })       
-    selectYear.forEach(e=>{e.addEventListener("click",(e)=>{
-        getEle("selectedYearModal").innerHTML = e.target.innerText
-      })
-    })
-
-    const selectPeriod = document.querySelectorAll(".selectPeriod")
-      getEle("select__period").addEventListener("click",()=>{
-        getEle("option__period").classList.toggle("show__option3")
-        getEle("select__period").classList.toggle("radiusSelect3")
-      })       
-    selectPeriod.forEach(e=>{e.addEventListener("click",(e)=>{
-        getEle("selectedPeriodModal").innerHTML = e.target.innerText
-      })
-    })
+    //popupSendApprveNo
+     function showFeedbackPopup2() {
+    document.getElementById("popup_SendApproveNo").style.display = "flex";
+    }
+    function hideFeedbackPopup2() {
+    document.getElementById("popup_SendApproveNo").style.display = "none";
+    }
+    
   </script>
 </html>

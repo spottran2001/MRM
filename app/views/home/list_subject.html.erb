@@ -11,6 +11,7 @@
       display: flex;
       height: 100%;
       max-width: 100%;
+      padding: 0px;
     }
     * {
       margin: 0;
@@ -202,6 +203,18 @@
     .content__table_body {
       font-size: 16px;
       background-color: #f1f1f1;
+    }
+    th {
+    background-color: #6dbac7;
+    color: white; /* Để làm cho văn bản trắng trên nền đỏ */
+    }
+    /* Định dạng hàng chẵn */
+    tr:nth-child(even) {
+    background-color: #F1F1F1;
+    }
+    /* Định dạng hàng lẻ */
+    tr:nth-child(odd) {
+      background-color: #E5E5E5;
     }
     .checkbox-row {
       display: flex;
@@ -602,24 +615,23 @@
       align-items: center;
       justify-content: space-between;
     }
+    .select-row span{
+      font-weight: 600;
+      white-space: nowrap; 
+    }
     .select-row p,
     .select-row select,
     .select-row option,
     .total__report {
       font-weight: 600;
+      white-space: nowrap; 
     }
     .select-row .select-field {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #e0e7ed;
-      background: #c73951;
-    }
-    .select-row .select-field {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #e0e7ed;
-      background: #dc546c;
-      color: white;
+      padding-left: 0rem;
+      width: 100%;
+      padding: 10px 15px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
     }
     .select-row .select-field option {
       background: #fff;
@@ -651,68 +663,143 @@
     .btn gold:hover {
       visibility: visible;
     }
+    .btn blue {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -60px;
+    }
+    .btn blue:hover {
+      visibility: visible;
+    }
+    .btn red {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -60px;
+    }
+    .btn red:hover {
+      visibility: visible;
+    }
+    .btn[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      padding: 5px;
+      border-radius: 5px;
+      left: 100%;
+      top: 100%;
+      white-space: nowrap;
+      z-index: 1;
+      background-color: red;
+      color: white;    
+      overflow: hidden;  
+    } 
   </style>
   <body>
     <main class="container">
       <%= render "shared/left_nav"%>
       <div class="content">
         <%= render 'shared/header' %>
-        <h1 class="content__name">Quản lý kỳ báo cáo năm 2022-2023</h1>
+        <h1 class="content__name">DANH SÁCH KỲ BÁO CÁO BỘ MÔN</h1>
         <div class="content__generality">
           <div class="generality__options">
             <div class="select-row">
-              <p>Kỳ hạn</p>
-              <input class="periodReport" type="date">
-              <p>Lịch</p>
-              <input class="calendarReport" type="date">
-              <p>Trạng thái</p>
-              <select class="select-field">
-                <%#<option selected>Trạng thái</option>%>s
+              <span>Trạng thái</span>
+              <select class="select-field" >
+                <option selected>Tất cả</option>
                 <option value="1">Khởi tạo</option>
                 <option value="2">Lưu nháp</option>
-                <option value="3">Đúng hạn</option>
-                <option value="3">Trễ hạn</option>
-                <option value="3">Không nộp</option>
-                <option value="3">Đã duyệt</option>
                 <option value="3">Chờ duyệt</option>
+                <option value="4">Cần bổ sung</option>
+                <option value="5">Đã duyệt</option>
+              </select>
+              <span style="padding-left: 2rem">Loại</span>
+              <select class="select-field">
+                <option selected>Tất cả</option>
+                <option value="1">Chưa báo cáo</option>
+                <option value="2">Đang báo cáo</option>
+                <option value="3">Đúng hạn</option>
+                <option value="4">Trễ hạn</option>
               </select>
             </div>
           </div>
           <div class="generality__search">
             <div class="generality__search_icon">
               <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <input type="text" placeholder="Tìm kiếm kỳ báo cáo">
+            </div>  
+            <input type="text" id="searchInput" placeholder="Tìm kiếm kỳ báo cáo">
           </div>
         </div>
         <table class="content__table" id="table_phongban">
           <tr class="content__table_header">
-            <th>
-              <input class="content__table-checkbox" type="checkbox" placeholder="checkbox" id="checkbox_period">
-            </th>
             <th>STT</th>
             <th>Họ và tên</th>
-            <th>Chức vụ</th>
+            <th>Bộ môn</th>
             <th>Kỳ hạn</th>
             <th>Thời gian tạo</th>
             <th>Trạng Thái</th>
+            <th>Loại</th> 
             <th></th>
             </th>
           </tr>
           <tr class="content__table_body">
-            <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
             <td>1</td>
             <td>Nguyễn Văn A</td>
-            <td>Nhân viên</td>
+            <td>Giải tích 1</td>
             <td>dd/mm/yyyy</td>
             <td>dd/mm/yyyy</td>
-            <td style="display: flex; justify-content: center">
+            <%#<td style="display: flex; justify-content: center">
               <div style="border-radius: 12px; margin: 1rem ;
                 display: flex; justify-content: center; background-color: #C4C4C4; color: white; width: 7rem;" class="period">Mới tạo</div>
-            </td>
+            </td>%>
+            <td>Chờ duyệt</td> 
+            <td>Đang báo cáo</td> 
             <td>
-              <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
-              <button class="btn" style="margin-left: 3px; background-color: #5CBD4C;" aria-label="btn"><i class="fa-solid fa-download"></i></button>                        
+              <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+              <button class="btn green" style="margin-left: 3px;" aria-label="btn" title="Tải xuống" data-tooltip="Tooltip Text">
+                <i class="fa-solid fa-download"></i>
+              </button>                        
+            </td>
+          </tr>
+          <tr class="content__table_body">
+            <td>2</td>
+            <td>Nguyễn Văn B</td>
+            <td>Cơ sở lập trình</td>
+            <td>dd/mm/yyyy</td>
+            <td>dd/mm/yyyy</td>
+            <%#<td style="display: flex; justify-content: center">
+              <div style="border-radius: 12px; margin: 1rem ;
+                display: flex; justify-content: center; background-color: #C4C4C4; color: white; width: 7rem;" class="period">Mới tạo</div>
+            </td>%>
+            <td>Đã duyệt</td> 
+            <td>Đúng hạn</td> 
+            <td>
+              <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+              <button class="btn green" style="margin-left: 3px;" aria-label="btn" title="Tải xuống" data-tooltip="Tooltip Text">
+                <i class="fa-solid fa-download"></i>
+              </button>                        
             </td>
           </tr>
         </table>
@@ -834,5 +921,48 @@
                 checkbox.checked = headerCheckbox.checked;
             });
         });
+
+    //search dữ liệu trong bảng 
+    // Lấy input tìm kiếm và bảng
+        const searchInput = document.getElementById('searchInput');
+        const table = document.getElementById('table_phongban');
+        const rows = table.querySelectorAll('tr');
+
+        // Lưu trạng thái ban đầu của các hàng
+        const initialDisplayStates = [...rows].map(row => row.style.display);
+
+        // Sử lý sự kiện tìm kiếm
+        searchInput.addEventListener('input', function () {
+          const searchTerm = searchInput.value.trim().toLowerCase();
+
+          rows.forEach((row, index) => {
+            // Bỏ qua hàng tiêu đề
+            if (row.classList.contains('content__table_header')) return;
+
+            const columns = row.querySelectorAll('td');
+            let found = false;
+
+            // Kiểm tra nội dung trong cột và ẩn/hiện dựa trên kết quả tìm kiếm
+            columns.forEach((column, columnIndex) => {
+              if (column.textContent.trim().toLowerCase().includes(searchTerm)) {
+                found = true;
+                row.style.display = ''; // Hiển thị hàng
+              } else if (found === false && columnIndex === columns.length - 1) {
+                row.style.display = 'none'; // Ẩn hàng nếu không tìm thấy kết quả
+              }
+            });
+          });
+        });
+
+        // Sử lý sự kiện xóa trường tìm kiếm
+        searchInput.addEventListener('keyup', function (event) {
+          if (event.key === 'Escape' && searchInput.value !== '') {
+            searchInput.value = ''; // Xóa nội dung tìm kiếm
+            rows.forEach((row, index) => {
+              row.style.display = initialDisplayStates[index]; // Hiển thị lại dữ liệu ban đầu
+            });
+          }
+        });
+        
   </script>
 </html>

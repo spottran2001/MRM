@@ -6,9 +6,17 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :users do
     put "read_notifications", to: "users#read_notification"
-  end
+    put "report_apply"
+  end 
+  get "report_chart", to: "home#report_chart"
+  get "report_upload", to: "home#report_upload"
+  get "configuration_page", to: "home#configuration_page"
+  get "review_report", to: "home#review_report"
+  get "list_faculty", to: "home#list_faculty"
+  get "list_subject", to: "home#list_subject"
+  get "list_lecturer", to: "home#list_lecturer"
+  get "list_staff", to: "home#list_staff"
   get "edit", to: "home#edit"
-  get "staff", to: "home#staff"
   get 'page_stats', to: "home#page_stats"
   get "report_template_management", to: "report_template#report_template_management"
   resources :report_template do
@@ -19,9 +27,14 @@ Rails.application.routes.draw do
   resources :academic
   resources :subject
   resources :report do
+    put "save_draft", to: 'report#save_draft'
+    put "send_report", to: 'report#send_report'
+    put "return_report", to: 'report#return_report'
+    put "report_apply", to: 'report#report_apply'
     put "submit_report", to: "report#submit_report!"
   end
   root 'users#show'
   get "statistic", to: 'home#page_stats' 
   get "reports", to: 'home#report' 
+
 end

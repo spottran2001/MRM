@@ -23,4 +23,24 @@ class User < ApplicationRecord
   def read_notification!
     notifications.update_all(have_read: true)
   end
+
+  def get_role
+    user_roles = ""
+    if role.include?("staff")
+      user_roles += "Nhan Vien, "
+    end
+    if role.include?("teacher")
+      user_roles += "Giang Vien, "
+    end
+    if role.include?("subject")
+      user_roles += "Bo Mon, "
+    end
+    if role.include?("faculty")
+      user_roles += "Ban Chu Nhiem Khoa, "
+    end
+    if role.include?("admin")
+      user_roles += "Administrator"
+    end
+    user_roles
+  end
 end

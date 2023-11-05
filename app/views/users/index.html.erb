@@ -533,7 +533,7 @@
       background-color: #E5E5E5;
     }
     th {
-    background-color: #dc546c;
+    background-color: #6dbac7;
     color: white; /* Để làm cho văn bản trắng trên nền đỏ */
     }
     /* Định dạng hàng chẵn */
@@ -772,7 +772,7 @@
       <%= render "shared/left_nav"%>
       <div class="content">
         <%= render 'shared/header' %>
-        <h1 class="content__name">Quản lý tài khoản</h1>
+        <h1 class="content__name">QUẢN LÝ TÀI KHOẢN</h1>
         <div class="content__generality">
           <div class="generality__options">                  
             <div class="select__options">
@@ -822,11 +822,11 @@
             <td> <%= u.id %> </td>
             <td> <%= u.name %> </td>
             <td> <%= u.email %> </td>
-            <td> <%= u.role || "N/A"  %> </td>
-            <td> <%= u.subject || "N/A"  %> </td>
+            <td> <%= u.get_role.split(",").join(", ") || "N/A"  %> </td>
+            <td> <%= u.subject.name || "N/A"  %> </td>
             <td>
               <%#<p class="approve" style="background-color: #C4C4C4;color: black;"><%= u.faculty || "N/A" ></p>%>
-              <%= u.faculty || "N/A" %>
+              <%= u.faculty.name || "N/A" %>
             </td>
             <td>
               <%= button_to edit_user_path(u), method: :get, style: "background-color: #FFBF24", class: "btn btn-secondary" do %>
@@ -836,7 +836,11 @@
           </tr>
           <% end %>
         </table>
-        <div class="paging d-none">
+
+        <div class="pagination" style="display:flex; justify-content: center">
+          <%== render partial: 'shared/pagination', locals: {pagy: @pagy} %>
+        </div>
+        <%# <div class="paging d-none">
           <button aria-label="pagin">
           <i class="fa-solid fa-chevron-left"></i>
           </button>
@@ -848,7 +852,7 @@
           <button aria-label="pagin">
           <i class="fa-solid fa-chevron-right"></i>
           </button>
-        </div>
+        </div> %>
       </div>
       
       </div>

@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý tài khoản</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      overflow: hidden
-    }
     .container {
       display: flex;
       height: 100%;
       max-width: 100%;
-      padding: 0px
+      padding: 0px;
     }
     * {
       margin: 0;
@@ -54,6 +49,9 @@
       color: #dadada;
       display: block;
     }
+    .menu__items--separation {
+      margin-bottom: 40px;
+    }
     .menu__icon i {
       font-size: 20px;
     }
@@ -66,10 +64,9 @@
     }
     /* Content */
     .content {
-      background-color: #f5f5f5;
+      background-color: #F8F8F8;
       width: 100%;
       padding: 30px 60px 20px 30px;
-      overflow-Y: scroll
     }
     .content__title {
       display: flex;
@@ -85,7 +82,7 @@
       font-weight: bold;
       margin-left: 20px;
     }
-    .breadcrumb__Subject {
+    .breadcrumb__Faculty {
       display: inline-block;
       margin-left: 10px;
       color: #f34f68;
@@ -121,15 +118,15 @@
       cursor: pointer;
       color: gray;
     }
-    .content__generality {
+    .content-generality {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
       margin: 20px 0px;
       padding: 14px 20px;
-      background: #f1f1f1;
-      border-radius: 8px;
+      background-color: #fff;
+      border-radius: 12px;
     }
     .generality__total {
       display: flex;
@@ -194,6 +191,10 @@
       color: white;
       padding: 20px 10px;
     }
+    .content__table_header {
+      background-color: #dc546c;
+      font-size: 16px;
+    }
     .content__table-checkbox {
       margin-top: 4px;
     }
@@ -202,7 +203,7 @@
     }
     .content__table_body {
       font-size: 16px;
-      background-color: #E5E5E5;
+      background-color: #f1f1f1;
     }
     th {
     background-color: #6dbac7;
@@ -245,13 +246,13 @@
       background-color: #f4924b;
     }
     .blue {
-      background-color: #678EF8;
+      background-color: #1b59f8;
     }
     .green {
       background-color: #5cbd4c;
     }
-    .red {
-      background-color: #DC546C;
+    .yellow{
+      background-color: #FFC123;
     }
     .paging {
       display: flex;
@@ -260,7 +261,7 @@
       margin-top: 20px;
     }
     .paging--active {
-      background-color: #d72134 !important;
+      background-color: #dc546c !important;
       color: white !important;
     }
     .paging button {
@@ -298,6 +299,22 @@
       padding: 10px 0px;
       display: block;
       text-decoration: none;
+    }
+    .menu__dropwdown .menu__items .menu__icon {
+      display: flex;
+      align-items: center;
+      padding: 0px 20px;
+      justify-content: space-between;
+    }
+    .menu__dropwdown .menu__items .menu__icon .menu__dropdown_icon {
+      display: flex;
+      align-items: center;
+    }
+    .menu__dropwdown .menu__items .menu__icon .menu__dropdown_icon p {
+      color: black;
+      margin-left: 10px;
+      font-size: 18px;
+      margin-top: 4px;
     }
     .active {
       color: #d72134 !important;
@@ -427,6 +444,7 @@
     }
     .btn__addmember button p {
       margin-left: 6px;
+      min-width: 80px;
     }
     .btn__addfile {
       margin: 0px 24px;
@@ -438,7 +456,7 @@
       border-radius: 12px;
       border: none;
       color: white;
-      background-color: #678ef8;
+      background-color: green;
       cursor: pointer;
     }
     .btn__addfile button p {
@@ -529,6 +547,18 @@
       background-color: white;
       border-radius: 40px;
     }
+    .generality__options button {
+      min-width: 120px;
+      padding: 0px !important;
+      margin: 0px !important;
+      min-height: 70px;
+      display: flex;
+      justify-content: center;
+    }
+    .generality__options button p {
+      padding: 0px;
+      margin: 0px;
+    }
     .popup__SendFeedback {
       position: fixed;
       top: 0;
@@ -583,12 +613,74 @@
       color: white;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     }
-    .nameGeneralReportForm {
-      padding-left: 0rem;
+    .select-row {
       width: 100%;
-      padding: 10px 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .select-row p,
+    .select-row select,
+    .select-row option,
+    .total__report {
+      font-weight: 600;
+      white-space: nowrap; 
+    }
+    .select-row .select-field {
+      padding: 10px;
       border-radius: 12px;
-      border: 2px solid #dadada;
+      border: 1px solid #e0e7ed;
+      background: #F8F8F8;
+      color: #fff;
+    }
+    .select-row .select-field option {
+      background: #fff;
+      color: black;
+    }
+    .periodReport {
+      padding: 0.5rem;
+      border-radius: 12px;
+    }
+    .calendarReport {
+      padding: 0.5rem;
+      border-radius: 12px;
+    }
+    .btn gold {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -60px;
+    }
+    .btn gold:hover {
+      visibility: visible;
+    }
+    .btn green {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -60px;
+    }
+    .btn green:hover {
+      visibility: visible;
     }
     .btn[data-tooltip]:hover::after {
       content: attr(data-tooltip);
@@ -600,126 +692,192 @@
       white-space: nowrap;
       z-index: 1;
       background-color: red;
-      color: white;      
+      color: white;
+      overflow: hidden;
     } 
+    .custom_checkbox{
+        height: 18px;
+        width: 18px;
+    }
+    .total_box{
+        width: auto;
+        display: flex;
+        padding: 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 12px;
+        color: #fff;
+    }
+    <%#custom chart%>
+    .chart-container {
+      position: relative;
+      width: 100%; /* Đặt chiều rộng của phần tử chứa biểu đồ là 100% */
+      max-width: 1500px; /* Tối đa chiều rộng của phần tử chứa biểu đồ (đổi từ 900px) */
+    }
+
+    canvas {
+      width: 100% !important; /* Đặt chiều rộng của thẻ canvas là 100% */
+      height: 100% !important; /* Đặt chiều cao của thẻ canvas là 100% */
+    }
+    .header-chart{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction:column;
+        width: 100%;
+        margin: 20px 0px;
+        padding: 14px 20px;
+        background-color: #fff;
+        border-radius: 12px;
+    }
+    .year-select{
+        display:flex;
+        flex-direction:row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .year-select-content .select-field-content{
+        padding: 10px;
+        border-radius: 12px;
+        border: 1px solid #e0e7ed;
+        background: #F8F8F8;
+        color: black;
+    }
   </style>
   <body>
     <main class="container">
-      <%= render "shared/left_nav"%>
-      <div class="content">
+    <%= render "shared/left_nav"%>
+    <div class="content">
       <%= render 'shared/header' %>
-      <h1 class="content__name">QUẢN LÝ PHÒNG BAN</h1>
-      <div class="content__generality">
+      <h1 class="content__name">THỐNG KÊ</h1>
+      <div class="generality__options">
+        <div class="select-row">
+          <div class="total_box" style="background: #ADDDFF;">
+            <span style="font-weight:600">Khởi tạo: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #678EF8;">
+            <span style="font-weight:600">Lưu nháp: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #5CBD4C;">
+            <span style="font-weight:600">Đúng hạn: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #B70619;">
+            <span style="font-weight:600">Trễ hạn: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #828282;">
+            <span style="font-weight:600">Không nộp: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #1B59F8;">
+            <span style="font-weight:600">Đã duyệt: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #FFC123;">
+            <span style="font-weight:600">Chờ duyệt: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+        </div>
+      </div>
+      <div class="content-generality">
         <div class="generality__options">
-          <div class="btn__addfile">
-            <button id="open-popup-btn" style="background-color: #DC546C;">
-              KHOA
-            </button>
-          </div>
-          <div class="btn__addfile">
-            <%= button_to "BỘ MÔN", faculty_index_path, method: :get, style: "background-color: #EC8C9C;"%>
-          </div>
-          <div class="btn__addfile">
-            <button aria-label="btn__department" id="btn__department" style="background-color: #678EF8;" onclick="showFeedbackPopup()">
-              <i class="fa-solid fa-plus" style="padding-right: 0.5rem"></i>
-              THÊM
-            </button>
+          <div class="select-row">
+            <span style="font-weight:600">Tên kỳ báo cáo</span>
+            <select class="select-field" style="background: #DC4C5D">
+              <option selected>Kỳ báo cáo tháng 1</option>
+              <option value="1">Kỳ báo cáo tháng 2</option>
+              <option value="2">Kỳ báo cáo tháng 3</option>
+              <option value="3">Kỳ báo cáo tháng 4</option>
+              <option value="4">Kỳ báo cáo tháng 5</option>
+            </select>
+            <span style="padding-left: 2rem; font-weight:600">Vai trò</span>
+            <select class="select-field" style="background: #DC4C5D">
+              <option selected>Nhân viên</option>
+              <option value="1">Giảng viên</option>
+              <option value="2">Phụ trách bộ môn</option>
+              <option value="3">Ban chủ nhiệm khoa</option>
+            </select>
+            <span style="padding-left: 2rem; font-weight:600">Trạng thái</span>
+            <select class="select-field" style="background: #FFC123">
+              <option selected>Tất cả</option>
+              <option value="1">Khởi tạo</option>
+              <option value="2">Lưu nháp</option>
+              <option value="3">Chờ duyệt</option>
+              <option value="4">Cần bổ sung</option>
+              <option value="5">Đã duyệt</option>
+            </select>
+            <span style="padding-left: 2rem; font-weight:600">Loại</span>
+            <select class="select-field" style="background: #FFC123">
+              <option selected>Tất cả</option>
+              <option value="1">Chưa báo cáo</option>
+              <option value="2">Đang báo cáo</option>
+              <option value="3">Đúng hạn</option>
+              <option value="4">Trễ hạn</option>
+            </select>
           </div>
         </div>
-        <div class="generality__search">
-          <div class="generality__search_icon">
+        <div class="report_total">
+          <span style="font-weight:600">Tổng báo cáo: </span>
+          <span style="font-weight:600">60 </span>
+        </div>
+            <%#<div class="generality__search">
+            <div class="generality__search_icon">
             <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-          <input type="text" id="searchInput" placeholder="Tìm kiếm báo cáo">
-        </div>
+            </div>  
+            <input type="text" id="searchInput" placeholder="Tìm kiếm kỳ báo cáo">
+            </div>%>
       </div>
-      <table class="content__table" id="table_phongban">
-        <tr class="content__table_header">
-          <th>
-            STT
-          </th>
-          <th>
-            Khoa
-          </th>
-          <th>
-            Thời gian tạo
-          </th>
-          <th>
-          </th>
-        </tr>
-        <% @subjects.each do |s| %>
-        <tr class="content__table_body">
-          <td><%= s.id %></td>
-          <td><%= s.name %></td>
-          <td><%= s.created_at.strftime('%d %B %Y %r') %></td>
-          <td>
-            <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text">
-              <i class="fa-solid fa-eye"></i>
-            </button>
-            <button class="btn blue" style="margin-left: 3px;" aria-label="btn" title="Thêm thành viên" data-tooltip="Tooltip Text">
-              <i class="fa-solid fa-user-plus"></i>
-            </button>
-            <button class="btn red" aria-label="btn" title="Xóa khoa" data-tooltip="Tooltip Text">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </td>
-        </tr>
-        <% end %>
-      </table>
-      <div class="paging d-none">
-        <button aria-label="pagin">
-        <i class="fa-solid fa-chevron-left"></i>
-        </button>
-        <button class="paging--active" aria-label="pagin">1</button>
-        <button aria-label="pagin">2</button>
-        <button aria-label="pagin">3</button>
-        <button aria-label="pagin">...</button>
-        <button aria-label="pagin">100</button>
-        <button aria-label="pagin">
-        <i class="fa-solid fa-chevron-right"></i>
-        </button>
-      </div>
-      <div id="popup_SendFeedback" class="popup__SendFeedback">
-        <div
-          id="popup__inner_feedback"
-          style="
-          background-color: white;
-          border-radius: 12px;
-          border-bottom: 2px solid black;
-          width: 40%;
-          height: auto;
-          "
-          >
-          <div class="popup_header_feedback">
-            <p style="padding: 10px">THÊM KHOA</p>
-            <i
-              id="close__popupFeedBabk"
-              style="cursor: pointer; padding: 10px; font-size: 25px"
-              class="fa-regular fa-circle-xmark fa-sm"
-              onclick="hideFeedbackPopup()"
-              ></i>
+      <div class="content-generality">
+        <div class="generality__options">
+          <div class="select-row" style="padding-right: 2rem;">
+            <input type="checkbox" class="custom_checkbox">
+            <span style="font-weight:600">Khoa</span>
+            <select class="select-field" style="background: #FFC123" >
+              <option selected>Tất cả</option>
+              <option value="1">Công nghệ thông tin</option>
+              <option value="2">Quan hệ công chúng</option>
+              <option value="3">Quản trị kinh doanh</option>
+              <option value="4">Xây dựng</option>
+            </select>
           </div>
-          <div class="popup_body_feedback">
-            <div style="border-radius: 12px; margin-bottom: 1rem">
-                <input class="nameGeneralReportForm" placeholder="Nhập tên khoa">
-            </div>           
-          </div>
-          <div class="popup_footer_feedback">
-            <button
-              class="btn__closeFeedback"
-              style="background-color: #dc546c"
-              onclick="hideFeedbackPopup()"
-              >
-            HỦY
-            </button>
-            <!-- Đây là nút hủy -->
-            <button style="background-color: #6c8de0; margin-left: 2rem">
-            GỬI
-            </button>
-            <!-- Đây là nút gửi -->
+          <div class="select-row">
+            <input type="checkbox" class="custom_checkbox">
+            <span style=" font-weight:600">Bộ môn</span>
+            <select class="select-field" style="background: #FFC123">
+              <option selected>Tất cả</option>
+              <option value="1">Kỹ thuật phần mền</option>
+              <option value="2">Toán rời rạc</option>
+              <option value="3">Vật lý đại cương</option>
+              <option value="4">Kỹ thuật xây dựng</option>
+            </select>
           </div>
         </div>
       </div>
+      <div class="header-chart">       
+        <div class="year-select">
+          <span style="font-weight:600">BIỂU ĐỒ THỐNG KÊ BÁO CÁO</span>
+          <div class="year-select-content">
+            <span style=" font-weight:600">Năm báo cáo</span>
+            <select class="select-field-content">
+              <option selected>2024</option>
+              <option value="1">2023</option>
+              <option value="2">2022</option>
+              <option value="3">2021</option>
+              <option value="4">2020</option>
+            </select>
+          </div>
+        </div>
+        <hr  width="100%" >
+        <div class="chart-container">
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </div>
     </main>
   </body>
   <script >
@@ -748,54 +906,55 @@
         getEle("menu").style.display = "none"
         getEle("menu").style.transform = "translateX(-10000px)"
     })
-    
-    function showFeedbackPopup() {
-      document.getElementById("popup_SendFeedback").style.display = "flex";
-    }
-    function hideFeedbackPopup() {
-      document.getElementById("popup_SendFeedback").style.display = "none";
-    }
 
-    //search dữ liệu trong bảng 
-    // Lấy input tìm kiếm và bảng
-    const searchInput = document.getElementById('searchInput');
-    const table = document.getElementById('table_phongban');
-    const rows = table.querySelectorAll('tr');
+    //chart
+    // Dữ liệu cho biểu đồ
+        var data = {
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+            datasets: [
+                {
+                    label: 'Cột 1',
+                    data: [30, 40, 50, 35, 45, 55, 40, 30, 50, 60, 45, 55],
+                    backgroundColor: '#006D77'
+                },
+                {
+                    label: 'Cột 2',
+                    data: [20, 25, 30, 20, 35, 40, 25, 15, 30, 35, 30, 40],
+                    backgroundColor: '#51A2AE'
+                },
+                {
+                    label: 'Cột 3',
+                    data: [10, 15, 20, 15, 25, 30, 20, 10, 15, 25, 20, 30],
+                    backgroundColor: '#83C5BE'
+                }
+            ]
+        };
 
-    // Lưu trạng thái ban đầu của các hàng
-    const initialDisplayStates = [...rows].map(row => row.style.display);
-
-    // Sử lý sự kiện tìm kiếm
-    searchInput.addEventListener('input', function () {
-      const searchTerm = searchInput.value.trim().toLowerCase();
-
-      rows.forEach((row, index) => {
-        // Bỏ qua hàng tiêu đề
-        if (row.classList.contains('content__table_header')) return;
-
-          const columns = row.querySelectorAll('td');
-          let found = false;
-
-          // Kiểm tra nội dung trong cột và ẩn/hiện dựa trên kết quả tìm kiếm
-          columns.forEach((column, columnIndex) => {
-            if (column.textContent.trim().toLowerCase().includes(searchTerm)) {
-              found = true;
-              row.style.display = ''; // Hiển thị hàng
-            } else if (found === false && columnIndex === columns.length - 1) {
-              row.style.display = 'none'; // Ẩn hàng nếu không tìm thấy kết quả
+        var options = {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Tháng' // Tên trục X
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Báo cáo' // Tên trục Y
+                    }
+                }
             }
-          });
-        });
-    });
+        };
 
-    // Sử lý sự kiện xóa trường tìm kiếm
-    searchInput.addEventListener('keyup', function (event) {
-      if (event.key === 'Escape' && searchInput.value !== '') {
-        searchInput.value = ''; // Xóa nội dung tìm kiếm
-        rows.forEach((row, index) => {
-          row.style.display = initialDisplayStates[index]; // Hiển thị lại dữ liệu ban đầu
+        // Tạo biểu đồ cột
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar', // Loại biểu đồ cột
+            data: data,
+            options: options
         });
-      }
-    });
+        
   </script>
 </html>

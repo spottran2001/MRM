@@ -958,7 +958,7 @@
                               <p id="selectedNhanVienModal">Chọn mẫu báo cáo nhân viên</p>
                               <i class="fa-solid fa-angle-down"></i>
                             <div class="option__modalbody" id="option__nhanvien">
-                              <% ReportTemplate.all.each do |r| %>
+                              <% ReportTemplate.where(role: "Nhân viên", is_apply: true).each do |r| %>
                                 <p class="nhanvien" value="<%= r.id %>"> <%= r.name %> </p>
                               <% end %>
                             </div>
@@ -971,7 +971,7 @@
                               <p id="selectedGiangVienModal">Chọn mẫu báo cáo giảng viên</p>
                               <i class="fa-solid fa-angle-down"></i>
                             <div class="option__modalbody" id="option__giangvien">
-                              <% ReportTemplate.all.each do |r| %>
+                              <% ReportTemplate.where(role: "Giảng viên", is_apply: true).each do |r| %>
                                 <p class="giangvien" value="<%= r.id %>"> <%= r.name %> </p>
                               <% end %>
                             </div>
@@ -984,7 +984,7 @@
                               <p id="selectedBoMonModal">Chọn mẫu báo cáo phụ trách bộ môn</p>
                               <i class="fa-solid fa-angle-down"></i>
                             <div class="option__modalbody" id="option__phutrachbomon">
-                              <% ReportTemplate.all.each do |r| %>
+                              <% ReportTemplate.where(role: "Phụ trách bộ môn", is_apply: true).each do |r| %>
                                 <p class="phutrachbomon" value="<%= r.id %>"> <%= r.name %> </p>
                               <% end %>
                             </div>
@@ -996,7 +996,7 @@
                           <p id="selectedBanChuNhiemKhoaModal">Chọn mẫu báo cáo ban chủ nhiệm khoa</p>
                           <i class="fa-solid fa-angle-down"></i>
                           <div class="option__modalbody" id="option__banchunhiemkhoa">
-                            <% ReportTemplate.all.each do |r| %>
+                            <% ReportTemplate.where(role: "Ban chủ nhiệm khoa", is_apply: true).each do |r| %>
                               <p class="banchunhiemkhoa" value="<%= r.id %>"> <%= r.name %> </p>
                             <% end %>
                           </div>
@@ -1033,7 +1033,7 @@
             <div class="calendar1" style="width: 12px; height: 12px; left: 15px; top: 93px; position: absolute; color: white">
               <i class="fa-regular fa-calendar"></i>
             </div>
-            <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm </div>
+            <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word"></div>
             <div class="Rectangle1" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
             <div class="Rectangle1" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
             <div class="Rectangle1" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
@@ -1181,7 +1181,7 @@ function getEle(id) {
           method: 'POST',
           success: function(data){
               alert("Tao thanh cong");
-              window.location.replace("/report_template_management");
+              window.location.replace("/academic");
           }
         });
     })

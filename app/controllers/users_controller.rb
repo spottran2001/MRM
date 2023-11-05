@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     if current_user.role != "admin"
       @users = User.where(id: current_user.id)
     else
-      @users = User.all
+      users = User.all
+      @pagy, @users = pagy(users.all, items: 10)
     end
   end
 
@@ -28,17 +29,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @faculties = Faculty.all
     @subjects = Subject.all
+    @is_admin = current_user.role.include?('admin')
   end
 
   def update
     @user = User.find(params[:id])
-    params['user']['role'].drop(1)
-    if current_user.role == 'admin'
-      @user.update!(role: params['user']['role'].join(','), phone_number: params['user']['phone_number'])
+    role = params['role'].split(',')
+    if params["current_user_role"].include?('admin')
+      @user.update!(role: role.join(','), phone_number: params['phoneNumber'], faculty_id: params['faculty'] ,subject_id: params['subject'] )
     else
-      @user.update!(phone_number: params['user']['phone_number']) #add this column to database!
+      @user.update!(phone_number: params['phoneNumber']) #add this column to database!
     end
-    redirect_to users_path
   end
 
   def generate_report
