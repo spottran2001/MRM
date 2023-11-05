@@ -580,7 +580,7 @@
       </div>
     </a>
     <% if current_user.role == 'admin' %>
-      <%= link_to report_template_management_path, class: "menu__items" do %>
+      <%= link_to report_template_management_path, class: "menu__items", data: {turbo: false} do %>
         <div class="menu__icon" title="Quản lý biểu mẫu báo cáo chung" data-tooltip="Tooltip Text">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
@@ -592,7 +592,7 @@
     <% end %>
     
     <% if current_user.role == 'admin' %>
-      <%= link_to academic_index_path, class: "menu__items" do %>
+      <%= link_to academic_index_path, class: "menu__items", data: {turbo: false} do %>
         <div class="menu__items" >
           <div class="menu__icon" title="Quản lý kỳ báo cáo" data-tooltip="Tooltip Text">
             <i class="fa-regular fa-calendar"></i>  
@@ -600,7 +600,7 @@
         </div>
       <% end %>
     <% else %>
-      <%= link_to report_index_path, class: "menu__items pt-4" do %>
+      <%= link_to report_index_path, class: "menu__items pt-4", data: {turbo: false} do %>
         <div class="menu__items">
           <div class="menu__icon" >
             <i class="fa-regular fa-calendar"></i>  
@@ -609,19 +609,19 @@
       <% end %>
     <% end %>
     <% if current_user.role != 'admin' %>
-      <%= link_to user_path(current_user), class: "menu__items" do %>
+      <%= link_to user_path(current_user), class: "menu__items", data: {turbo: false} do %>
         <div class="menu__icon  ">
           <i class="fa-regular fa-clipboard"></i>
         </div>
       <% end %>
     <% end %>
     <% if current_user.role == 'admin' %>
-      <%= link_to subject_index_path, class: "menu__items" do %>
+      <%= link_to subject_index_path, class: "menu__items", data: {turbo: false} do %>
         <div class="menu__icon" title="Quản lý phòng ban" data-tooltip="Tooltip Text">
           <i class="fa-solid fa-boxes-stacked"></i>
         </div>
       <% end %>
-      <%= link_to users_path, class: "menu__items" do %>
+      <%= link_to users_path, class: "menu__items", data: {turbo: false} do %>
       <div class="menu__items">
         <div class="menu__icon" title="Quản lý tài khoản" data-tooltip="Tooltip Text">
           <i class="fa-regular fa-user"></i>
@@ -642,7 +642,7 @@
         <i class="fa-regular fa-sun"></i>
       </div>
     </div>
-  <%= button_to destroy_user_session_path, method: :delete, style: "background-color: white; color: #dadada; border:none", class: "menu__items" do %>
+  <%= button_to destroy_user_session_path, method: :delete, style: "background-color: white; color: #dadada; border:none", class: "menu__items", data: {turbo: false} do %>
     <div class="menu__icon" title="Đăng xuất" data-tooltip="Tooltip Text">
       <i class="fa-solid fa-right-to-bracket"></i>
     </div>
@@ -680,7 +680,7 @@
         </nav>%>
     </div>
     <% if current_user.role == 'admin' %>
-      <%= link_to report_template_management_path, class: "menu__items" ,style:"margin: 30px 0px;" do %>
+      <%= link_to report_template_management_path, class: "menu__items" ,style:"margin: 30px 0px;", data: {turbo: false} do %>
         <div class="menu__icon  ">
           <div class="menu__dropdown_icon">
             <i>
@@ -695,7 +695,7 @@
         </div>
       <% end %>
     <% end %>
-    <%= link_to academic_index_path, class: "menu__items", style:"margin: 30px 0px;" do %>
+    <%= link_to academic_index_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
       <div class="menu__icon" id="report">
         <div class="menu__dropdown_icon">
           <i class="fa-regular fa-calendar"></i>
@@ -742,7 +742,7 @@
           </div>
         </div>
       </div>
-      <%= link_to users_url, class: "menu__items menu__items--separation",style:"margin: 30px 0px;" do %>
+      <%= link_to users_url, class: "menu__items menu__items--separation",style:"margin: 30px 0px;", data: {turbo: false} do %>
         <div class="menu__icon">
           <div class="menu__dropdown_icon">
             <i class="fa-regular fa-user"></i>
@@ -776,7 +776,7 @@
     </div>
     <div class="menu__items">
       <div class="menu__icon  ">
-        <%= button_to destroy_user_session_path, method: :delete, style: "padding: 0.5rem; text-color: white; color: white; background-color: #dc546c; border: none; border-radius: 12px", class: "menu__dropdown_icon" do %>
+        <%= button_to destroy_user_session_path, method: :delete, style: "padding: 0.5rem; text-color: white; color: white; background-color: #dc546c; border: none; border-radius: 12px", class: "menu__dropdown_icon", data: {turbo: false} do %>
           <i class="fa-solid fa-right-to-bracket" style="color: #fff"></i>
           <p style="color: white">Đăng xuất</p>
         <% end %>

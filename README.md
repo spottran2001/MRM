@@ -21,4 +21,11 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* 
+
+- Xử lý conflict (tại branch đang dev)
+1. git stash
+2. git pull origin develop
+3. git fetch
+3. git checkout -b name-branch (tạo branch mới)
+4. git stash apply (xử lý conflict tại lệnh này)

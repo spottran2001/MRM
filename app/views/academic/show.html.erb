@@ -647,8 +647,6 @@
             </th>
             <th>
             </th>
-            <th>
-            </th>
           </tr>
           <% staff_report = @academic.staff_template %>
           <tr class="content__table_body">
@@ -657,13 +655,12 @@
             <td><%= staff_report.role %></td>
             <td><%= staff_report.created_at.strftime('%d %B %Y') %></td>
             <td><%= staff_report.updated_at.strftime('%d %B %Y') %></td>
-            <td>Vua tao</td>
-            <td>Dang hoat dong</td>
+            <td>Đang hoạt động</td>
             <td>
-              <%= link_to report_template_path(staff_report), style: "text-decoration:none" do %>
+              <%= link_to report_template_path(staff_report), style: "text-decoration:none", data: {turbo: false} do %>
                 <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
               <% end %>
-              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
+              <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>
@@ -674,13 +671,12 @@
             <td><%= teacher_report.role %></td>
             <td><%= teacher_report.created_at.strftime('%d %B %Y') %></td>
             <td><%= teacher_report.updated_at.strftime('%d %B %Y') %></td>
-            <td>Vua tao</td>
-            <td>Dang hoat dong</td>
+            <td>Đang hoạt động</td>
             <td>
-                <%= link_to report_template_path(teacher_report), style: "text-decoration:none" do %>
-                  <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
-                <% end %>
-              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
+              <%= link_to report_template_path(teacher_report), style: "text-decoration:none", data: {turbo: false} do %>
+                <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
+              <% end %>
+              <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>
@@ -691,13 +687,12 @@
             <td><%= subject_report.role %></td>
             <td><%= subject_report.created_at.strftime('%d %B %Y') %></td>
             <td><%= subject_report.updated_at.strftime('%d %B %Y') %></td>
-            <td>Vua tao</td>
-            <td>Dang hoat dong</td>
+            <td>Đang hoạt động</td>
             <td>
-                <%= link_to report_template_path(subject_report), style: "text-decoration:none" do %>
-                  <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
-                <% end %>
-              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
+              <%= link_to report_template_path(subject_report), style: "text-decoration:none", data: {turbo: false} do %>
+                <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
+              <% end %>
+              <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>
@@ -708,29 +703,18 @@
             <td><%= faculty_report.role %></td>
             <td><%= faculty_report.created_at.strftime('%d %B %Y') %></td>
             <td><%= faculty_report.updated_at.strftime('%d %B %Y') %></td>
-            <td>Vua tao</td>
-            <td>Dang hoat dong</td>
+            <td>Đang hoạt động</td>
             <td>
-                <%= link_to report_template_path(faculty_report), style: "text-decoration:none" do %>
-                  <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
-                <% end %>
-              <%#<button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>%?
+              <%= link_to report_template_path(faculty_report), style: "text-decoration:none", data: {turbo: false} do %>
+                <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
+              <% end %>
+              <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>                               
         </table>
-        <div class="paging d-none">
-          <button aria-label="pagin">
-          <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <button class="paging--active" aria-label="pagin">1</button>
-          <button aria-label="pagin">2</button>
-          <button aria-label="pagin">3</button>
-          <button aria-label="pagin">...</button>
-          <button aria-label="pagin">100</button>
-          <button aria-label="pagin">
-          <i class="fa-solid fa-chevron-right"></i>
-          </button>
+        <div class="pagination" style="display:flex; justify-content: center; padding-top: 1rem">
+          <%== render partial: 'shared/pagination', locals: {pagy: @pagy} %>
         </div>
     </main>
   </body>
@@ -760,7 +744,9 @@
         getEle("menu").style.display = "none"
         getEle("menu").style.transform = "translateX(-10000px)"
     })
-    
+  </script>
+
+  <script>
     //search dữ liệu trong bảng 
     // Lấy input tìm kiếm và bảng
         const searchInput = document.getElementById('searchInput');

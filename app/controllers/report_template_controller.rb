@@ -100,6 +100,8 @@ class ReportTemplateController < ApplicationController
 
   def report_template_management
     @report_templates = ReportTemplate.all
+    users = User.all
+      @pagy, @users = pagy(users.all, items: 8)
   end
 
   private

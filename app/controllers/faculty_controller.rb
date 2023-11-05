@@ -3,6 +3,8 @@ class FacultyController < ApplicationController
 
   def index
     @faculties = Faculty.all.order(:created_at)
+    users = User.all
+      @pagy, @users = pagy(users.all, items: 8)
   end
 
   def create

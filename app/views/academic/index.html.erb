@@ -1025,7 +1025,7 @@
         </div>
         <div class="container__board">
           <% @academic.each do |r| %>
-          <%= link_to academic_path(r) do %>
+          <%= link_to academic_path(r), data: {turbo: false} do %>
           <div class="Frame1" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
             <div class="Rectangle1" style="width: 24px; height: 117px; left: 117px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
             <div class="Rectangle1" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
