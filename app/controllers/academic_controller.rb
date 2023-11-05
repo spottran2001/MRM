@@ -7,5 +7,7 @@ class AcademicController < ApplicationController
 
   def show 
     @academic = Academic.find(params[:id])
+    users = User.all
+      @pagy, @users = pagy(users.all, items: 8)
   end
 end

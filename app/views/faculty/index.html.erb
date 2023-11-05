@@ -669,7 +669,7 @@
         <div class="content__generality">
           <div class="generality__options">
             <div class="btn__addfile">
-              <%= button_to "KHOA", subject_index_path, method: :get, style: "background-color: #EC8C9C;"%>
+              <%= button_to "KHOA", subject_index_path, method: :get, style: "background-color: #EC8C9C;", data: {turbo: false}%>
             </div>
             <div class="btn__addfile">
               <button id="open-popup-btn" style="background-color: #DC546C;">
@@ -687,7 +687,7 @@
             <div class="generality__search_icon">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <input type="text" id="searchInput" placeholder="Tìm kiếm báo cáo">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm bộ môn">
           </div>
         </div>
         <table class="content__table" id="table_phongban">
@@ -723,18 +723,8 @@
           </tr>
           <% end %>
         </table>
-        <div class="paging d-none">
-          <button aria-label="pagin">
-          <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <button class="paging--active" aria-label="pagin">1</button>
-          <button aria-label="pagin">2</button>
-          <button aria-label="pagin">3</button>
-          <button aria-label="pagin">...</button>
-          <button aria-label="pagin">100</button>
-          <button aria-label="pagin">
-          <i class="fa-solid fa-chevron-right"></i>
-          </button>
+        <div class="pagination" style="display:flex; justify-content: center; padding-top: 1rem">
+          <%== render partial: 'shared/pagination', locals: {pagy: @pagy} %>
         </div>
         <div class="Modal__AddMember" id="Modal__AddMember">
         </div>

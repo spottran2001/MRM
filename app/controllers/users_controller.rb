@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       @users = User.where(id: current_user.id)
     else
       users = User.all
-      @pagy, @users = pagy(users.all, items: 10)
+      @pagy, @users = pagy(users.all, items: 8)
     end
   end
 

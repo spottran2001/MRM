@@ -766,6 +766,19 @@
       border-radius: 12px;
       border: 2px solid #dadada;
     }
+    .btn[data-tooltip]:hover:after {
+      content: attr(data-tooltip);
+      position: absolute;
+      padding: 5px;
+      border-radius: 5px;
+      left: 100%;
+      top: 100%;
+      white-space: nowrap;
+      z-index: 1;
+      background-color: red;
+      color: white;    
+      overflow: hidden;  
+    } 
   </style>
   <body>
     <main class="container">
@@ -791,10 +804,10 @@
             <div class="generality__search_icon">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <input type="text" placeholder="Tìm kiếm báo cáo" disabled>
+            <input type="text" id="searchInput" placeholder="Tìm kiếm tài khoản">
           </div>
         </div>
-        <table class="content__table">
+        <table class="content__table" id="table_phongban">
           <tr class="content__table_header">
             <th>
               STT
@@ -829,15 +842,15 @@
               <%= u.faculty.name || "N/A" %>
             </td>
             <td>
-              <%= button_to edit_user_path(u), method: :get, style: "background-color: #FFBF24", class: "btn btn-secondary" do %>
-              <% concat content_tag(:i, "", class: "fa-solid fa-pen") %>
+              <%= button_to edit_user_path(u), method: :get, style: "background-color: #FFBF24", class: "btn btn-secondary", data: {turbo: false} do %>
+              <% concat content_tag(:i, "", class: "fa-solid fa-pen", title: "Chỉnh sửa tài khoản", data: { tooltip: "Tooltip Text" }) %>
               <% end %>
             </td>
           </tr>
           <% end %>
         </table>
 
-        <div class="pagination" style="display:flex; justify-content: center">
+        <div class="pagination" style="display:flex; justify-content: center; padding-top: 1rem">
           <%== render partial: 'shared/pagination', locals: {pagy: @pagy} %>
         </div>
         <%# <div class="paging d-none">
@@ -936,5 +949,46 @@
     getEle("btn__closeModal").addEventListener("click",()=>{
         getEle("Modal__AddMember").classList.remove("show__modal")
     })
+  </script>
+
+  <script>
+    //search dữ liệu trong bảng 
+    // Lấy input tìm kiếm và bảng
+    const searchInput = document.getElementById('searchInput');
+    const table = document.getElementById('table_phongban');
+    const rows = table.querySelectorAll('tr');
+
+    // Lưu trạng thái ban đầu của các hàng
+    const initialDisplayStates = [...rows].map(row => row.style.display);
+
+    // Sử lý sự kiện tìm kiếm
+    searchInput.addEventListener('input', function () {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      rows.forEach((row, index) => {
+      // Bỏ qua hàng tiêu đề
+        if (row.classList.contains('content__table_header')) return;
+        const columns = row.querySelectorAll('td');
+          let found = false;
+          // Kiểm tra nội dung trong cột và ẩn/hiện dựa trên kết quả tìm kiếm
+          columns.forEach((column, columnIndex) => {
+            if (column.textContent.trim().toLowerCase().includes(searchTerm)) {
+              found = true;
+              row.style.display = ''; // Hiển thị hàng
+            } else if (found === false && columnIndex === columns.length - 1) {
+              row.style.display = 'none'; // Ẩn hàng nếu không tìm thấy kết quả
+            }
+          });
+      });
+    });
+
+    // Sử lý sự kiện xóa trường tìm kiếm
+    searchInput.addEventListener('keyup', function (event) {
+      if (event.key === 'Escape' && searchInput.value !== '') {
+        searchInput.value = ''; // Xóa nội dung tìm kiếm
+        rows.forEach((row, index) => {
+          row.style.display = initialDisplayStates[index]; // Hiển thị lại dữ liệu ban đầu
+        });
+      }
+    });
   </script>
 </html>
