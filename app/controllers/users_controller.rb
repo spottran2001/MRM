@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     if current_user.role != "admin"
       @users = User.where(id: current_user.id)
     else
-      @users = User.all
+      users = User.all
+      @pagy, @users = pagy(users.all, items: 10)
     end
   end
 

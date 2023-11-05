@@ -836,7 +836,11 @@
           </tr>
           <% end %>
         </table>
-        <div class="paging d-none">
+
+        <div class="pagination" style="display:flex; justify-content: center">
+          <%== render partial: 'shared/pagination', locals: {pagy: @pagy} %>
+        </div>
+        <%# <div class="paging d-none">
           <button aria-label="pagin">
           <i class="fa-solid fa-chevron-left"></i>
           </button>
@@ -848,7 +852,7 @@
           <button aria-label="pagin">
           <i class="fa-solid fa-chevron-right"></i>
           </button>
-        </div>
+        </div> %>
       </div>
       
       </div>
