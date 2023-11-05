@@ -629,6 +629,10 @@
           <% end %>
           
         </table>
+
+        <div class="pagination" style="display:flex; justify-content: center">
+          <%== render partial: 'shared/pagination', locals: {pagy: @pagy} %>
+        </div>
         <%#<div class="container__board">
           <% @report.each do |r| 
             <div class="Frame3046" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">

@@ -40,7 +40,8 @@ class ReportController < ApplicationController
 
   #quanlikibaocaostaff
   def index
-    @report = current_user.reports.order(:created_at)
+    reports = current_user.reports.order(:created_at)
+    @pagy, @report = pagy(reports.all, items: 10)
   end
 
 end

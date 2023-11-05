@@ -98,7 +98,8 @@ class ReportTemplateController < ApplicationController
   end
 
   def report_template_management
-    @report_templates = ReportTemplate.all
+    report_templates = ReportTemplate.all
+    @pagy, @report_templates = pagy(report_templates.all, items: 10)
   end
 
   private

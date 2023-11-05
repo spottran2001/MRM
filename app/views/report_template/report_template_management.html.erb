@@ -946,7 +946,7 @@
                 <%= link_to report_template_path(r), style: "text-decoration:none" do %>
                   <button class="btn gold" aria-label="btn"><i class="fa-regular fa-file"></i></button>
                 <% end %>
-                <%= link_to edit_report_template_path(r), style: "text-decoration:none" do %>
+                <%= link_to edit_report_template_path(r), style: "text-decoration:none", data: {turbo: false} do %>
                   <button class="btn yellow" aria-label="btn"><i class="fa-solid fa-pen"></i></button>
                 <% end %>
               </td>
@@ -1055,6 +1055,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="pagination" style="display:flex; justify-content: center">
+          <%== render partial: 'shared/pagination', locals: {pagy: @pagy} %>
         </div>
       </div>
     </main>
