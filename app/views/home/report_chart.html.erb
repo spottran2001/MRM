@@ -711,13 +711,14 @@
     }
     <%#custom chart%>
     .chart-container {
-        position: relative;
-        width: 100%; /* Đặt chiều rộng của phần tử chứa biểu đồ là 100% */
-        max-width: 1500px; /* Tối đa chiều rộng của phần tử chứa biểu đồ (đổi từ 900px) */
+      position: relative;
+      width: 100%; /* Đặt chiều rộng của phần tử chứa biểu đồ là 100% */
+      max-width: 1500px; /* Tối đa chiều rộng của phần tử chứa biểu đồ (đổi từ 900px) */
     }
+
     canvas {
-        width: 100% !important; /* Đặt chiều rộng của thẻ canvas là 100% */
-        height: 50% !important; /* Đặt chiều cao tự động */
+      width: 100% !important; /* Đặt chiều rộng của thẻ canvas là 100% */
+      height: 100% !important; /* Đặt chiều cao của thẻ canvas là 100% */
     }
     .header-chart{
         display: flex;
@@ -749,133 +750,133 @@
     <main class="container">
     <%= render "shared/left_nav"%>
     <div class="content">
-        <%= render 'shared/header' %>
-        <h1 class="content__name">THỐNG KÊ</h1>
-        <div class="generality__options">
-            <div class="select-row">
-                <div class="total_box" style="background: #ADDDFF;">
-                    <span style="font-weight:600">Khởi tạo: </span>
-                    <span style="font-weight:600">10</span>
-                </div>
-                <div class="total_box" style="background: #678EF8;">
-                    <span style="font-weight:600">Lưu nháp: </span>
-                    <span style="font-weight:600">10</span>
-                </div>
-                <div class="total_box" style="background: #5CBD4C;">
-                    <span style="font-weight:600">Đúng hạn: </span>
-                    <span style="font-weight:600">10</span>
-                </div>
-                <div class="total_box" style="background: #B70619;">
-                    <span style="font-weight:600">Trễ hạn: </span>
-                    <span style="font-weight:600">10</span>
-                </div>
-                <div class="total_box" style="background: #828282;">
-                    <span style="font-weight:600">Không nộp: </span>
-                    <span style="font-weight:600">10</span>
-                </div>
-                <div class="total_box" style="background: #1B59F8;">
-                    <span style="font-weight:600">Đã duyệt: </span>
-                    <span style="font-weight:600">10</span>
-                </div>
-                <div class="total_box" style="background: #FFC123;">
-                    <span style="font-weight:600">Chờ duyệt: </span>
-                    <span style="font-weight:600">10</span>
-                </div>
-            </div>
+      <%= render 'shared/header' %>
+      <h1 class="content__name">THỐNG KÊ</h1>
+      <div class="generality__options">
+        <div class="select-row">
+          <div class="total_box" style="background: #ADDDFF;">
+            <span style="font-weight:600">Khởi tạo: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #678EF8;">
+            <span style="font-weight:600">Lưu nháp: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #5CBD4C;">
+            <span style="font-weight:600">Đúng hạn: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #B70619;">
+            <span style="font-weight:600">Trễ hạn: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #828282;">
+            <span style="font-weight:600">Không nộp: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #1B59F8;">
+            <span style="font-weight:600">Đã duyệt: </span>
+            <span style="font-weight:600">10</span>
+          </div>
+          <div class="total_box" style="background: #FFC123;">
+            <span style="font-weight:600">Chờ duyệt: </span>
+            <span style="font-weight:600">10</span>
+          </div>
         </div>
-        <div class="content-generality">
-            <div class="generality__options">
-                <div class="select-row">
-                <span style="font-weight:600">Tên kỳ báo cáo</span>
-                <select class="select-field" style="background: #DC4C5D">
-                    <option selected>Kỳ báo cáo tháng 1</option>
-                    <option value="1">Kỳ báo cáo tháng 2</option>
-                    <option value="2">Kỳ báo cáo tháng 3</option>
-                    <option value="3">Kỳ báo cáo tháng 4</option>
-                    <option value="4">Kỳ báo cáo tháng 5</option>
-                </select>
-                <span style="padding-left: 2rem; font-weight:600">Vai trò</span>
-                <select class="select-field" style="background: #DC4C5D">
-                    <option selected>Nhân viên</option>
-                    <option value="1">Giảng viên</option>
-                    <option value="2">Phụ trách bộ môn</option>
-                    <option value="3">Ban chủ nhiệm khoa</option>
-                </select>
-                <span style="padding-left: 2rem; font-weight:600">Trạng thái</span>
-                <select class="select-field" style="background: #FFC123">
-                    <option selected>Tất cả</option>
-                    <option value="1">Khởi tạo</option>
-                    <option value="2">Lưu nháp</option>
-                    <option value="3">Chờ duyệt</option>
-                    <option value="4">Cần bổ sung</option>
-                    <option value="5">Đã duyệt</option>
-                </select>
-                <span style="padding-left: 2rem; font-weight:600">Loại</span>
-                <select class="select-field" style="background: #FFC123">
-                    <option selected>Tất cả</option>
-                    <option value="1">Chưa báo cáo</option>
-                    <option value="2">Đang báo cáo</option>
-                    <option value="3">Đúng hạn</option>
-                    <option value="4">Trễ hạn</option>
-                </select>
-                </div>
-            </div>
-            <div class="report_total">
-                <span style="font-weight:600">Tổng báo cáo: </span>
-                <span style="font-weight:600">20 </span>
-            </div>
+      </div>
+      <div class="content-generality">
+        <div class="generality__options">
+          <div class="select-row">
+            <span style="font-weight:600">Tên kỳ báo cáo</span>
+            <select class="select-field" style="background: #DC4C5D">
+              <option selected>Kỳ báo cáo tháng 1</option>
+              <option value="1">Kỳ báo cáo tháng 2</option>
+              <option value="2">Kỳ báo cáo tháng 3</option>
+              <option value="3">Kỳ báo cáo tháng 4</option>
+              <option value="4">Kỳ báo cáo tháng 5</option>
+            </select>
+            <span style="padding-left: 2rem; font-weight:600">Vai trò</span>
+            <select class="select-field" style="background: #DC4C5D">
+              <option selected>Nhân viên</option>
+              <option value="1">Giảng viên</option>
+              <option value="2">Phụ trách bộ môn</option>
+              <option value="3">Ban chủ nhiệm khoa</option>
+            </select>
+            <span style="padding-left: 2rem; font-weight:600">Trạng thái</span>
+            <select class="select-field" style="background: #FFC123">
+              <option selected>Tất cả</option>
+              <option value="1">Khởi tạo</option>
+              <option value="2">Lưu nháp</option>
+              <option value="3">Chờ duyệt</option>
+              <option value="4">Cần bổ sung</option>
+              <option value="5">Đã duyệt</option>
+            </select>
+            <span style="padding-left: 2rem; font-weight:600">Loại</span>
+            <select class="select-field" style="background: #FFC123">
+              <option selected>Tất cả</option>
+              <option value="1">Chưa báo cáo</option>
+              <option value="2">Đang báo cáo</option>
+              <option value="3">Đúng hạn</option>
+              <option value="4">Trễ hạn</option>
+            </select>
+          </div>
+        </div>
+        <div class="report_total">
+          <span style="font-weight:600">Tổng báo cáo: </span>
+          <span style="font-weight:600">60 </span>
+        </div>
             <%#<div class="generality__search">
             <div class="generality__search_icon">
             <i class="fa-solid fa-magnifying-glass"></i>
             </div>  
             <input type="text" id="searchInput" placeholder="Tìm kiếm kỳ báo cáo">
             </div>%>
+      </div>
+      <div class="content-generality">
+        <div class="generality__options">
+          <div class="select-row" style="padding-right: 2rem;">
+            <input type="checkbox" class="custom_checkbox">
+            <span style="font-weight:600">Khoa</span>
+            <select class="select-field" style="background: #FFC123" >
+              <option selected>Tất cả</option>
+              <option value="1">Công nghệ thông tin</option>
+              <option value="2">Quan hệ công chúng</option>
+              <option value="3">Quản trị kinh doanh</option>
+              <option value="4">Xây dựng</option>
+            </select>
+          </div>
+          <div class="select-row">
+            <input type="checkbox" class="custom_checkbox">
+            <span style=" font-weight:600">Bộ môn</span>
+            <select class="select-field" style="background: #FFC123">
+              <option selected>Tất cả</option>
+              <option value="1">Kỹ thuật phần mền</option>
+              <option value="2">Toán rời rạc</option>
+              <option value="3">Vật lý đại cương</option>
+              <option value="4">Kỹ thuật xây dựng</option>
+            </select>
+          </div>
         </div>
-        <div class="content-generality">
-            <div class="generality__options">
-                <div class="select-row" style="padding-right: 2rem;">
-                    <input type="checkbox" class="custom_checkbox">
-                    <span style="font-weight:600">Khoa</span>
-                    <select class="select-field" style="background: #FFC123" >
-                        <option selected>Tất cả</option>
-                        <option value="1">Công nghệ thông tin</option>
-                        <option value="2">Quan hệ công chúng</option>
-                        <option value="3">Quản trị kinh doanh</option>
-                        <option value="4">Xây dựng</option>
-                    </select>
-                </div>
-                <div class="select-row">
-                    <input type="checkbox" class="custom_checkbox">
-                    <span style=" font-weight:600">Bộ môn</span>
-                    <select class="select-field" style="background: #FFC123">
-                        <option selected>Tất cả</option>
-                        <option value="1">Kỹ thuật phần mền</option>
-                        <option value="2">Toán rời rạc</option>
-                        <option value="3">Vật lý đại cương</option>
-                        <option value="4">Kỹ thuật xây dựng</option>
-                    </select>
-                </div>
-            </div>
+      </div>
+      <div class="header-chart">       
+        <div class="year-select">
+          <span style="font-weight:600">BIỂU ĐỒ THỐNG KÊ BÁO CÁO</span>
+          <div class="year-select-content">
+            <span style=" font-weight:600">Năm báo cáo</span>
+            <select class="select-field-content">
+              <option selected>2024</option>
+              <option value="1">2023</option>
+              <option value="2">2022</option>
+              <option value="3">2021</option>
+              <option value="4">2020</option>
+            </select>
+          </div>
         </div>
-        <div class="header-chart">       
-            <div class="year-select">
-                <span style="font-weight:600">BIỂU ĐỒ THỐNG KÊ BÁO CÁO</span>
-                <div class="year-select-content">
-                    <span style=" font-weight:600">Năm báo cáo</span>
-                    <select class="select-field-content">
-                        <option selected>2024</option>
-                        <option value="1">2023</option>
-                        <option value="2">2022</option>
-                        <option value="3">2021</option>
-                        <option value="4">2020</option>
-                    </select>
-                </div>
-            </div>
-            <hr  width="100%" >
-            <div class="chart-container">
-                <canvas id="myChart"></canvas>
-            </div>
+        <hr  width="100%" >
+        <div class="chart-container">
+          <canvas id="myChart"></canvas>
         </div>
+      </div>
     </div>
     </main>
   </body>
@@ -954,6 +955,6 @@
             data: data,
             options: options
         });
-    
+        
   </script>
 </html>

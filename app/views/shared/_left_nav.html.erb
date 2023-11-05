@@ -547,6 +547,19 @@
   .menu__dropdown_list li:hover {
     color: #d72134; /* Màu chữ khi di chuột vào */
   }
+  .btn[data-tooltip]:hover:after {
+    content: attr(data-tooltip);
+    position: absolute;
+    padding: 5px;
+    border-radius: 5px;
+    left: 100%;
+    top: 100%;
+    white-space: nowrap;
+    z-index: 1;
+    background-color: red;
+    color: white;    
+    overflow: hidden;  
+  } 
 </style>
 <div class="menu" id="menu">
   <div class="menu-top">
@@ -556,19 +569,19 @@
     </div>
     <div id="btn-menu">
       <button aria-label="btn-menu">
-      <i class="fa-solid fa-chevron-right"></i>
+        <i class="fa-solid fa-chevron-right"></i>
       </button>
     </div>
     <p class="menu__title"><i class="fa-solid fa-house"></i></p>
     
     <a href="#" class="menu__items">
-      <div class="menu__icon">
+      <div class="menu__icon" title="Thống kê" data-tooltip="Tooltip Text">
         <i class="fa-solid fa-chart-simple"></i>
       </div>
     </a>
     <% if current_user.role == 'admin' %>
       <%= link_to report_template_management_path, class: "menu__items" do %>
-        <div class="menu__icon">
+        <div class="menu__icon" title="Quản lý biểu mẫu báo cáo chung" data-tooltip="Tooltip Text">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
               stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -580,8 +593,8 @@
     
     <% if current_user.role == 'admin' %>
       <%= link_to academic_index_path, class: "menu__items" do %>
-        <div class="menu__items">
-          <div class="menu__icon  ">
+        <div class="menu__items" >
+          <div class="menu__icon" title="Quản lý kỳ báo cáo" data-tooltip="Tooltip Text">
             <i class="fa-regular fa-calendar"></i>  
           </div>
         </div>
@@ -589,7 +602,7 @@
     <% else %>
       <%= link_to report_index_path, class: "menu__items pt-4" do %>
         <div class="menu__items">
-          <div class="menu__icon  ">
+          <div class="menu__icon" >
             <i class="fa-regular fa-calendar"></i>  
           </div>
         </div>
@@ -604,38 +617,36 @@
     <% end %>
     <% if current_user.role == 'admin' %>
       <%= link_to subject_index_path, class: "menu__items" do %>
-        <div class="menu__items">
-          <div class="menu__icon  ">
-            <i class="fa-solid fa-boxes-stacked"></i>
-          </div>
+        <div class="menu__icon" title="Quản lý phòng ban" data-tooltip="Tooltip Text">
+          <i class="fa-solid fa-boxes-stacked"></i>
         </div>
       <% end %>
       <%= link_to users_path, class: "menu__items" do %>
       <div class="menu__items">
-        <div class="menu__icon  ">
+        <div class="menu__icon" title="Quản lý tài khoản" data-tooltip="Tooltip Text">
           <i class="fa-regular fa-user"></i>
         </div>
       </div>
       <% end %>
     <a href="#" class="menu__items">
-      <div class="menu__icon">
+      <div class="menu__icon" title="Quản lý cấu hình" data-tooltip="Tooltip Text">
         <i class="fa-solid fa-gear"></i>
       </div>
     </a>
   <% end %>
   </div>
   <div class="menu-bottom">
-      <div class="menu__items">
-        <p class="menu__title" style="color: black;"><i class="fa-solid fa-screwdriver-wrench"></i></p>
-        <div class="menu__icon  ">
-          <i class="fa-regular fa-sun"></i>
-        </div>
+    <p class="menu__title" style="color: black;"><i class="fa-solid fa-screwdriver-wrench"></i></p>
+    <div class="menu__items">  
+      <div class="menu__icon" title="Sáng" data-tooltip="Tooltip Text">
+        <i class="fa-regular fa-sun"></i>
       </div>
-    <div class="menu__items">
-      <%= button_to destroy_user_session_path, method: :delete, style: "background-color: white; color: #dadada; border:none", class: "menu__icon" do %>
+    </div>
+  <%= button_to destroy_user_session_path, method: :delete, style: "background-color: white; color: #dadada; border:none", class: "menu__items" do %>
+    <div class="menu__icon" title="Đăng xuất" data-tooltip="Tooltip Text">
       <i class="fa-solid fa-right-to-bracket"></i>
-      <% end %>
-    </div>  
+    </div>
+  <% end %>
   </div>
 </div>
 <div class="menu__dropwdown" style="width: 290px ;" id="menu-dropdown">

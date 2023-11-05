@@ -615,6 +615,10 @@
       align-items: center;
       justify-content: space-between;
     }
+    .select-row span{
+      font-weight: 600;
+      white-space: nowrap; 
+    }
     .select-row p,
     .select-row select,
     .select-row option,
@@ -623,11 +627,11 @@
       white-space: nowrap; 
     }
     .select-row .select-field {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #e0e7ed;
-      background: #F8F8F8;
-      color: 333333;
+      padding-left: 0rem;
+      width: 100%;
+      padding: 10px 15px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
     }
     .select-row .select-field option {
       background: #fff;
@@ -700,7 +704,7 @@
         <div class="content__generality">
           <div class="generality__options">
             <div class="select-row">
-              <p>Trạng thái</p>
+              <span>Trạng thái</span>
               <select class="select-field" >
                 <option selected>Tất cả</option>
                 <option value="1">Khởi tạo</option>
@@ -709,7 +713,7 @@
                 <option value="4">Cần bổ sung</option>
                 <option value="5">Đã duyệt</option>
               </select>
-              <p style="padding-left: 2rem">Loại</p>
+              <span style="padding-left: 2rem">Loại</span>
               <select class="select-field">
                 <option selected>Tất cả</option>
                 <option value="1">Chưa báo cáo</option>
