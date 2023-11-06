@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý tài khoản</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <style>
+    .container {
+      display: flex;
+      height: 100%;
+      max-width: 100%;
+      padding: 0px;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* MENU */
+    .menu {
+      background-color: white;
+      width: 100px;
+      max-height: 100%;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      transition: all 0.5s;
+      display: block;
+      position: relative;
+    }
+    .menu__title {
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .menu__logo {
+      width: 100%;
+      padding: 20px;
+    }
+    .menu__logo img {
+      width: 100%;
+    }
+    .menu__items {
+      width: 100%;
+      text-align: center;
+      padding: 20px 0px 20px;
+      cursor: pointer;
+      color: #dadada;
+      display: block;
+    }
+    .menu__items--separation {
+      margin-bottom: 40px;
+    }
+    .menu__icon i {
+      font-size: 20px;
+    }
+    .menu__icon {
+      padding: 6px 0px;
+    }
+    .menu__active {
+      border-left: 2px solid #d72134;
+      color: #d72134 !important;
+    }
+    /* Content */
+    .content {
+      background-color: #f8f8f8;
+      width: 100%;
+      padding: 30px 60px 20px 30px;
+    }
+    .content__title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .content__name {
+      padding: 40px 0px 10px 40px;
+      font-size: 30px;
+    }
+    .content__breadcrumb {
+      font-size: 16px;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+    .breadcrumb__Faculty {
+      display: inline-block;
+      margin-left: 10px;
+      color: #f34f68;
+      padding: 12px 0px;
+    }
+    .content__user {
+      display: flex;
+      align-items: center;
+    }
+    .user_icon {
+      font-size: 24px;
+      margin-right: 14px;
+      margin-top: 6px;
+    }
+    .user__info {
+      margin-right: 10px;
+      font-size: 16px;
+      text-align: right;
+    }
+    .user__info p:first-child {
+      text-align: right;
+    }
+    .user__img img {
+      border-radius: 50%;
+      width: 40px;
+      height: 100%;
+    }
+    .user__img {
+      margin-right: 10px;
+    }
+    .user__detail {
+      font-size: 20px;
+      cursor: pointer;
+      color: gray;
+    }
+    .content__generality {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin: 20px 0px;
+      padding: 14px 20px;
+      background-color: #f1f1f1;
+      border-radius: 8px;
+    }
+    .generality__total {
+      display: flex;
+      align-items: center;
+    }
+    .generality__select {
+      margin-left: 10px;
+      margin-right: 20px;
+    }
+    .generality__select select {
+      width: 60px;
+      height: 40px;
+      border-radius: 4px;
+      outline: none;
+    }
+    .content__btn {
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      border-radius: 10px;
+    }
+    .content__btn button {
+      cursor: pointer;
+      padding: 12px 20px;
+      outline: none;
+      border-radius: 10px;
+      font-size: 16px;
+      background-color: white;
+      border: 1px solid gray;
+      color: black;
+    }
+    .content__btn button i {
+      margin-left: 6px;
+    }
+    .generality__search {
+      position: relative;
+    }
+    .generality__search_icon {
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      font-size: 12px;
+      color: gray;
+      cursor: pointer;
+      padding: 10px;
+    }
+    .generality__search input {
+      padding: 14px 40px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 20px 0px;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+    }
+    .content__table {
+      width: 100%;
+      text-align: center;
+      border: none;
+      border-spacing: 0px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 25px;
+    }
+    .content__table th {
+      color: white;
+      padding: 20px 10px;
+    }
+    .content__table_header {
+      background-color: #dc546c;
+      font-size: 16px;
+    }
+    .content__table-checkbox {
+      margin-top: 4px;
+    }
+    .content__table-checkbox-report {
+      margin-left: 5px;
+    }
+    .content__table_body {
+      font-size: 16px;
+      background-color: #f1f1f1;
+    }
+    th {
+    background-color: #6dbac7;
+    color: white; /* Để làm cho văn bản trắng trên nền đỏ */
+    }
+    /* Định dạng hàng chẵn */
+    tr:nth-child(even) {
+    background-color: #F1F1F1;
+    }
+    /* Định dạng hàng lẻ */
+    tr:nth-child(odd) {
+      background-color: #E5E5E5;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+    }
+    .content__table_body td {
+      padding: 10px 0px;
+    }
+    .approve {
+      background-color: #5cbd4c;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      color: white;
+    }
+    .btn {
+      padding: 6px 8px;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      border-radius: 4px;
+    }
+    .btn i {
+      font-size: 20px;
+      color: white;
+    }
+    .gold {
+      background-color: #f4924b;
+    }
+    .blue {
+      background-color: #1b59f8;
+    }
+    .green {
+      background-color: #5cbd4c;
+    }
+    .paging {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .paging--active {
+      background-color: #dc546c !important;
+      color: white !important;
+    }
+    .paging button {
+      padding: 10px 14px;
+      margin: 0px 8px;
+      border: none;
+      background-color: rgb(241, 241, 241);
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 10px;
+      outline: none;
+    }
+    .menu__dropwdown {
+      width: 250px;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      position: relative;
+      padding: 2px;
+      display: none;
+      transition: all 0.5s;
+    }
+    .menu__dropdown_logo {
+      padding: 30px;
+      width: 100%;
+    }
+    .menu__dropdown_logo img {
+      width: 100%;
+    }
+    .menu__dropwdown .menu__title {
+      text-align: left;
+      padding: 0px 20px;
+    }
+    .menu__dropwdown .menu__items {
+      text-align: left;
+      margin: 0px;
+      padding: 10px 0px;
+      display: block;
+      text-decoration: none;
+    }
+    .menu__dropwdown .menu__items .menu__icon {
+      display: flex;
+      align-items: center;
+      padding: 0px 20px;
+      justify-content: space-between;
+    }
+    .menu__dropwdown .menu__items .menu__icon .menu__dropdown_icon {
+      display: flex;
+      align-items: center;
+    }
+    .menu__dropwdown .menu__items .menu__icon .menu__dropdown_icon p {
+      color: black;
+      margin-left: 10px;
+      font-size: 18px;
+      margin-top: 4px;
+    }
+    .active {
+      color: #d72134 !important;
+    }
+    .menu__icon_open i {
+      font-size: 20px;
+      margin-top: 6px;
+      transition: all 0.3s;
+    }
+    .menu__dropdown_nav {
+      padding-left: 44px;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none;
+      transition: all 0.5s;
+    }
+    .menu__dropdown_list {
+      list-style: none;
+    }
+    .menu__dropdown_list li {
+      color: black;
+      padding: 10px 0px;
+    }
+    .icon__notification {
+      width: 15px;
+      height: 15px;
+      background-color: #d72134;
+      border-radius: 50%;
+      margin-top: 4px;
+    }
+    .menu__regime {
+      display: flex;
+      align-items: center;
+      margin: 10px 40px 0px 20px;
+      padding: 10px 12px;
+      justify-content: center;
+      background: #f5f5f5;
+      border-radius: 10px;
+    }
+    .regime__light,
+    .regime__dark {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .regime__dark {
+      margin-left: 10px;
+      background: gray;
+      color: black;
+      padding: 6px 10px;
+      border-radius: 40px;
+    }
+    .regime__light {
+      background-color: white;
+      padding: 6px 10px;
+      border-radius: 40px;
+      color: black;
+    }
+    .regime__light p,
+    .regime__dark p {
+      margin-left: 10px;
+    }
+    /* Toggle */
+    #statistics .show {
+      display: block;
+    }
+    .show .menu__icon_open i {
+      transform: rotate(-180deg);
+    }
+    .show ~ .menu__dropdown_nav {
+      display: block;
+    }
+    #btn-dropdown {
+      position: absolute;
+      left: 234px;
+      top: 40px;
+    }
+    #btn-dropdown button {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #d72134;
+      color: black;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    #btn-dropdown button i {
+      font-size: 16px;
+      transition: all 0.5s;
+    }
+    #btn-menu {
+      position: absolute;
+      left: 78px;
+      top: 30px;
+    }
+    #btn-menu button {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #d72134;
+      color: black;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    #btn-menu button i {
+      font-size: 16px;
+      transition: all 0.5s;
+    }
+    .generality__options {
+      display: flex;
+      align-items: center;
+    }
+    .btn__addmember button {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      border: none;
+      outline: none;
+      background-color: blue;
+      color: white;
+      cursor: pointer;
+      border-radius: 12px;
+    }
+    .btn__addmember button p {
+      margin-left: 6px;
+      min-width: 80px;
+    }
+    .btn__addfile {
+      margin: 0px 24px;
+    }
+    .btn__addfile button {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: none;
+      color: white;
+      background-color: green;
+      cursor: pointer;
+    }
+    .btn__addfile button p {
+      margin-left: 6px;
+    }
+    .select__options select {
+      padding: 8px 6px;
+      border-radius: 10px;
+    }
+    .container__info {
+      height: 560px;
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+    .info__img {
+      background-image: url("./assets/img/Bird.jpg");
+      width: 20%;
+      float: left;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    .info__content {
+      background-color: white;
+      padding: 100px 0px 100px 100px;
+      float: right;
+      width: 80%;
+      height: 100%;
+    }
+    .info__title {
+      margin-left: 32px;
+    }
+    .info__title h1 {
+      padding-bottom: 6px;
+    }
+    .info {
+      font-size: 16px;
+      color: gray;
+      margin: 6px 0px 40px 0px;
+      border-top: 4px solid red;
+    }
+    .info__list li {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      font-size: 16px;
+      margin: 40px 0px;
+    }
+    .info__list li p {
+      margin: 0px 80px 0px 20px;
+      color: gray;
+      font-size: 18px;
+      text-align: left;
+    }
+    .info__list li span {
+      width: 12px;
+      height: 12px;
+      border: 1px solid gray;
+      border-radius: 50%;
+    }
+    .info__user_img {
+      position: absolute;
+      top: 50px;
+      left: 190px;
+      border-radius: 50%;
+      border: 4px solid white;
+      width: 164px;
+      height: 164px;
+    }
+    .info__user_img img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .btn_edit-info {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    .btn_edit-info button {
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      background-color: white;
+      border-radius: 40px;
+    }
+    .generality__options button {
+      min-width: 120px;
+      padding: 0px !important;
+      margin: 0px !important;
+      min-height: 70px;
+      display: flex;
+      justify-content: center;
+    }
+    .generality__options button p {
+      padding: 0px;
+      margin: 0px;
+    }
+    .popup__SendFeedback {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .popup__inner_feedback {
+      background-color: white;
+      width: 50%;
+      border: 2px solid black;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      height: 48%;
+      display: none;
+    }
+    .popup_header_feedback {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid black;
+      padding: 10px;
+      align-items: center;
+      background-color: #dc546c;
+      color: white;
+      border-radius: 12px 12px 0px 0px;
+    }
+    .popup_body_feedback {
+      padding: 2rem 4rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      border: none;
+    }
+    .popup_footer_feedback {
+      display: flex;
+      justify-content: end;
+      padding: 0rem 4rem 2rem 0rem;
+    }
+    .popup_footer_feedback button {
+      padding: 10px 40px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+    .select-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .select-row span{
+      font-weight: 600;
+      white-space: nowrap; 
+    }
+    .select-row p,
+    .select-row select,
+    .select-row option,
+    .total__report {
+      font-weight: 600;
+      white-space: nowrap; 
+    }
+    .select-row .select-field {
+      padding-left: 0rem;
+      width: 100%;
+      padding: 10px 15px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
+    }
+    .select-row .select-field option {
+      background: #fff;
+      color: black;
+    }
+    .periodReport {
+      padding: 0.5rem;
+      border-radius: 12px;
+    }
+    .calendarReport {
+      padding: 0.5rem;
+      border-radius: 12px;
+    }
+    .btn gold {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -60px;
+    }
+    .btn gold:hover {
+      visibility: visible;
+    }
+    .btn green {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -60px;
+    }
+    .btn green:hover {
+      visibility: visible;
+    }
+    .btn[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      padding: 5px;
+      border-radius: 5px;
+      left: 100%;
+      top: 100%;
+      white-space: nowrap;
+      z-index: 1;
+      background-color: red;
+      color: white;   
+      overflow: hidden;
+    } 
+  </style>
+  <body>
+    <main class="container">
+      <%= render "shared/left_nav"%>
+      <div class="content">
+        <%= render 'shared/header' %>
+        <h1 class="content__name">DANH SÁCH KỲ BÁO CÁO GIẢNG VIÊN</h1>
+        <div class="content__generality">
+          <div class="generality__options">
+            <div class="select-row">
+              <span>Trạng thái</span>
+              <select class="select-field" >
+                <option selected>Tất cả</option>
+                <option value="1">Khởi tạo</option>
+                <option value="2">Lưu nháp</option>
+                <option value="3">Chờ duyệt</option>
+                <option value="4">Cần bổ sung</option>
+                <option value="5">Đã duyệt</option>
+              </select>
+              <span style="padding-left: 2rem">Loại</span>
+              <select class="select-field">
+                <option selected>Tất cả</option>
+                <option value="1">Chưa báo cáo</option>
+                <option value="2">Đang báo cáo</option>
+                <option value="3">Đúng hạn</option>
+                <option value="4">Trễ hạn</option>
+              </select>
+            </div>
+          </div>
+          <div class="generality__search">
+            <div class="generality__search_icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>  
+            <input type="text" id="searchInput" placeholder="Tìm kiếm kỳ báo cáo">
+          </div>
+        </div>
+        <table class="content__table" id="table_phongban">
+          <tr class="content__table_header">
+            <th>STT</th>
+            <th>Họ và tên</th>
+            <th>Chức vụ</th>
+            <th>Kỳ hạn</th>
+            <th>Thời gian tạo</th>
+            <th>Thời gian sửa</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Loại</th> 
+            <th></th>
+            </th>
+          </tr>
+          <% @report_list.each do |r| %>
+            <tr class="content__table_body">
+              <td><%= r.id %></td>
+              <td><%= r.user&.name %></td>
+              <td> <%= r.role %></td>
+              <td>dd/mm/yyyy</td>
+              <td><%= r.created_at.strftime('%d %B %Y') %></td>
+              <td><%= r.updated_at.strftime('%d %B %Y') %></td>
+              <%#<td style="display: flex; justify-content: center">
+                <div style="border-radius: 12px; margin: 1rem ;
+                  display: flex; justify-content: center; background-color: #C4C4C4; color: white; width: 7rem;" class="period">Mới tạo</div>
+              </td>%>
+              <td><%= r.report_type&.name_type%></td> 
+              <td><%= r.report_type&.type_report%></td> 
+              <td>Đang báo cáo</td> 
+              <td>
+                <%= link_to review_report_academic_path(@academic, report_id: r.id), style: "text-decoration:none", data: {turbo: false} do %>
+                  <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                <% end %>
+                <button class="btn green" style="margin-left: 3px;" aria-label="btn" title="Tải xuống" data-tooltip="Tooltip Text">
+                  <i class="fa-solid fa-download"></i>
+                </button>                        
+              </td>
+            </tr>
+          <% end %>
+        </table>
+        <div class="paging d-none">
+          <button aria-label="pagin">
+          <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="paging--active" aria-label="pagin">1</button>
+          <button aria-label="pagin">2</button>
+          <button aria-label="pagin">3</button>
+          <button aria-label="pagin">...</button>
+          <button aria-label="pagin">100</button>
+          <button aria-label="pagin">
+          <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="Modal__AddMember" id="Modal__AddMember">
+        </div>
+      </div>
+      <div id="popup_SendFeedback" class="popup__SendFeedback">
+        <div
+          id="popup__inner_feedback"
+          style="
+          background-color: white;
+          border-radius: 12px;
+          border-bottom: 2px solid black;
+          width: 40%;
+          height: auto;
+          "
+          >
+          <div class="popup_header_feedback">
+            <p style="padding: 10px">THÊM BỘ MÔN</p>
+            <i
+              id="close__popupFeedBabk"
+              style="cursor: pointer; padding: 10px; font-size: 25px"
+              class="fa-regular fa-circle-xmark fa-sm"
+              onclick="hideFeedbackPopup()"
+              ></i>
+          </div>
+          <div class="popup_body_feedback">
+            <select class="Khoa" style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem">
+              <option value="0" disabled selected hidden>Chọn khoa</option>
+              <option value="1">Công nghệ thông tin</option>
+              <option value="2">Kế toán</option>
+              <option value="3">Quản trị kinh doanh</option>
+              <option value="4">Thiết kế thời trang</option>
+            </select>
+            <select class="Bộ Môn" style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem">
+              <option value="0" disabled selected hidden>Chọn bộ môn</option>
+              <option value="1">Kỹ thuật phần mềm</option>
+              <option value="2">Vật lý đại cương</option>
+              <option value="3">Đại số tuyến tính</option>
+              <option value="4">Anh văn 1</option>
+            </select>
+          </div>
+          <div class="popup_footer_feedback">
+            <button
+              class="btn__closeFeedback"
+              style="background-color: #dc546c"
+              onclick="hideFeedbackPopup()"
+              >
+            HỦY
+            </button>
+            <!-- Đây là nút hủy -->
+            <button style="background-color: #6c8de0; margin-left: 2rem">
+            GỬI
+            </button>
+            <!-- Đây là nút gửi -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script >
+    //Menu drop
+    const getEle = (id) =>{
+        return document.getElementById(id)
+    }
+    getEle("statistics").addEventListener("click",()=>{
+        getEle("statistics").classList.toggle("show")
+    })
+    getEle("report").addEventListener("click",()=>{
+        getEle("report").classList.toggle("show")
+    })
+    
+    getEle("btn-dropdown").addEventListener("click",()=>{
+        getEle("menu-dropdown").style.transform = "translateX(-10000px)"
+        getEle("menu-dropdown").style.display  = "none"
+        getEle("menu").style.transform = "translateX(0px)"
+        getEle("menu").style.display  = "block"
+        getEle("menu").style.transition = "all 0.5s"
+    
+    })
+    getEle("btn-menu").addEventListener("click",()=>{
+        getEle("menu-dropdown").style.transform = "translateX(0px)"
+        getEle("menu-dropdown").style.display = "block"
+        getEle("menu").style.display = "none"
+        getEle("menu").style.transform = "translateX(-10000px)"
+    })
+    
+    function showFeedbackPopup() {
+      document.getElementById("popup_SendFeedback").style.display = "flex";
+    }
+    function hideFeedbackPopup() {
+      document.getElementById("popup_SendFeedback").style.display = "none";
+    }
+    
+    //chọn tất cả kỳ báo cáo
+        // Lấy ra các checkbox ở class="content__table_header"
+        const headerCheckbox = document.querySelector('#table_phongban .content__table_header input[type="checkbox"]');
+    
+        // Lấy ra tất cả các checkbox ở class="content__table_body"
+        const bodyCheckboxes = document.querySelectorAll('#table_phongban .content__table_body input[type="checkbox"]');
+    
+        // Thêm sự kiện 'change' cho checkbox ở class="content__table_header"
+        headerCheckbox.addEventListener('change', function() {
+            // Lặp qua tất cả các checkbox ở class="content__table_body" và thiết lập checked giống với checkbox ở header
+            bodyCheckboxes.forEach(function(checkbox) {
+                checkbox.checked = headerCheckbox.checked;
+            });
+        });
+
+    //search dữ liệu trong bảng 
+    // Lấy input tìm kiếm và bảng
+        const searchInput = document.getElementById('searchInput');
+        const table = document.getElementById('table_phongban');
+        const rows = table.querySelectorAll('tr');
+
+        // Lưu trạng thái ban đầu của các hàng
+        const initialDisplayStates = [...rows].map(row => row.style.display);
+
+        // Sử lý sự kiện tìm kiếm
+        searchInput.addEventListener('input', function () {
+          const searchTerm = searchInput.value.trim().toLowerCase();
+
+          rows.forEach((row, index) => {
+            // Bỏ qua hàng tiêu đề
+            if (row.classList.contains('content__table_header')) return;
+
+            const columns = row.querySelectorAll('td');
+            let found = false;
+
+            // Kiểm tra nội dung trong cột và ẩn/hiện dựa trên kết quả tìm kiếm
+            columns.forEach((column, columnIndex) => {
+              if (column.textContent.trim().toLowerCase().includes(searchTerm)) {
+                found = true;
+                row.style.display = ''; // Hiển thị hàng
+              } else if (found === false && columnIndex === columns.length - 1) {
+                row.style.display = 'none'; // Ẩn hàng nếu không tìm thấy kết quả
+              }
+            });
+          });
+        });
+
+        // Sử lý sự kiện xóa trường tìm kiếm
+        searchInput.addEventListener('keyup', function (event) {
+          if (event.key === 'Escape' && searchInput.value !== '') {
+            searchInput.value = ''; // Xóa nội dung tìm kiếm
+            rows.forEach((row, index) => {
+              row.style.display = initialDisplayStates[index]; // Hiển thị lại dữ liệu ban đầu
+            });
+          }
+        });
+  </script>
+</html>
