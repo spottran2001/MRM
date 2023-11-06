@@ -718,55 +718,55 @@
           </div>
         </div>
         <% @report_template_title.keys.each_with_index do |key, index|%>
-        <table class="content__table" style="border-radius: 0px; " >
-          <thead>
-            <tr class="content__table_header"  style="background-color: #006D77;" onclick="showTableList(this)" >
-              <th class="first_column" style=" border: none;background-color: #f5f5f5;"></th>
-              <th class="tableHeader" colspan="8" style="text-align: left;padding: 20px 20px;cursor: pointer;user-select: none; border-top-left-radius: 12px;
-               border-top-right-radius: 12px; border: none"> <%= "#{index+1}. #{key}"%></th>
-            </tr>
-          </thead>
-          <% @report_template_title[key].each do |key, value|%>
-          <tbody class="list_table">
-            <tr class="content__table_header" style="background-color: #83C5BE;">
-              <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-              <th class = "key_title">
-                <%= key %>
-              </th>
-              <% value["title"].each do |v| %>
-              <th>
-                <%= v %>
-              </th>
+          <table class="content__table" style="border-radius: 0px; " >
+            <thead>
+              <tr class="content__table_header"  style="background-color: #006D77;" onclick="showTableList(this)" >
+                <th class="first_column" style=" border: none;background-color: #f5f5f5;"></th>
+                <th class="tableHeader" colspan="8" style="text-align: left;padding: 20px 20px;cursor: pointer;user-select: none; border-top-left-radius: 12px;
+                border-top-right-radius: 12px; border: none"> <%= "#{index+1}. #{key}"%></th>
+              </tr>
+            </thead>
+            <% @report_template_title[key].each do |key, value|%>
+            <tbody class="list_table">
+              <tr class="content__table_header" style="background-color: #83C5BE;">
+                <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
+                <th class = "key_title">
+                  <%= key %>
+                </th>
+                <% value["title"].each do |v| %>
+                <th>
+                  <%= v %>
+                </th>
+                <% end %>
+              </tr>
+              <% if value["content"].blank? %>
+              <tr class="content__table_body" style="background-color: #EDF6F9;">
+                <td class="first_column"  style="border: none;text-align: right;padding: 0;">
+                  <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                  <i class="fa-solid fa-trash"></i>
+                  </button>
+                  <button  onclick="addRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
+                  <i class="fa-solid fa-plus"></i>
+                  </button>
+                </td>
+                <% (value["title"].size + 1).times do |i|%>
+                <td contenteditable="true" class= "content__table_body_td_value"></td>
+                <% end %>
+              </tr>
+              <% else %>
+              <% value["content"].each do |content_value|%>
+              <tr class="content__table_body">
+                <td class="first_column"  style="border: none;text-align: right;padding: 0;">
+                </td>
+                <% content_value.each do |c| %>
+                <td class= "content__table_body_td_value"> <%= c %></td>
+                <% end %>
+              </tr>
               <% end %>
-            </tr>
-            <% if value["content"].blank? %>
-            <tr class="content__table_body" style="background-color: #EDF6F9;">
-              <td class="first_column"  style="border: none;text-align: right;padding: 0;">
-                <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-trash"></i>
-                </button>
-                <button  onclick="addRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-plus"></i>
-                </button>
-              </td>
-              <% (value["title"].size + 1).times do |i|%>
-              <td contenteditable="true" class= "content__table_body_td_value"></td>
               <% end %>
-            </tr>
-            <% else %>
-            <% value["content"].each do |content_value|%>
-            <tr class="content__table_body">
-              <td class="first_column"  style="border: none;text-align: right;padding: 0;">
-              </td>
-              <% content_value.each do |c| %>
-              <td class= "content__table_body_td_value"> <%= c %></td>
-              <% end %>
-            </tr>
+            </tbody>
             <% end %>
-            <% end %>
-          </tbody>
-          <% end %>
-        </table>
+          </table>
         <% end %>
         <%# <table class="content__table" style="border-radius: 0px; " >
           <thead >  <tr class="content__table_header"  style="background-color: #f4924b; "  onclick="showTableList(this)">

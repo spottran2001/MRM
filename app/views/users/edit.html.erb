@@ -636,7 +636,8 @@
             </nav>
           </div>
           <div class="info__user_img" style="left: 370px;">
-            <img src="https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo" alt="">
+            <img src="<%=@user.avatar&.url || "https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo"%>" alt="" id="imagePreview">
+            <input type = "file" name = "file" size = "50" id= "equipment_item_image"/>
           </div>
           <div class="btn_edit-info">
             <button style= "padding: 10px 20px;border: none; cursor: pointer; outline: none; background-color: #DC546C; border-radius: 12px; color: white; position: absolute; top: 520px; left: 1450px; display: flex; flex-direction: row; align-items: center; width: 180px;" type="button" id="userEditButton">
@@ -652,6 +653,20 @@
 </html>
 
 <script>
+  var preview = $("#imagePreview");
+
+  $("#equipment_item_image").change(function(event){
+    var input = $(event.currentTarget);
+    var file = input[0].files[0];
+    var reader = new FileReader();
+    reader.onload = function(e){
+      image_base64 = e.target.result;
+      preview.attr("src", image_base64);
+      preview.removeClass("d-none")
+    };
+   reader.readAsDataURL(file);
+  });
+
   document.getElementById("userEditButton").addEventListener('click', ()=> {
     let phoneNumber = document.getElementById("user_phone_number").value
     let subject = document.getElementById("userSubject").value
@@ -670,6 +685,9 @@
     data.append('faculty',faculty);
     data.append('role',role);
     data.append('current_user_role', "<%= current_user.role %>");
+    if($("#equipment_item_image")[0].files[0]) {
+      data.append('avatar', $("#equipment_item_image")[0].files[0]);
+    }
 
     jQuery.ajax({
       url: "/users/<%= @user.id %>",

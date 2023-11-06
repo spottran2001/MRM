@@ -801,10 +801,10 @@
             </div>
           </div>
           <div class="generality__search">
-            <div class="generality__search_icon">
+            <%= form_with url: users_path, method: :get, class: "d-flex" do %>
               <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <input type="text" id="searchInput" placeholder="Tìm kiếm tài khoản">
+              <%= text_field_tag "filter", nil, placeholder: "Some holder", class: "d-inline-block px-3 py-2 w-100"%>
+            <% end %>
           </div>
         </div>
         <table class="content__table" id="table_phongban">

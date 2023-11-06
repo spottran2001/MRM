@@ -616,7 +616,7 @@
       <% end %>
     <% end %>
     <% if current_user.role == 'admin' %>
-      <%= link_to subject_index_path, class: "menu__items", data: {turbo: false} do %>
+      <%= link_to subjects_path, class: "menu__items", data: {turbo: false} do %>
         <div class="menu__icon" title="Quản lý phòng ban" data-tooltip="Tooltip Text">
           <i class="fa-solid fa-boxes-stacked"></i>
         </div>

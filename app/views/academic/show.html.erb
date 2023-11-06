@@ -648,6 +648,18 @@
             <th>
             </th>
           </tr>
+          <% staff_policy = teacher_policy = faculty_policy = subject_policy = "d-none" %>
+          
+          <% if current_user.role&.include?("subject")%>
+            <%staff_policy = teacher_policy = ''%>
+          <% end %>
+          
+          <% if current_user.role&.include?("faculty") %>
+            <%staff_policy = teacher_policy = subject_policy = ''%>
+          <% end %>
+          <% if current_user.role&.include?("admin") %>
+            <%staff_policy = teacher_policy = subject_policy = faculty_policy = ''%>
+          <% end %>
           <% staff_report = @academic.staff_template %>
           <tr class="content__table_body">
             <td><%= staff_report.id %></td>
@@ -657,10 +669,13 @@
             <td><%= staff_report.updated_at.strftime('%d %B %Y') %></td>
             <td>Đang hoạt động</td>
             <td>
-              <%= link_to report_template_path(staff_report), style: "text-decoration:none", data: {turbo: false} do %>
+              <%= link_to report_template_path(staff_report), style: "text-decoration:none", class: "#{staff_policy}", data: {turbo: false} do %>
                 <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
               <% end %>
-              <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
+              <%= link_to report_list_academic_path(@academic, status: "Nhân Viên"), style: "text-decoration:none", class: "#{staff_policy}", data: {turbo: false} do %>
+                <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
+              <% end %>
+              
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>
@@ -673,10 +688,12 @@
             <td><%= teacher_report.updated_at.strftime('%d %B %Y') %></td>
             <td>Đang hoạt động</td>
             <td>
-              <%= link_to report_template_path(teacher_report), style: "text-decoration:none", data: {turbo: false} do %>
+              <%= link_to report_template_path(teacher_report), style: "text-decoration:none", class: "#{teacher_policy}", data: {turbo: false} do %>
                 <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
               <% end %>
-              <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
+              <%= link_to report_list_academic_path(@academic, status: "Giảng viên"), style: "text-decoration:none", class: "#{teacher_policy}", data: {turbo: false} do %>
+                <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
+              <% end %>
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>
@@ -689,10 +706,12 @@
             <td><%= subject_report.updated_at.strftime('%d %B %Y') %></td>
             <td>Đang hoạt động</td>
             <td>
-              <%= link_to report_template_path(subject_report), style: "text-decoration:none", data: {turbo: false} do %>
+              <%= link_to report_template_path(subject_report), style: "text-decoration:none", class: "#{subject_policy}", data: {turbo: false} do %>
                 <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
               <% end %>
-              <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
+              <%= link_to report_list_academic_path(@academic, status: "Phụ trách bộ môn"), style: "text-decoration:none", class: "#{subject_policy}", data: {turbo: false} do %>
+                <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
+              <% end %>
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>
@@ -705,10 +724,12 @@
             <td><%= faculty_report.updated_at.strftime('%d %B %Y') %></td>
             <td>Đang hoạt động</td>
             <td>
-              <%= link_to report_template_path(faculty_report), style: "text-decoration:none", data: {turbo: false} do %>
+              <%= link_to report_template_path(faculty_report), style: "text-decoration:none", class: "#{faculty_policy}", data: {turbo: false} do %>
                 <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
               <% end %>
-              <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
+              <%= link_to report_list_academic_path(@academic, status: "Ban chủ nhiệm khoa"), style: "text-decoration:none", class: "#{faculty_policy}", data: {turbo: false} do %>
+                <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
+              <% end %>
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>
             </td>           
           </tr>                               

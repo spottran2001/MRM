@@ -55,24 +55,25 @@ class ReportController < ApplicationController
     #   end
     # end
     @report = Report.find(params["report_id"])
-    # report_type_id = ReportType.find_by_id(name_type: "cho duyet", type_report: "dang bao cao").id
-    @report.update(report_type_id: 3)  
-    @report.update(status: "Da gui")  
+    report_type_id = ReportType.find_by(name_type: "cho duyet", type_report: "dang bao cao").id
+    @report.report_type_id =  report_type_id  
+    @report.first_submit = Date.current if @report.first_submit.blank?
+    @report.save
   end
 
   def return_report
     report = Report.find(params["report_id"])
-    report_type_id = ReportType.find_by_id(name_type: "can bo sung", type_report: "dang bao cao").id
+    report_type_id = ReportType.find_by(name_type: "can bo sung", type_report: "dang bao cao").id
     @report.update(report_type_id: report_type_id)  
   end
 
   def report_apply
     report = Report.find(params["report_id"])
     if report.last_submit_time > report.report_template.end_date
-      report_type_id = ReportType.find_by_id(name_type: "da duyet", type_report: "tre han").id
+      report_type_id = ReportType.find_by(name_type: "da duyet", type_report: "tre han").id
       @report.update(report_type_id: report_type_id)
     else 
-      report_type_id = ReportType.find_by_id(name_type: "da duyet", type_report: "dung han").id
+      report_type_id = ReportType.find_by(name_type: "da duyet", type_report: "dung han").id
       @report.update(report_type_id: report_type_id)
     end
   end

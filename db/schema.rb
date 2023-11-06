@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_11_053623) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_06_161057) do
   create_table "academics", force: :cascade do |t|
     t.string "name"
     t.integer "staff_report_id"
@@ -88,6 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_053623) do
     t.bigint "report_template_id"
     t.bigint "report_type_id"
     t.bigint "academic_id"
+    t.date "first_submit"
     t.index ["academic_id"], name: "index_reports_on_academic_id"
     t.index ["report_template_id"], name: "index_reports_on_report_template_id"
     t.index ["report_type_id"], name: "index_reports_on_report_type_id"
@@ -99,6 +100,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_053623) do
     t.integer "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "faculty_id"
+    t.index ["faculty_id"], name: "index_subjects_on_faculty_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -114,6 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_053623) do
     t.bigint "faculty_id"
     t.bigint "subject_id"
     t.string "phone_number"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["faculty_id"], name: "index_users_on_faculty_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

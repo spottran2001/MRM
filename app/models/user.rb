@@ -10,6 +10,8 @@ class User < ApplicationRecord
   belongs_to :subject, optional: true
   has_many :reports
   has_many :notifications
+  mount_uploader :avatar, PictureUploader
+
 
   def self.from_omniauth(auth)
 	  where(email: auth.info.email).first_or_create do |user|

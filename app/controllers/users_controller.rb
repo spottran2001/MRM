@@ -5,8 +5,9 @@ class UsersController < ApplicationController
   def index
     if current_user.role != "admin"
       @users = User.where(id: current_user.id)
+      @pagy, @users = pagy(users.all, items: 8)
     else
-      users = User.all
+      users = User.where("email LIKE ?", "%#{params[:filter]}%").all
       @pagy, @users = pagy(users.all, items: 8)
     end
   end
@@ -36,7 +37,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     role = params['role'].split(',')
     if params["current_user_role"].include?('admin')
-      @user.update!(role: role.join(','), phone_number: params['phoneNumber'], faculty_id: params['faculty'] ,subject_id: params['subject'] )
+      @user.role =  role.join(',') if role.present?
+      @user.phone_number =  params['phoneNumber']
+      @user.faculty_id =  params['faculty']
+      @user.subject_id =  params['subject'] 
+      if params[:avatar].present?
+        @user.avatar = params[:avatar]
+      end
+      @user.save!
     else
       @user.update!(phone_number: params['phoneNumber']) #add this column to database!
     end

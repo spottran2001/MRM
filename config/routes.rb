@@ -23,9 +23,16 @@ Rails.application.routes.draw do
     put 'submit_report_temp', to: 'report_template#submit_report'
   end
   post 'report_template/apply_temple', to: 'report_template#apply_temple'
-  resources :faculty
-  resources :academic
-  resources :subject
+  resources :faculties
+  resources :academic do
+    member do 
+      get "report_list"
+      get "review_report"
+      put "accept_report"
+      put "reject_report"
+    end
+  end
+  resources :subjects
   resources :report do
     put "save_draft", to: 'report#save_draft'
     put "send_report", to: 'report#send_report'
