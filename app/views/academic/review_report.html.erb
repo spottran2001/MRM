@@ -599,6 +599,36 @@
     .feedback__btn {
       background-color: #f4924b;
     }
+    .btn_operation_accept{
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: none;
+      color: white;
+      background-color: #6C8DE0;
+      cursor: pointer;
+    }
+    .btn_operation_reject{
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: none;
+      color: white;
+      background-color: #DC546C;
+      cursor: pointer;
+    }
+    .btn_operation_feedback{
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: none;
+      color: white;
+      background-color: #f4924b;
+      cursor: pointer;
+    }
   </style>
   <body>
     <main class="container">
@@ -627,15 +657,15 @@
               </div>
             </div>
           </div>
-          <div class="generality__options" style="padding: 14px 20px;">
-            <%= button_to accept_report_academic_path(@academic, report_id: @report.id), method: :put, style: "box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);", class: "btn__CreateReport  d-flex justify-content-center", data: {turbo: false} do %>
-              <i class="fa-solid fa-plus" style=" padding-right: 0.5rem"></i>
-              Chap Thuan
+          <div class="generality__options" style="padding: 14px 10px;">
+            <%= button_to reject_report_academic_path(@academic, report_id: @report.id), method: :put, style: "box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25); margin-right: 1rem", class: "btn_operation_reject", data: {turbo: false} do %>
+              <i class="fa-regular fa-circle-xmark" style=" padding-right: 0.5rem"></i>
+              KHÔNG DUYỆT
             <% end %>
 
-            <%= button_to reject_report_academic_path(@academic, report_id: @report.id), method: :put, style: "box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);", class: "btn__CreateReport  d-flex justify-content-center", data: {turbo: false} do %>
-              <i class="fa-solid fa-plus" style=" padding-right: 0.5rem"></i>
-              Tu Choi
+            <%= button_to accept_report_academic_path(@academic, report_id: @report.id), method: :put, style: "box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25)", class: "btn_operation_accept", data: {turbo: false} do %>
+              <i class="fa-regular fa-circle-check" style=" padding-right: 0.5rem"></i>
+              DUYỆT
             <% end %>
 
             <%#<div id="send_baocao" class="btn__addmember" style="margin: 2rem">
@@ -657,18 +687,18 @@
                 <p>LƯU NHÁP</p>
               </button>
               </div> %>
-            <div id="send_Feedback" class="btn__addfile">
+            <%#<div id="send_Feedback">
               <button
                 aria-label="send_Feedback"
-                class="feedback__btn btn"
+                class="btn_operation_feedback"
                 onclick="showFeedbackPopup()"
-                style="background-color: #f4924b;
+                style="
                 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
                 >
               <i class="fa-regular fa-message" style="padding-right: 1rem"></i>
-              Phản hồi
+              PHẢN HỒI
               </button>
-            </div>
+            </div>%>  
             <!-- POPUP PHẢN HỒI -->
             <div id="popup_SendFeedback" class="popup__SendFeedback">
               <div

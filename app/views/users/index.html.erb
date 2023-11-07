@@ -493,22 +493,6 @@
     .generality__search {
       position: relative;
     }
-    .generality__search_icon {
-      position: absolute;
-      top: 7px;
-      left: 6px;
-      font-size: 12px;
-      color: gray;
-      cursor: pointer;
-      padding: 10px;
-    }
-    .generality__search input {
-      padding: 14px 40px;
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 20px 0px;
-      border: none;
-      outline: none;
-      border-radius: 6px;
-    }
     .content__table {
       width: 100%;
       text-align: center;
@@ -779,6 +763,22 @@
       color: white;    
       overflow: hidden;  
     } 
+    .custom-icon{
+      position: absolute;
+      top: 11px;
+      left: 6px;
+      font-size: 12px;
+      color: gray;
+      cursor: pointer;
+      padding: 10px;
+    }
+    .custom-text-field{
+      padding: 14px 40px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 20px 0px;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+    }
   </style>
   <body>
     <main class="container">
@@ -796,14 +796,13 @@
                 <option value="3">Giảng viên</option>
                 <option value="4">Nhân viên</option>
                 <option value="5">Chưa có</option>
-                <option value="6">Chức vụ</option>
               </select>
             </div>
           </div>
           <div class="generality__search">
             <%= form_with url: users_path, method: :get, class: "d-flex" do %>
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <%= text_field_tag "filter", nil, placeholder: "Some holder", class: "d-inline-block px-3 py-2 w-100"%>
+              <i class="fa-solid fa-magnifying-glass custom-icon"></i>
+              <%= text_field_tag "filter", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field"%>
             <% end %>
           </div>
         </div>

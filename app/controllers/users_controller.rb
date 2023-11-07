@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     if current_user.role != "admin"
-      @users = User.where(id: current_user.id)
+      users = User.where(id: current_user.id)
       @pagy, @users = pagy(users.all, items: 8)
     else
       users = User.where("email LIKE ?", "%#{params[:filter]}%").all

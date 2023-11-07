@@ -537,6 +537,29 @@
       display: flex;
       flex-direction: column;
     }
+    .custom-file-input {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .custom-file-label {
+      background-color: #DC546C;
+      color: white;
+      margin-top: 1rem;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+    }
+
+    .custom-file-label:hover {
+      background-color: #EC8C9C;
+    }
 
 
   </style>
@@ -637,7 +660,9 @@
           </div>
           <div class="info__user_img" style="left: 370px;">
             <img src="<%=@user.avatar&.url || "https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo"%>" alt="" id="imagePreview">
-            <input type = "file" name = "file" size = "50" id= "equipment_item_image"/>
+            <label for="equipment_item_image" class="custom-file-label">CHỌN ẢNH</label>
+            <input type="file" name="file" size="50" id="equipment_item_image" class="custom-file-input" />
+
           </div>
           <div class="btn_edit-info">
             <button style= "padding: 10px 20px;border: none; cursor: pointer; outline: none; background-color: #DC546C; border-radius: 12px; color: white; position: absolute; top: 520px; left: 1450px; display: flex; flex-direction: row; align-items: center; width: 180px;" type="button" id="userEditButton">
@@ -654,6 +679,8 @@
 
 <script>
   var preview = $("#imagePreview");
+  var fileInput = $("#equipment_item_image");
+  var customLabel = $(".custom-file-label");
 
   $("#equipment_item_image").change(function(event){
     var input = $(event.currentTarget);

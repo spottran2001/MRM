@@ -569,6 +569,7 @@
       flex-direction: column;
       border: none;
     }
+
     .popup_footer_feedback {
       display: flex;
       justify-content: end;
@@ -602,6 +603,17 @@
       background-color: red;
       color: white;      
     } 
+    .custom-input-class{
+      padding-left: 0rem;
+      width: 100%;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
+    }
+    .custom-submit-button{
+      color: #fff;
+      background-color: #6C8DE0;
+    }
   </style>
   <body>
     <main class="container">
@@ -617,7 +629,7 @@
             </button>
           </div>
           <div class="btn__addfile">
-            <%= button_to "BỘ MÔN", faculties_path, method: :get, style: "background-color: #EC8C9C;", data: {turbo: false}%>
+            <%= button_to "BỘ MÔN", subjects_path, method: :get, style: "background-color: #EC8C9C;", data: {turbo: false}%>
           </div>
           <div class="btn__addfile">
             <button aria-label="btn__department" id="btn__department" style="background-color: #678EF8;" onclick="showFeedbackPopup()">
@@ -691,10 +703,13 @@
           </div>
           <div class="popup_body_feedback">
             <%= simple_form_for @faculty do |f| %>
-              <%= f.input :name %>
-              <%= f.button :submit %>
+              <%= f.input :name, input_html: { class: 'custom-input-class' }, placeholder: "Nhập tên khoa", label: 'Tên Khoa' %>      
+          </div>
+          <div class="popup_footer_feedback">
+              <%= f.button :submit, 'THÊM', class: 'custom-submit-button' %>     
             <% end %>
           </div>
+
         </div>
       </div>
     </main>
