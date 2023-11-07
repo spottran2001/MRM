@@ -703,7 +703,7 @@
           </div>
           <div class="popup_body_feedback">
             <%= simple_form_for @faculty do |f| %>
-              <%= f.input :name, input_html: { class: 'custom-input-class' }, placeholder: "Nhập tên khoa", label: 'Tên Khoa' %>      
+              <%= f.input :name, input_html: { class: 'custom-input-class' }, placeholder: "Nhập tên khoa", label: 'Tên Khoa', required: false %>      
           </div>
           <div class="popup_footer_feedback">
               <%= f.button :submit, 'THÊM', class: 'custom-submit-button' %>     

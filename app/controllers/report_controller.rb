@@ -18,7 +18,8 @@ class ReportController < ApplicationController
         end
       end
     end
-    report.update!(data: JSON.generate(report_data), status: 'Luu nhap')
+    report_type_id = ReportType.find_by(name_type: "luu nhap", type_report: "chua bao cao").id
+    report.update!(data: JSON.generate(report_data), status: 'Luu nhap',report_type_id: report_type_id)
   end
 
   def save_draft
