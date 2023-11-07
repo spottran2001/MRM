@@ -659,6 +659,22 @@
       background-color: red;
       color: white;      
     } 
+    .custom-input-class{
+      margin-bottom: 10px;
+      padding-left: 0rem;
+      width: 100%;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
+    }
+    .custom-submit-button{
+      color: #fff;
+      background-color: #6C8DE0;
+    }
+    .custom-cancel-button{
+      color: #fff;
+      background-color: #DC546C
+    } 
   </style>
   <body>
     <main class="container">
@@ -669,7 +685,7 @@
         <div class="content__generality">
           <div class="generality__options">
             <div class="btn__addfile">
-              <%= button_to "KHOA", subjects_path, method: :get, style: "background-color: #EC8C9C;", data: {turbo: false}%>
+              <%= button_to "KHOA", faculties_path, method: :get, style: "background-color: #EC8C9C;", data: {turbo: false}%>
             </div>
             <div class="btn__addfile">
               <button id="open-popup-btn" style="background-color: #DC546C;">
@@ -755,9 +771,11 @@
           </div>
           <div class="popup_body_feedback">
             <%= simple_form_for @subject do |f| %>
-              <%= f.input :name, label:"Bo Mon",input_html: { class: 'recognitionStyling' }, label_html: { class: 'recognitionStyling2' }, wrapper_html: { class: 'recognitionStyling3'}%>
-              <%= f.input :faculty_id, label: "Khoa", collection: Faculty.pluck(:name, :id), input_html: { class: 'recognitionStyling' }, label_html: { class: 'recognitionStyling2' }, wrapper_html: { class: 'recognitionStyling3' }%>
-              <%= f.button :submit %>
+              <%= f.input :name, input_html: { class: 'custom-input-class' }, placeholder: "Nhập tên bộ môn", label: 'Tên bộ môn'%>
+              <%= f.input :faculty_id, collection: Faculty.pluck(:name, :id),input_html: { class: 'custom-input-class' }, label: 'Chọn khoa'%>
+          </div>
+          <div class="popup_footer_feedback">
+              <%= f.button :submit, 'THÊM', class: 'custom-submit-button' %>             
             <% end %>
           </div>
         </div>
