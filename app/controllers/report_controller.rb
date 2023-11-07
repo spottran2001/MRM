@@ -87,6 +87,8 @@ class ReportController < ApplicationController
   def edit
     @report_template_title = JSON.parse(Report.find(params[:id]).data)
     @report_template = Report.find(params[:id])
+    report_type = @report_template.report_type&.name_type
+    @can_send_report = (report_type == "can bo sung" || report_type == "luu nhap") ? true :false
   end
 
   #baocaonhanvien

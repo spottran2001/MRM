@@ -25,6 +25,7 @@ class ReportTemplateController < ApplicationController
   end
 
   def new
+    @report_template = ReportTemplate.new()
   end
 
   def edit
@@ -99,9 +100,8 @@ class ReportTemplateController < ApplicationController
   end
 
   def report_template_management
-    @report_templates = ReportTemplate.all
-    users = User.all
-      @pagy, @users = pagy(users.all, items: 8)
+    report_templates = ReportTemplate.all
+    @pagy, @report_templates = pagy(report_templates.all, items: 8)
   end
 
   private

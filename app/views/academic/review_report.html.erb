@@ -645,19 +645,19 @@
             <div class="reportTitleStatus">
               <div class="statusCreateReport" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Trạng thái: </span>
-                <span>Chờ duyệt</span>
+                <span><%= @report.report_type&.name_type%></span>
               </div>
               <div class="timeCreate" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Thời gian tạo: </span>
-                <span>DD/MM/YYYY 2:00AM</span>
+                <span><%= @report.created_at.strftime('%d %B %Y') %></span>
               </div>
               <div class="timeEdit" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Thời gian sửa: </span>
-                <span>DD/MM/YYYY 2:00PM</span>
+                <span><%= @report.updated_at.strftime('%d %B %Y') %></span>
               </div>
             </div>
           </div>
-          <div class="generality__options" style="padding: 14px 10px;">
+          <div class="generality__options <%= @can_accept_reject ? "" : "d-none" %>" style="padding: 14px 10px;">
             <%= button_to reject_report_academic_path(@academic, report_id: @report.id), method: :put, style: "box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25); margin-right: 1rem", class: "btn_operation_reject", data: {turbo: false} do %>
               <i class="fa-regular fa-circle-xmark" style=" padding-right: 0.5rem"></i>
               KHÔNG DUYỆT

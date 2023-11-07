@@ -41,7 +41,7 @@ class User < ApplicationRecord
       user_roles += "Ban Chu Nhiem Khoa, "
     end
     if role.include?("admin")
-      user_roles += "Administrator"
+      user_roles += "Ban Giam Hieu, "
     end
     user_roles
   end

@@ -1,14 +1,12 @@
 class AcademicController < ApplicationController
   before_action :authenticate_user!
-  before_action :current_report, only: [:report_details, :accept_report, :review_report]
+  before_action :current_report, only: [:report_details, :accept_report, :review_report, :reject_report]
   def index
     @academic = Academic.all.order(:created_at)
   end
 
   def show 
     @academic = Academic.find(params[:id])
-    users = User.all
-      @pagy, @users = pagy(users.all, items: 8)
   end
 
   def report_list
@@ -24,16 +22,23 @@ class AcademicController < ApplicationController
   def review_report
     @report_template_title = JSON.parse(@report.data)
     @report_template = @report
+    @can_accept_reject = @report.report_type&.name_type == 'cho duyet' ? true : false
   end
 
   def accept_report
-    report_type_id = ReportType.find_by(name_type: "da duyet", type_report: "dung han").id
-    @report.update(submiter_id: current_user.id, report_type_id: report_type_id, confirm_time: Time.current)
+    if @report.report_type&.name_type == 'cho duyet'
+      report_type_id = ReportType.find_by(name_type: "da duyet", type_report: "dung han").id
+      @report.update(submiter_id: current_user.id, report_type_id: report_type_id, confirm_time: Time.current)
+    end
+    redirect_to report_list_academic_path(@academic, status: @report.role)
   end
 
   def reject_report
-    report_type_id = ReportType.find_by(name_type: "can bo sung", type_report: "dang bao cao").id
-    @report.update(returner_id: current_user.id, report_type_id: report_type_id, return_time: Time.current)
+    if @report.report_type&.name_type == 'cho duyet'
+      report_type_id = ReportType.find_by(name_type: "can bo sung", type_report: "dang bao cao").id
+      @report.update(returner_id: current_user.id, report_type_id: report_type_id, return_time: Time.current)
+    end
+    redirect_to report_list_academic_path(@academic, status: @report.role)
   end
 
   private

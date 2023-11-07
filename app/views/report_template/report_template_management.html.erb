@@ -953,7 +953,7 @@
               <td><%= r.role %></td>
               <td><%= r.created_at.strftime('%d/%m/%Y %T') %></td>
               <td><%= r.updated_at.strftime('%d/%m/%Y %T') %></td>
-              <td><%= r.is_apply ? 'Duyệt' : 'Nháp'%></td>
+              <td><%= r.is_apply ? 'Duyệt' : 'Nháp' %></td>
               <td>             
                 <%= link_to report_template_path(r), style: "text-decoration:none", data: {turbo: false} do %>
                   <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>

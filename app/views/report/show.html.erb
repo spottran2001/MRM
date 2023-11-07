@@ -615,15 +615,15 @@
             <div class="reportTitleStatus">
               <div class="statusCreateReport" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Trạng thái: </span>
-                <span>Chờ duyệt</span>
+                <span><%= @report_template.report_type&.name_type%></span>
               </div>
               <div class="timeCreate" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Thời gian tạo: </span>
-                <span>DD/MM/YYYY 2:00AM</span>
+                <span><%= @report_template.created_at.strftime('%d %B %Y') %></span>
               </div>
               <div class="timeEdit" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Thời gian sửa: </span>
-                <span>DD/MM/YYYY 2:00PM</span>
+                <span><%= @report_template.updated_at.strftime('%d %B %Y') %></span>
               </div>
             </div>
           </div>

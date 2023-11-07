@@ -723,7 +723,7 @@
             <div class="reportTitleStatus">                      
                 <div class="statusCreateReport" style="padding-right: 4rem">
                   <span style= "font-weight: 800; padding-right: 1rem">Trạng thái: </span>
-                  <span>Khởi tạo</span>                        
+                  <span><%= @report_template.is_apply ? 'Duyệt' : 'Nháp' %></span>                        
                 </div>      
                 <div class="timeCreate" style="padding-right: 4rem">
                   <span style= "font-weight: 800; padding-right: 1rem">Thời gian tạo: </span>
