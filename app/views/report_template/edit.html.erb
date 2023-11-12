@@ -74,7 +74,7 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      height: 36%;
+      height: auto;
     }
     .popup_header {
       display: flex;
@@ -92,6 +92,7 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
+      padding: 0rem 8rem 2rem 5rem;
     }
     .popup_foiter button {
       padding: 10px 40px;
@@ -848,15 +849,15 @@
       <div id="popup__guiBaocao">
         <div id="popup__inner">
           <div class="popup_header">
-            <p style="padding: 10px;">GỬI BÁO CÁO</p>
+            GỬI BÁO CÁO
             <i id="close__popupBaocao" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark"></i>
           </div>
           <div class="popup_body">
             <p>Bạn có chắc gửi biểu này ?</p>
           </div>
           <div class="popup_foiter">
-            <button id="btn__closeBaocao" style="background-color: #dc546c;">HỦY</button>
-            <%= button_to report_template_submit_report_temp_path(@report_template), method: :put, style: "background-color: #6C8DE0;" do %>
+            <%= button_to report_index_path,class:"btn__addfile", id:"btn__closeBaocao", style:"background-color: #dc546c;" do %>HỦY<% end %>
+            <%= button_to report_template_submit_report_temp_path(@report_template), method: :put, style: "background-color: #6C8DE0;",class:"btn__addfile" do %>
               GỬI
             <% end %>
           </div>
