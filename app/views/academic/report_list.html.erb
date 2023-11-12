@@ -62,6 +62,17 @@
       color: #d72134 !important;
     }
     /* Content */
+    .content-header{
+      padding: 25px 0px 10px 40px;
+      display: flex;
+      justify-content: start;
+      flex-direction: row;
+      align-items: center;
+    }
+    .content-header h1 {
+      padding: 15px 0px 10px 40px;
+      font-size: 30px;
+    }
     .content {
       background-color: #f8f8f8;
       width: 100%;
@@ -700,7 +711,17 @@
       <%= render "shared/left_nav"%>
       <div class="content">
         <%= render 'shared/header' %>
-        <h1 class="content__name">DANH SÁCH KỲ BÁO CÁO </h1>
+          <div class="content-header">
+            <div class="btn__addmember">
+              <%= link_to academic_path, style:"text-decoration: none;", data: {turbo: false} do %>
+                <button aria-label="send_baocao" style=" background-color: #d72134;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 
+                  0px 4px 4px 0px rgba(0, 0, 0, 0.25);" title="Quay lại" data-tooltip="Tooltip Text">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+              <% end %>
+            </div> 
+            <h1 class="content__name">DANH SÁCH BÁO CÁO CHI TIẾT</h1>
+          </div>
         <div class="content__generality">
           <div class="generality__options">
             <div class="select-row">
@@ -727,21 +748,20 @@
             <div class="generality__search_icon">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>  
-            <input type="text" id="searchInput" placeholder="Tìm kiếm kỳ báo cáo">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm báo cáo">
           </div>
         </div>
         <table class="content__table" id="table_phongban">
           <tr class="content__table_header">
             <th>STT</th>
             <th>Họ và tên</th>
-            <th>Chức vụ</th>
+            <th>Vai trò</th>
             <th>Kỳ hạn</th>
             <th>Thời gian tạo</th>
             <th>Thời gian sửa</th>
             <th>Trạng thái</th>
             <th>Loại</th> 
-            <th></th>
-            <th></th>
+            <th></th>           
             </th>
           </tr>
           <% @report_list.each do |r| %>

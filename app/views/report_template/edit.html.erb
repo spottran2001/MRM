@@ -156,6 +156,17 @@
       color: #d72134 !important;
     }
     /* Content */
+    .content-header{
+      padding: 25px 0px 10px 40px;
+      display: flex;
+      justify-content: start;
+      flex-direction: row;
+      align-items: center;
+    }
+    .content-header h1 {
+      padding: 15px 0px 10px 40px;
+      font-size: 30px;
+    }
     .content {
       background-color: #f5f5f5;
       width: 100%;
@@ -628,13 +639,58 @@
       flex-direction: row;
       justify-content: space-between;
     }
+    .btn[data-tooltip]:hover:after {
+      content: attr(data-tooltip);
+      position: absolute;
+      padding: 5px;
+      border-radius: 5px;
+      left: 100%;
+      top: 100%;
+      white-space: nowrap;
+      z-index: 1;
+      background-color: red;
+      color: white;    
+      overflow: hidden;  
+    } 
+    /* Styles for the plus icon */
+    .fa-plus {
+        /* Add your styles here */
+        color: #ffffff;
+        font-size: 16px;
+    }
+    /* Styles for the trash icon */
+    .fa-trash {
+        color: #ffffff;
+        font-size: 16px;
+    }
+    /* Additional styles for the buttons (optional) */
+    button {
+        background-color: #006D77;
+        border: 1px solid #005662;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+    }
+    button:hover {
+        background-color: #005662;
+    }
   </style>
   <body>
     <main class="container">
       <%= render "shared/left_nav"%>
       <div class="content">
         <%= render 'shared/header' %>
-        <h1 class="content__name">CHỈNH SỬA BIỂU MẪU BÁO CÁO CHUNG</h1>
+        <div class="content-header">
+          <div class="btn__addmember">
+            <%= link_to report_template_management_path, style:"text-decoration: none;", data: {turbo: false} do %>
+              <button aria-label="send_baocao" style=" background-color: #d72134;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 
+                0px 4px 4px 0px rgba(0, 0, 0, 0.25);" title="Quay lại" data-tooltip="Tooltip Text">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+            <% end %>
+          </div> 
+          <h1 class="content__name">CHỈNH SỬA BIỂU MẪU BÁO CÁO CHUNG</h1>
+        </div>
         <div class="enterContent">
             <div class="assignRoles">
             <span style= "font-weight: 800; padding-right: 1rem">Tên biểu mẫu chung: </span>
@@ -744,11 +800,11 @@
           <thead>
             <tr class="content__table_header"  style="background-color: #006D77;" onclick="showTableList(this)">
               <th class="first_column" style="border: none;text-align: right;padding: 0;">
-                <button onclick="addTable()" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-plus"></i>
+                <button onclick="addTable()" style="display: block; width: 100%; padding: 2px 0px; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                  <i class="fa-solid fa-plus" style="padding: 5px;" title="Thêm bảng" data-tooltip="Tooltip Text"></i>
                 </button>
-                <button onclick="delTable(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-trash"></i>
+                <button onclick="delTable(this)" style="display: block;width: 100%;padding: 2px 0px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
+                  <i class="fa-solid fa-trash" style="padding: 5px;" title="Xóa bảng" data-tooltip="Tooltip Text"></i>
                 </button>
               </th>
               <th class="tableHeader" contenteditable="true" colspan="<%= @report_template_title[key].first.last.values.last.length+1 %>" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none; border-top:none; border-left:none; border-right:none">
@@ -760,11 +816,11 @@
           <tbody class="tableBody">
             <tr class="content__table_header"  style="background-color: #83C5BE;">
               <th class="first_column" style="border: none;text-align: right;padding: 0;">
-                <button onclick="addThread(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-plus"></i>
+                <button onclick="addThread(this)" style="display: block; width: 100%; padding: 2px 0px; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                  <i class="fa-solid fa-plus" style="padding: 5px;" title="Thêm hàng" data-tooltip="Tooltip Text"></i>
                 </button>
-                <button onclick="delThread(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-trash"></i>
+                <button onclick="delThread(this)" style="display: block;width: 100%;padding: 2px 0px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
+                  <i class="fa-solid fa-trash" style="padding: 5px;" title="Xóa hàng" data-tooltip="Tooltip Text"></i>
                 </button>
               </th>
               <th class="first_thread_content" contenteditable="true">
@@ -776,11 +832,11 @@
               </th>
               <% end %>
               <th class="first_column" style="border: none;text-align: right;padding: 0;">
-                <button onclick="addColumn(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-plus"></i>
+                <button onclick="addColumn(this)" style="display: block; width: 100%; padding: 2px 0px; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                  <i class="fa-solid fa-plus" style="padding: 5px;" title="Thêm cột" data-tooltip="Tooltip Text"></i>
                 </button>
-                <button onclick="delColumn(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-trash"></i>
+                <button onclick="delColumn(this)" style="display: block;width: 100%;padding: 2px 0px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
+                  <i class="fa-solid fa-trash" style="padding: 5px;" title="Xóa cột" data-tooltip="Tooltip Text"></i>
                 </button>
               </th>
             </tr>

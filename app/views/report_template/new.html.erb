@@ -151,6 +151,17 @@
       color: #d72134 !important;
     }
     /* Content */
+    .content-header{
+      padding: 25px 0px 10px 40px;
+      display: flex;
+      justify-content: start;
+      flex-direction: row;
+      align-items: center;
+    }
+    .content-header h1 {
+      padding: 15px 0px 10px 40px;
+      font-size: 30px;
+    }
     .content {
       background-color: #f5f5f5;
       width: 100%;
@@ -658,61 +669,104 @@
       border-radius: 12px;
       border: 2px solid #e0e7ed;
     }
+    .btn[data-tooltip]:hover:after {
+      content: attr(data-tooltip);
+      position: absolute;
+      padding: 5px;
+      border-radius: 5px;
+      left: 100%;
+      top: 100%;
+      white-space: nowrap;
+      z-index: 1;
+      background-color: red;
+      color: white;    
+      overflow: hidden;  
+    } 
+    /* Styles for the plus icon */
+    .fa-plus {
+        /* Add your styles here */
+        color: #ffffff;
+        font-size: 16px;
+    }
+    /* Styles for the trash icon */
+    .fa-trash {
+        color: #ffffff;
+        font-size: 16px;
+    }
+    /* Additional styles for the buttons (optional) */
+    button {
+        background-color: #006D77;
+        border: 1px solid #005662;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+    }
+    button:hover {
+        background-color: #005662;
+    }
 
-
-    
   </style>
   <body>
     <main class="container">
       <%= render "shared/left_nav"%>
       <div class="content">
-        <%= render 'shared/header' %>
-        <h1 class="content__name">TẠO BIỂU MẪU BÁO CÁO CHUNG</h1>
+        <%= render 'shared/header' %>   
+        <div class="content-header">
+          <div class="btn__addmember">
+            <%= link_to report_template_management_path, style:"text-decoration: none;", data: {turbo: false} do %>
+              <button aria-label="send_baocao" style=" background-color: #d72134;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 
+                0px 4px 4px 0px rgba(0, 0, 0, 0.25);" title="Quay lại" data-tooltip="Tooltip Text">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+            <% end %>
+          </div> 
+          <h1 class="content__name">TẠO BIỂU MẪU BÁO CÁO CHUNG</h1>
+        </div>
         <div class="enterContent">
           <div class="assignRoles">
-          <span style= "font-weight: 800; padding-right: 1rem">Tên biểu mẫu chung: </span>
-          <input class="formName" type="text" placeholder="Nhập tên biểu mẫu">
-        </div>
-        <div class="assignRoles">
-          <span style= "font-weight: 800; padding-right: 1rem">Vai trò: </span>
-            <div class="select__modalbody" id="select__khoa" >
-              <p id="selectedKhoaModal">Chọn vai trò</p>
-              <i class="fa-solid fa-angle-down"></i>
-              <div class="option__modalbody" id="option__khoa">
-                <p class="khoa">Nhân viên</p>
-                <p class="khoa">Giảng viên</p>
-                <p class="khoa">Phụ trách bộ môn</p>
-                <p class="khoa">Bạn chủ nhiệm khoa</p>
+            <span style= "font-weight: 800; padding-right: 1rem; padding-left: 1rem">Tên biểu mẫu chung: </span>
+            <input class="formName" type="text" placeholder="Nhập tên biểu mẫu">
+          </div>
+          <div class="assignRoles">
+            <span style= "font-weight: 800; padding-right: 1rem">Vai trò: </span>
+              <div class="select__modalbody" id="select__khoa" >
+                <p id="selectedKhoaModal">Chọn vai trò</p>
+                <i class="fa-solid fa-angle-down"></i>
+                <div class="option__modalbody" id="option__khoa">
+                  <p class="khoa">Nhân viên</p>
+                  <p class="khoa">Giảng viên</p>
+                  <p class="khoa">Phụ trách bộ môn</p>
+                  <p class="khoa">Bạn chủ nhiệm khoa</p>
+                </div>
               </div>
-            </div>
-        </div>
-        <div class="assignRoles">
-          <span style= "font-weight: 800; padding-right: 1rem">Năm báo cáo </span>
-            <div class="select__modalbody" id="select__period" >
-              <p id="selectedYearModal">Chọn năm báo cáo</p>
-              <i class="fa-solid fa-angle-down"></i>
-              <div class="option__modalbody" id="option__period">
-                <p class="selectYear">2025</p>
-                <p class="selectYear">2024</p>
-                <p class="selectYear">2023</p>
-                <p class="selectYear">2022</p>
-                <p class="selectYear">2021</p>
+          </div>
+          <div class="assignRoles">
+            <span style= "font-weight: 800; padding-right: 1rem">Năm báo cáo </span>
+              <div class="select__modalbody" id="select__period" >
+                <p id="selectedYearModal">Chọn năm báo cáo</p>
+                <i class="fa-solid fa-angle-down"></i>
+                <div class="option__modalbody" id="option__period">
+                  <p class="selectYear">2025</p>
+                  <p class="selectYear">2024</p>
+                  <p class="selectYear">2023</p>
+                  <p class="selectYear">2022</p>
+                  <p class="selectYear">2021</p>
+                </div>
               </div>
-            </div>
-        </div>
-        <div class="assignRoles" style="display: none">
-          <span style= "font-weight: 800; padding-right: 1rem">Kỳ báo cáo </span>
-            <div class="select__modalbody" id="select__year" >
-              <p id="selectedPeriodModal">Chọn kỳ báo cáo</p>
-              <i class="fa-solid fa-angle-down"></i>
-              <div class="option__modalbody" id="option__year">
-                <p class="selectPeriod">Kỳ báo cáo năm 2023</p>
-                <p class="selectPeriod">Kỳ báo cáo năm 2022</p>
-                <p class="selectPeriod">Kỳ báo cáo năm 2021</p>
-                <p class="selectPeriod">Kỳ báo cáo năm 2020</p>
+          </div>
+          <div class="assignRoles" style="display: none">
+            <span style= "font-weight: 800; padding-right: 1rem">Kỳ báo cáo </span>
+              <div class="select__modalbody" id="select__year" >
+                <p id="selectedPeriodModal">Chọn kỳ báo cáo</p>
+                <i class="fa-solid fa-angle-down"></i>
+                <div class="option__modalbody" id="option__year">
+                  <p class="selectPeriod">Kỳ báo cáo năm 2023</p>
+                  <p class="selectPeriod">Kỳ báo cáo năm 2022</p>
+                  <p class="selectPeriod">Kỳ báo cáo năm 2021</p>
+                  <p class="selectPeriod">Kỳ báo cáo năm 2020</p>
+                </div>
               </div>
-            </div>
-        </div>
+          </div>
         </div>
         <div class="content__generality">
           <div class="generality__search">
@@ -724,15 +778,7 @@
                 <div class="statusCreateReport" style="padding-right: 4rem">
                   <span style= "font-weight: 800; padding-right: 1rem">Trạng thái: </span>
                   <span><%= @report_template.is_apply ? 'Duyệt' : 'Nháp' %></span>                        
-                </div>      
-                <div class="timeCreate" style="padding-right: 4rem">
-                  <span style= "font-weight: 800; padding-right: 1rem">Thời gian tạo: </span>
-                  <span>DD/MM/YYYY 2:00AM</span>
-                </div>
-                <div class="timeEdit" style="padding-right: 4rem">
-                  <span style= "font-weight: 800; padding-right: 1rem">Thời gian sửa: </span>
-                  <span>DD/MM/YYYY 2:00PM</span>
-                </div>            
+                </div>                
             </div>
           </div>
           <div class="generality__options">
@@ -762,39 +808,40 @@
           <thead >
             <tr class="content__table_header"  style="background-color: #006D77; ">
               <th class="first_column" style="border: none;text-align: right;padding: 0;">
-                <button onclick="addTable()" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-plus"></i>
+                <button onclick="addTable()" style="display: block; width: 100%; padding: 2px 0px; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                  <i class="fa-solid fa-plus" style="padding: 5px;" title="Thêm bảng" data-tooltip="Tooltip Text"></i>
                 </button>
-                <button onclick="delTable(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-trash"></i>
+                <button onclick="delTable(this)" style="display: block;width: 100%;padding: 2px 0px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
+                  <i class="fa-solid fa-trash" style="padding: 5px" title="Xóa bảng" data-tooltip="Tooltip Text"></i>
                 </button>
               </th>
-              <th class="tableHeader" contenteditable="true" colspan="1" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none; width:100%; border:none"></th>
+              <th class="tableHeader" contenteditable="true" colspan="1" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none; width:100%;border: none"></th>
             </tr>
           </thead>
           <tbody class="tableBody">
-            <tr class="content__table_header" style=" background-color: #83C5BE;">
-              <th class="first_column" style="border: none;text-align: right;padding: 0;">
-                <button onclick="addThread(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-plus"></i>
+            <tr class="content__table_header" style=" background-color: #83C5BE">
+              <th class="first_column" style="border: none;text-align: right;padding: 0; border-top-left-radius: 12px; border-top-right-radius: 12px;  margin: 1rem">
+                <button onclick="addThread(this)" style="display: block;width: 100%;padding: 4px 0px;">
+                  <i class="fa-solid fa-plus" title="Thêm hàng" data-tooltip="Tooltip Text"></i>
                 </button>
-                <button onclick="delThread(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-trash"></i>
+                <button onclick="delThread(this)" style="display: block;width: 100%;padding: 2px 0px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
+                  <i class="fa-solid fa-trash" title="Xóa hàng" data-tooltip="Tooltip Text"></i>
                 </button>
               </th>
               <th class= "first_thread_content"contenteditable="true">
               </th>
               <th class="first_column" style="border: none;text-align: right;padding: 0;">
-                <button onclick="addColumn(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-plus"></i>
+                <button onclick="addColumn(this)" style="display: block;width: 100%;padding: 2px 0px; border-top-left-radius: 12px; border-top-right-radius: 12px;">
+                  <i class="fa-solid fa-plus"style="padding: 5px" title="Thêm cột" data-tooltip="Tooltip Text"></i>
                 </button>
-                <button onclick="delColumn(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                <i class="fa-solid fa-trash"></i>
+                <button onclick="delColumn(this)" style="display: block;width: 100%;padding: 2px 0px; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
+                  <i class="fa-solid fa-trash" style="padding: 5px" title="Xóa cột" data-tooltip="Tooltip Text"></i>
                 </button>
               </th>
             </tr>
           </tbody>
         </table>
+      </div>
       </div>
       <div id="popup__guiBaocao">
         <div id="popup__inner">

@@ -672,12 +672,16 @@
               <td><%= r.updated_at.strftime('%d/%m/%Y %T') %></td>
               <td><%= r.report_type&.name_type %></td>
               <td>
-                <%= link_to report_path(r), class: "btn gold" do %>
-                  <i class="fa-solid fa-eye"></i>
+                <%= link_to report_path(r), data: {turbo: false} do %>
+                  <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
                 <% end %>
                 <%# <i class="fa-regular fa-copy"></i> %>
-                <%= link_to edit_report_path(r), class: "btn yellow" do %>
-                  <i class="fa-solid fa-pen"></i>
+                <%= link_to edit_report_path(r), data: {turbo: false} do %>                 
+                  <button class="btn yellow" aria-label="btn" title="Chỉnh sửa" data-tooltip="Tooltip Text">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
                 <% end %>
               </td>
             </tr>

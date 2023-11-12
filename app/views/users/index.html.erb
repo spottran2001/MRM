@@ -779,6 +779,34 @@
       outline: none;
       border-radius: 6px;
     }
+    .select-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .select-row span{
+      font-weight: 600;
+      white-space: nowrap; 
+    }
+    .select-row p,
+    .select-row select,
+    .select-row option,
+    .total__report {
+      font-weight: 600;
+      white-space: nowrap; 
+    }
+    .select-row .select-field {
+      padding-left: 0rem;
+      width: 100%;
+      padding: 10px 15px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
+    }
+    .select-row .select-field option {
+      background: #fff;
+      color: black;
+    }
   </style>
   <body>
     <main class="container">
@@ -787,17 +815,18 @@
         <%= render 'shared/header' %>
         <h1 class="content__name">QUẢN LÝ TÀI KHOẢN</h1>
         <div class="content__generality">
-          <div class="generality__options">                  
-            <div class="select__options">
-              <select aria-label="select__options">
-                <option selected value="0">Chức vụ</option>
+          <div class="generality__options">                   
+            <div class="select-row">
+              <span>Vai trò</span>
+              <select class="select-field" >
+                <option selected value="0">Tất cả</option>
                 <option value="1">Khoa</option>
                 <option value="2">Bộ môn</option>
                 <option value="3">Giảng viên</option>
                 <option value="4">Nhân viên</option>
                 <option value="5">Chưa có</option>
               </select>
-            </div>
+            </div>         
           </div>
           <div class="generality__search">
             <%= form_with url: users_path, method: :get, class: "d-flex" do %>
@@ -818,13 +847,13 @@
               Email
             </th>
             <th>
-              Chức vụ
-            </th>
-            <th>
-              Bộ môn
+              Vai trò
             </th>
             <th>
               Khoa
+            </th>
+            <th>
+              Bộ môn
             </th>
             <th>
             </th>
@@ -835,11 +864,11 @@
             <td> <%= u.name %> </td>
             <td> <%= u.email %> </td>
             <td> <%= u.get_role.split(",").join(", ") || "N/A"  %> </td>
-            <td> <%= u.subject.name || "N/A"  %> </td>
             <td>
               <%#<p class="approve" style="background-color: #C4C4C4;color: black;"><%= u.faculty || "N/A" ></p>%>
               <%= u.faculty.name || "N/A" %>
             </td>
+            <td> <%= u.subject.name || "N/A"  %> </td>
             <td>
               <%= button_to edit_user_path(u), method: :get, style: "background-color: #FFBF24", class: "btn btn-secondary", data: {turbo: false} do %>
               <% concat content_tag(:i, "", class: "fa-solid fa-pen", title: "Chỉnh sửa tài khoản", data: { tooltip: "Tooltip Text" }) %>
