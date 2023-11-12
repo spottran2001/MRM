@@ -68,6 +68,17 @@
       color: #d72134 !important;
     }
     /* Content */
+    .content-header{
+      padding: 25px 0px 10px 40px;
+      display: flex;
+      justify-content: start;
+      flex-direction: row;
+      align-items: center;
+    }
+    .content-header h1 {
+      padding: 15px 0px 10px 40px;
+      font-size: 30px;
+    }
     .content {
       background-color: #f5f5f5;
       width: 100%;
@@ -568,7 +579,17 @@
       <%= render "shared/left_nav"%>
       <div class="content">
         <%= render 'shared/header' %>
-        <h1 class="content__name">CHỈNH SỬA TÀI KHOẢN</h1>
+        <div class="content-header">
+          <div class="btn__addmember">
+            <%= link_to users_url, style:"text-decoration: none;", data: {turbo: false} do %>
+              <button aria-label="send_baocao" style=" background-color: #d72134;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 
+                0px 4px 4px 0px rgba(0, 0, 0, 0.25);" title="Quay lại" data-tooltip="Tooltip Text">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+            <% end %>
+          </div> 
+          <h1 class="content__name">CHỈNH SỬA TÀI KHOẢN</h1>
+        </div>
         <div class="container__info" style="height: 780px;">
           <div class="info__img">
             <div class="content__img">
