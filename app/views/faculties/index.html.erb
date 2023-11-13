@@ -529,6 +529,8 @@
       background-color: white;
       border-radius: 40px;
     }
+
+    <%# Popup thêm khoa%>
     .popup__SendFeedback {
       position: fixed;
       top: 0;
@@ -569,15 +571,72 @@
       flex-direction: column;
       border: none;
     }
-
     .popup_footer_feedback {
       display: flex;
-      justify-content: end;
-      padding: 0rem 4rem 2rem 0rem;
+      justify-content: center;
+      padding: 0rem 4rem 2rem 4rem;
     }
     .popup_footer_feedback button {
-      padding: 10px 40px;
+      padding: 10px 60px;
       border-radius: 12px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+
+    <%# Popup xem chi tiết khoa%>
+    .popup_FacultiesDetail {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .popup_inner_FacultiesDetail {
+      background-color: white;
+      width: 50%;
+      border: 2px solid black;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      height: auto;
+      display: none;
+    }
+    .popup_header_FacultiesDetail {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid black;
+      padding: 10px;
+      align-items: center;
+      background-color: #dc546c;
+      color: white;
+      border-radius: 12px 12px 0px 0px;
+    }
+    .popup_body_FacultiestDetail {
+      background-color: #F1F1F1;
+      padding: 2rem 4rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      border: none;
+    }
+    .popup_footer_FacultiesDetail {
+      background-color: #F1F1F1;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding: 0rem 4rem 2rem 4rem;
+    }
+    .popup_footer_FacultiesDetail button {
+      padding: 10px 60px;
       border: none;
       outline: none;
       cursor: pointer;
@@ -610,9 +669,27 @@
       border-radius: 12px;
       border: 2px solid #dadada;
     }
-    .custom-submit-button{
-      color: #fff;
-      background-color: #6C8DE0;
+    .input-field{
+      padding-left: 0rem;
+      width: 100%;
+      padding: 10px 15px;
+      border-radius: 12px;
+      border: 2px solid #dadada;
+    }
+    .content_FacultiesDetail{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-top: 1rem;
+    }
+    .content_FacultiesDetail span{
+      padding-right: 2rem;
+      width: 16%;
+    }
+    .option_FacultiesDetail{
+      display: flex;
+      flex-direction: row;
     }
   </style>
   <body>
@@ -665,7 +742,7 @@
           <td><%= s.name %></td>
           <td><%= s.created_at.strftime('%d %B %Y %r') %></td>
           <td>
-            <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text">
+            <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text" onclick="showFacultiesDetail()">
               <i class="fa-solid fa-eye"></i>
             </button>
             <%#<button class="btn blue" style="margin-left: 3px;" aria-label="btn" title="Thêm thành viên" data-tooltip="Tooltip Text">
@@ -693,23 +770,51 @@
           "
           >
           <div class="popup_header_feedback">
-            <p style="padding: 10px">THÊM KHOA</p>
-            <i
-              id="close__popupFeedBabk"
-              style="cursor: pointer; padding: 10px; font-size: 25px"
-              class="fa-regular fa-circle-xmark fa-sm"
-              onclick="hideFeedbackPopup()"
-              ></i>
+            THÊM KHOA
+            <i onclick="hideFeedbackPopup()" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark"></i>
           </div>
           <div class="popup_body_feedback">
             <%= simple_form_for @faculty do |f| %>
               <%= f.input :name, input_html: { class: 'custom-input-class' }, placeholder: "Nhập tên khoa", label: 'Tên Khoa', required: false %>      
           </div>
           <div class="popup_footer_feedback">
-              <%= f.button :submit, 'THÊM', class: 'custom-submit-button' %>     
+              <button class="btn__addfile" onclick="hideFeedbackPopup()" style="background-color: #dc546c;">HỦY</button>
+              <%= f.button :submit, 'LƯU', class: 'btn__addfile', style:"background-color: #6C8DE0;color: #fff;padding: 10px 60px; border-radius: 12px;" %>     
             <% end %>
           </div>
+        </div>
+      </div>
 
+      <div id="popup_FacultiesDetail" class="popup_FacultiesDetail">
+        <div
+          id="popup_inner_FacultiesDetail"
+          style="
+          background-color: white;
+          border-radius: 12px;
+          border-bottom: 2px solid black;
+          width: 40%;
+          height: auto;
+          "
+          >
+          <div class="popup_header_FacultiesDetail">
+            CHI TIẾT KHOA
+            <i onclick="hideFacultiesDetail()" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark"></i>
+          </div>
+          <div class="popup_body_FacultiestDetail">
+            <div class="content_FacultiesDetail">
+              <span>Khoa</span>
+              <input class="input-field" type="text">
+            </div>
+            <div class="content_FacultiesDetail">
+              <span>Bộ môn</span>
+              <input class="input-field" type="text"  style="margin-right: 1rem; ">
+              <button class="btn red" aria-label="btn" title="Xóa bộ môn" data-tooltip="Tooltip Text">
+                <i class="fa-solid fa-trash"></i>
+              </button>                        
+            </div> 
+          </div>
+          <div class="popup_footer_FacultiesDetail">
+          </div>
         </div>
       </div>
     </main>
@@ -747,6 +852,15 @@
     function hideFeedbackPopup() {
       document.getElementById("popup_SendFeedback").style.display = "none";
     }
+
+    //Popup xem chi tiết Khoa
+    function showFacultiesDetail() {
+      document.getElementById("popup_FacultiesDetail").style.display = "flex";
+    }
+    function hideFacultiesDetail() {
+      document.getElementById("popup_FacultiesDetail").style.display = "none";
+    }
+
   </script>
 
   <script>
