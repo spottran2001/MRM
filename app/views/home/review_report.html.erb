@@ -642,29 +642,29 @@
 
             <div class="btn_submit">
               <div id="send_Feedback" class="btn__addfile">
-              <button
-                aria-label="send_Feedback"
-                class="feedback__btn"
-                onclick="showFeedbackPopup2()"
-                style="background-color: #DC546C;
-                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
-                >           
-              <i class="fa-regular fa-circle-xmark" style="padding-right: 1rem"></i>
-              KHÔNG DUYỆT
-              </button>
-            </div>
-            <div id="send_Feedback" class="btn__addfile">
-              <button
-                aria-label="send_Feedback"
-                class="feedback__btn"
-                onclick="showFeedbackPopup1()"
-                style="background-color: #678EF8;
-                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
-                >
-              <i class="fa-regular fa-circle-check" style="padding-right: 1rem"></i>
-              DUYỆT
-              </button>
-            </div>
+                <button
+                  aria-label="send_Feedback"
+                  class="feedback__btn"
+                  onclick="showPopupApproveNo()"
+                  style="background-color: #DC546C;
+                  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
+                  >           
+                <i class="fa-regular fa-circle-xmark" style="padding-right: 1rem"></i>
+                KHÔNG DUYỆT
+                </button>
+              </div>
+              <div id="send_Feedback" class="btn__addfile">
+                <button
+                  aria-label="send_Feedback"
+                  class="feedback__btn"
+                  onclick="showPopupApprove()"
+                  style="background-color: #678EF8;
+                  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
+                  >
+                <i class="fa-regular fa-circle-check" style="padding-right: 1rem"></i>
+                DUYỆT
+                </button>
+              </div>
             </div>
           </div>
           <div class="generality__options" style="padding: 14px 20px;">
@@ -693,7 +693,7 @@
                     id="close__popupFeedBabk"
                     style="cursor: pointer; padding: 10px; font-size: 25px"
                     class="fa-regular fa-circle-xmark fa-sm"
-                    onclick="hideFeedbackPopup1()"
+                    onclick="hidevPopupApprove()"
                     ></i>
                 </div>
                 <div class="popup_body_feedback">
@@ -715,7 +715,7 @@
                   <button
                     class="btn__closeFeedback"
                     style="background-color: #dc546c"
-                    onclick="hideFeedbackPopup1()"
+                    onclick="hidePopupApprove()"
                     >
                   HỦY
                   </button>
@@ -743,7 +743,7 @@
                     id="close__popupFeedBabk"
                     style="cursor: pointer; padding: 10px; font-size: 25px"
                     class="fa-regular fa-circle-xmark fa-sm"
-                    onclick="hideFeedbackPopup2()"
+                    onclick="hidePopupApproveNo()"
                     ></i>
                 </div>
                 <div class="popup_body_feedback">
@@ -765,7 +765,7 @@
                   <button
                     class="btn__closeFeedback"
                     style="background-color: #dc546c"
-                    onclick="hideFeedbackPopup2()"
+                    onclick="hidePopupApproveNo()"
                     >
                   HỦY
                   </button>
@@ -1130,18 +1130,18 @@
     })
     
     //popupSendApprove
-    function showFeedbackPopup1() {
+    function showPopupApprove() {
     document.getElementById("popup_SendApprove").style.display = "flex";
     }
-    function hideFeedbackPopup1() {
+    function hidePopupApprove() {
     document.getElementById("popup_SendApprove").style.display = "none";
     }
 
     //popupSendApprveNo
-     function showFeedbackPopup2() {
+     function showPopupApproveNo() {
     document.getElementById("popup_SendApproveNo").style.display = "flex";
     }
-    function hideFeedbackPopup2() {
+    function hidePopupApproveNo() {
     document.getElementById("popup_SendApproveNo").style.display = "none";
     }
     

@@ -605,7 +605,7 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid black;
-      padding: 20px;
+      padding: 10px;
       align-items: center;
       background-color: #dc546c;
       color: white;
@@ -758,7 +758,9 @@
               onclick="showTableList(this)">
               <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
               <th class="tableHeader" colspan="8" style="text-align: left;cursor: pointer;user-select: none;border-top-left-radius: 12px;border-top-right-radius: 12px;
-               border: none"> <%= "#{index+1}. #{key}"%>
+                border: none"> <%= "#{index+1}. #{key}"%>
+                <span>| </span>
+                <span>Tệp: 1</span>
               </th>
             </tr>
           </thead>
@@ -1043,12 +1045,7 @@
         >
           <div class="popup_header_attachment">
             TỆP ĐÍNH KÈM CỦA BÁO CÁO THÁNG
-            <i
-              id="close__popupFeedBabk"
-              style="cursor: pointer; padding: 10px; font-size: 25px"
-              class="fa-regular fa-circle-xmark fa-sm"
-              onclick="hideAttachment()"
-            ></i>
+            <i id="close__popupFeedBabk" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark" onclick="hideAttachment()"></i>
           </div>
           <div class="popup_body_attachment">
             <h5>Tiêu đề bảng 1</h5>
@@ -1079,7 +1076,7 @@
         <div id="popup__inner">
           <div class="popup_header">
             GỬI BÁO CÁO
-            <i id="close__popupBaocao" style="cursor: pointer;padding: 10px;" class="fa-regular fa-circle-xmark"></i>
+            <i id="close__popupBaocao" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark"></i>
           </div>
           <div class="popup_body">
             <p>Bạn có chắc gửi biểu mẫu này ?</p>
