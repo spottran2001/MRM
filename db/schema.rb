@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_07_130200) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_18_114851) do
   create_table "academics", force: :cascade do |t|
     t.string "name"
     t.integer "staff_report_id"
@@ -37,6 +37,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_130200) do
     t.boolean "have_read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "report_attachments", force: :cascade do |t|
+    t.string "attachment"
+    t.bigint "report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_id"], name: "index_report_attachments_on_report_id"
   end
 
   create_table "report_details", force: :cascade do |t|

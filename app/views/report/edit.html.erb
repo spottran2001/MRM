@@ -636,13 +636,13 @@
     }
 
     <%#format danh sách attachment%>
-    #fileList {
+    .fileList {
       list-style: none; /* Loại bỏ dấu chấm đầu dòng */
       padding: 0; /* Loại bỏ padding mặc định */
       overflow-Y: scroll;
       height: 200px
     }
-    #fileList div {
+    .fileList div {
       border-radius: 12px;
       border: 1px solid #ccc;
       margin: 5px; 
@@ -652,11 +652,11 @@
       align-items: center; 
       justify-content: space-between;
     }
-    #fileList a {
+    .fileList a {
       <%#text-decoration: none;%> /* Loại bỏ đường gạch chân cho liên kết */
       color: #333;
     }
-    #fileList button {
+    .fileList button {
       border-radius: 12px;
       border: 1px solid #dc546c;
       margin-left: 10px;
@@ -667,7 +667,7 @@
       cursor: pointer;
       width: 8%;
     }
-    #fileList button:hover {
+    .fileList button:hover {
       border: 1px solid #dc546c;
       background-color: white;
       color: #dc546c;
@@ -1047,16 +1047,20 @@
             TỆP ĐÍNH KÈM CỦA BÁO CÁO THÁNG
             <i id="close__popupFeedBabk" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark" onclick="hideAttachment()"></i>
           </div>
-          <div class="popup_body_attachment">
-            <h5>Tiêu đề bảng 1</h5>
-            <div class="file_upload_container">
-              <label for="fileInput" class="file_upload">
-                <span id="fileLabel">Chọn tệp</span>
-              </label>
-              <input type="file" id="fileInput" multiple style="display:none; ">
-              Số lượng tệp đã chọn: <span id="fileCount">0</span>
-            </div>
-            <div id="fileList"></div>
+          <div class="popup_body_attachment" style="overflow-y:scroll; height:80vh">
+            <% @report_template_title.keys.each_with_index do |value, index| %>
+              <div style="height: 300px" class="upload_file">
+                <h5><%= "#{index+1}. #{value}" %></h5>
+                  <div class="file_upload_container">
+                    <label for="fileInput<%= index %>" class="file_upload">
+                      <span id="fileLabel">Chọn tệp</span>
+                    </label>
+                    <input type="file" id="fileInput<%= index %>" multiple style="display:none;" data-table-id="attachment-table-<%= index %>">
+                    Số lượng tệp đã chọn: <span id="fileCount">0</span>
+                  </div>
+                  <div id="fileList<%= index %>" class="fileList"></div>
+              </div>
+            <% end %>
           </div>
           <div class="popup_footer_attachment">
             <button
@@ -1107,7 +1111,8 @@
     })
     
     //popupAttachment
-    function showAttachment() {
+    function showAttachment(e) {
+      var check = document.getElementById("popup__inner_feedback")
       document.getElementById("popup_Attachment").style.display = "flex";
     }
     function hideAttachment() {
@@ -1115,18 +1120,23 @@
     }
 
     //handle uploadfile
-    const fileInput = document.getElementById('fileInput');
-    const fileList = document.getElementById('fileList');
-    const fileCountSpan = document.getElementById('fileCount');
 
-    fileInput.addEventListener('change', updateFileList);
+    $(".upload_file input:file").each(function(key, ele) {
+      var fileList = document.getElementById(`fileList${key}`);
+      ele.addEventListener('change', function() {
+        updateFileList(fileList, ele)
+      })
+    })
 
-    function updateFileList() {
+    // fileInput.addEventListener('change', updateFileList);
+
+    function updateFileList(fileList, fileInput) {
+        console.log("checked")
         fileList.innerHTML = '';
         const files = fileInput.files;
         const updatedFiles = Array.from(files);
 
-        fileCountSpan.textContent = files.length; // Hiển thị số lượng tệp đã chọn
+        // fileCountSpan.textContent = files.length; // Hiển thị số lượng tệp đã chọn
 
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
@@ -1139,7 +1149,7 @@
             // Tạo một button cho phép xóa tệp
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'XÓA';
-            deleteButton.addEventListener('click', () => deleteFile(i, updatedFiles));
+            deleteButton.addEventListener('click', () => deleteFile(i, updatedFiles, fileInput, fileList));
 
             listItem.appendChild(fileLink);
             listItem.appendChild(deleteButton);
@@ -1147,15 +1157,15 @@
         }
     }
 
-    function deleteFile(index, updatedFiles) {
+    function deleteFile(index, updatedFiles, fileInputDelete, fileListDelete) {
         if (index >= 0) {
             updatedFiles.splice(index, 1); // Xóa tệp khỏi danh sách
             const dataTransfer = new DataTransfer();
             updatedFiles.forEach((file) => dataTransfer.items.add(file));
-            fileInput.files = dataTransfer.files;
+            fileInputDelete.files = dataTransfer.files;
 
             // Cập nhật danh sách tệp
-            updateFileList();
+            updateFileList(fileListDelete, fileInputDelete);
         }
     }
 
@@ -1313,10 +1323,17 @@
         title_2_title_arr.push(title_table)
         sum_td.push(row_table)
       }
+      
+      $(".upload_file input:file").each(function (e) {
+        // console.log(e)
+      })
+
+
       var data = new FormData();
       data.append('content__table_body_td_value_arr',JSON.stringify(content__table_body_td_value_arr));
       data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
       data.append('sum_td',JSON.stringify(sum_td));
+      data.append("files", document.getElementById("fileInput").files)
       jQuery.ajax({
         url: "/report/<%= @report_template.id %>/submit_report",
         data: data,
