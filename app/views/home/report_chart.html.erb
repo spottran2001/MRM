@@ -767,31 +767,31 @@
         <div class="select-row">
           <div class="total_box" style="background: #ADDDFF;">
             <span style="font-weight:600">Khởi tạo: </span>
-            <span style="font-weight:600">10</span>
+            <span style="font-weight:600"><%= @data[:khoi_tao] %></span>
           </div>
           <div class="total_box" style="background: #678EF8;">
             <span style="font-weight:600">Lưu nháp: </span>
-            <span style="font-weight:600">10</span>
+            <span style="font-weight:600"><%= @data[:luu_nhap] %></span>
           </div>
           <div class="total_box" style="background: #5CBD4C;">
             <span style="font-weight:600">Đúng hạn: </span>
-            <span style="font-weight:600">10</span>
+            <span style="font-weight:600"><%= @data[:dung_han] %></span>
           </div>
           <div class="total_box" style="background: #B70619;">
             <span style="font-weight:600">Trễ hạn: </span>
-            <span style="font-weight:600">10</span>
+            <span style="font-weight:600"><%= @data[:tre_han] %></span>
           </div>
           <div class="total_box" style="background: #828282;">
-            <span style="font-weight:600">Không nộp: </span>
-            <span style="font-weight:600">10</span>
+            <span style="font-weight:600">Cần Bổ Sung: </span>
+            <span style="font-weight:600"><%= @data[:can_bo_sung] %></span>
           </div>
           <div class="total_box" style="background: #1B59F8;">
             <span style="font-weight:600">Đã duyệt: </span>
-            <span style="font-weight:600">10</span>
+            <span style="font-weight:600"><%= @data[:da_duyet] %></span>
           </div>
           <div class="total_box" style="background: #FFC123;">
             <span style="font-weight:600">Chờ duyệt: </span>
-            <span style="font-weight:600">10</span>
+            <span style="font-weight:600"><%= @data[:cho_duyet] %></span>
           </div>
         </div>
       </div>
@@ -813,7 +813,7 @@
               <option value="2">Phụ trách bộ môn</option>
               <option value="3">Ban chủ nhiệm khoa</option>
             </select>
-            <span style="padding-left: 2rem; font-weight:600">Trạng thái</span>
+            <%# <span style="padding-left: 2rem; font-weight:600">Trạng thái</span>
             <select class="select-field" style="background: #FFC123">
               <option selected>Tất cả</option>
               <option value="1">Khởi tạo</option>
@@ -829,12 +829,12 @@
               <option value="2">Đang báo cáo</option>
               <option value="3">Đúng hạn</option>
               <option value="4">Trễ hạn</option>
-            </select>
+            </select> %>
           </div>
         </div>
         <div class="report_total">
           <span style="font-weight:700; color: #DC4C5D">TỔNG BÁO CÁO: </span>
-          <span style="font-weight:700">60 </span>
+          <span style="font-weight:700"><%= @data[:tong_bao_cao]%></span>
         </div>
             <%#<div class="generality__search">
             <div class="generality__search_icon">
@@ -846,7 +846,7 @@
       <div class="content-generality">
         <div class="generality__options">
           <div class="select-row" style="padding-right: 2rem;">
-            <input type="checkbox" class="custom_checkbox">
+            <%# <input type="checkbox" class="custom_checkbox"> %>
             <span style="font-weight:600">Khoa</span>
             <select class="select-field" style="background: #FFC123" >
               <option selected>Tất cả</option>
@@ -857,7 +857,7 @@
             </select>
           </div>
           <div class="select-row">
-            <input type="checkbox" class="custom_checkbox">
+            <%# <input type="checkbox" class="custom_checkbox"> %>
             <span style=" font-weight:600">Bộ môn</span>
             <select class="select-field" style="background: #FFC123">
               <option selected>Tất cả</option>
@@ -943,11 +943,11 @@
     //chart
     // Dữ liệu cho biểu đồ
         var data = {
-            labels: ['Khởi Tạo', 'Lưu Nháp', 'Đúng Hạn', 'Trễ Hạn', 'Không nộp', 'Đã duyệt', 'Chờ Duyệt', 'Cần Bổ Sung', 'Chưa báo cáo'],
+            labels: ['Khởi Tạo', 'Lưu Nháp', 'Đúng Hạn', 'Trễ Hạn', 'Đã duyệt', 'Chờ Duyệt', 'Cần Bổ Sung', 'Chưa báo cáo'],
             datasets: [
                 {
                     label: 'Loại, Trạng thái',
-                    data: [30, 40, 50, 35, 45, 55, 40, 30, 50, 60, 45, 55],
+                    data: <%= @data.values[1..-1] %>,
                     backgroundColor: '#006D77'
                 },
             ]

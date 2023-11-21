@@ -574,11 +574,11 @@
     </div>
     <p class="menu__title"><i class="fa-solid fa-house"></i></p>
     
-    <a href="#" class="menu__items">
+    <%= link_to report_chart_path, class: "menu__items", data: {turbo: false} do %>
       <div class="menu__icon" title="Thống kê" data-tooltip="Tooltip Text">
         <i class="fa-solid fa-chart-simple"></i>
       </div>
-    </a>
+    <% end %>
     <% if current_user.role == 'admin' %>
       <%= link_to report_template_management_path, class: "menu__items", data: {turbo: false} do %>
         <div class="menu__icon" title="Quản lý biểu mẫu báo cáo chung" data-tooltip="Tooltip Text">

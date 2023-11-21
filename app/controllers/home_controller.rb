@@ -59,5 +59,24 @@ class HomeController < ApplicationController
   end
 
   def report_chart
+    @report = Report.joins(:report_type)
+    @khoi_tao = @report.where(report_types: {name_type: 'khoi tao'}).size
+    @luu_nhap = @report.where(report_types: {name_type: 'luu nhap'}).size
+    @dung_han = @report.where(report_types: {type_report: 'dung han'}).size
+    @tre_han = @report.where(report_types: {type_report: 'tre han'}).size
+    @can_bo_sung = @report.where(report_types: {name_type: 'can bo sung'}).size
+    @da_duyet = @report.where(report_types: {name_type: 'da duyet'}).size
+    @cho_duyet = @report.where(report_types: {name_type: 'cho_duyet'}).size
+    
+    @data = {
+      tong_bao_cao: @report.size,
+      khoi_tao: @khoi_tao,
+      luu_nhap: @luu_nhap,
+      dung_han: @dung_han,
+      tre_han: @tre_han,
+      can_bo_sung: @can_bo_sung,
+      da_duyet: @da_duyet,
+      cho_duyet: @cho_duyet
+    }
   end
 end
