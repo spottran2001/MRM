@@ -28,7 +28,7 @@ class AcademicController < ApplicationController
   def accept_report
     if @report.report_type&.name_type == 'cho duyet'
       report_type_id = ReportType.find_by(name_type: "da duyet", type_report: "dung han").id
-      @report.update(submiter_id: current_user.id, report_type_id: report_type_id, confirm_time: Time.current)
+      @report.update(submiter_id: current_user.id, report_type_id: report_type_id, confirm_time: Time.current, feedback: params[:report] ? params[:report][:feedback] : "")
     end
     redirect_to report_list_academic_path(@academic, status: @report.role)
   end
@@ -36,7 +36,7 @@ class AcademicController < ApplicationController
   def reject_report
     if @report.report_type&.name_type == 'cho duyet'
       report_type_id = ReportType.find_by(name_type: "can bo sung", type_report: "dang bao cao").id
-      @report.update(returner_id: current_user.id, report_type_id: report_type_id, return_time: Time.current)
+      @report.update(returner_id: current_user.id, report_type_id: report_type_id, return_time: Time.current, feedback: params[:report] ? params[:report][:feedback] : "")
     end
     redirect_to report_list_academic_path(@academic, status: @report.role)
   end

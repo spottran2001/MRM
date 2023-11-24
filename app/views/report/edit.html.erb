@@ -1333,7 +1333,7 @@
       data.append('content__table_body_td_value_arr',JSON.stringify(content__table_body_td_value_arr));
       data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
       data.append('sum_td',JSON.stringify(sum_td));
-      data.append("files", document.getElementById("fileInput").files)
+      // data.append("files", document.getElementById("fileInput").files)
       jQuery.ajax({
         url: "/report/<%= @report_template.id %>/submit_report",
         data: data,

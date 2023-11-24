@@ -793,50 +793,42 @@
               </div>
             </div>
           </div>
-          <div class="generality__options <%= @can_accept_reject ? "" : "d-none" %>" style="padding: 14px 10px;">
-            <%= button_to reject_report_academic_path(@academic, report_id: @report.id), method: :put, style: "box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25); margin-right: 1rem", class: "btn_operation_reject", data: {turbo: false} do %>
-              <i class="fa-regular fa-circle-xmark" style=" padding-right: 0.5rem"></i>
-              KHÔNG DUYỆT
-            <% end %>
-
-            <%= button_to accept_report_academic_path(@academic, report_id: @report.id), method: :put, style: "box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25)", class: "btn_operation_accept", data: {turbo: false} do %>
-              <i class="fa-regular fa-circle-check" style=" padding-right: 0.5rem"></i>
-              DUYỆT
-            <% end %>
-
-            <div class="btn_submit">
-              <div id="send_Feedback" class="btn__addfile" style="margin: 0px; padding-left: 1rem">
-                <button
-                  aria-label="send_Feedback"
-                  class="feedback__btn"
-                  onclick="showPopupApproveNo()"
-                  style="background-color: #DC546C;
-                  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
-                  >           
-                <i class="fa-regular fa-circle-xmark" style="padding-right: 1rem"></i>
-                KHÔNG DUYỆT
-                </button>
-              </div>
-              <div id="send_Feedback" class="btn__addfile" style="margin: 0px; padding-left: 1rem">
-                <button
-                  aria-label="send_Feedback"
-                  class="feedback__btn"
-                  onclick="showPopupApprove()"
-                  style="background-color: #678EF8;
-                  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
-                  >
-                <i class="fa-regular fa-circle-check" style="padding-right: 1rem"></i>
-                DUYỆT
-                </button>
-              </div>
-            </div>           
-          </div>
-          <div class="btn__addfile"  style="margin: 0px;">
-            <button aria-label="btn__addfile" style="background-color: #fff; color:#678EF8; border: 1px solid #678EF8;
-              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);" onclick="showAttachment()">
-              <i class="fa-solid fa-paperclip" style="padding-right: 0.5rem"></i>
-              TỆP ĐÍNH KÈM
-            </button>
+          <div class="d-flex">
+            <div class="btn__addfile"  style="margin: 0px; align-self: center">
+              <button aria-label="btn__addfile" style="background-color: #fff; color:#678EF8; border: 1px solid #678EF8;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);" onclick="showAttachment()">
+                <i class="fa-solid fa-paperclip" style="padding-right: 0.5rem"></i>
+                TỆP ĐÍNH KÈM
+              </button>
+            </div>
+            <div class="generality__options <%= @can_accept_reject ? "" : "d-none" %>" style="padding: 14px 10px;">
+              <div class="btn_submit">
+                <div id="send_Feedback" class="btn__addfile" style="margin: 0px; padding-left: 1rem">
+                  <button
+                    aria-label="send_Feedback"
+                    class="feedback__btn"
+                    onclick="showPopupApproveNo()"
+                    style="background-color: #DC546C;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
+                    >           
+                  <i class="fa-regular fa-circle-xmark" style="padding-right: 1rem"></i>
+                  KHÔNG DUYỆT
+                  </button>
+                </div>
+                <div id="send_Feedback" class="btn__addfile" style="margin: 0px; padding-left: 1rem">
+                  <button
+                    aria-label="send_Feedback"
+                    class="feedback__btn"
+                    onclick="showPopupApprove()"
+                    style="background-color: #678EF8;
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);"
+                    >
+                  <i class="fa-regular fa-circle-check" style="padding-right: 1rem"></i>
+                  DUYỆT
+                  </button>
+                </div>
+              </div>           
+            </div>
           </div>
         </div>
   
@@ -1117,101 +1109,93 @@
       </div>
       <!-- POPUP PHẢN HỒI DUYỆT VÀ KHÔNG DUYỆT BÁO CÁO -->
       <div id="popup_SendApprove" class="popup_SendApprove">
-        <div id="popup__inner_feedback" style="
-          background-color: white;
-          border-radius: 12px;
-          border-bottom: 2px solid black;
-          width: 60%;
-          height: auto;
-          "
-          >
-          <div class="popup_header_feedback">
-            DUYỆT BÁO CÁO
-            <i
-              id="close__popupFeedBabk"
-              style="cursor: pointer; padding: 10px; font-size: 20px"
-              class="fa-solid fa-xmark"
-              onclick="hidePopupApprove()"
-              ></i>
+        <%= simple_form_for @report, method: :put, url: accept_report_academic_path(@academic, report_id: @report.id), html: { class: "popup_SendApproveNo d-flex"} do |f| %>
+
+          <div id="popup__inner_feedback" style="
+            background-color: white;
+            border-radius: 12px;
+            border-bottom: 2px solid black;
+            width: 60%;
+            height: auto;
+            "
+            >
+            <div class="popup_header_feedback">
+              DUYỆT BÁO CÁO
+              <i
+                id="close__popupFeedBabk"
+                style="cursor: pointer; padding: 10px; font-size: 20px"
+                class="fa-solid fa-xmark"
+                onclick="hidePopupApprove()"
+                ></i>
+            </div>
+            <div class="popup_body_feedback">
+              <%= f.input :feedback, label: false, :as => :text, :input_html => { 'rows' => 10, 'cols' => 30, placeholder: "Nhập thông tin phản hồi", style: '
+                border-radius: 12px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                resize: none; width: 100%;
+                ' } %>
+            </div>
+            <div class="popup_footer_feedback">
+              <button
+                class="btn__closeFeedback"
+                style="background-color: #dc546c"
+                onclick="hidePopupApprove()"
+                >
+              HỦY
+              </button>
+              <%= button_to accept_report_academic_path(@academic, report_id: @report.id), method: :put, style: "background-color: #6c8de0; margin-left: 2rem", data: {turbo: false} do %>
+              LƯU
+              <% end %>
+            </div>
           </div>
-          <div class="popup_body_feedback">
-            <textarea
-              name="content_feedback"
-              id=""
-              cols="30"
-              rows="10"
-              placeholder="Nhập thông tin phản hồi"
-              style="
-              border-radius: 12px;
-              padding: 1rem;
-              margin-bottom: 1rem;
-              resize: none;
-              "
-              ></textarea>
-          </div>
-          <div class="popup_footer_feedback">
-            <button
-              class="btn__closeFeedback"
-              style="background-color: #dc546c"
-              onclick="hidePopupApprove()"
-              >
-            HỦY
-            </button>
-            <button style="background-color: #6c8de0; margin-left: 2rem">
-            LƯU
-            </button>
-          </div>
-        </div>
+        
+        <% end %>
       </div>
 
       <div id="popup_SendApproveNo" class="popup_SendApproveNo">
-        <div
-          id="popup__inner_feedback"
-          style="
-          background-color: white;
-          border-radius: 12px;
-          border-bottom: 2px solid black;
-          width: 60%;
-          height: auto;
-          "
-          >
-          <div class="popup_header_feedback">
-            KHÔNG DUYỆT BÁO CÁO 
-            <i
-              id="close__popupFeedBabk"
-              style="cursor: pointer; padding: 10px; font-size: 20px"
-              class="fa-solid fa-xmark"
-              onclick="hidePopupApproveNo()"
-              ></i>
+        <%= simple_form_for @report, method: :put, url: reject_report_academic_path(@academic, report_id: @report.id), html: { class: "popup_SendApproveNo d-flex"} do |f| %>
+          <div
+            id="popup__inner_feedback"
+            style="
+            background-color: white;
+            border-radius: 12px;
+            border-bottom: 2px solid black;
+            width: 60%;
+            height: auto;
+            "
+            >
+            <div class="popup_header_feedback">
+              KHÔNG DUYỆT BÁO CÁO 
+              <i
+                id="close__popupFeedBabk"
+                style="cursor: pointer; padding: 10px; font-size: 20px"
+                class="fa-solid fa-xmark"
+                onclick="hidePopupApproveNo()"
+                ></i>
+            </div>
+            <div class="popup_body_feedback">
+              <%= f.input :feedback, label: false, :as => :text, :input_html => { 'rows' => 10, 'cols' => 30, placeholder: "Nhập lý do không duyệt", style: '
+                border-radius: 12px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                resize: none; width: 100%;
+                ' } %>
+            </div>
+            <div class="popup_footer_feedback">
+              <button
+                class="btn__closeFeedback"
+                style="background-color: #dc546c"
+                onclick="hidePopupApproveNo()"
+                >
+              HỦY
+              </button>
+              <%= button_to reject_report_academic_path(@academic, report_id: @report.id), method: :put, style: "background-color: #6c8de0; margin-left: 2rem", data: {turbo: false} do %>
+              LƯU
+              <% end %>
+            </div>
           </div>
-          <div class="popup_body_feedback">
-            <textarea
-              name="content_feedback"
-              id=""
-              cols="30"
-              rows="10"
-              placeholder="Nhập lý do không duyệt"
-              style="
-              border-radius: 12px;
-              padding: 1rem;
-              margin-bottom: 1rem;
-              resize: none;
-              "
-              ></textarea>
-          </div>
-          <div class="popup_footer_feedback">
-            <button
-              class="btn__closeFeedback"
-              style="background-color: #dc546c"
-              onclick="hidePopupApproveNo()"
-              >
-            HỦY
-            </button>
-            <button style="background-color: #6c8de0; margin-left: 2rem">
-            LƯU
-            </button>
-          </div>
-        </div>
+        <% end %>
       </div>
 
       <div id="popup_Attachment" class="popup_Attachment">
