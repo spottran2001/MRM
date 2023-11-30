@@ -4,22 +4,55 @@ class ReportController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def submit_report!
-    report_value = {}
-    title_keys = JSON.parse(params["title_2_title_arr"])
-    td_value_arr = JSON.parse(params["content__table_body_td_value_arr"])
-    sum_td = JSON.parse(params["sum_td"])
-    report = Report.find(params["report_id"])
-    report_data = JSON.parse(report.data)
-    report_data.keys.each_with_index do |key, index|
-      report_data[key].keys.each_with_index do |k, i|
-        report_data[key][k]["content"] = []
-        sum_td[index][i].each do |td|
-          report_data[key][k]["content"] << td
+    ActiveRecord::Base.transaction do 
+      report_value = {}
+      title_keys = JSON.parse(params["title_2_title_arr"])
+      td_value_arr = JSON.parse(params["content__table_body_td_value_arr"])
+      sum_td = JSON.parse(params["sum_td"])
+      report = Report.find(params["report_id"])
+      report_data = JSON.parse(report.data)
+
+      # save the content of report
+      report_data.keys.each_with_index do |key, index|
+        report_data[key].keys.each_with_index do |k, i|
+          report_data[key][k]["content"] = []
+          sum_td[index][i].each do |td|
+            report_data[key][k]["content"] << td
+          end
         end
       end
+
+      #files [2,3,4,5]
+      file_count = report.file_count.present? ? JSON.parse(report.file_count) : []
+      file_ids = []
+      JSON.parse(params['sum_files']).sum.times do |i|
+        file = report.report_attachments.create(attachment: params["file"][i])
+        file_ids << file.id
+      end
+      JSON.parse(params['sum_files']).each_with_index do |number_files, index|
+        file_count[index] = [] if file_count[index].blank?
+        number_files.times do |n|
+          file_count[index] << file_ids.delete_at(0)
+        end
+      end
+      file_count = file_count.to_s
+      delete_file_ids = params['delete_file']
+      if delete_file_ids.present?
+        delete_file_ids = delete_file_ids.split(',')
+        delete_file_ids.each do |id|
+          if id.present?
+            file_count = file_count.gsub(",#{id}", "")
+            file_count = file_count.gsub("#{id},", "")
+            file_count = file_count.gsub("#{id}", "")
+          end
+        end
+      end
+      # params['file'][0..-1].each do |f|
+      #   report.report_attachments.create(attachment: f)
+      # end
+      report_type_id = ReportType.find_by(name_type: "luu nhap", type_report: "chua bao cao").id
+      report.update!(data: JSON.generate(report_data), status: 'Luu nhap',report_type_id: report_type_id, file_count: file_count)
     end
-    report_type_id = ReportType.find_by(name_type: "luu nhap", type_report: "chua bao cao").id
-    report.update!(data: JSON.generate(report_data), status: 'Luu nhap',report_type_id: report_type_id)
   end
 
   def save_draft
@@ -88,6 +121,7 @@ class ReportController < ApplicationController
     @report_template_title = JSON.parse(Report.find(params[:id]).data)
     @report_template = Report.find(params[:id])
     report_type = @report_template.report_type&.name_type
+    @file_count = @report_template.file_count.present? ? JSON.parse(@report_template.file_count) : []
     @can_send_report = (report_type == "can bo sung" || report_type == "luu nhap") ? true :false
   end
 
@@ -101,4 +135,8 @@ class ReportController < ApplicationController
     @report = current_user.reports.order(:created_at)
   end
 
+  def download_attachment
+    @file = ReportAttachment.find(params[:file_id])
+    send_file @file.attachment.path
+  end
 end

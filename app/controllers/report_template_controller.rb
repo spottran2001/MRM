@@ -42,9 +42,10 @@ class ReportTemplateController < ApplicationController
     title_2_title_arr = JSON.parse(params["title_2_title_arr"])
     table_keys.each_with_index do |key, index|
       title_2_title_arr[index].each do |title_2_arr|
-        data[key] = {} unless data[key]
-        data[key][title_2_arr[0]] = {} if data[key][title_2_arr[0]].blank?
-        data[key][title_2_arr[0]][:title] = title_2_arr.drop(1)
+        # key in here is 1. key.... => need to split character before '.' character
+        data[key.split('. ')[-1]] = {} unless data[key]
+        data[key.split('. ')[-1]][title_2_arr[0]] = {} if data[key.split('. ')[-1]][title_2_arr[0]].blank?
+        data[key.split('. ')[-1]][title_2_arr[0]][:title] = title_2_arr.drop(1)
       end
     end
     ReportTemplate.find(params[:id]).update(data: JSON.generate(data),role: template_role, name: template_name, year: template_year)

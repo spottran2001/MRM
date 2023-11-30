@@ -759,8 +759,8 @@
               <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
               <th class="tableHeader" colspan="8" style="text-align: left;cursor: pointer;user-select: none;border-top-left-radius: 12px;border-top-right-radius: 12px;
                 border: none"> <%= "#{index+1}. #{key}"%>
-                <span>| </span>
-                <span>Tệp: 1</span>
+                <span>| Tệp: </span>
+                <span id="count-file-span-<%= index %>"><%= @file_count[index]&.size %></span>
               </th>
             </tr>
           </thead>
@@ -1056,12 +1056,22 @@
                       <span id="fileLabel">Chọn tệp</span>
                     </label>
                     <input type="file" id="fileInput<%= index %>" multiple style="display:none;" data-table-id="attachment-table-<%= index %>">
-                    Số lượng tệp đã chọn: <span id="fileCount">0</span>
+                    Số lượng tệp đã chọn: <span id="fileCount-<%= index %>"><%= @file_count[index]&.size %></span>
                   </div>
-                  <div id="fileList<%= index %>" class="fileList"></div>
+                  <div id="fileList<%= index %>" class="fileList">
+                    <% @file_count[index]&.each do |file_id|%>
+                      <div data-span-id="fileCount-<%= index %>" data-table-span-id="count-file-span-<%= index %>" data-current-table="<%= index %>">
+                        <%= link_to report_download_attachment_path(@report_template, file_id: file_id), download: true, target: "_blank" do %>
+                          <span><%= ReportAttachment.where(id: file_id).last&.attachment_identifier%></span>
+                        <% end %>
+                        <button data-file-id="<%= file_id %>">XÓA</button>
+                      </div>
+                    <% end %>
+                  </div>
               </div>
             <% end %>
           </div>
+          <input type="text" class="d-none" id="remove_files_list">
           <div class="popup_footer_attachment">
             <button
               class="btn__addfile btn__closeFeedback"
@@ -1124,37 +1134,42 @@
     $(".upload_file input:file").each(function(key, ele) {
       var fileList = document.getElementById(`fileList${key}`);
       ele.addEventListener('change', function() {
-        updateFileList(fileList, ele)
+        updateFileList(fileList, ele, key)
       })
     })
 
     // fileInput.addEventListener('change', updateFileList);
 
-    function updateFileList(fileList, fileInput) {
-        console.log("checked")
-        fileList.innerHTML = '';
-        const files = fileInput.files;
-        const updatedFiles = Array.from(files);
+    function updateFileList(fileList, fileInput, key) {
+      $(fileList.getElementsByClassName("new_file")).each(function(key, element) {
+        element.remove()
+      })
+      const files = fileInput.files;
+      const updatedFiles = Array.from(files);
 
-        // fileCountSpan.textContent = files.length; // Hiển thị số lượng tệp đã chọn
+      // fileCountSpan.textContent = files.length; // Hiển thị số lượng tệp đã chọn
 
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const listItem = document.createElement('div');
-            const fileLink = document.createElement('a');
-            fileLink.textContent = file.name;
-            fileLink.href = URL.createObjectURL(file);
-            fileLink.download = file.name;
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const listItem = document.createElement('div');
+        listItem.classList.add("new_file")
+        const fileLink = document.createElement('a');
+        fileLink.textContent = file.name;
+        fileLink.href = URL.createObjectURL(file);
+        fileLink.download = file.name;
 
-            // Tạo một button cho phép xóa tệp
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'XÓA';
-            deleteButton.addEventListener('click', () => deleteFile(i, updatedFiles, fileInput, fileList));
+        // Tạo một button cho phép xóa tệp
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'XÓA';
+        deleteButton.addEventListener('click', () => deleteFile(i, updatedFiles, fileInput, fileList));
 
-            listItem.appendChild(fileLink);
-            listItem.appendChild(deleteButton);
-            fileList.appendChild(listItem);
-        }
+        listItem.appendChild(fileLink);
+        listItem.appendChild(deleteButton);
+        fileList.appendChild(listItem);
+      }
+      let total_files = $(`#fileList${key}`).children().length;
+      $(`#count-file-span-${key}`).text(total_files)
+      $(`#fileCount-${key}`).text(total_files)
     }
 
     function deleteFile(index, updatedFiles, fileInputDelete, fileListDelete) {
@@ -1323,17 +1338,38 @@
         title_2_title_arr.push(title_table)
         sum_td.push(row_table)
       }
-      
-      $(".upload_file input:file").each(function (e) {
-        // console.log(e)
+      var files = []
+      $("input[type='file']").each(function (index, element) {
+        console.log("index: " + index)
+        files[index] = []
+
+        $(element.files).each(function (i, file) {
+          if(file){
+            files[index].push(file)
+          }
+        })
       })
+      console.log(files)
 
 
       var data = new FormData();
       data.append('content__table_body_td_value_arr',JSON.stringify(content__table_body_td_value_arr));
       data.append('title_2_title_arr',JSON.stringify(title_2_title_arr));
       data.append('sum_td',JSON.stringify(sum_td));
-      // data.append("files", document.getElementById("fileInput").files)
+      data.append('delete_file', document.getElementById("remove_files_list").value)
+
+      //files
+      var files = []
+      $("input[type='file']").each(function (index, element) {
+        files[index] = element.files.length
+
+        $(element.files).each(function (i, file) {
+          data.append("file[]", file)
+        })
+      });
+      data.append('sum_files',JSON.stringify(files));
+      console.log(files)
+      data.append("file[]", files[0])
       jQuery.ajax({
         url: "/report/<%= @report_template.id %>/submit_report",
         data: data,
@@ -1347,5 +1383,27 @@
         }
       });
     }
+  </script>
+
+  <script>
+  
+    $(".fileList button").on('click', function(e) {
+      let current_div = e.target.parentNode
+      let span_id = e.target.parentNode.getAttribute('data-span-id')
+      let table_span_id = e.target.parentNode.getAttribute('data-table-span-id')
+      let current_span = document.getElementById(span_id)
+      let current_table_span = document.getElementById(table_span_id)
+      let current_table = e.target.parentNode.getAttribute("data-current-table")
+      //update span count
+      let input_delete_file = document.getElementById("remove_files_list")
+      if (input_delete_file.value){
+        input_delete_file.value += `,${e.target.getAttribute("data-file-id")}`
+      }else {
+        input_delete_file.value = `,${e.target.getAttribute("data-file-id")}`
+      }
+      $(current_table_span).text($(current_table_span).text() - 1)
+      $(current_span).text($(current_span).text() - 1)
+      current_div.remove()
+    })
   </script>
 </html>

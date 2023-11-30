@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_21_141159) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_25_063242) do
   create_table "academics", force: :cascade do |t|
     t.string "name"
     t.integer "staff_report_id"
@@ -98,6 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_21_141159) do
     t.bigint "academic_id"
     t.date "first_submit"
     t.text "feedback"
+    t.string "file_count"
     t.index ["academic_id"], name: "index_reports_on_academic_id"
     t.index ["report_template_id"], name: "index_reports_on_report_template_id"
     t.index ["report_type_id"], name: "index_reports_on_report_type_id"
