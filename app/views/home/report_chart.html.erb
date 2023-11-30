@@ -798,56 +798,43 @@
       <div class="content-generality">
         <div class="generality__options">
           <div class="select-row">
-            <span style="font-weight:600">Tên kỳ báo cáo</span>
-            <select class="select-field" style="background: #DC4C5D">
-              <option selected>Kỳ báo cáo tháng 1</option>
-              <option value="1">Kỳ báo cáo tháng 2</option>
-              <option value="2">Kỳ báo cáo tháng 3</option>
-              <option value="3">Kỳ báo cáo tháng 4</option>
-              <option value="4">Kỳ báo cáo tháng 5</option>
-            </select>
-            <span style="padding-left: 2rem; font-weight:600">Vai trò</span>
-            <select class="select-field" style="background: #DC4C5D">
-              <option selected>Nhân viên</option>
-              <option value="1">Giảng viên</option>
-              <option value="2">Phụ trách bộ môn</option>
-              <option value="3">Ban chủ nhiệm khoa</option>
-            </select>
+            <%= form_with url: report_chart_path, method: :get, class: "d-flex align-items-center", id: "fillter_form" do %>
+              <span style="font-weight:600">Tên kỳ báo cáo</span>
+              <%= text_field_tag "filter_academic", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
+              <select class="select-field" style="background: #DC4C5D" id="selected_academic">
+                <%Academic.all.each do |a|%>
+                  <option  value="<%= a.id%>"><%= a.name%></option>
+                <% end %>
+              </select>
+              <span style="padding-left: 2rem; font-weight:600">Vai trò</span>
+              <%= text_field_tag "filter_role", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
+              <select class="select-field" style="background: #DC4C5D" id="selected_role">
+                <option value="Nhân viên">Nhân viên</option>
+                <option value="Giảng viên">Giảng viên</option>
+                <option value="Phụ trách bộ môn">Phụ trách bộ môn</option>
+                <option value="Ban chủ nhiệm khoa">Ban chủ nhiệm khoa</option>
+              </select>
+
             <%# <input type="checkbox" class="custom_checkbox"> %>
-            <span style="padding-left: 2rem; font-weight:600">Khoa</span>
-            <select class="select-field" style="background: #FFC123" >
-              <option selected>Tất cả</option>
-              <option value="1">Công nghệ thông tin</option>
-              <option value="2">Quan hệ công chúng</option>
-              <option value="3">Quản trị kinh doanh</option>
-              <option value="4">Xây dựng</option>
-            </select>
+              <span style="padding-left: 2rem; font-weight:600">Khoa</span>
+              <%= text_field_tag "filter_faculty", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
+              <select class="select-field" style="background: #FFC123" id="selected_faculty" >
+                <option value="" selected>Tất cả</option>
+                <% Faculty.all.each do |f| %>
+                  <option value="<%= f.id %>"><%= f.name %></option>
+                <% end %>
+              </select>
+
             <%# <input type="checkbox" class="custom_checkbox"> %>
-            <span style="padding-left: 2rem; font-weight:600">Bộ môn</span>
-            <select class="select-field" style="background: #FFC123">
-              <option selected>Tất cả</option>
-              <option value="1">Kỹ thuật phần mền</option>
-              <option value="2">Toán rời rạc</option>
-              <option value="3">Vật lý đại cương</option>
-              <option value="4">Kỹ thuật xây dựng</option>
-            </select>
-            <%# <span style="padding-left: 2rem; font-weight:600">Trạng thái</span>
-            <select class="select-field" style="background: #FFC123">
-              <option selected>Tất cả</option>
-              <option value="1">Khởi tạo</option>
-              <option value="2">Lưu nháp</option>
-              <option value="3">Chờ duyệt</option>
-              <option value="4">Cần bổ sung</option>
-              <option value="5">Đã duyệt</option>
-            </select>
-            <span style="padding-left: 2rem; font-weight:600">Loại</span>
-            <select class="select-field" style="background: #FFC123">
-              <option selected>Tất cả</option>
-              <option value="1">Chưa báo cáo</option>
-              <option value="2">Đang báo cáo</option>
-              <option value="3">Đúng hạn</option>
-              <option value="4">Trễ hạn</option>
-            </select> %>
+              <span style="padding-left: 2rem; font-weight:600">Bộ môn</span>
+              <%= text_field_tag "filter_subject", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
+              <select class="select-field" style="background: #FFC123" id="selected_subject">
+                <option value="" selected>Tất cả</option>
+                <% Subject.all.each do |s| %>
+                  <option value="<%= s.id %>"><%= s.name %></option>
+                <% end %>
+              </select>
+            <% end %>
           </div>
         </div>
         <div class="report_total">
@@ -971,5 +958,31 @@
             options: options
         });
         
+  </script>
+
+  <script>
+    $("#selected_academic").on("change", function(e){
+      $("#filter_academic").val(`${$(e.target).find(":selected").val()}`)
+    })
+
+    $("#selected_role").on("change", function(e){
+      $("#filter_role").val(`${$(e.target).find(":selected").val()}`)
+    })
+
+    $("#selected_faculty").on("change", function(e){
+      $("#filter_faculty").val(`${$(e.target).find(":selected").val()}`)
+    })
+
+    $("#selected_subject").on("change", function(e){
+      $("#filter_subject").val(`${$(e.target).find(":selected").val()}`)
+    })
+
+    $("select").on("change", function(e){
+      $("#filter_academic").val(`${$("#selected_academic").find(":selected").val()}`)
+      $("#filter_role").val(`${$("#selected_role").find(":selected").val()}`)
+      $("#filter_faculty").val(`${$("#selected_faculty").find(":selected").val()}`)
+      $("#filter_subject").val(`${$("#selected_subject").find(":selected").val()}`)
+      $("#fillter_form").submit()
+    })
   </script>
 </html>

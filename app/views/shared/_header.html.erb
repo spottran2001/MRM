@@ -27,6 +27,12 @@
     width: 100%;
     padding: 20px;
   }
+  .Notify__block {
+    display: block !important;
+  }
+  .color__primary {
+    color: #d72134 !important;
+  }
   .menu__logo img {
     width: 100%;
   }
@@ -590,5 +596,9 @@
   //   userIcon.classList.toggle("color__primary");
   //   userNotifi.classList.toggle("Notify__block");
   // });
+  document.getElementById("userIcon").addEventListener("click",()=>{
+          document.getElementById("userIcon").classList.toggle("color__primary")
+          document.getElementById("userNotifi").classList.toggle("Notify__block")
+        })
 </script>
 

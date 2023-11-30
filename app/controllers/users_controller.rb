@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       users = User.where(id: current_user.id)
       @pagy, @users = pagy(users.all, items: 8)
     else
-      users = User.where("email LIKE ?", "%#{params[:filter]}%").all
+      users = User.where("email LIKE ? OR role LIKE ?", "%#{params[:filter]}%","%#{params[:filter]}%").all
       @pagy, @users = pagy(users.all, items: 8)
     end
   end

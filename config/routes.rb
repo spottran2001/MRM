@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     put "report_apply", to: 'report#report_apply'
     put "submit_report", to: "report#submit_report!"
     get :download_attachment
+    get :export
   end
   root 'users#show'
   get "statistic", to: 'home#page_stats' 

@@ -785,7 +785,9 @@
                   </button>
                 <% end %>
                 <button class="btn green" style="margin-left: 3px;" aria-label="btn" title="Tải xuống" data-tooltip="Tooltip Text">
+                <%= link_to report_export_path(r) do %>
                   <i class="fa-solid fa-download"></i>
+                <% end %>
                 </button>                        
               </td>
             </tr>

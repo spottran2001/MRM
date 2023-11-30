@@ -1,4 +1,5 @@
 class ReportController < ApplicationController
+  require 'csv'
   before_action :authenticate_user!
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
@@ -138,5 +139,21 @@ class ReportController < ApplicationController
   def download_attachment
     @file = ReportAttachment.find(params[:file_id])
     send_file @file.attachment.path
+  end
+
+
+  def export
+    @report = Report.find(params[:report_id])
+    data = JSON.parse(@report.data)
+    csv = CSV.generate("\uFEFF") do |csv|
+      data&.keys&.each_with_index do |key, index|
+        csv << ["#{index + 1}. #{key}"]
+        csv << data[key].keys + data[key]&.values&.first['title']
+        data[key]&.values&.first['content']&.each do |content_arr|
+          csv << content_arr
+        end
+      end
+    end
+    send_data csv, filename: "#{@report.user.name}_report.csv"
   end
 end

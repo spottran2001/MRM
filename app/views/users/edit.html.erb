@@ -751,3 +751,19 @@
     });
   })
 </script>
+
+<script>
+  $("#userFaculty option").each(function(index, element){
+    element.removeAttribute("selected");
+    if(element.value == "<%=@user.faculty_id%>"){
+      element.setAttribute("selected","selected");
+    }
+  })
+
+  $("#userSubject option").each(function(index, element){
+    element.removeAttribute("selected");
+    if(element.value == "<%=@user.subject_id%>"){
+      element.setAttribute("selected","selected");
+    }
+  })
+</script>
