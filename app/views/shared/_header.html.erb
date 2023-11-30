@@ -525,11 +525,37 @@
     background-color: white;
     border-radius: 40px;
   }
-  .notifi__Item {
-  padding: 10px;
+  .user_icon {
+    font-size: 24px;
+    margin-right: 14px;
+    margin-top: 6px;
+    cursor: pointer;
+    position: relative;
   }
-  .notifi__Item i {
-  color: white;
+  #userNotifi {
+    position: absolute;
+    right: 0;
+    background-color: white;
+    width: 430px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    border-radius: 12px;
+    top: 120%;
+    z-index: 99999;
+    height: 240px;
+    overflow-y: auto;
+    display: none;
+  }
+  .Notify__block {
+    display: block !important;
+  }
+  .color__primary {
+    color: #d72134 !important;
+  }
+  .notify__error {
+    background-color: #d72134 !important ;
+  }
+  .notifi__Item {
+    padding: 10px;
   }
   .notifi__mess {
     background-color: #5cbd4c;
@@ -538,17 +564,19 @@
     align-items: center;
     justify-content: space-around;
     gap: 20px;
-    padding: 14px 22px;
+    padding: 10px 15px;
   }
   .mess_content p:first-child {
-  color: white;
-  font-size: 18px;
+    color: white;
+    font-size: 18px;
   }
-
   .mess_content p:last-child {
     font-size: 14px;
     color: white;
     margin-top: 10px;
+  }
+  .notifi__Item i {
+    color: white;
   }
 </style>
 <div class="content__title">

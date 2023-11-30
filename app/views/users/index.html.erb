@@ -816,7 +816,7 @@
         <h1 class="content__name">QUẢN LÝ TÀI KHOẢN</h1>
         <div class="content__generality">
           <div class="generality__options">                   
-            <div class="select-row">
+            <%#<div class="select-row">
               <span>Vai trò</span>
               <select class="select-field" >
                 <option selected value="0">Tất cả</option>
@@ -826,7 +826,7 @@
                 <option value="4">Nhân viên</option>
                 <option value="5">Chưa có</option>
               </select>
-            </div>         
+            </div> %>        
           </div>
           <div class="generality__search">
             <%= form_with url: users_path, method: :get, class: "d-flex" do %>
@@ -841,7 +841,7 @@
               STT
             </th>
             <th>
-              Tên
+              Họ và tên
             </th>
             <th>
               Email
