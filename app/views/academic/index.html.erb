@@ -920,7 +920,7 @@
                         </div>
                         <div style="padding-bottom: 1rem">
                           <p>Ngày hạn báo cáo</p>
-                          <input type="number" class="nameGeneralReportForm" placeholder="Nhập ngày hạn báo cáo" id="academicDeadline">
+                          <input type="number" class="nameGeneralReportForm" placeholder="Nhập ngày hạn báo cáo" id="academicDeadline" oninput="validateDeadline()">
                         </div>
                         <div class="contentTimeCreate" style="padding-bottom: 1rem">
                           <div class="contentTimeCreateLeft">
@@ -984,7 +984,7 @@
                       </ul>
                       <div class="body__btn">
                         <button class="btn__modal" id="btn__closeModal">HỦY</button>
-                        <button class="btn__modal" id="academicSubmit">LƯU</button>
+                        <button class="btn__modal" id="academicSubmit" onclick="validateAndSubmit()">LƯU</button>
                       </div>
                     </div>
                   </div>
@@ -1163,5 +1163,45 @@ function getEle(id) {
           }
         });
     })
+
+    //validate các trường trong popup tạo kỳ
+    function validateDeadline() {
+        var deadlineInput = document.getElementById('academicDeadline');
+        var deadlineValue = deadlineInput.value;
+
+        if (deadlineValue < 0) {
+            alert('Vui lòng không nhập số âm.');
+            deadlineInput.value = '';  // Xóa giá trị nếu là số âm
+        }
+    }
+
+    function validateAndSubmit() {
+      var academicName = document.getElementById('academicName').value;
+      var academicDeadline = document.getElementById('academicDeadline').value;
+      var academicStart = document.getElementById('academicStart').value;
+      var academicEnd = document.getElementById('academicEnd').value;
+
+      // Kiểm tra nếu bất kỳ trường nào trống
+      if (!academicName) {
+        alert('Vui lòng nhập tên kỳ báo cáo.');
+        return;
+      }
+
+      if (!academicDeadline) {
+        alert('Vui lòng nhập ngày hạn báo cáo.');
+        return;
+      }
+
+      if (!academicStart) {
+        alert('Vui lòng chọn thời gian bắt đầu.');
+        return;
+      }
+
+      if (!academicEnd) {
+        alert('Vui lòng chọn thời gian kết thúc.');
+        return;
+      }
+      submitForm(academicSubmit);
+    }
   </script>
 </html>
