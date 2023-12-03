@@ -783,18 +783,13 @@
     })
     
     getEle("btn-dropdown").addEventListener("click",()=>{
-        getEle("menu-dropdown").style.transform = "translateX(-10000px)"
         getEle("menu-dropdown").style.display  = "none"
-        getEle("menu").style.transform = "translateX(0px)"
         getEle("menu").style.display  = "block"
-        getEle("menu").style.transition = "all 0.5s"
     
     })
     getEle("btn-menu").addEventListener("click",()=>{
-        getEle("menu-dropdown").style.transform = "translateX(0px)"
         getEle("menu-dropdown").style.display = "block"
         getEle("menu").style.display = "none"
-        getEle("menu").style.transform = "translateX(-10000px)"
     })
 
     //search dữ liệu trong bảng 
