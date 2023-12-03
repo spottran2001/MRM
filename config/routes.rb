@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :users do
     put "read_notifications", to: "users#read_notification"
+    delete "delete_notification", to: "users#delete_notification"
     put "report_apply"
   end 
   get "report_chart", to: "home#report_chart"

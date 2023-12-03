@@ -57,4 +57,8 @@ class UsersController < ApplicationController
   def read_notification
     current_user.read_notification!
   end
+
+  def delete_notification
+    current_user.notifications.find(params[:notification_id]).delete
+  end
 end

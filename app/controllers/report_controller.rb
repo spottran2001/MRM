@@ -100,6 +100,7 @@ class ReportController < ApplicationController
     report = Report.find(params["report_id"])
     report_type_id = ReportType.find_by(name_type: "can bo sung", type_report: "dang bao cao").id
     @report.update(report_type_id: report_type_id)  
+    @report.user.notifications.create(content: "Báo cáo của bạn vừa bị từ chối")
   end
 
   def report_apply
@@ -107,6 +108,7 @@ class ReportController < ApplicationController
     if report.last_submit_time > report.report_template.end_date
       report_type_id = ReportType.find_by(name_type: "da duyet", type_report: "tre han").id
       @report.update(report_type_id: report_type_id)
+      @report.user.notifications.create(content: "Báo cáo của bạn đã được duyệt")
     else 
       report_type_id = ReportType.find_by(name_type: "da duyet", type_report: "dung han").id
       @report.update(report_type_id: report_type_id)

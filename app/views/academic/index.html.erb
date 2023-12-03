@@ -985,7 +985,7 @@
                       </ul>
                       <div class="body__btn">
                         <button class="btn__modal" id="btn__closeModal">HỦY</button>
-                        <button class="btn__modal" id="academicSubmit" onclick="validateAndSubmit()">LƯU</button>
+                        <button class="btn__modal" id="academicSubmit">LƯU</button>
                       </div>
                     </div>
                   </div>
@@ -1018,7 +1018,7 @@
               <div class="Rectangle1" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
               <div class="reportPeriod" style="left: 10px; top: 15px; position: absolute; color: white; font-size: 15px; font-family: Inter; font-weight: 700; word-wrap: break-word">Ngày hạn: 20</div>
               <div class="periodName" style="left: 43px; top: 60px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.name %></div>
-              <div class="periodYear" style="left: 43px; top: 94px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.created_at.strftime('%d/%m/%Y') %> - <%= r.updated_at.strftime('%d/%m/%Y') %></div>
+              <div class="periodYear" style="left: 43px; top: 94px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.start_date&.strftime('%d/%m/%Y') %> - <%= r.end_date&.strftime('%d/%m/%Y') %></div>
               <div class="iconFile" style="width: 12px; height: 12px; left: 16px; top: 58px; position: absolute; color: white">
                 <i class="fa-regular fa-file-lines"></i>
               </div>
@@ -1135,18 +1135,19 @@ function getEle(id) {
       })
     })
    document.getElementById("academicSubmit").addEventListener("click", ()=> {
-      let name = document.getElementById("academicName").value
-      let start_date = document.getElementById("academicStart").value
-      let end_data = document.getElementById("academicEnd").value
-      let staff_id = document.getElementById("selectedNhanVienModal").getAttribute("key")
-      let teacher_id = document.getElementById("selectedGiangVienModal").getAttribute("key")
-      let subject_id = document.getElementById("selectedBoMonModal").getAttribute("key")
-      let faculty_id = document.getElementById("selectedBanChuNhiemKhoaModal").getAttribute("key")
-
-      var data = new FormData();
+      if (validateAndSubmit()) {
+        let name = document.getElementById("academicName").value
+        let start_date = document.getElementById("academicStart").value
+        let end_date = document.getElementById("academicEnd").value
+        let staff_id = document.getElementById("selectedNhanVienModal").getAttribute("key")
+        let teacher_id = document.getElementById("selectedGiangVienModal").getAttribute("key")
+        let subject_id = document.getElementById("selectedBoMonModal").getAttribute("key")
+        let faculty_id = document.getElementById("selectedBanChuNhiemKhoaModal").getAttribute("key")
+  
+        var data = new FormData();
         data.append('name',name);
         data.append('start_date',start_date);
-        data.append('end_data',end_data);
+        data.append('end_date',end_date);
         data.append('staff_id',staff_id);
         data.append('teacher_id',teacher_id);
         data.append('subject_id',subject_id);
@@ -1163,6 +1164,7 @@ function getEle(id) {
               window.location.replace("/academic");
           }
         });
+      }
     })
 
     //validate các trường trong popup tạo kỳ
@@ -1185,24 +1187,24 @@ function getEle(id) {
       // Kiểm tra nếu bất kỳ trường nào trống
       if (!academicName) {
         alert('Vui lòng nhập tên kỳ báo cáo.');
-        return;
+        return false;
       }
 
       if (!academicDeadline) {
         alert('Vui lòng nhập ngày hạn báo cáo.');
-        return;
+        return false;
       }
 
       if (!academicStart) {
         alert('Vui lòng chọn thời gian bắt đầu.');
-        return;
+        return false;
       }
 
       if (!academicEnd) {
         alert('Vui lòng chọn thời gian kết thúc.');
-        return;
+        return false;
       }
-      submitForm(academicSubmit);
+      return true;
     }
   </script>
 </html>

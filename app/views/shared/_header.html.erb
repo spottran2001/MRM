@@ -591,15 +591,17 @@
       <i class="fa-regular fa-bell"></i>
       <% end %>
       <div id="userNotifi" class="d-none">
-        <% current_user.notifications.each do |noti|%>
-        <div id="notifi-content" class="notifi__Item" >
+        <% current_user.notifications.each_with_index do |noti, index|%>
+        <div id="notifi-content-<%= index %>" class="notifi__Item" >
           <div class="notifi__mess">
             <i class="fa-solid fa-check"></i>
             <div class="mess_content">
               <p> <%= noti.content %> </p>
               <p> <%= noti.created_at.strftime('%d %B %Y %r') %> </p>
             </div>
-            <i class="fa-solid fa-xmark"></i>
+            <%= button_to user_delete_notification_path(current_user, notification_id: noti), method: :delete, style: "border:none;background-color: #5cbd4c", data: {turbo: false} do %>
+              <i class="fa-solid fa-xmark delete_notification" data-noti-index="notifi-content-<%= index %>"></i>
+            <% end %>
           </div>
         </div>
         <% end %>
@@ -628,5 +630,11 @@
           document.getElementById("userIcon").classList.toggle("color__primary")
           document.getElementById("userNotifi").classList.toggle("Notify__block")
         })
+
+  $(".delete_notification").each(function(index, element){
+    $(element).on("click",function(e){
+      $(`#${e.target.getAttribute("data-noti-index")}`).hide()
+    })
+  })
 </script>
 

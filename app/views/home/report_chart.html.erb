@@ -767,31 +767,31 @@
         <div class="select-row">
           <div class="total_box" style="background: #ADDDFF;">
             <span style="font-weight:600">Khởi tạo: </span>
-            <span style="font-weight:600"><%= @data[:khoi_tao] %></span>
+            <span style="font-weight:600"><%= @data[:chart][:khoi_tao] %></span>
           </div>
           <div class="total_box" style="background: #678EF8;">
             <span style="font-weight:600">Lưu nháp: </span>
-            <span style="font-weight:600"><%= @data[:luu_nhap] %></span>
+            <span style="font-weight:600"><%= @data[:chart][:luu_nhap] %></span>
           </div>
           <div class="total_box" style="background: #5CBD4C;">
             <span style="font-weight:600">Đúng hạn: </span>
-            <span style="font-weight:600"><%= @data[:dung_han] %></span>
+            <span style="font-weight:600"><%= @data[:chart][:dung_han] %></span>
           </div>
           <div class="total_box" style="background: #B70619;">
             <span style="font-weight:600">Trễ hạn: </span>
-            <span style="font-weight:600"><%= @data[:tre_han] %></span>
+            <span style="font-weight:600"><%= @data[:chart][:tre_han] %></span>
           </div>
           <div class="total_box" style="background: #828282;">
             <span style="font-weight:600">Cần Bổ Sung: </span>
-            <span style="font-weight:600"><%= @data[:can_bo_sung] %></span>
+            <span style="font-weight:600"><%= @data[:chart][:can_bo_sung] %></span>
           </div>
           <div class="total_box" style="background: #1B59F8;">
             <span style="font-weight:600">Đã duyệt: </span>
-            <span style="font-weight:600"><%= @data[:da_duyet] %></span>
+            <span style="font-weight:600"><%= @data[:chart][:da_duyet] %></span>
           </div>
           <div class="total_box" style="background: #FFC123;">
             <span style="font-weight:600">Chờ duyệt: </span>
-            <span style="font-weight:600"><%= @data[:cho_duyet] %></span>
+            <span style="font-weight:600"><%= @data[:chart][:cho_duyet] %></span>
           </div>
         </div>
       </div>
@@ -809,6 +809,7 @@
               <span style="padding-left: 2rem; font-weight:600">Vai trò</span>
               <%= text_field_tag "filter_role", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
               <select class="select-field" style="background: #DC4C5D" id="selected_role">
+                <option value="" selected>Tất cả</option>
                 <option value="Nhân viên">Nhân viên</option>
                 <option value="Giảng viên">Giảng viên</option>
                 <option value="Phụ trách bộ môn">Phụ trách bộ môn</option>
@@ -926,7 +927,7 @@
             datasets: [
                 {
                     label: 'Loại, Trạng thái',
-                    data: <%= @data.values[1..-1] %>,
+                    data: <%= @data[:chart].values[1..-1] %>,
                     backgroundColor: '#006D77'
                 },
             ]
@@ -984,5 +985,22 @@
       $("#filter_subject").val(`${$("#selected_subject").find(":selected").val()}`)
       $("#fillter_form").submit()
     })
+
+    if(<%= @data[:fillter][:filter_academic].present? %>){
+      document.getElementById('selected_academic').value='<%= @data[:fillter][:filter_academic] %>';
+    }
+
+    if(<%= @data[:fillter][:filter_role].present? %>){
+      document.getElementById('selected_role').value='<%= @data[:fillter][:filter_role] %>';
+    }
+
+    if(<%= @data[:fillter][:filter_subject].present? %>){
+      document.getElementById('selected_subject').value='<%= @data[:fillter][:filter_subject] %>';
+    }
+    
+    if(<%= @data[:fillter][:filter_faculty].present? %>){
+      document.getElementById('selected_faculty').value='<%= @data[:fillter][:filter_faculty] %>';
+    }
+
   </script>
 </html>
