@@ -895,7 +895,8 @@
                 <th class="tableHeader" colspan="8" style="text-align: left;padding: 20px 20px;cursor: pointer;user-select: none; border-top-left-radius: 12px;
                 border-top-right-radius: 12px; border: none"> <%= "#{index+1}. #{key}"%>
                 <span>| </span>
-                <span>Tệp: 1</span>
+                <span>Tệp:</span>
+                <span id="count-file-span-<%= index %>"><%= @file_count[index]&.size %></span>
                 </th>
               </tr>
             </thead>
@@ -1267,13 +1268,24 @@
             TỆP ĐÍNH KÈM CỦA BÁO CÁO THÁNG
             <i id="close__popupFeedBabk" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark" onclick="hideAttachment()"></i>
           </div>
-          <div class="popup_body_attachment">
-            <h5>1. Công việc theo KPI</h5>
-            <div class="file_upload_container">
-                <input type="file" id="fileInput" multiple style="display:none; ">
-                Số lượng tệp đã chọn: <span id="fileCount">0</span>
-            </div>
-            <div id="fileList"></div>
+          <div class="popup_body_attachment" style="overflow-y:scroll; height:80vh">
+            <% @report_template_title.keys.each_with_index do |value, index| %>
+              <div style="height: 300px" class="upload_file">
+                <h5><%= "#{index+1}. #{value}" %></h5>
+                  <div class="file_upload_container">
+                    Số lượng tệp đã chọn: <span id="fileCount-<%= index %>"><%= @file_count[index]&.size %></span>
+                  </div>
+                  <div id="fileList<%= index %>" class="fileList">
+                    <% @file_count[index]&.each do |file_id|%>
+                      <div data-span-id="fileCount-<%= index %>" data-table-span-id="count-file-span-<%= index %>" data-current-table="<%= index %>">
+                        <%= link_to report_download_attachment_path(@report_template, file_id: file_id), download: true, target: "_blank" do %>
+                          <span><%= ReportAttachment.where(id: file_id).last&.attachment_identifier%></span>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+              </div>
+            <% end %>
           </div>
           <div class="popup_footer_attachment">
             <button

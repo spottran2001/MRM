@@ -118,6 +118,7 @@ class ReportController < ApplicationController
   def show
     @report_template_title = JSON.parse(Report.find(params[:id]).data)
     @report_template = Report.find(params[:id])
+    @file_count = @report_template.file_count.present? ? JSON.parse(@report_template.file_count) : []
   end
 
   def edit

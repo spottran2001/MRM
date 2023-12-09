@@ -23,6 +23,7 @@ class AcademicController < ApplicationController
     @report_template_title = JSON.parse(@report.data)
     @report_template = @report
     @can_accept_reject = @report.report_type&.name_type == 'cho duyet' ? true : false
+    @file_count = @report_template.file_count.present? ? JSON.parse(@report_template.file_count) : []
   end
 
   def accept_report
