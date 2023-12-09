@@ -1,17 +1,21 @@
 class AcademicController < ApplicationController
   before_action :authenticate_user!
   before_action :current_report, only: [:report_details, :accept_report, :review_report, :reject_report]
+  add_breadcrumb "QUẢN LÝ KỲ BÁO CÁO", :academic_index_path
   def index
     @academic = Academic.all.order(:created_at)
   end
 
   def show 
     @academic = Academic.find(params[:id])
+    add_breadcrumb "CHI TIẾT KỲ BÁO CÁO", :academic_path
   end
 
   def report_list
     @academic = Academic.find(params[:id])
     @report_list = Report.where(academic_id: params[:id])
+    add_breadcrumb "CHI TIẾT KỲ BÁO CÁO", :academic_path
+    add_breadcrumb "DANH SÁCH BÁO CÁO CHI TIẾT", :report_list_academic_path
     if params[:status]
       @report_list = @report_list.where(role: params[:status])
     else
@@ -24,6 +28,9 @@ class AcademicController < ApplicationController
     @report_template = @report
     @can_accept_reject = @report.report_type&.name_type == 'cho duyet' ? true : false
     @file_count = @report_template.file_count.present? ? JSON.parse(@report_template.file_count) : []
+    add_breadcrumb "CHI TIẾT KỲ BÁO CÁO", :academic_path
+    add_breadcrumb "DANH SÁCH BÁO CÁO CHI TIẾT", :report_list_academic_path
+    add_breadcrumb "CHI TIẾT BÁO CÁO THÁNG", :review_report_academic_path
   end
 
   def accept_report

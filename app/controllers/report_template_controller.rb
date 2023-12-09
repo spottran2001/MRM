@@ -2,7 +2,7 @@ class ReportTemplateController < ApplicationController
   before_action :authenticate_user!
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token
-
+  add_breadcrumb "QUẢN LÝ BIỂU MẪU BÁO CÁO CHUNG", :report_template_management_path
   def index
     @report_templates = ReportTemplate.all.order(:created_at)
   end
@@ -31,6 +31,7 @@ class ReportTemplateController < ApplicationController
   def edit
     @report_template_title = JSON.parse(ReportTemplate.find(params[:id]).data)
     @report_template = ReportTemplate.find(params[:id])
+    add_breadcrumb "CHỈNH SỬA BIỂU MẪU BÁO CÁO CHUNG", :edit_report_template_path
   end
 
   def update
@@ -54,6 +55,7 @@ class ReportTemplateController < ApplicationController
   def show
     @report_template_title = JSON.parse(ReportTemplate.find(params[:id]).data)
     @report_template = ReportTemplate.find(params[:id])
+    add_breadcrumb "XEM CHI TIẾT BIỂU MẪU BÁO CÁO CHUNG", :report_template_path
   end
 
   def submit_report

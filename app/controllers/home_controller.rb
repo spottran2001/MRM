@@ -59,6 +59,7 @@ class HomeController < ApplicationController
   end
 
   def report_chart
+    add_breadcrumb "THỐNG KÊ BÁO CÁO", :report_chart_path
     @report = Report.joins(:report_type, :user)
     #fillter    
     @report = params[:filter_academic] ? @report.where(academic_id: params[:filter_academic]) : @report.where(academic_id: Academic.last.id)

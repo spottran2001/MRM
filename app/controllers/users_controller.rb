@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   protect_from_forgery with: :null_session
 
+  add_breadcrumb "QUẢN LÝ TÀI KHOẢN", :users_path
+
   def index
     if current_user.role != "admin"
       users = User.where(id: current_user.id)
@@ -31,6 +33,7 @@ class UsersController < ApplicationController
     @faculties = Faculty.all
     @subjects = Subject.all
     @is_admin = current_user.role.include?('admin')
+    add_breadcrumb "CHỈNH SỬA TÀI KHOẢN", :edit_user_path
   end
 
   def update
