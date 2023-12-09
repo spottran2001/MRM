@@ -920,7 +920,7 @@
         let title = table.getElementsByClassName("tableHeader")[0];
         let title_value = title.innerText;
         if (!title_value){
-          alert("Please fill the title")
+          alert("Vui lòng điền tiêu đề")
           check_condition = false
           break;
         }else{
@@ -930,7 +930,7 @@
             for (let th_element of tbody.getElementsByTagName("th")){
               if (th_element.classList.value == "first_thread_content"){
                 if (!th_element.innerText){
-                  alert("Please fill the title_2")
+                  alert("Vui lòng điền tiêu đề 2")
                   check_condition = false
                   break;
                 }else{
@@ -971,13 +971,13 @@
       var template_year = document.getElementById("selectedYearModal").innerText
       if (template_name == '') {
         check_condition = false
-        alert("Vui long dien ten cho bieu mau")
+        alert("Vui lòng điền tên cho biểu mẫu")
       }else if (template_role == 'Chọn vai trò'){
         check_condition = false
-        alert("Vui long chon vai tro")
+        alert("Vui lòng chọn vai trò cho biểu mẫu")
       } else if (template_year == 'Chọn năm báo cáo') {
         check_condition = false
-        alert("Vui long chon nam bao cao")
+        alert("Vui lòng chọn năm báo cáo")
       }
       
       if (check_condition){
@@ -995,7 +995,7 @@
           processData: false,
           method: 'POST',
           success: function(data){
-              alert("Tao thanh cong");
+              alert("Tạo thành công");
               window.location.replace("/report_template_management");
           }
         });
@@ -1011,7 +1011,7 @@
     
     function delTable(e){
       if (document.getElementsByClassName("content__table").length == 1){
-        alert("Can not remove this table")
+        alert("Không thể xóa bảng này")
       }else{
         e.parentNode.parentNode.parentNode.parentNode.remove()
       }
@@ -1032,7 +1032,7 @@
     }
     function delThread(e){
       if (e.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("tableBody").length == 1){
-        alert("Can not remove this thread")
+        alert("Không thể xóa hàng này")
       }else{
         e.parentNode.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode.parentNode)
       }
@@ -1055,7 +1055,7 @@
       var col_span = e.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[3].colSpan
       var childNodesCount = e.parentNode.parentNode.children.length
       if (childNodesCount <= 3){
-        alert("Can not remove this column")
+        alert("Không thể xóa cột này")
       }else{
         var tbody_list = e.parentNode.parentNode.parentNode.parentNode.getElementsByTagName('tbody')
         for (let tbody of tbody_list){

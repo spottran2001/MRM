@@ -919,10 +919,6 @@
                           <p>Tên kỳ báo cáo</p>
                           <input class="nameGeneralReportForm" placeholder="Nhập tên kỳ báo cáo" id="academicName">
                         </div>
-                        <div style="padding-bottom: 1rem">
-                          <p>Ngày hạn báo cáo</p>
-                          <input type="number" class="nameGeneralReportForm" placeholder="Nhập ngày hạn báo cáo" id="academicDeadline" oninput="validateDeadline()">
-                        </div>
                         <div class="contentTimeCreate" style="padding-bottom: 1rem">
                           <div class="contentTimeCreateLeft">
                             <p>Thời gian bắt đầu</p>
@@ -1005,18 +1001,18 @@
         <% @academic.each do |r| %>
           <%= link_to academic_path(r), data: {turbo: false} do %>
             <div class="Frame1" style="width: 292px; height: 132px; position: relative; background: white; box-shadow: 0px 4px 4px #D72134; border-radius: 12px; overflow: hidden">
-              <div class="Rectangle1" style="width: 24px; height: 117px; left: 117px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-              <div class="Rectangle1" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
-              <div class="Rectangle1" style="width: 24px; height: 24px; left: 34px; top: 58px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
+              <div class="Rectangle1" style="width: 24px; height: 130px; left: 93px; top: 15px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
+              <div class="Rectangle2" style="width: 24px; height: 24px; left: 34px; top: 93px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
+              <div class="Rectangle3" style="width: 24px; height: 24px; left: 34px; top: 58px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; background: #D72134; border-radius: 12px"></div>
               <div class="iconCalendar" style="width: 12px; height: 12px; left: 15px; top: 93px; position: absolute; color: white">
                 <i class="fa-regular fa-calendar"></i>
               </div>
               <div class="NM2023" style="left: 21px; top: 19px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; word-wrap: break-word"></div>
-              <div class="Rectangle1" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
-              <div class="Rectangle1" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
-              <div class="Rectangle1" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
-              <div class="Rectangle1" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
-              <div class="reportPeriod" style="left: 10px; top: 15px; position: absolute; color: white; font-size: 15px; font-family: Inter; font-weight: 700; word-wrap: break-word">Ngày hạn: 20</div>
+              <div class="Rectangle4" style="width: 11px; height: 70.40px; left: 255.44px; top: 21.35px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #141E46; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px; border: 0.50px black solid"></div>
+              <div class="Rectangle5" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
+              <div class="Rectangle6" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
+              <div class="Rectangle7" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
+              <div class="reportPeriod" style="left: 10px; top: 15px; position: absolute; color: white; font-size: 15px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm: 2023</div>
               <div class="periodName" style="left: 43px; top: 60px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.name %></div>
               <div class="periodYear" style="left: 43px; top: 94px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.start_date&.strftime('%d/%m/%Y') %> - <%= r.end_date&.strftime('%d/%m/%Y') %></div>
               <div class="iconFile" style="width: 12px; height: 12px; left: 16px; top: 58px; position: absolute; color: white">
@@ -1025,19 +1021,6 @@
             </div>
           <% end %>
         <% end %>
-      </div>
-      <div class="paging d-none">
-        <button aria-label="pagin">
-          <i class="fa-solid fa-chevron-left"></i>
-        </button>
-        <button class="paging--active" aria-label="pagin">1</button>
-        <button aria-label="pagin">2</button>
-        <button aria-label="pagin">3</button>
-        <button aria-label="pagin">...</button>
-        <button aria-label="pagin">100</button>
-        <button aria-label="pagin">
-          <i class="fa-solid fa-chevron-right"></i>
-        </button>
       </div>
     </div>
   </main>
@@ -1160,7 +1143,7 @@ function getEle(id) {
           processData: false,
           method: 'POST',
           success: function(data){
-              alert("Tao thanh cong");
+              alert("Tạo thành công");
               window.location.replace("/academic");
           }
         });

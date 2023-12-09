@@ -56,6 +56,14 @@
     color: #959595;
     display: block;
   }
+  .menu__items__setting {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0px 20px;
+    cursor: pointer;
+    color: #959595;
+    display: block;
+  }
   .menu__icon i {
     font-size: 20px;
     color: #959595;
@@ -303,7 +311,7 @@
     align-items: center;
   }
   .menu__dropwdown .menu__items .menu__icon .menu__dropdown_icon p {
-    color: black;
+    color: black;  
     margin-left: 10px;
     font-size: 18px;
     margin-top: 0px;
@@ -311,9 +319,23 @@
     align-items: center;
     margin-bottom: 5px
   }
-  .active {
-    color: #d72134 !important;
+
+  .menu__items:active,
+  .menu__items:focus {
+    background-color: #d72134;
+    color: white; 
   }
+
+  .menu__items:active .menu__icon i ,
+  .menu__items:focus .menu__icon i {
+    color: white;   
+  }
+
+  .menu__items:active .menu__icon .menu__dropdown_icon .menu__text ,
+  .menu__items:focus .menu__icon .menu__dropdown_icon .menu__text {
+    color: white;   
+  }
+
   .menu__icon_open i {
     font-size: 20px;
     margin-top: 6px;
@@ -545,7 +567,7 @@
     border-radius: 40px;
   }
   .menu__dropdown_list li:hover {
-    color: #d72134; /* Màu chữ khi di chuột vào */
+    color: #d72134;
   }
   .btn[data-tooltip]:hover:after {
     content: attr(data-tooltip);
@@ -574,74 +596,59 @@
     </div>
     <p class="menu__title"><i class="fa-solid fa-house"></i></p>
     
-    <%= link_to report_chart_path, class: "menu__items", data: {turbo: false} do %>
+    <%= link_to report_chart_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
       <div class="menu__icon" title="Thống kê" data-tooltip="Tooltip Text">
-        <i class="fa-solid fa-chart-simple"></i>
+        <i class="fa-solid fa-chart-column"></i>
       </div>
     <% end %>
     <% if current_user.role == 'admin' %>
-      <%= link_to report_template_management_path, class: "menu__items", data: {turbo: false} do %>
+      <%= link_to report_template_management_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
         <div class="menu__icon" title="Quản lý biểu mẫu báo cáo chung" data-tooltip="Tooltip Text">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
-              stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9 3V21" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <i class="fa-regular fa-paste"></i>
         </div>
       <% end %>
     <% end %>
     
     <% if current_user.role == 'admin' %>
-      <%= link_to academic_index_path, class: "menu__items", data: {turbo: false} do %>
-        <div class="menu__items" >
-          <div class="menu__icon" title="Quản lý kỳ báo cáo" data-tooltip="Tooltip Text">
-            <i class="fa-regular fa-calendar"></i>  
-          </div>
-        </div>
+      <%= link_to academic_index_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
+        <div class="menu__icon" title="Quản lý kỳ báo cáo" data-tooltip="Tooltip Text">
+          <i class="fa-regular fa-calendar"></i>  
+        </div>    
       <% end %>
     <% else %>
-      <%= link_to report_index_path, class: "menu__items pt-4", data: {turbo: false} do %>
-        <div class="menu__items">
-          <div class="menu__icon" >
-            <i class="fa-regular fa-calendar"></i>  
-          </div>
-        </div>
+      <%= link_to report_index_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>  
+        <div class="menu__icon" >
+          <i class="fa-regular fa-calendar"></i>  
+        </div>   
       <% end %>
     <% end %>
     <% if current_user.role != 'admin' %>
-      <%= link_to user_path(current_user), class: "menu__items", data: {turbo: false} do %>
+      <%= link_to user_path(current_user), class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
         <div class="menu__icon  ">
           <i class="fa-regular fa-clipboard"></i>
         </div>
       <% end %>
     <% end %>
     <% if current_user.role == 'admin' %>
-      <%= link_to subjects_path, class: "menu__items", data: {turbo: false} do %>
+      <%= link_to subjects_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
         <div class="menu__icon" title="Quản lý phòng ban" data-tooltip="Tooltip Text">
           <i class="fa-solid fa-boxes-stacked"></i>
         </div>
       <% end %>
-      <%= link_to users_path, class: "menu__items", data: {turbo: false} do %>
-      <div class="menu__items">
+      <%= link_to users_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
         <div class="menu__icon" title="Quản lý tài khoản" data-tooltip="Tooltip Text">
           <i class="fa-regular fa-user"></i>
-        </div>
-      </div>
+        </div>  
       <% end %>
-    <a href="#" class="menu__items">
+    <%= link_to configuration_page_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
       <div class="menu__icon" title="Quản lý cấu hình" data-tooltip="Tooltip Text">
-        <i class="fa-solid fa-gear"></i>
+        <i class="fa-solid fa-sliders"></i>
       </div>
-    </a>
+    <% end %>
   <% end %>
   </div>
   <div class="menu-bottom">
     <p class="menu__title" style="color: black;"><i class="fa-solid fa-screwdriver-wrench"></i></p>
-    <div class="menu__items">  
-      <div class="menu__icon" title="Sáng" data-tooltip="Tooltip Text">
-        <i class="fa-regular fa-sun"></i>
-      </div>
-    </div>
   <%= button_to destroy_user_session_path, method: :delete, style: "background-color: white; color: #dadada; border:none", class: "menu__items", data: {turbo: false} do %>
     <div class="menu__icon" title="Đăng xuất" data-tooltip="Tooltip Text">
       <i class="fa-solid fa-right-to-bracket"></i>
@@ -660,37 +667,20 @@
       </button>
     </div>
     <p class="menu__title">TRANG CHỦ</p>
-    <div class="menu__items" style="margin: 30px 0px;">
+    <%= link_to report_chart_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
       <div class="menu__icon " id="statistics">
         <div class="menu__dropdown_icon">
-          <i class="fa-solid fa-chart-simple"></i>
-          <p>Thống Kê</p>
+          <i class="fa-solid fa-chart-column"></i>
+          <p class="menu__text">Thống Kê</p>
         </div>
-        <%#<div class="menu__icon_open">
-          <i class="fa-solid fa-angle-up"></i>
-          </div>%>
       </div>
-      <%#<nav class="menu__dropdown_nav ">
-        <ul class="menu__dropdown_list">
-            <li>Nhân Viên</li>
-            <li>Giảng Viên</li>
-            <li>Phụ Trách Bộ Môn</li>
-            <li>Ban Chủ Nhiệm Khoa</li>
-        </ul>
-        </nav>%>
-    </div>
+    <% end %>
     <% if current_user.role == 'admin' %>
       <%= link_to report_template_management_path, class: "menu__items" ,style:"margin: 30px 0px;", data: {turbo: false} do %>
         <div class="menu__icon  ">
           <div class="menu__dropdown_icon">
-            <i>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
-                  stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9 3V21" stroke="#ABABAB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </i>
-            <p>Quản lý biểu mẫu báo cáo chung</p>
+            <i class="fa-regular fa-paste"></i>
+            <p class="menu__text">Quản lý biểu mẫu báo cáo chung</p>
           </div>
         </div>
       <% end %>
@@ -699,80 +689,48 @@
       <div class="menu__icon" id="report">
         <div class="menu__dropdown_icon">
           <i class="fa-regular fa-calendar"></i>
-          <p >Quản lý kỳ báo cáo</p>
+          <p class="menu__text">Quản lý kỳ báo cáo</p>
         </div>
-        <%#<div class="menu__icon_open">
-          <i class="fa-solid fa-angle-up"></i>
-          </div>%>
       </div>
     <% end %>
-
-      <%#<nav class="menu__dropdown_nav">
-        <ul class="menu__dropdown_list">
-            <li>Nhân Viên</li>
-            <li>Giảng Viên</li>
-            <li>Phụ Trách Bộ Môn</li>
-            <li>Ban Chủ Nhiệm Khoa</li>
-        </ul>
-        </nav>%>
     <div class="menu__items" style="margin: 30px 0px;">
       <div class="menu__icon  ">
         <div class="menu__dropdown_icon">
           <i class="fa-regular fa-clipboard"></i>            
-          <p>Lập báo cáo</p>
+          <p class="menu__text">Lập báo cáo</p>
         </div>
       </div>
     </div>
-    <%#<div class="menu__items">
-      <div class="menu__icon  ">
-          
-          <div class="menu__dropdown_icon">
-              <i class="fa-regular fa-bell"></i>
-              <p>Thông báo</p>
-          </div>
-          <div class="icon__notification"></div>
-      </div>
-      </div>%>
     <% if current_user.role == 'admin' %>
-      <div class="menu__items" style="margin: 30px 0px;">
+      <%= link_to subjects_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
         <div class="menu__icon  ">
           <div class="menu__dropdown_icon">
             <i class="fa-solid fa-boxes-stacked"></i>
-            <p>Quản lý phòng ban</p>
+            <p  class="menu__text">Quản lý phòng ban</p>
           </div>
         </div>
-      </div>
+      <% end %>
       <%= link_to users_url, class: "menu__items menu__items--separation",style:"margin: 30px 0px;", data: {turbo: false} do %>
         <div class="menu__icon">
           <div class="menu__dropdown_icon">
             <i class="fa-regular fa-user"></i>
-            <p>Quản lý tài khoản</p>
+            <p  class="menu__text">Quản lý tài khoản</p>
           </div>
         </div>
       <% end %>
-      <div class="menu__items" style="margin: 30px 0px;">
+      <%= link_to configuration_page_path, class: "menu__items", style:"margin: 30px 0px;", data: {turbo: false} do %>
         <div class="menu__icon">
           <div class="menu__dropdown_icon">
-            <i class="fa-solid fa-gear"></i>
-            <p>Quản lý cấu hình</p>
+            <i class="fa-solid fa-sliders"></i>
+            <p class="menu__text">Quản lý cấu hình</p>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>     
   <div class="menu-bottom">
-    <div class="menu__items">
+    <div class="menu__items__setting">
       <p class="menu__title">CÀI ĐẶT</p>
-      <div class="menu__regime">
-        <div class="regime__light" style="cursor: pointer;">
-          <i class="fa-regular fa-sun"></i>
-          <p>Light</p>
-        </div>
-        <div class="regime__dark" style="cursor: pointer;">
-          <i class="fa-regular fa-moon"></i>
-          <p>Dark</p>
-        </div>
-      </div>
     </div>
     <div class="menu__items">
       <div class="menu__icon  ">

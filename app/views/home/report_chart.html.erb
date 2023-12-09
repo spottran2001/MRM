@@ -765,33 +765,33 @@
       <h1 class="content__name">THỐNG KÊ</h1>
       <div class="generality__options">
         <div class="select-row">
-          <div class="total_box" style="background: #ADDDFF;">
-            <span style="font-weight:600">Khởi tạo: </span>
-            <span style="font-weight:600"><%= @data[:chart][:khoi_tao] %></span>
-          </div>
           <div class="total_box" style="background: #678EF8;">
+            <span style="font-weight:600">Khởi tạo: </span>
+            <span style="font-weight:600; font-size: 18px"><%= @data[:chart][:khoi_tao] %></span>
+          </div>
+          <div class="total_box" style="background: #006D77;">
             <span style="font-weight:600">Lưu nháp: </span>
-            <span style="font-weight:600"><%= @data[:chart][:luu_nhap] %></span>
+            <span style="font-weight:600; font-size: 18px"><%= @data[:chart][:luu_nhap] %></span>
           </div>
           <div class="total_box" style="background: #5CBD4C;">
             <span style="font-weight:600">Đúng hạn: </span>
-            <span style="font-weight:600"><%= @data[:chart][:dung_han] %></span>
+            <span style="font-weight:600; font-size: 18px"><%= @data[:chart][:dung_han] %></span>
           </div>
           <div class="total_box" style="background: #B70619;">
             <span style="font-weight:600">Trễ hạn: </span>
-            <span style="font-weight:600"><%= @data[:chart][:tre_han] %></span>
+            <span style="font-weight:600; font-size: 18px; font-size: 18px"><%= @data[:chart][:tre_han] %></span>
           </div>
           <div class="total_box" style="background: #828282;">
             <span style="font-weight:600">Cần Bổ Sung: </span>
-            <span style="font-weight:600"><%= @data[:chart][:can_bo_sung] %></span>
+            <span style="font-weight:600; font-size: 18px"><%= @data[:chart][:can_bo_sung] %></span>
           </div>
           <div class="total_box" style="background: #1B59F8;">
             <span style="font-weight:600">Đã duyệt: </span>
-            <span style="font-weight:600"><%= @data[:chart][:da_duyet] %></span>
+            <span style="font-weight:600; font-size: 18px"><%= @data[:chart][:da_duyet] %></span>
           </div>
           <div class="total_box" style="background: #FFC123;">
             <span style="font-weight:600">Chờ duyệt: </span>
-            <span style="font-weight:600"><%= @data[:chart][:cho_duyet] %></span>
+            <span style="font-weight:600; font-size: 18px"><%= @data[:chart][:cho_duyet] %></span>
           </div>
         </div>
       </div>
@@ -852,8 +852,8 @@
       <div class="header-chart">       
         <div class="year-select">
           <span style="font-weight:600">BIỂU ĐỒ THỐNG KÊ BÁO CÁO</span>
-          <%#<div class="year-select-content">
-            <span style=" font-weight: 600; padding-right: 10px">Thời gian báo cáo</span>
+          <div class="year-select-content">
+            <%#<span style=" font-weight: 600; padding-right: 10px">Thời gian báo cáo</span>
             <select class="select-field-content">
               <option selected>1</option>
               <option value="1">2</option>
@@ -869,7 +869,7 @@
               <option value="10">11</option>
               <option value="11">12</option>             
             </select>
-            <span style=" font-weight:600; padding-left: 10px; padding-right: 10px">/</span>
+            <span style=" font-weight:600; padding-left: 10px; padding-right: 10px">/</span>%>  
             <select class="select-field-content">
               <option selected>2025</option>
               <option value="1">2024</option>
@@ -883,7 +883,7 @@
                 <i class="fa-solid fa-filter" title="Lọc theo thời gian" data-tooltip="Tooltip Text"></i>
               </button>
             </div>
-          </div>%>
+          </div>
         </div>
         <hr  width="100%" >
         <div class="chart-container">
