@@ -612,6 +612,11 @@
       background-color: red;
       color: white;      
     } 
+    .reportTitleAcademic {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   </style>
   <body>
     <main class="container">
@@ -627,23 +632,33 @@
                 </button>
               <% end %>
             </div> 
-            <h1 class="content__name">CHI TIẾT KỲ BÁO CÁO</h1>
+            <h1 class="content__name">CHI TIẾT KỲ BÁO CÁO </h1>
           </div>
         <div class="content__generality">
-            <div class="generality__options">
-                <%#<div class="btn__addfile">
-                    <button aria-label="btn__department" id="btn__department" style="background-color: #678EF8;" onclick="showFeedbackPopup()">
-                    <i class="fa-solid fa-plus" style="padding-right: 0.5rem"></i>
-                    NÚT 1
-                    </button>
-                </div>%>
+            <div class="reportTitleAcademic">
+              <div class="nameAcademic" style="padding-right: 2rem">
+                <span style= "font-weight: 800; padding-right: 1rem">Tên kỳ báo cáo: </span>
+                <span>Tên kỳ</span>
+              </div>
+              <div class="yearAcademic" style="padding-right: 2rem">
+                <span style= "font-weight: 800; padding-right: 1rem">Năm báo cáo: </span>
+                <span>2023</span>
+              </div>
+              <div class="startTimeAcademic" style="padding-right: 2rem">
+                <span style= "font-weight: 800; padding-right: 1rem">Thời gian bắt dầu: </span>
+                <span>10/12/2023</span>
+              </div>
+              <div class="endTimeAcademic" style="padding-right: 2rem">
+                <span style= "font-weight: 800; padding-right: 1rem">Thời gian kết thúc: </span>
+                <span>10/1/2024</span>
+              </div>
             </div>
-            <div class="generality__search">
+            <%#<div class="generality__search">
                 <div class="generality__search_icon">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
                 <input type="text" id="searchInput" placeholder="Tìm kiếm báo cáo">
-            </div>        
+            </div>%>        
         </div>
         <table class="content__table" id="table_phongban">
           <tr class="content__table_header">
@@ -657,11 +672,11 @@
               Vai trò
             </th>
             <th>
-              Thời gian tạo
+              Thời gian tạo biểu mẫu
             </th>
             
             <th>
-              Thời gian sửa
+              Thời gian sửa biểu mẫu
             </th>
             <th>
               Trạng thái kỳ báo cáo
@@ -691,10 +706,10 @@
             <td>Đang hoạt động</td>
             <td>
               <%= link_to report_template_path(staff_report), style: "text-decoration:none", class: "#{staff_policy}", data: {turbo: false} do %>
-                <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
+                <button class="btn gold" aria-label="btn" title="Xem chi tiết biểu mẫu báo cáo" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></i></button>
               <% end %>
               <%= link_to report_list_academic_path(@academic, status: "Nhân Viên"), style: "text-decoration:none", class: "#{staff_policy}", data: {turbo: false} do %>
-                <button class="btn green" aria-label="btn" title="Xem danh sách" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
+                <button class="btn green" aria-label="btn" title="Xem danh sách báo cáo" data-tooltip="Tooltip Text"><i class="fa-solid fa-list"></i></button>
               <% end %>
               
               <%#<button class="btn" aria-label="btn" style="background-color: #DC546C;"><i class="fa-solid fa-trash"></i></button>%>

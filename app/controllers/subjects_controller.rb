@@ -2,6 +2,7 @@ class SubjectsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    add_breadcrumb "QUẢN LÝ PHÒNG BAN" " / " "QUẢN LÝ BỘ MÔN", :subjects_path
     @subject = Subject.new
     @pagy, @subjects = pagy(Subject.all, items: 8)
   end

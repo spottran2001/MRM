@@ -621,10 +621,13 @@
     }
     .popup_footer_attachment {
       display: flex;
-      justify-content: center;
+      justify-content: space-evenly;
       padding: 0rem 4rem 2rem 4rem;
     }
     .popup_footer_attachment button {
+      display: flex;
+      width: 200px;
+      justify-content: center;
       margin: 0px;
       padding: 10px 40px;
       border-radius: 12px;
@@ -703,7 +706,7 @@
                 </button>
               <% end %>
             </div> 
-            <h1 class="content__name">CHỈNH SỬA BÁO CÁO THÁNG</h1>
+            <h1 class="content__name">CHỈNH SỬA BÁO CÁO CÁ NHÂN</h1>
           </div>
         <div class="content__generality" style="padding: 0px 20px">
           <%#<div class="generality__search">
@@ -758,7 +761,7 @@
               onclick="showTableList(this)">
               <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
               <th class="tableHeader" colspan="8" style="text-align: left;cursor: pointer;user-select: none;border-top-left-radius: 12px;border-top-right-radius: 12px;
-                border: none"> <%= "#{index+1}. #{key}"%>
+                border: none" title="Chọn để xem nội dung bảng" data-tooltip="Tooltip Text"> <%= "#{index+1}. #{key}"%>
                 <span>| Tệp: </span>
                 <span id="count-file-span-<%= index %>"><%= @file_count[index]&.size %></span>
               </th>
@@ -1044,7 +1047,7 @@
           height: auto;"
         >
           <div class="popup_header_attachment">
-            TỆP ĐÍNH KÈM CỦA BÁO CÁO THÁNG
+            TỆP ĐÍNH KÈM CỦA BÁO CÁO CÁ NHÂN
             <i id="close__popupFeedBabk" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark" onclick="hideAttachment()"></i>
           </div>
           <div class="popup_body_attachment" style="overflow-y:scroll; height:80vh">
@@ -1056,7 +1059,7 @@
                       <span id="fileLabel">Chọn tệp</span>
                     </label>
                     <input type="file" id="fileInput<%= index %>" multiple style="display:none;" data-table-id="attachment-table-<%= index %>">
-                    Số lượng tệp đã chọn: <span id="fileCount-<%= index %>"><%= @file_count[index]&.size %></span>
+                    Số lượng tệp đã chọn: <span style=" margin-left: 10px;" id="fileCount-<%= index %>"><%= @file_count[index]&.size %></span>
                   </div>
                   <div id="fileList<%= index %>" class="fileList">
                     <% @file_count[index]&.each do |file_id|%>
@@ -1080,7 +1083,7 @@
             >
               HỦY
             </button>
-            <button class="btn__addfile" style="background-color: #6c8de0; margin-left: 2rem">
+            <button class="btn__addfile" style="background-color: #6c8de0; margin-left: 2rem" onclick="hideAttachment()">
               LƯU
             </button>
           </div>

@@ -12,6 +12,7 @@ class AcademicController < ApplicationController
   end
 
   def report_list
+    @pagy, @academic = pagy(Academic.all, items: 8)
     @academic = Academic.find(params[:id])
     @report_list = Report.where(academic_id: params[:id])
     add_breadcrumb "CHI TIẾT KỲ BÁO CÁO", :academic_path

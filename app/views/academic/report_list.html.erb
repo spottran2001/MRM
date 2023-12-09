@@ -793,6 +793,9 @@
             </tr>
           <% end %>
         </table>
+        <div class="pagination" style="display:flex; justify-content: center; padding-top: 1rem">
+          <%== render partial: 'shared/pagination', locals: {pagy: @pagy} %>
+        </div>
         <div class="Modal__AddMember" id="Modal__AddMember">
         </div>
       </div>

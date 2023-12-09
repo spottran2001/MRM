@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    add_breadcrumb "CHI TIẾT TÀI KHOẢN", :user_path
     @user = params[:id].blank? ? User.find(current_user.id) : User.find(params[:id])
   end
 

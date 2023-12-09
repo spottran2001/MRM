@@ -814,27 +814,29 @@
       <div class="content">
         <%= render 'shared/header' %>
         <h1 class="content__name">QUẢN LÝ TÀI KHOẢN</h1>
-        <div class="content__generality">
-          <div class="generality__options">                   
-            <%#<div class="select-row">
-              <span>Vai trò</span>
-              <select class="select-field" >
-                <option selected value="0">Tất cả</option>
-                <option value="1">Khoa</option>
-                <option value="2">Bộ môn</option>
-                <option value="3">Giảng viên</option>
-                <option value="4">Nhân viên</option>
-                <option value="5">Chưa có</option>
-              </select>
-            </div> %>        
+        <% if current_user.role == 'admin' %>
+          <div class="content__generality">
+            <div class="generality__options">                   
+              <%#<div class="select-row">
+                <span>Vai trò</span>
+                <select class="select-field" >
+                  <option selected value="0">Tất cả</option>
+                  <option value="1">Khoa</option>
+                  <option value="2">Bộ môn</option>
+                  <option value="3">Giảng viên</option>
+                  <option value="4">Nhân viên</option>
+                  <option value="5">Chưa có</option>
+                </select>
+              </div> %>        
+            </div>
+              <div class="generality__search">
+                <%= form_with url: users_path, method: :get, class: "d-flex" do %>
+                  <i class="fa-solid fa-magnifying-glass custom-icon"></i>
+                  <%= text_field_tag "filter", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field"%>
+                <% end %>
+              </div>
           </div>
-          <div class="generality__search">
-            <%= form_with url: users_path, method: :get, class: "d-flex" do %>
-              <i class="fa-solid fa-magnifying-glass custom-icon"></i>
-              <%= text_field_tag "filter", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field"%>
-            <% end %>
-          </div>
-        </div>
+        <% end %>
         <table class="content__table" id="table_phongban">
           <tr class="content__table_header">
             <th>

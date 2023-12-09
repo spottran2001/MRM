@@ -728,7 +728,7 @@
               </button>
             <% end %>
           </div> 
-          <h1 class="content__name">CHI TIẾT BÁO CÁO THÁNG</h1>
+          <h1 class="content__name">CHI TIẾT BÁO CÁO CÁ NHÂN</h1>
         </div>
         <div class="content__generality" style="padding: 0px 20px;">
           <div class="generality__search">
@@ -792,20 +792,23 @@
                     style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem"
                     class="email_receiver"
                     type="text"
-                    placeholder="Email hoặc tên người gửi"
+                    placeholder="Tên người phản hồi báo cáo"
+                    disabled
                     />
                   <textarea
+                    disabled
                     name="content_feedback"
                     id=""
                     cols="30"
                     rows="10"
-                    placeholder="Thông tin phản hồi"
+                    placeholder="Nội dung phản hồi"
                     style="
                     border-radius: 12px;
                     padding: 1rem;
                     margin-bottom: 1rem;
                     resize: none;
                     "
+                    
                     ><%= @report_template.feedback%></textarea>
                 </div>
                 <div class="popup_footer_feedback">
@@ -816,9 +819,6 @@
                     >
                   HỦY
                   </button>
-                  <%#<button style="background-color: #6c8de0; margin-left: 2rem">
-                  GỬI
-                  </button>%>
                 </div>
               </div>
             </div>
@@ -833,7 +833,7 @@
                 height: auto;"
               >
                 <div class="popup_header_attachment"> 
-                  TỆP ĐÍNH KÈM CỦA BÁO CÁO THÁNG
+                  TỆP ĐÍNH KÈM CỦA BÁO CÁO CÁ NHÂN
                   <i id="close__popupFeedBabk" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark" onclick="hideAttachment()"></i>
                 </div>
                 <div class="popup_body_attachment" style="overflow-y:scroll; height:80vh">

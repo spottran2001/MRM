@@ -79,9 +79,7 @@
   }
   .breadcrumb__name {
     display: inline-block;
-    margin-left: 10px;
-    color: #f34f68;
-    padding: 12px 0px;
+    color: #f34f68; 
   }
   .content__user {
     display: flex;
@@ -578,20 +576,29 @@
   .notifi__Item i {
     color: white;
   }
+  .notification-badge {
+    position: relative;
+    top: -17px;
+    right: 15px;
+    background-color: #d72134;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
 </style>
 <div class="content__title">
   <div class="content__breadcrumb">
     TRANG CHỦ
-    <p class="breadcrumb__name" style="color: black; border-bottom: none;">/</p>
-    <p class="breadcrumb__name">QUẢN LÝ TÀI KHOẢN</p>
-  </div>
-  <ol class="breadcrumb">
-    <%= render_breadcrumbs tag: :li, separator: "/", class: "some" %>
-  </ol>
+    <p class="breadcrumb__name" style="color: black; border-bottom: none; padding: unset; margin-left: unset;">/</p>
+    <%= render_breadcrumbs tag: :span, separator: "/" " ", class: "breadcrumb__name" %>
+  </div>  
   <div class="content__user">
     <div class="user_icon" id="userIcon">
       <%= button_to user_read_notifications_path(current_user), method: :put, style: "background-color: #F5F5F5; border:none", id: 'notification-button' do %>
-      <i class="fa-regular fa-bell"></i>
+      <i class="fa-regular fa-bell" title="Thông báo" data-tooltip="Tooltip Text">
+        <span class="notification-badge">33</span>
+      </i>
       <% end %>
       <div id="userNotifi" class="d-none">
         <% current_user.notifications.each_with_index do |noti, index|%>

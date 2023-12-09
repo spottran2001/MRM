@@ -116,12 +116,14 @@ class ReportController < ApplicationController
   end
 
   def show
+    add_breadcrumb "CHI TIẾT BÁO CÁO CÁ NHÂN", :report_path
     @report_template_title = JSON.parse(Report.find(params[:id]).data)
     @report_template = Report.find(params[:id])
     @file_count = @report_template.file_count.present? ? JSON.parse(@report_template.file_count) : []
   end
 
   def edit
+    add_breadcrumb "CHỈNH SỬA BÁO CÁO CÁ NHÂN", :edit_report_path
     @report_template_title = JSON.parse(Report.find(params[:id]).data)
     @report_template = Report.find(params[:id])
     report_type = @report_template.report_type&.name_type
@@ -134,8 +136,9 @@ class ReportController < ApplicationController
 
   end
 
-  #quanlikibaocaostaff
+  #dánhachkibaocao
   def index
+    add_breadcrumb "DANH SÁCH BÁO CÁO CÁ NHÂN", :report_index_path
     @report = current_user.reports.order(:created_at)
   end
 
