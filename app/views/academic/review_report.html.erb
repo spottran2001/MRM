@@ -658,10 +658,13 @@
     }
     .popup_footer_feedback {
       display: flex;
-      justify-content: end;
-      padding: 0rem 4rem 2rem 0rem;
+      justify-content: space-around;
+      padding: 0rem 4rem 2rem 4rem;
     }
     .popup_footer_feedback button {
+      width: 150px;
+      display: flex;
+      justify-content: center;
       padding: 10px 40px;
       border-radius: 12px;
       border: none;
@@ -748,6 +751,9 @@
       padding: 0rem 4rem 2rem 0rem;
     }
     .popup_footer_attachment button {
+      width: 150px;
+      display: flex;
+      justify-content: center;
       padding: 10px 40px;
       border-radius: 12px;
       border: none;
@@ -825,7 +831,7 @@
               </button>
             <% end %>
           </div> 
-          <h1 class="content__name">CHI TIẾT BÁO CÁO THÁNG</h1>
+          <h1 class="content__name">CHI TIẾT BÁO CÁO CÁ NHÂN</h1>
         </div> 
         <div class="content__generality" style="padding: 0px 20px;">
           <div class="generality__search">
@@ -849,14 +855,14 @@
             </div>
           </div>
           <div class="d-flex">
-            <div class="btn__addfile"  style="margin: 0px; align-self: center">
+            <div class="btn__addfile"  style="margin: 0px; align-self: center; padding: 14px 0px;"> 
               <button aria-label="btn__addfile" style="background-color: #fff; color:#678EF8; border: 1px solid #678EF8;
                 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);" onclick="showAttachment()">
                 <i class="fa-solid fa-paperclip" style="padding-right: 0.5rem"></i>
                 TỆP ĐÍNH KÈM
               </button>
             </div>
-            <div class="generality__options <%= @can_accept_reject ? "" : "d-none" %>" style="padding: 14px 10px;">
+            <div class="generality__options <%= @can_accept_reject ? "" : "d-none" %>">
               <div class="btn_submit">
                 <div id="send_Feedback" class="btn__addfile" style="margin: 0px; padding-left: 1rem">
                   <button
