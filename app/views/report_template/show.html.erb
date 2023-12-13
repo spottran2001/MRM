@@ -749,11 +749,11 @@
                 </div>      
                 <div class="timeCreate" style="padding-right: 4rem">
                   <span style= "font-weight: 800; padding-right: 1rem">Thời gian tạo: </span>
-                  <span><%= @report_template.created_at.strftime('%d/%m/%Y %T')%></span>
+                  <span><%= @report_template.created_at&.strftime('%d/%m/%Y %T')%></span>
                 </div>
                 <div class="timeEdit" style="padding-right: 4rem">
                   <span style= "font-weight: 800; padding-right: 1rem">Thời gian sửa: </span>
-                  <span><%= @report_template.updated_at.strftime('%d/%m/%Y %T')%></span>
+                  <span><%= @report_template.updated_at&.strftime('%d/%m/%Y %T')%></span>
                 </div>            
             </div>
           </div>

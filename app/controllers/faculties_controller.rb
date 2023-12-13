@@ -2,7 +2,7 @@ class FacultiesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    add_breadcrumb "QUẢN LÝ PHÒNG BAN" " / " "QUẢN LÝ KHOA", :faculties_path
+    # add_breadcrumb "QUẢN LÝ PHÒNG BAN" " / " "QUẢN LÝ KHOA", :faculties_path
     @faculty = Faculty.new
     @pagy, @faculties = pagy(Faculty.all, items: 8)
   end

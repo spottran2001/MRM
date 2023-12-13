@@ -12,13 +12,13 @@ class AcademicController < ApplicationController
   end
 
   def report_list
-    @pagy, @academic = pagy(Academic.all, items: 8)
     @academic = Academic.find(params[:id])
     @report_list = Report.where(academic_id: params[:id])
-    add_breadcrumb "CHI TIẾT KỲ BÁO CÁO", :academic_path
+    add_breadcrumb  "CHI TIẾT KỲ BÁO CÁO", :academic_path
     add_breadcrumb "DANH SÁCH BÁO CÁO CHI TIẾT", :report_list_academic_path
     if params[:status]
       @report_list = @report_list.where(role: params[:status])
+      @pagy, @report_list = pagy(@report_list, items: 8)
     else
       redirect_to root_path
     end
@@ -27,16 +27,16 @@ class AcademicController < ApplicationController
   def review_report
     @report_template_title = JSON.parse(@report.data)
     @report_template = @report
-    @can_accept_reject = @report.report_type&.name_type == 'cho duyet' ? true : false
+    @can_accept_reject = @report.report_type&.name_type == 'Chờ duyệt' ? true : false
     @file_count = @report_template.file_count.present? ? JSON.parse(@report_template.file_count) : []
     add_breadcrumb "CHI TIẾT KỲ BÁO CÁO", :academic_path
-    add_breadcrumb "DANH SÁCH BÁO CÁO CHI TIẾT", :report_list_academic_path
+    add_breadcrumb "DANH SÁCH BÁO CÁO CHI TIẾT", report_list_academic_path(status: @report_template.role)
     add_breadcrumb "CHI TIẾT BÁO CÁO THÁNG", :review_report_academic_path
   end
 
   def accept_report
-    if @report.report_type&.name_type == 'cho duyet'
-      report_type_id = ReportType.find_by(name_type: "da duyet", type_report: "dung han").id
+    if @report.report_type&.name_type == 'Chờ duyệt'
+      report_type_id = ReportType.find_by(name_type: "Đã duyệt", type_report: "Đúng hạn").id
       @report.update(submiter_id: current_user.id, report_type_id: report_type_id, confirm_time: Time.current, feedback: params[:report] ? params[:report][:feedback] : "")
       @report.user.notifications.create(content: "Báo cáo của bạn đã được duyệt")
     end
@@ -44,8 +44,8 @@ class AcademicController < ApplicationController
   end
 
   def reject_report
-    if @report.report_type&.name_type == 'cho duyet'
-      report_type_id = ReportType.find_by(name_type: "can bo sung", type_report: "dang bao cao").id
+    if @report.report_type&.name_type == 'Chờ duyệt'
+      report_type_id = ReportType.find_by(name_type: "Cần bổ sung", type_report: "Đang báo cáo").id
       @report.update(returner_id: current_user.id, report_type_id: report_type_id, return_time: Time.current, feedback: params[:report] ? params[:report][:feedback] : "")
       @report.user.notifications.create(content: "Báo cáo của bạn vừa bị từ chối")
     end

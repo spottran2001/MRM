@@ -1045,7 +1045,7 @@
             <div class="Rectangle1" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
             <div class="Rectangle1" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
             <div class="DanhSChKBOCO" style="left: 43px; top: 60px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.name %></div>
-            <div class="Nam2023" style="left: 43px; top: 94px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.created_at.strftime('%d/%m/%Y') %> - <%= r.updated_at.strftime('%d/%m/%Y') %></div>
+            <div class="Nam2023" style="left: 43px; top: 94px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.created_at&.strftime('%d/%m/%Y %T') %> - <%= r.updated_at&.strftime('%d/%m/%Y %T') %></div>
             <div class="FileText1" style="width: 12px; height: 12px; left: 16px; top: 58px; position: absolute; color: white">
               <i class="fa-regular fa-file-lines"></i>
             </div>

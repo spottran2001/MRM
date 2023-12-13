@@ -668,8 +668,8 @@
               <td><%= r.id %></td>
               <td><%= r.name %></td>
               <td><%= r.role %></td>
-              <td><%= r.created_at.strftime('%d/%m/%Y %T') %></td>
-              <td><%= r.updated_at.strftime('%d/%m/%Y %T') %></td>
+              <td><%= r.created_at&.strftime('%d/%m/%Y %T') %></td>
+              <td><%= r.updated_at&.strftime('%d/%m/%Y %T') %></td>
               <td><%= r.report_type&.name_type %></td>
               <td>
                 <%= link_to report_path(r), data: {turbo: false} do %>

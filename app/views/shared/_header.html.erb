@@ -589,15 +589,13 @@
 </style>
 <div class="content__title">
   <div class="content__breadcrumb">
-    TRANG CHỦ
-    <p class="breadcrumb__name" style="color: black; border-bottom: none; padding: unset; margin-left: unset;">/</p>
-    <%= render_breadcrumbs tag: :span, separator: "/" " ", class: "breadcrumb__name" %>
+    <%= render_breadcrumbs tag: :span, separator: "/", class: "breadcrumb__name" %>
   </div>  
   <div class="content__user">
     <div class="user_icon" id="userIcon">
       <%= button_to user_read_notifications_path(current_user), method: :put, style: "background-color: #F5F5F5; border:none", id: 'notification-button' do %>
       <i class="fa-regular fa-bell" title="Thông báo" data-tooltip="Tooltip Text">
-        <span class="notification-badge">33</span>
+        <span class="notification-badge"><%= current_user.notifications.size %></span>
       </i>
       <% end %>
       <div id="userNotifi" class="d-none">
@@ -607,7 +605,7 @@
             <i class="fa-solid fa-check"></i>
             <div class="mess_content">
               <p> <%= noti.content %> </p>
-              <p> <%= noti.created_at.strftime('%d %B %Y %r') %> </p>
+              <p> <%= noti.created_at&.strftime('%d/%m/%Y %T') %> </p>
             </div>
             <%= button_to user_delete_notification_path(current_user, notification_id: noti), method: :delete, style: "border:none;background-color: #5cbd4c", data: {turbo: false} do %>
               <i class="fa-solid fa-xmark delete_notification" data-noti-index="notifi-content-<%= index %>"></i>

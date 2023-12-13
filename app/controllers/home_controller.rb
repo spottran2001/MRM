@@ -53,7 +53,7 @@ class HomeController < ApplicationController
   end
 
   def configuration_page
-    add_breadcrumb "QUẢN LÝ CẤU HÌNH", :configuration_page_path
+    # add_breadcrumb "QUẢN LÝ CẤU HÌNH", :configuration_page_path
   end
 
   def report_upload
@@ -74,12 +74,12 @@ class HomeController < ApplicationController
       @report = @report.where(user: {faculty_id: params[:filter_faculty]})
     end
     #
-    @khoi_tao = @report.where(report_types: {name_type: 'khoi tao'}).size
-    @luu_nhap = @report.where(report_types: {name_type: 'luu nhap'}).size
-    @dung_han = @report.where(report_types: {type_report: 'dung han'}).size
-    @tre_han = @report.where(report_types: {type_report: 'tre han'}).size
-    @can_bo_sung = @report.where(report_types: {name_type: 'can bo sung'}).size
-    @da_duyet = @report.where(report_types: {name_type: 'da duyet'}).size
+    @khoi_tao = @report.where(report_types: {name_type: 'Khởi tạo'}).size
+    @luu_nhap = @report.where(report_types: {name_type: 'Lưu nháp'}).size
+    @dung_han = @report.where(report_types: {type_report: 'Đúng hạn'}).size
+    @tre_han = @report.where(report_types: {type_report: 'Trễ hạn'}).size
+    @can_bo_sung = @report.where(report_types: {name_type: 'Cần bổ sung'}).size
+    @da_duyet = @report.where(report_types: {name_type: 'Đã duyệt'}).size
     @cho_duyet = @report.where(report_types: {name_type: 'cho_duyet'}).size
     @data = {
       chart: {

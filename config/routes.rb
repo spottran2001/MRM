@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     get :download_attachment
     get :export
   end
-  root 'users#show'
+  root 'home#report_chart'
   get "statistic", to: 'home#page_stats' 
   get "reports", to: 'home#report' 
 

@@ -760,8 +760,8 @@
         <tr class="content__table_body">
           <td><%= s.id %></td>
           <td><%= s.name %></td>
-          <td><%= s.created_at.strftime('%d %B %Y %r') %></td>
-          <td>06 November 2023 02:08:49 PM</td>
+          <td><%= s.created_at&.strftime('%d/%m/%Y %T') %></td>
+          <td><%= s.updated_at&.strftime('%d/%m/%Y %T') %></td>
           <td>
             <button class="btn gold" aria-label="btn" title="Chỉnh sửa khoa" data-tooltip="Tooltip Text" onclick="showFacultiesDetail()">
               <i class="fa-solid fa-pen"></i>

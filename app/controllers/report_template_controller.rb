@@ -26,7 +26,7 @@ class ReportTemplateController < ApplicationController
 
   def new
     @report_template = ReportTemplate.new()
-    add_breadcrumb "TẠO BIỂU MẪU BÁO CÁO CHUNG", :new_report_template_path
+    # add_breadcrumb "TẠO BIỂU MẪU BÁO CÁO CHUNG", :new_report_template_path
   end
 
   def edit
@@ -56,7 +56,7 @@ class ReportTemplateController < ApplicationController
   def show
     @report_template_title = JSON.parse(ReportTemplate.find(params[:id]).data)
     @report_template = ReportTemplate.find(params[:id])
-    add_breadcrumb "CHI TIẾT BIỂU MẪU BÁO CÁO CHUNG", :report_template_path
+    # add_breadcrumb "CHI TIẾT BIỂU MẪU BÁO CÁO CHUNG", :report_template_path
   end
 
   def submit_report
@@ -81,7 +81,7 @@ class ReportTemplateController < ApplicationController
       subject_template = ReportTemplate.find(subject_template_id)
       faculty_template = ReportTemplate.find(faculty_template_id)
       teacher_template = ReportTemplate.find(teacher_template_id)
-      report_type = ReportType.find_by(name_type: 'khoi tao', type_report: 'chua bao cao')
+      report_type = ReportType.find_by(name_type: 'Khởi tạo', type_report: 'Chưa báo cáo')
       academic = Academic.create(
         staff_report_id: staff_template_id, subject_report_id: subject_template_id,
         faculty_report_id: faculty_template_id, teacher_report_id: teacher_template_id,

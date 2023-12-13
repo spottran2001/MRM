@@ -722,11 +722,11 @@
             </div>
             <div class="timeCreateDetail" style="padding-right: 2rem">
               <span style= "font-weight: 800; padding-right: 1rem">Thời gian tạo: </span>
-              <span><%= @report_template.created_at.strftime('%d %B %Y') %></span>
+              <span><%= @report_template.created_at&.strftime('%d/%m/%Y %T') %></span>
             </div>
             <div class="timeEditDetail" style="padding-right: 2rem">
               <span style= "font-weight: 800; padding-right: 1rem">Thời gian sửa: </span>
-              <span><%= @report_template.updated_at.strftime('%d %B %Y') %></span>
+              <span><%= @report_template.updated_at&.strftime('%d/%m/%Y %T') %></span>
             </div>
           </div>
           <div class="generality__options">
@@ -1381,8 +1381,8 @@
         processData: false,
         method: 'PUT',
         success: function(data){
-            alert("chinh sua thanh cong");
-            window.location.replace("/report/<%= @report_template.id %>");
+          alert("chinh sua thanh cong");
+          window.location.replace("/report/<%= @report_template.id %>");
         }
       });
     }

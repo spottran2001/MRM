@@ -638,7 +638,7 @@
             <div class="reportTitleAcademic">
               <div class="nameAcademic" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Tên kỳ báo cáo: </span>
-                <span>Tên kỳ</span>
+                <span><%= @academic.name %></span>
               </div>
               <div class="yearAcademic" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Năm báo cáo: </span>
@@ -646,11 +646,11 @@
               </div>
               <div class="startTimeAcademic" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Thời gian bắt dầu: </span>
-                <span>10/12/2023</span>
+                <span><%= @academic.start_date&.strftime('%d/%m/%Y %T') %></span>
               </div>
               <div class="endTimeAcademic" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Thời gian kết thúc: </span>
-                <span>10/1/2024</span>
+                <span><%= @academic.end_date&.strftime('%d/%m/%Y %T') %></span>
               </div>
             </div>
             <%#<div class="generality__search">
@@ -701,8 +701,8 @@
             <td><%= staff_report.id %></td>
             <td><%= staff_report.name %></td>
             <td><%= staff_report.role %></td>
-            <td><%= staff_report.created_at.strftime('%d %B %Y') %></td>
-            <td><%= staff_report.updated_at.strftime('%d %B %Y') %></td>
+            <td><%= staff_report.created_at&.strftime('%d/%m/%Y %T') %></td>
+            <td><%= staff_report.updated_at&.strftime('%d/%m/%Y %T') %></td>
             <td>Đang hoạt động</td>
             <td>
               <%= link_to report_template_path(staff_report), style: "text-decoration:none", class: "#{staff_policy}", data: {turbo: false} do %>
@@ -720,8 +720,8 @@
             <td><%= teacher_report.id %></td>
             <td><%= teacher_report.name %></td>
             <td><%= teacher_report.role %></td>
-            <td><%= teacher_report.created_at.strftime('%d %B %Y') %></td>
-            <td><%= teacher_report.updated_at.strftime('%d %B %Y') %></td>
+            <td><%= teacher_report.created_at&.strftime('%d/%m/%Y %T') %></td>
+            <td><%= teacher_report.updated_at&.strftime('%d/%m/%Y %T') %></td>
             <td>Đang hoạt động</td>
             <td>
               <%= link_to report_template_path(teacher_report), style: "text-decoration:none", class: "#{teacher_policy}", data: {turbo: false} do %>
@@ -738,8 +738,8 @@
             <td><%= subject_report.id %></td>
             <td><%= subject_report.name %></td>
             <td><%= subject_report.role %></td>
-            <td><%= subject_report.created_at.strftime('%d %B %Y') %></td>
-            <td><%= subject_report.updated_at.strftime('%d %B %Y') %></td>
+            <td><%= subject_report.created_at&.strftime('%d/%m/%Y %T') %></td>
+            <td><%= subject_report.updated_at&.strftime('%d/%m/%Y %T') %></td>
             <td>Đang hoạt động</td>
             <td>
               <%= link_to report_template_path(subject_report), style: "text-decoration:none", class: "#{subject_policy}", data: {turbo: false} do %>
@@ -756,8 +756,8 @@
             <td><%= faculty_report.id %></td>
             <td><%= faculty_report.name %></td>
             <td><%= faculty_report.role %></td>
-            <td><%= faculty_report.created_at.strftime('%d %B %Y') %></td>
-            <td><%= faculty_report.updated_at.strftime('%d %B %Y') %></td>
+            <td><%= faculty_report.created_at&.strftime('%d/%m/%Y %T') %></td>
+            <td><%= faculty_report.updated_at&.strftime('%d/%m/%Y %T') %></td>
             <td>Đang hoạt động</td>
             <td>
               <%= link_to report_template_path(faculty_report), style: "text-decoration:none", class: "#{faculty_policy}", data: {turbo: false} do %>

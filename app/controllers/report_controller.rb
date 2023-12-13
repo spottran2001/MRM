@@ -51,8 +51,8 @@ class ReportController < ApplicationController
       # params['file'][0..-1].each do |f|
       #   report.report_attachments.create(attachment: f)
       # end
-      report_type_id = ReportType.find_by(name_type: "luu nhap", type_report: "chua bao cao").id
-      report.update!(data: JSON.generate(report_data), status: 'Luu nhap',report_type_id: report_type_id, file_count: file_count)
+      report_type_id = ReportType.find_by(name_type: "Lưu nháp", type_report: "Chưa báo cáo").id
+      report.update!(data: JSON.generate(report_data), status: 'Lưu nháp',report_type_id: report_type_id, file_count: file_count)
     end
   end
 
@@ -71,7 +71,7 @@ class ReportController < ApplicationController
       end
     end
     report = Report.find(params["report_id"])
-    report_type_id = ReportType.find_by(name_type: "luu nhap", type_report: "chua bao cao").id
+    report_type_id = ReportType.find_by(name_type: "Lưu nháp", type_report: "Chưa báo cáo").id
     report.update(report_type_id: report_type_id)
   end
 
@@ -90,7 +90,7 @@ class ReportController < ApplicationController
     #   end
     # end
     @report = Report.find(params["report_id"])
-    report_type_id = ReportType.find_by(name_type: "cho duyet", type_report: "dang bao cao").id
+    report_type_id = ReportType.find_by(name_type: "Chờ duyệt", type_report: "Đang báo cáo").id
     @report.report_type_id =  report_type_id  
     @report.first_submit = Date.current if @report.first_submit.blank?
     @report.save
@@ -98,7 +98,7 @@ class ReportController < ApplicationController
 
   def return_report
     report = Report.find(params["report_id"])
-    report_type_id = ReportType.find_by(name_type: "can bo sung", type_report: "dang bao cao").id
+    report_type_id = ReportType.find_by(name_type: "Cần bổ sung", type_report: "Đang báo cáo").id
     @report.update(report_type_id: report_type_id)  
     @report.user.notifications.create(content: "Báo cáo của bạn vừa bị từ chối")
   end
@@ -106,29 +106,29 @@ class ReportController < ApplicationController
   def report_apply
     report = Report.find(params["report_id"])
     if report.last_submit_time > report.report_template.end_date
-      report_type_id = ReportType.find_by(name_type: "da duyet", type_report: "tre han").id
+      report_type_id = ReportType.find_by(name_type: "Đã duyệt", type_report: "Trễ hạn").id
       @report.update(report_type_id: report_type_id)
       @report.user.notifications.create(content: "Báo cáo của bạn đã được duyệt")
     else 
-      report_type_id = ReportType.find_by(name_type: "da duyet", type_report: "dung han").id
+      report_type_id = ReportType.find_by(name_type: "Đã duyệt", type_report: "Đúng hạn").id
       @report.update(report_type_id: report_type_id)
     end
   end
 
   def show
-    add_breadcrumb "CHI TIẾT BÁO CÁO CÁ NHÂN", :report_path
+    # add_breadcrumb "CHI TIẾT BÁO CÁO CÁ NHÂN", :report_path
     @report_template_title = JSON.parse(Report.find(params[:id]).data)
     @report_template = Report.find(params[:id])
     @file_count = @report_template.file_count.present? ? JSON.parse(@report_template.file_count) : []
   end
 
   def edit
-    add_breadcrumb "CHỈNH SỬA BÁO CÁO CÁ NHÂN", :edit_report_path
+    # add_breadcrumb "CHỈNH SỬA BÁO CÁO CÁ NHÂN", :edit_report_path
     @report_template_title = JSON.parse(Report.find(params[:id]).data)
     @report_template = Report.find(params[:id])
     report_type = @report_template.report_type&.name_type
     @file_count = @report_template.file_count.present? ? JSON.parse(@report_template.file_count) : []
-    @can_send_report = (report_type == "can bo sung" || report_type == "luu nhap") ? true :false
+    @can_send_report = (report_type == "Cần bổ sung" || report_type == "Lưu nháp") ? true :false
   end
 
   #baocaonhanvien
@@ -138,7 +138,7 @@ class ReportController < ApplicationController
 
   #dánhachkibaocao
   def index
-    add_breadcrumb "DANH SÁCH BÁO CÁO CÁ NHÂN", :report_index_path
+    # add_breadcrumb "DANH SÁCH BÁO CÁO CÁ NHÂN", :report_index_path
     @report = current_user.reports.order(:created_at)
   end
 
