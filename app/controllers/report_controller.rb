@@ -140,6 +140,7 @@ class ReportController < ApplicationController
   def index
     # add_breadcrumb "DANH SÁCH BÁO CÁO CÁ NHÂN", :report_index_path
     @report = current_user.reports.order(:created_at)
+    @pagy, @report = pagy(current_user.reports.all, items: 8)
   end
 
   def download_attachment
