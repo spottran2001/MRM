@@ -643,6 +643,66 @@
       color: white;
       box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     }
+    <%# Popup xóa  khoa%>
+    .popup_FacultiesDelete {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .popup_inner_FacultiesDelete {
+      background-color: white;
+      width: 50%;
+      border: 2px solid black;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      height: auto;
+      display: none;
+    }
+    .popup_header_FacultiesDelete {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid black;
+      padding: 10px;
+      align-items: center;
+      background-color: #dc546c;
+      color: white;
+      border-radius: 12px 12px 0px 0px;
+    }
+    .popup_body_FacultiesDelete {
+      background-color: #F1F1F1;
+      padding: 2rem 4rem 2rem 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border: none;
+    }
+    .popup_footer_FacultiesDelete {
+      background-color: #F1F1F1;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-around;
+      padding: 0rem 4rem 2rem 4rem;
+    }
+    .popup_footer_FacultiesDelete button {
+      padding: 10px 60px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+
     .nameGeneralReportForm {
       padding-left: 0rem;
       width: 100%;
@@ -714,17 +774,9 @@
       <%= render "shared/left_nav"%>
       <div class="content">
       <%= render 'shared/header' %>
-      <h1 class="content__name">QUẢN LÝ PHÒNG BAN</h1>
+      <h1 class="content__name">QUẢN LÝ KHOA</h1>
       <div class="content__generality">
         <div class="generality__options">
-          <div class="btn__addfile">
-            <button id="open-popup-btn" style="background-color: #DC546C;">
-              QUẢN LÝ KHOA
-            </button>
-          </div>
-          <div class="btn__addfile">
-            <%= button_to "QUẢN LÝ BỘ MÔN", subjects_path, method: :get, style: "background-color: #EC8C9C;", data: {turbo: false}%>
-          </div>
           <div class="btn__addfile">
             <button aria-label="btn__department" id="btn__department" style="background-color: #678EF8;" onclick="showFeedbackPopup()">
               <i class="fa-solid fa-plus" style="padding-right: 0.5rem"></i>
@@ -766,7 +818,7 @@
             <button class="btn gold" aria-label="btn" title="Chỉnh sửa khoa" data-tooltip="Tooltip Text" onclick="showFacultiesDetail()">
               <i class="fa-solid fa-pen"></i>
             </button>
-            <button class="btn red" aria-label="btn" title="Xóa khoa" data-tooltip="Tooltip Text">
+            <button class="btn red" aria-label="btn" title="Xóa khoa" data-tooltip="Tooltip Text" onclick="showFacultiesDelete()">
               <i class="fa-solid fa-trash"></i>
             </button>
           </td>
@@ -825,8 +877,31 @@
             </div>
           </div>
           <div class="popup_footer_FacultiesDetail">
-            <button class="btn__modal" onclick="hideFacultiesDetail()"  id="btn__closeModal">HỦY</button>
-            <button class="btn__modal" id="academicSubmit">LƯU</button>
+            <button class="btn__modal" onclick="hideFacultiesDetail()">HỦY</button>
+            <button class="btn__modal">LƯU</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="popup_FacultiesDelete" class="popup_FacultiesDelete">
+        <div id="popup_inner_FacultiesDelete" 
+          style="
+          background-color: white;
+          border-radius: 12px;
+          border-bottom: 2px solid black;
+          width: 40%;
+          height: auto;
+        ">
+          <div class="popup_header_FacultiesDelete">
+            XÓA KHOA
+            <i style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark" onclick="hideFacultiesDelete()"></i>
+          </div>
+          <div class="popup_body_FacultiesDelete">
+            <p style="margin-bottom: 0rem " >Bạn có chắc xóa khoa này ?</p>
+          </div>
+          <div class="popup_footer_FacultiesDelete">
+            <button class="btn__modal" onclick="hideFacultiesDelete()">HỦY</button>
+            <button class="btn__modal" >XÓA</button>
           </div>
         </div>
       </div>
@@ -867,6 +942,14 @@
     }
     function hideFacultiesDetail() {
       document.getElementById("popup_FacultiesDetail").style.display = "none";
+    }
+
+    //Popup xóa Khoa
+    function showFacultiesDelete() {
+      document.getElementById("popup_FacultiesDelete").style.display = "flex";
+    }
+    function hideFacultiesDelete() {
+      document.getElementById("popup_FacultiesDelete").style.display = "none";
     }
 
   </script>

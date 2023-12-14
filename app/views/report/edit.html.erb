@@ -616,8 +616,27 @@
       display: flex;
       flex-direction: column;
       border: none;
-      overflow-Y: scroll;
       height: auto;
+    }
+    /* Cho trình duyệt WebKit (Chrome, Safari) */
+    .popup_body_attachment::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .popup_body_attachment::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
+    }
+
+    /* Cho trình duyệt Firefox */
+    .popup_body_attachment {
+      scrollbar-width: thin;
+      scrollbar-color: #888 transparent;
+    }
+
+    .popup_body_attachment::-moz-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
     }
     .popup_footer_attachment {
       display: flex;
@@ -674,6 +693,26 @@
       border: 1px solid #dc546c;
       background-color: white;
       color: #dc546c;
+    }
+    /* Cho trình duyệt WebKit (Chrome, Safari) */
+    .fileList::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .fileList::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
+    }
+
+    /* Cho trình duyệt Firefox */
+    .fileList {
+      scrollbar-width: thin;
+      scrollbar-color: #888 transparent;
+    }
+
+    .fileList::-moz-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
     }
     <%#custome nút chọn tệp%>
     .file_upload_container {

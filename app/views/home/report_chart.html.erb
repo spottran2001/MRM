@@ -807,38 +807,37 @@
                 <% end %>
               </select>
 
-              <% if current_user.role == 'admin' %>
-                <span style="padding-left: 2rem; font-weight:600">Vai trò</span>
-                <%= text_field_tag "filter_role", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
-                <select class="select-field" style="background: #DC4C5D" id="selected_role">
-                  <option value="" selected>Tất cả</option>
-                  <option value="Nhân viên">Nhân viên</option>
-                  <option value="Giảng viên">Giảng viên</option>
-                  <option value="Phụ trách bộ môn">Phụ trách bộ môn</option>
-                  <option value="Ban chủ nhiệm khoa">Ban chủ nhiệm khoa</option>
-                </select>
+              
+              <span style="padding-left: 2rem; font-weight:600">Vai trò</span>
+              <%= text_field_tag "filter_role", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
+              <select class="select-field" style="background: #DC4C5D" id="selected_role">
+                <option value="" selected>Tất cả</option>
+                <option value="Nhân viên">Nhân viên</option>
+                <option value="Giảng viên">Giảng viên</option>
+                <option value="Phụ trách bộ môn">Phụ trách bộ môn</option>
+                <option value="Ban chủ nhiệm khoa">Ban chủ nhiệm khoa</option>
+              </select>
 
-                <%# <input type="checkbox" class="custom_checkbox"> %>
-                  <span style="padding-left: 2rem; font-weight:600">Khoa</span>
-                  <%= text_field_tag "filter_faculty", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
-                  <select class="select-field" style="background: #FFC123" id="selected_faculty" >
-                    <option value="" selected>Tất cả</option>
-                    <% Faculty.all.each do |f| %>
-                      <option value="<%= f.id %>"><%= f.name %></option>
-                    <% end %>
-                  </select>
+              <%# <input type="checkbox" class="custom_checkbox"> %>
+              <span style="padding-left: 2rem; font-weight:600">Khoa</span>
+              <%= text_field_tag "filter_faculty", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
+              <select class="select-field" style="background: #FFC123" id="selected_faculty" >
+                <option value="" selected>Tất cả</option>
+                  <% Faculty.all.each do |f| %>
+                    <option value="<%= f.id %>"><%= f.name %></option>
+                  <% end %>
+              </select>
 
-                <%# <input type="checkbox" class="custom_checkbox"> %>
-                  <span style="padding-left: 2rem; font-weight:600">Bộ môn</span>
-                  <%= text_field_tag "filter_subject", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
-                  <select class="select-field" style="background: #FFC123" id="selected_subject">
-                    <option value="" selected>Tất cả</option>
-                    <% Subject.all.each do |s| %>
-                      <option value="<%= s.id %>"><%= s.name %></option>
-                    <% end %>
-                  </select>
-                <% end %>
-              <% end %>
+              <%# <input type="checkbox" class="custom_checkbox"> %>
+              <span style="padding-left: 2rem; font-weight:600">Bộ môn</span>
+              <%= text_field_tag "filter_subject", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
+              <select class="select-field" style="background: #FFC123" id="selected_subject">
+                <option value="" selected>Tất cả</option>
+                  <% Subject.all.each do |s| %>
+                    <option value="<%= s.id %>"><%= s.name %></option>
+                  <% end %>
+              </select>
+            <% end %>
           </div>
         </div>
         <div class="report_total">

@@ -816,6 +816,46 @@
     .file_upload:hover {
       background: #f5f5f5;
     }
+    /*fileList Cho trình duyệt WebKit (Chrome, Safari) */
+    .fileList::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .fileList::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
+    }
+
+    /*fileList Cho trình duyệt Firefox */
+    .fileList {
+      scrollbar-width: thin;
+      scrollbar-color: #888 transparent;
+    }
+
+    .fileList::-moz-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
+    }
+    
+    /* Cho trình duyệt WebKit (Chrome, Safari) */
+    .popup_body_attachment::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .popup_body_attachment::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
+    }
+
+    /* Cho trình duyệt Firefox */
+    .popup_body_attachment {
+      scrollbar-width: thin;
+      scrollbar-color: #888 transparent;
+    }
+    .popup_body_attachment::-moz-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
+    }
   </style>
   <body>
     <main class="container">
@@ -948,226 +988,6 @@
             <% end %>
           </table>
         <% end %>
-        <%# <table class="content__table" style="border-radius: 0px; " >
-          <thead >  <tr class="content__table_header"  style="background-color: #f4924b; "  onclick="showTableList(this)">
-              <th class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-              <th id="tableHeader" colspan="8" style="text-align: left;padding: 20px 20px;border-top-left-radius: 12px;border-top-right-radius: 12px;cursor: pointer;user-select: none;">1. CÔNG VIỆC THỰC HIỆN THEO KPI </th>
-          </tr></thead>
-          <tbody id="tableBody"  class="list_table">
-          <tr class="content__table_header">
-              <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-              <th>
-                  <input id="Checkbox11" onchange="toggleAllCheckboxes()"  class="content__table-checkbox" type="checkbox" placeholder="checkbox">
-              </th>
-              <th>
-                  1.1
-              </th>
-              <th>
-                  Công tác giảng dạy
-              </th>
-              <th>
-                  Trống
-                  <p>tiết / giờ</p>
-              </th>
-              <th>
-                  Lớp / nhóm
-              </th>
-              <th>
-                  Thứ
-              </th>
-              <th>
-                  Ca
-              </th>
-              <th>
-                  Ghi chú
-              </th>
-          </tr>
-          <tr class="content__table_body">
-              <td class="first_column"  style="border: none;text-align: right;padding: 0;">
-                  <button  onclick="delRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                      <i class="fa-solid fa-trash"></i>
-                  </button>
-                  <button  onclick="addRow(this)" style="display: block;width: 100%;padding: 2px 0px;">
-                      <i class="fa-solid fa-plus"></i>
-                  </button>
-              </td>
-              <td> <input  class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-              <td>1</td>
-              <td>text</td>
-              <td>text</td>
-              <td>text</td>
-              <td>text</td>
-              <td>text</td>
-              <td>text</td>
-          </tr>
-          <tr class="content__table_body">
-              <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-              <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-              <td>2</td>
-              <td>text</td>
-              <td>text</td>
-              <td>text</td>
-              <td>text</td>
-              <td>text</td>
-              <td>test</td>
-          </tr>
-          <tr class="content__table_body">
-              <td class="first_column" style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-              <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-              <td>3</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>    
-          </tr>
-          </tbody>
-          
-          
-          </table> %>
-        <%# 
-          <table id="myTable12" class="content__table" style="border-radius: 0px;margin-top: 30px;" loading="lazy">
-              <tr class="content__table_header">
-                  <th style="padding: 0; border: none;background-color: #f5f5f5;"></th>
-                  <th style="border-top-left-radius: 12px;">
-                      <input id="Checkbox12" onchange="toggleAllCheckboxes12()" class="content__table-checkbox" type="checkbox" placeholder="checkbox">
-                  </th>
-                  <th>
-                      1.2
-                  </th>
-                  <th style ="text-align: left;">
-                      Công tác nghiên cứu khóa học
-                  </th>
-          
-                  <th>
-                      Tạp chí
-                  </th>
-                  <th>
-                      Hạng
-                  </th>
-                  <th style="border-top-right-radius: 12px;">
-                      Kết quả
-                  </th>
-          
-              </tr>
-          <tbody id="tablenhom1">
-              <tr class="content__table_body">
-                  <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                  <td colspan="2" class="color_row">Nhóm 1</td>
-                  <td class="color_row" style="text-align: left;">Nghiên cứu công bố quốc tế (CBQT)     </td>
-                  <td class="color_row">test</td>
-                  <td class="color_row">test</td>
-                  <td class="color_row">test</td>
-              </tr>
-              <tr class="content__table_body">
-                  <td style="border: none;text-align: right;padding: 0;">
-                      <button id="delete" onclick="delRow12()" style="display: block;width: 100%;padding: 2px 0px;">
-                          <i class="fa-solid fa-trash"></i>
-                      </button>
-                      <button id="add" onclick="addRow12()" style="display: block;width: 100%;">
-                          <i class="fa-solid fa-plus"></i>
-                      </button>
-                  </td>
-                  
-                  <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                  <td>1</td>
-                  <td style="text-align: left;">test</td>
-                  <td>test</td>
-                  <td>test</td>
-                  <td>test</td>
-              </tr>
-              <tr class="content__table_body">
-                  <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                  <td><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                  <td>2</td>
-                  <td style="text-align: left;">test</td>
-                  <td>test</td>
-                  <td>test</td>
-                  <td>test</td>
-          
-              </tr>
-          </tbody>
-              
-             <tbody id="tablenhom2">
-              <tr class="content__table_body">
-                  <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                  <td colspan="2" class="color_row">Nhóm 2</td>
-                  <td class="color_row" style="text-align: left;">  Nghiên cứu chuyển giao công nghệ cho doanh nghiệp và xã hội </td>
-                  <td class="color_row">text</td>
-                  <td class="color_row">text</td>
-                  <td class="color_row">text</td>
-          
-              </tr>
-              <tr class="content__table_body">
-                  <td style="border: none;text-align: right;padding: 0;">
-                      <button id="delete" onclick="delRow12nhom2()" style="display: block;width: 100%;padding: 2px 0px;">
-                          <i class="fa-solid fa-trash"></i>
-                      </button>
-                      <button onclick="addRow12nhom2()"style="display: block;width: 100%;">
-                          <i class="fa-solid fa-plus"></i>
-                      </button>
-                  </td>
-                  
-                  <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                  <td>1</td>
-                  <td style="text-align: left;">text</td>
-                  <td>text</td>
-                  <td>text</td>
-                  <td>text</td>
-              </tr>
-              <tr class="content__table_body">
-                  <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                  <td><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                  <td>2</td>
-                  <td style="text-align: left;">text</td>
-                  <td>text</td>
-                  <td>text</td>
-                  <td>text</td>
-          
-              </tr>
-             </tbody>
-            
-          
-           <tbody id="tablenhom3">
-              <tr class="content__table_body">
-                  <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                  <td colspan="2" class="color_row">Nhóm 3</td>
-                  <td class="color_row" style="text-align: left;">Nghiên cứu phục vụ giảng dạy và nâng cao kĩ năng nghề nghiệp</td>
-                  <td class="color_row">test</td>
-                  <td class="color_row">test</td>
-                  <td class="color_row">test</td>
-          
-              </tr>
-              <tr class="content__table_body">
-                  <td style="border: none;text-align: right;padding: 0;">
-                      <button id="delete" onclick="delRow12nhom3()" style="display: block;width: 100%;padding: 2px 0px;">
-                          <i class="fa-solid fa-trash"></i>
-                      </button>
-                      <button onclick="addRow12nhom3()" style="display: block;width: 100%;">
-                          <i class="fa-solid fa-plus"></i>
-                      </button>
-                  </td>
-                  
-                  <td> <input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                  <td>1</td>
-                  <td style="text-align: left;">test</td>
-                  <td>test</td>
-                  <td>test</td>
-                  <td>test</td>
-              </tr>
-              <tr class="content__table_body">
-                  <td style="padding: 0; border: none;background-color: #f5f5f5;"></td>
-                  <td><input class="content__table-checkbox" type="checkbox" placeholder="checkbox"></td>
-                  <td>2</td>
-                  <td style="text-align: left;">test</td>
-                  <td>test</td>
-                  <td>test</td>
-                  <td>test</td>
-          
-              </tr>
-           </tbody>
-          </table> %>
       </div>
       <!-- POPUP PHẢN HỒI DUYỆT VÀ KHÔNG DUYỆT BÁO CÁO -->
       <div id="popup_SendApprove" class="popup_SendApprove">
@@ -1271,7 +1091,7 @@
           height: auto;"
         >
           <div class="popup_header_attachment"> 
-            TỆP ĐÍNH KÈM CỦA BÁO CÁO THÁNG
+            TỆP ĐÍNH KÈM CỦA BÁO CÁO CÁ NHÂN
             <i id="close__popupFeedBabk" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark" onclick="hideAttachment()"></i>
           </div>
           <div class="popup_body_attachment" style="overflow-y:scroll; height:80vh">
@@ -1279,7 +1099,7 @@
               <div style="height: 300px" class="upload_file">
                 <h5><%= "#{index+1}. #{value}" %></h5>
                   <div class="file_upload_container">
-                    Số lượng tệp đã chọn: <span id="fileCount-<%= index %>"><%= @file_count[index]&.size %></span>
+                    Số lượng tệp đã chọn:&nbsp;<span style="font-weight:600" id="fileCount-<%= index %>"><%= @file_count[index]&.size %></span>
                   </div>
                   <div id="fileList<%= index %>" class="fileList">
                     <% @file_count[index]&.each do |file_id|%>
@@ -1299,7 +1119,7 @@
               style="background-color: #dc546c"
               onclick="hideAttachment()"
             >
-            HỦY
+            ĐÓNG
             </button>
           </div>
         </div>

@@ -886,6 +886,26 @@
       width: 100%;
       padding-bottom: 1rem
     }
+    /*fileList Cho trình duyệt WebKit (Chrome, Safari) */
+    .Modal__inner::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .Modal__inner::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
+    }
+
+    /*fileList Cho trình duyệt Firefox */
+    .Modal__inner {
+      scrollbar-width: thin;
+      scrollbar-color: #888 transparent;
+    }
+
+    .Modal__inner::-moz-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 5px;
+    }
 
   </style>
   <body>
@@ -918,15 +938,23 @@
                         <div style="padding-bottom: 1rem">
                           <p>Tên kỳ báo cáo</p>
                           <input class="nameGeneralReportForm" placeholder="Nhập tên kỳ báo cáo" id="academicName">
+                          <span id="academicName-error" style="color: red;"></span>
+                        </div>
+                        <div style="padding-bottom: 1rem">
+                          <p>Năm báo cáo</p>
+                          <input class="nameGeneralReportForm" placeholder="Nhập năm báo cáo" id="academicYear" >
+                          <span id="academicYear-error" style="color: red;"></span>
                         </div>
                         <div class="contentTimeCreate" style="padding-bottom: 1rem">
                           <div class="contentTimeCreateLeft">
                             <p>Thời gian bắt đầu</p>
-                            <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem" id="academicStart">                        
+                            <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem" id="academicStart">
+                            <span id="academicStart-error" style="color: red;"></span>                        
                           </div>
                           <div class="contentTimeCreateRight">
                             <p>Thời gian kết thúc</p>
-                            <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem" id="academicEnd">                        
+                            <input class="nameGeneralReportForm" type="date" style="padding-bottom: 1rem" id="academicEnd">    
+                            <span id="academicEnd-error" style="color: red;"></span>                    
                           </div>
                         </div>
                         <p id="selectedendDayModal">Mẫu báo cáo theo vai trò: </p>
@@ -942,6 +970,7 @@
                                 <% end %>
                               </div>
                             </div>
+                            <span id="academicnhanvien-error" style="color: red;"></span>   
                           </div>
                           <p style="padding-right: 1rem; margin-bottom: 0rem; width: 100%;  display: flex; align-items: center">2. Giảng viên</p>
                           <div class="content_nhanvien">
@@ -954,6 +983,7 @@
                                 <% end %>
                               </div>
                             </div>
+                            <span id="academicgiangvien-error" style="color: red;"></span>   
                           </div>
                           <p style="padding-right: 1rem; margin-bottom: 0rem; width: 100%;  display: flex; align-items: center">3. Phụ trách bộ môn</p>
                           <div class="content_nhanvien">
@@ -966,6 +996,7 @@
                                 <% end %>
                               </div>
                             </div>
+                            <span id="academicphutrachbomon-error" style="color: red;"></span>   
                           </div>
                           <p style="padding-right: 1rem; margin-bottom: 0rem; width: 100%;  display: flex; align-items: center">4. Ban chủ nhiệm Khoa</p>
                           <div class="select__modalbody" id="select__banchunhiemkhoa">
@@ -977,6 +1008,7 @@
                               <% end %>
                             </div>
                           </div>
+                          <span id="academicbanchunhiemkhoa-error" style="color: red;"></span>   
                         </div>
                       </ul>
                       <div class="body__btn">
@@ -1013,7 +1045,7 @@
               <div class="Rectangle6" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
               <div class="Rectangle7" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
               <div class="reportPeriod" style="left: 10px; top: 15px; position: absolute; color: white; font-size: 15px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm: 2023</div>
-              <div class="periodName" style="left: 43px; top: 60px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.name %></div>
+              <div class="periodName" style="left: 43px; top: 60px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word; width: 190px"><%= r.name %></div>
               <div class="periodYear" style="left: 43px; top: 94px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.start_date&.strftime('%d/%m/%Y') %> - <%= r.end_date&.strftime('%d/%m/%Y') %></div>
               <div class="iconFile" style="width: 12px; height: 12px; left: 16px; top: 58px; position: absolute; color: white">
                 <i class="fa-regular fa-file-lines"></i>
@@ -1151,43 +1183,102 @@ function getEle(id) {
     })
 
     //validate các trường trong popup tạo kỳ
-    function validateDeadline() {
-        var deadlineInput = document.getElementById('academicDeadline');
-        var deadlineValue = deadlineInput.value;
+    function validateInput() {
+        var inputElement = document.getElementById("academicYear");
+        var errorMessageElement = document.getElementById("error-message");
+        var inputValue = inputElement.value;
 
-        if (deadlineValue < 0) {
-            alert('Vui lòng không nhập số âm.');
-            deadlineInput.value = '';  // Xóa giá trị nếu là số âm
+        // Reset thông báo lỗi
+        errorMessageElement.textContent = "";
+
+        // Kiểm tra điều kiện: không cho phép nhập số âm, chữ và chỉ được nhập 4 số
+        if (/[^0-9]/.test(inputValue) || inputValue.length == 5 || inputValue < 0) {
+            // Nếu điều kiện không đáp ứng, hiển thị thông báo lỗi
+            errorMessageElement.textContent = "Vui lòng nhập 4 số dương.";
+            // Xóa ký tự cuối cùng
+            inputElement.value = inputValue.slice(0, -1);
         }
     }
 
     function validateAndSubmit() {
       var academicName = document.getElementById('academicName').value;
-      var academicDeadline = document.getElementById('academicDeadline').value;
+      var academicYear = document.getElementById('academicYear').value;
       var academicStart = document.getElementById('academicStart').value;
       var academicEnd = document.getElementById('academicEnd').value;
+      var option__nhanvien = document.getElementById('option__nhanvien').value;
+      var option__giangvien = document.getElementById('option__giangvien').value;
+      var option__phutrachbomon = document.getElementById('option__phutrachbomon').value;
+      var option__banchunhiemkhoa = document.getElementById('option__banchunhiemkhoa').value;
+     
 
       // Kiểm tra nếu bất kỳ trường nào trống
       if (!academicName) {
-        alert('Vui lòng nhập tên kỳ báo cáo.');
+        document.getElementById('academicName-error').textContent = 'Vui lòng nhập tên kỳ báo cáo.';
         return false;
       }
 
-      if (!academicDeadline) {
-        alert('Vui lòng nhập ngày hạn báo cáo.');
+      if(academicName.length > 25)    {
+        document.getElementById('academicName-error').textContent = 'Vui lòng nhập tên không quá 25 kí tự.';
         return false;
+      }
+
+      if (!academicYear) {
+          document.getElementById('academicYear-error').textContent = 'Vui lòng nhập năm báo cáo.';
+          return false;
+      }
+
+      if (/[^0-9]/.test(academicYear)) {
+          document.getElementById('academicYear-error').textContent = 'Năm báo cáo chỉ được chứa chữ số dương.';
+          return false;
+      }
+
+      if (academicYear.length !== 4) {
+          document.getElementById('academicYear-error').textContent = 'Năm báo cáo phải có đúng 4 chữ số.';
+          return false;
       }
 
       if (!academicStart) {
-        alert('Vui lòng chọn thời gian bắt đầu.');
+        document.getElementById('academicStart-error').textContent = 'Vui lòng chọn thời gian bắt đầu.';
         return false;
       }
 
       if (!academicEnd) {
-        alert('Vui lòng chọn thời gian kết thúc.');
+        document.getElementById('academicEnd-error').textContent = 'Vui lòng chọn thời gian kết thúc.';
         return false;
       }
-      return true;
+
+      if (!option__nhanvien) {
+        document.getElementById('academicnhanvien-error').textContent = 'Vui lòng chọn biểu mẫu của nhân viên.';
+        return false;
+      }
+
+      if (!option__giangvien) {
+        document.getElementById('academicgiangvien-error').textContent = 'Vui lòng chọn biểu mẫu của giảng viên.';
+        return false;
+      }
+
+      if (!option__phutrachbomon) {
+        document.getElementById('academicphutrachbomon-error').textContent = 'Vui lòng chọn biểu mẫu của bộ môn.';
+        return false;
+      }
+
+      if (!option__banchunhiemkhoa) {
+        document.getElementById('academicbanchunhiemkhoa-error').textContent = 'Vui lòng chọn biểu mẫu của khoa.';
+        return false;
+      }
+      
+      // Reset thông báo lỗi
+      document.getElementById('academicName-error').textContent = "";
+      document.getElementById('academicYear-error').textContent = "";
+      document.getElementById('academicStart-error').textContent = "";
+      document.getElementById('academicEnd-error').textContent = "";    
+      document.getElementById('academicnhanvien-error').textContent = ""; 
+      document.getElementById('academicgiangvien-error').textContent = "";
+      document.getElementById('academicphutrachbomon-error').textContent = "";
+      document.getElementById('academicbanchunhiemkhoa-error').textContent = "";
+
+      return true
     }
+
   </script>
 </html>

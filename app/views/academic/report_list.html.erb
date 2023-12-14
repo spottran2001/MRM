@@ -788,11 +788,11 @@
               <td><%= r.report_type&.type_report%></td> 
               <td>
                 <%= link_to review_report_academic_path(@academic, report_id: r.id), style: "text-decoration:none", data: {turbo: false} do %>
-                  <button class="btn gold" aria-label="btn" title="Xem chi tiết" data-tooltip="Tooltip Text">
+                  <button class="btn gold" aria-label="btn" title="Xem chi tiết báo cáo" data-tooltip="Tooltip Text">
                     <i class="fa-solid fa-eye"></i>
                   </button>
                 <% end %>
-                <button class="btn green" style="margin-left: 3px;" aria-label="btn" title="Tải xuống" data-tooltip="Tooltip Text">
+                <button class="btn green" style="margin-left: 3px;" aria-label="btn" title="Tải xuống báo cáo" data-tooltip="Tooltip Text">
                 <%= link_to report_export_path(r) do %>
                   <i class="fa-solid fa-download"></i>
                 <% end %>

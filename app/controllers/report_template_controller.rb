@@ -26,7 +26,7 @@ class ReportTemplateController < ApplicationController
 
   def new
     @report_template = ReportTemplate.new()
-    # add_breadcrumb "TẠO BIỂU MẪU BÁO CÁO CHUNG", :new_report_template_path
+    add_breadcrumb "TẠO BIỂU MẪU BÁO CÁO CHUNG", :new_report_template_path
   end
 
   def edit
@@ -56,7 +56,7 @@ class ReportTemplateController < ApplicationController
   def show
     @report_template_title = JSON.parse(ReportTemplate.find(params[:id]).data)
     @report_template = ReportTemplate.find(params[:id])
-    # add_breadcrumb "CHI TIẾT BIỂU MẪU BÁO CÁO CHUNG", :report_template_path
+    add_breadcrumb "CHI TIẾT BIỂU MẪU BÁO CÁO CHUNG", :report_template_path
   end
 
   def submit_report

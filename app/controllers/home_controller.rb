@@ -53,7 +53,7 @@ class HomeController < ApplicationController
   end
 
   def configuration_page
-    # add_breadcrumb "QUẢN LÝ CẤU HÌNH", :configuration_page_path
+    add_breadcrumb "QUẢN LÝ CẤU HÌNH", :configuration_page_path
   end
 
   def report_upload
