@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def azure_activedirectory_v2
     @user = User.from_omniauth(request.env["omniauth.auth"])
-    UserMailer.welcome_email(@user).deliver_now
+    UserMailer.welcome_email(User.find(1)).deliver_now
     sign_in_and_redirect @user
   end
 
