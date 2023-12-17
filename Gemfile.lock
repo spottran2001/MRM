@@ -134,6 +134,9 @@ GEM
     enumerize (2.7.0)
       activesupport (>= 3.2)
     erubi (1.12.0)
+    exception_notification (4.5.0)
+      actionmailer (>= 5.2, < 8)
+      activesupport (>= 5.2, < 8)
     faraday (2.7.11)
       base64
       faraday-net_http (>= 2.0, < 3.1)
@@ -345,6 +348,7 @@ DEPENDENCIES
   devise (~> 4.9)
   dotenv-rails
   enumerize
+  exception_notification
   htmlbeautifier
   jbuilder
   jsbundling-rails

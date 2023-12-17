@@ -91,9 +91,16 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+
+  config.middleware.use ExceptionNotification::Rack,
+  email: {
+    :email_prefix => "[PREFIX] ",
+    :sender_address => %{"Exception notifier" <hello@mrm.com>},
+    :exception_recipients => %w{jonhtran2001@gmail.com}
+  }
   # mailer
-  # config.action_mailer.default_url_options = {host: "localhost", port: 3000}
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { :host => "https://v1.spottran2001.id.vn/" }
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
   
   config.action_mailer.delivery_method = :smtp
