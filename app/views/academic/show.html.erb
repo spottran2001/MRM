@@ -646,11 +646,11 @@
               </div>
               <div class="startTimeAcademic" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Thời gian bắt dầu: </span>
-                <span><%= @academic.start_date&.strftime('%d/%m/%Y %T') %></span>
+                <span><%= @academic.start_date&.strftime('%d/%m/%Y') %></span>
               </div>
               <div class="endTimeAcademic" style="padding-right: 2rem">
                 <span style= "font-weight: 800; padding-right: 1rem">Thời gian kết thúc: </span>
-                <span><%= @academic.end_date&.strftime('%d/%m/%Y %T') %></span>
+                <span><%= @academic.end_date&.strftime('%d/%m/%Y') %></span>
               </div>
             </div>
             <%#<div class="generality__search">

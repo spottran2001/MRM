@@ -1151,6 +1151,7 @@ function getEle(id) {
     })
    document.getElementById("academicSubmit").addEventListener("click", ()=> {
       if (validateAndSubmit()) {
+        document.getElementById("academicSubmit").setAttribute('disabled','disabled'  )
         let name = document.getElementById("academicName").value
         let start_date = document.getElementById("academicStart").value
         let end_date = document.getElementById("academicEnd").value
@@ -1205,11 +1206,11 @@ function getEle(id) {
       var academicYear = document.getElementById('academicYear').value;
       var academicStart = document.getElementById('academicStart').value;
       var academicEnd = document.getElementById('academicEnd').value;
-      var option__nhanvien = document.getElementById('option__nhanvien').value;
-      var option__giangvien = document.getElementById('option__giangvien').value;
-      var option__phutrachbomon = document.getElementById('option__phutrachbomon').value;
-      var option__banchunhiemkhoa = document.getElementById('option__banchunhiemkhoa').value;
-     
+      var option__nhanvien = document.getElementById('selectedNhanVienModal').getAttribute('key')
+      var option__giangvien = document.getElementById('selectedGiangVienModal').getAttribute('key')
+      var option__phutrachbomon = document.getElementById('selectedBoMonModal').getAttribute('key')
+      var option__banchunhiemkhoa = document.getElementById('selectedBanChuNhiemKhoaModal').getAttribute('key')
+    
 
       // Kiểm tra nếu bất kỳ trường nào trống
       if (!academicName) {

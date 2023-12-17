@@ -1143,6 +1143,7 @@
         getEle("menu").style.transform = "translateX(-10000px)"
     })
     
+    
     // add row to table
     function addRow(e) {
       var row  = e.parentNode.parentNode.cloneNode(true)
@@ -1228,16 +1229,6 @@
   </script>
   <!-- JS POPUP -->
   <script>
-    getEle("send_baocao").addEventListener("click",()=>{
-        getEle("popup__guiBaocao").style.display = "flex"
-    })
-    
-    getEle("close__popupBaocao").addEventListener("click",()=>{
-        getEle("popup__guiBaocao").style.display = "none"
-    })
-    getEle("btn__closeBaocao").addEventListener("click",()=>{
-        getEle("popup__guiBaocao").style.display = "none"
-    })
 
     //popupSendApprove
     function showPopupApprove() {
@@ -1267,45 +1258,5 @@
     const fileInput = document.getElementById('fileInput');
     const fileList = document.getElementById('fileList');
     const fileCountSpan = document.getElementById('fileCount');
-
-    fileInput.addEventListener('change', updateFileList);
-
-    function updateFileList() {
-        fileList.innerHTML = '';
-        const files = fileInput.files;
-        const updatedFiles = Array.from(files);
-
-        fileCountSpan.textContent = files.length; // Hiển thị số lượng tệp đã chọn
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const listItem = document.createElement('div');
-            const fileLink = document.createElement('a');
-            fileLink.textContent = file.name;
-            fileLink.href = URL.createObjectURL(file);
-            fileLink.download = file.name;
-
-            // Tạo một button cho phép xóa tệp
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'XÓA';
-            deleteButton.addEventListener('click', () => deleteFile(i, updatedFiles));
-
-            listItem.appendChild(fileLink);
-            listItem.appendChild(deleteButton);
-            fileList.appendChild(listItem);
-        }
-    }
-
-    function deleteFile(index, updatedFiles) {
-        if (index >= 0) {
-            updatedFiles.splice(index, 1); // Xóa tệp khỏi danh sách
-            const dataTransfer = new DataTransfer();
-            updatedFiles.forEach((file) => dataTransfer.items.add(file));
-            fileInput.files = dataTransfer.files;
-
-            // Cập nhật danh sách tệp
-            updateFileList();
-        }
-    }
   </script>
 </html>
