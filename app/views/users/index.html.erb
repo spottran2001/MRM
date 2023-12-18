@@ -878,9 +878,9 @@
             <td> <%= u.get_role.split(",").join(", ") || "N/A"  %> </td>
             <td>
               <%#<p class="approve" style="background-color: #C4C4C4;color: black;"><%= u.faculty || "N/A" ></p>%>
-              <%= u.faculty.name || "N/A" %>
+              <%= u.faculty&.name || "N/A" %>
             </td>
-            <td> <%= u.subject.name || "N/A"  %> </td>
+            <td> <%= u.subject&.name || "N/A"  %> </td>
             <td>
               
               <%#<button class="btn grey" aria-label="btn" title="Hiển thị người dùng" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></button>
