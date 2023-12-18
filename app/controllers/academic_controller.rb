@@ -37,7 +37,14 @@ class AcademicController < ApplicationController
   def accept_report
     if @report.report_type&.name_type == 'Chờ duyệt'
       report_type_id = ReportType.find_by(name_type: "Đã duyệt", type_report: "Đúng hạn").id
-      @report.update(submiter_id: current_user.id, report_type_id: report_type_id, confirm_time: Time.current, feedback: params[:report] ? params[:report][:feedback] : "")
+      if @report.feedback.blank?
+        feedback = [params[:report] ? params[:report][:feedback] : ""]
+      else
+        new_feed_back = params[:report] ? params[:report][:feedback] : ""
+        feedback = JSON.parse(@report.feedback) 
+        feedback << new_feed_back
+      end
+      @report.update(submiter_id: current_user.id, report_type_id: report_type_id, confirm_time: Time.current, feedback: feedback)
       @report.user.notifications.create(content: "Báo cáo của bạn đã được duyệt")
     end
     redirect_to report_list_academic_path(@academic, status: @report.role)
@@ -46,7 +53,14 @@ class AcademicController < ApplicationController
   def reject_report
     if @report.report_type&.name_type == 'Chờ duyệt'
       report_type_id = ReportType.find_by(name_type: "Cần bổ sung", type_report: "Đang báo cáo").id
-      @report.update(returner_id: current_user.id, report_type_id: report_type_id, return_time: Time.current, feedback: params[:report] ? params[:report][:feedback] : "")
+      if @report.feedback.blank?
+        feedback = [params[:report] ? params[:report][:feedback] : ""]
+      else
+        new_feed_back = params[:report] ? params[:report][:feedback] : ""
+        feedback = JSON.parse(@report.feedback) 
+        feedback << new_feed_back
+      end
+      @report.update(returner_id: current_user.id, report_type_id: report_type_id, return_time: Time.current, feedback: feedback)
       @report.user.notifications.create(content: "Báo cáo của bạn vừa bị từ chối")
     end
     redirect_to report_list_academic_path(@academic, status: @report.role)

@@ -153,6 +153,16 @@ class ReportController < ApplicationController
     @report = Report.find(params[:report_id])
     data = JSON.parse(@report.data)
     csv = CSV.generate("\uFEFF") do |csv|
+      # header
+      csv << ['', 'TRƯỜNG ĐẠI HỌC VĂN LANG']
+      csv << ['', "BÁO CÁO THÁNG #{@report.role}"]
+      csv << ['', "THÁNG #{@report.created_at.day} Năm #{@report.created_at.year}"]
+      # inform user
+      csv << ['Họ và tên:', "#{@report.user&.name}"]
+      csv << ['MGV:', '']
+      csv << []
+
+      # content
       data&.keys&.each_with_index do |key, index|
         csv << ["#{index + 1}. #{key}"]
         csv << data[key].keys + data[key]&.values&.first['title']

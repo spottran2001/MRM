@@ -1045,7 +1045,26 @@
                 ></i>
             </div>
             <div class="popup_body_feedback">
-              <%= f.input :feedback, label: false, :as => :text, :input_html => { 'rows' => 10, 'cols' => 30, placeholder: "Nhập thông tin phản hồi", style: '
+             <span>Phản hồi trước đó:</span>
+              <textarea
+                name="content_feedback"
+                id=""
+                cols="30"
+                rows="10"
+                style="
+                border-radius: 12px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                resize: none;
+                "
+                disabled
+              ><% if @report.feedback.present? %><% JSON.parse(@report.feedback).each_with_index do |f, index| %><%= "#{index+1}. #{f}" %>.&#13;&#10
+                                                                <% end %>
+                <% end %></textarea>
+            </div>
+            <div class="popup_body_feedback">
+              <span>Phản hồi:</span>
+              <%= f.input :feedback, label: false, :as => :text, :input_html => { 'rows' => 10, 'cols' => 30, value: '', placeholder: "Nhập thông tin phản hồi", style: '
                 border-radius: 12px;
                 padding: 1rem;
                 margin-bottom: 1rem;
@@ -1091,7 +1110,26 @@
                 ></i>
             </div>
             <div class="popup_body_feedback">
-              <%= f.input :feedback, label: false, :as => :text, :input_html => { 'rows' => 10, 'cols' => 30, placeholder: "Nhập lý do không duyệt", style: '
+             <span>Phản hồi trước đó:</span>
+              <textarea
+                name="content_feedback"
+                id=""
+                cols="30"
+                rows="10"
+                style="
+                border-radius: 12px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                resize: none;
+                "
+                disabled
+              ><% if @report.feedback.present? %><% JSON.parse(@report.feedback).each_with_index do |f, index| %><%= "#{index+1}. #{f}" %>.&#13;&#10
+                                                                <% end %>
+              <% end %></textarea>
+            </div>
+            <div class="popup_body_feedback">
+              <span>Phản hồi:</span>
+              <%= f.input :feedback, label: false, :as => :text, :input_html => { 'rows' => 10, 'cols' => 30, value: '', placeholder: "Nhập lý do không duyệt", style: '
                 border-radius: 12px;
                 padding: 1rem;
                 margin-bottom: 1rem;

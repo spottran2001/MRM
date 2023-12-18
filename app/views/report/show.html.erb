@@ -832,7 +832,7 @@
                     style="border-radius: 12px; padding: 1rem; margin-bottom: 1rem"
                     class="email_receiver"
                     type="text"
-                    placeholder="Tên người phản hồi báo cáo"
+                    placeholder="<%= @report_template.submiter_admin&.name || @report_template.returner_admin&.name || 'N/A'%> "
                     disabled
                     />
                   <textarea
@@ -848,8 +848,9 @@
                     margin-bottom: 1rem;
                     resize: none;
                     "
-                    
-                    ><%= @report_template.feedback%></textarea>
+                    ><% if @report_template.feedback.present? %><% JSON.parse(@report_template.feedback).each_with_index do |f, index| %><%= "#{index+1}. #{f}" %>.&#13;&#10
+                                                                <% end %>
+                    <% end %></textarea>
                 </div>
                 <div class="popup_footer_feedback">
                   <button

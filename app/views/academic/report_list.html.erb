@@ -869,9 +869,6 @@
     getEle("statistics").addEventListener("click",()=>{
         getEle("statistics").classList.toggle("show")
     })
-    getEle("report").addEventListener("click",()=>{
-        getEle("report").classList.toggle("show")
-    })
     
     getEle("btn-dropdown").addEventListener("click",()=>{
         getEle("menu-dropdown").style.display  = "none"
@@ -897,13 +894,6 @@
         // Lấy ra tất cả các checkbox ở class="content__table_body"
         const bodyCheckboxes = document.querySelectorAll('#table_phongban .content__table_body input[type="checkbox"]');
     
-        // Thêm sự kiện 'change' cho checkbox ở class="content__table_header"
-        headerCheckbox.addEventListener('change', function() {
-            // Lặp qua tất cả các checkbox ở class="content__table_body" và thiết lập checked giống với checkbox ở header
-            bodyCheckboxes.forEach(function(checkbox) {
-                checkbox.checked = headerCheckbox.checked;
-            });
-        });
 
     //search dữ liệu trong bảng 
     // Lấy input tìm kiếm và bảng

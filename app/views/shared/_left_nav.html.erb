@@ -336,6 +336,17 @@
     color: white;   
   }
 
+  .menu__icon.active{
+    .menu__dropdown_icon{
+      i {
+        color: #d72134
+      }
+      p.menu__text {
+        color: #d72134 !important
+      }
+    }
+  }
+
   .menu__icon_open i {
     font-size: 20px;
     margin-top: 6px;
@@ -598,20 +609,20 @@
     
     <%= link_to report_chart_path, class: "menu__items", data: {turbo: false} do %>
       <div class="menu__icon" title="Thống kê báo cáo" data-tooltip="Tooltip Text">
-        <i class="fa-solid fa-chart-column"></i>
+        <i class="fa-solid fa-chart-column <%= action_name == 'report_chart' ? 'active' : '' %>"></i>
       </div>
     <% end %>
     <% if current_user.role == 'admin' %>
       <%= link_to report_template_management_path, class: "menu__items", data: {turbo: false} do %>
         <div class="menu__icon" title="Quản lý biểu mẫu báo cáo chung" data-tooltip="Tooltip Text">
-          <i class="fa-regular fa-paste"></i>
+          <i class="fa-regular fa-paste <%= controller_name == 'report_template' ? 'active' : '' %>"></i>
         </div>
       <% end %>
     <% end %>
     
     <% if current_user.role == 'admin' %>
       <%= link_to academic_index_path, class: "menu__items", data: {turbo: false} do %>
-        <div class="menu__icon" title="Quản lý kỳ báo cáo" data-tooltip="Tooltip Text">
+        <div class="menu__icon <%= controller_name == 'academic' ? 'active' : '' %>" title="Quản lý kỳ báo cáo" data-tooltip="Tooltip Text">
           <i class="fa-regular fa-calendar"></i>  
         </div>    
       <% end %>
@@ -624,29 +635,29 @@
     <% end %>
     <% if current_user.role != 'admin' %>
       <%= link_to user_path(current_user), class: "menu__items", data: {turbo: false} do %>
-        <div class="menu__icon" title="Xem chi tiết tài khoản" data-tooltip="Tooltip Text">
+        <div class="menu__icon <%= controller_name == 'users' ? 'active' : '' %>" title="Xem chi tiết tài khoản" data-tooltip="Tooltip Text">
           <i class="fa-solid fa-user-tag"></i>
         </div>
       <% end %>
     <% end %>
     <% if current_user.role == 'admin' %>
       <%= link_to faculties_path, class: "menu__items", data: {turbo: false} do %>
-        <div class="menu__icon" title="Quản lý khoa" data-tooltip="Tooltip Text">
+        <div class="menu__icon <%= controller_name == 'faculties' ? 'active' : '' %>" title="Quản lý khoa" data-tooltip="Tooltip Text">
           <i class="fa-solid fa-sitemap"></i>
         </div>
       <% end %>
       <%= link_to subjects_path, class: "menu__items", data: {turbo: false} do %>
-        <div class="menu__icon" title="Quản lý bộ môn" data-tooltip="Tooltip Text">
+        <div class="menu__icon <%= controller_name == 'subjects' ? 'active' : '' %>" title="Quản lý bộ môn" data-tooltip="Tooltip Text">
           <i class="fa-solid fa-book"></i>
         </div>
       <% end %>
       <%= link_to users_path, class: "menu__items", data: {turbo: false} do %>
-        <div class="menu__icon" title="Quản lý tài khoản" data-tooltip="Tooltip Text">
+        <div class="menu__icon <%= controller_name == 'users' ? 'active' : '' %>" title="Quản lý tài khoản" data-tooltip="Tooltip Text">
           <i class="fa-regular fa-user"></i>
         </div>  
       <% end %>
     <%= link_to configuration_page_path, class: "menu__items", data: {turbo: false} do %>
-      <div class="menu__icon" title="Quản lý cấu hình" data-tooltip="Tooltip Text">
+      <div class="menu__icon <%= action_name == 'configuration_page' ? 'active' : '' %>" title="Quản lý cấu hình" data-tooltip="Tooltip Text">
         <i class="fa-solid fa-sliders"></i>
       </div>
     <% end %>
@@ -673,7 +684,7 @@
     </div>
     <p class="menu__title">TRANG CHỦ</p>
     <%= link_to report_chart_path, class: "menu__items", style:"margin: 22px 0px;", data: {turbo: false} do %>
-      <div class="menu__icon " id="statistics">
+      <div class="menu__icon <%= action_name == 'report_chart' ? 'active' : '' %>" id="statistics">
         <div class="menu__dropdown_icon">
           <i class="fa-solid fa-chart-column"></i>
           <p class="menu__text">Thống Kê</p>
@@ -682,7 +693,7 @@
     <% end %>
     <% if current_user.role == 'admin' %>
       <%= link_to report_template_management_path, class: "menu__items", style:"margin: -15px 0px;", data: {turbo: false} do %>
-        <div class="menu__icon" >
+        <div class="menu__icon <%= controller_name == 'report_template' ? 'active' : '' %>>" >
           <div class="menu__dropdown_icon">
             <i class="fa-regular fa-paste"></i>
             <p class="menu__text">Quản lý biểu mẫu báo cáo chung</p>
@@ -692,7 +703,7 @@
     <% end %>
     <% if current_user.role == 'admin' %>
       <%= link_to academic_index_path, class: "menu__items", style:"margin: 21px 0px;", data: {turbo: false} do %>
-        <div class="menu__icon">
+        <div class="menu__icon <%= controller_name == 'academic' ? 'active' : '' %>">
           <div class="menu__dropdown_icon">
             <i class="fa-regular fa-calendar"></i>
             <p class="menu__text">Quản lý kỳ báo cáo</p>
@@ -711,17 +722,17 @@
     <% end %>
     <% if current_user.role != 'admin' %>
       <%= link_to user_path(current_user), class: "menu__items", style:"margin: 10px 0px;", data: {turbo: false} do %>
-        <div class="menu__icon">
-        <div class="menu__dropdown_icon">
-          <i class="fa-solid fa-user-tag"></i>          
-          <p class="menu__text">Xem chi tiết tài khoản</p>
+        <div class="menu__icon <%= controller_name == 'users' ? 'active' : '' %>">
+          <div class="menu__dropdown_icon">
+            <i class="fa-solid fa-user-tag"></i>          
+            <p class="menu__text">Xem chi tiết tài khoản</p>
+          </div>
         </div>
-      </div>
       <% end %>
     <% end %>
     <% if current_user.role == 'admin' %>
       <%= link_to faculties_path, class: "menu__items", style:"margin: 10px 0px;", data: {turbo: false} do %>
-        <div class="menu__icon">
+        <div class="menu__icon <%= controller_name == 'faculties' ? 'active' : '' %>">
           <div class="menu__dropdown_icon">
             <i class="fa-solid fa-sitemap"></i>        
             <p  class="menu__text">Quản lý khoa</p>
@@ -729,7 +740,7 @@
         </div>
       <% end %>
       <%= link_to subjects_path, class: "menu__items", style:"margin: 19px 0px;", data: {turbo: false} do %>
-        <div class="menu__icon">
+        <div class="menu__icon <%= controller_name == 'subjects' ? 'active' : '' %>">
           <div class="menu__dropdown_icon">
             <i class="fa-solid fa-book"></i>
             <p  class="menu__text">Quản lý bộ môn</p>
@@ -737,7 +748,7 @@
         </div>
       <% end %>
       <%= link_to users_url, class: "menu__items menu__items--separation", style:"margin: 10px 0px;", data: {turbo: false} do %>
-        <div class="menu__icon">
+        <div class="menu__icon <%= controller_name == 'users' ? 'active' : '' %>">
           <div class="menu__dropdown_icon">
             <i class="fa-regular fa-user"></i>
             <p  class="menu__text">Quản lý tài khoản</p>
@@ -745,7 +756,7 @@
         </div>
       <% end %>
       <%= link_to configuration_page_path, class: "menu__items", style:"margin: 20px 0px;", data: {turbo: false} do %>
-        <div class="menu__icon">
+        <div class="menu__icon <%= action_name == 'configuration_page' ? 'active' : '' %>">
           <div class="menu__dropdown_icon">
             <i class="fa-solid fa-sliders"></i>
             <p class="menu__text">Quản lý cấu hình</p>
