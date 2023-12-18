@@ -13,14 +13,16 @@ class FacultiesController < ApplicationController
   end
 
   def update
+    @faculty = Faculty.find(params[:id])
     @faculty.update(name: params[:name])
   end
 
   def destroy
     if User.where(faculty_id: params[:id]).present?
-      raise 'You can not delete this faculty because it has been used already'
+      # raise 'You can not delete this faculty because it has been used already'
+    else
+      Faculty.find(params[:id]).destroy!
     end
-    @faculty.destroy!
   end
 
   private

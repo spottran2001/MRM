@@ -808,6 +808,7 @@
           <th>
           </th>
         </tr>
+        <%= csrf_meta_tag %>
         <% @faculties.each do |s| %>
         <tr class="content__table_body">
           <td><%= s.id %></td>
@@ -815,10 +816,10 @@
           <td><%= s.created_at&.strftime('%d/%m/%Y %T') %></td>
           <td><%= s.updated_at&.strftime('%d/%m/%Y %T') %></td>
           <td>
-            <button class="btn gold" aria-label="btn" title="Chỉnh sửa khoa" data-tooltip="Tooltip Text" onclick="showFacultiesDetail()">
+            <button class="btn gold" aria-label="btn" title="Chỉnh sửa khoa" data-tooltip="Tooltip Text" onclick="showFacultiesDetail(this)" data-faculty-id="<%= s.id %>" data-name="<%= s.name %>">
               <i class="fa-solid fa-pen"></i>
             </button>
-            <button class="btn red" aria-label="btn" title="Xóa khoa" data-tooltip="Tooltip Text" onclick="showFacultiesDelete()">
+            <button class="btn red" aria-label="btn" title="Xóa khoa" data-tooltip="Tooltip Text" onclick="showFacultiesDelete(this)" data-faculty-id="<%= s.id %>">
               <i class="fa-solid fa-trash"></i>
             </button>
           </td>
@@ -873,12 +874,12 @@
           <div class="popup_body_FacultiestDetail">
             <div class="content_FacultiesDetail">
               <span>Khoa</span>
-              <input class="input-field" type="text">
+              <input class="input-field" type="text" id="faculty-edit">
             </div>
           </div>
           <div class="popup_footer_FacultiesDetail">
             <button class="btn__modal" onclick="hideFacultiesDetail()">HỦY</button>
-            <button class="btn__modal">LƯU</button>
+            <button class="btn__modal" id="update-faculty-btn" onclick="UpdateFacultiesDelete(this)">LƯU</button>
           </div>
         </div>
       </div>
@@ -901,7 +902,7 @@
           </div>
           <div class="popup_footer_FacultiesDelete">
             <button class="btn__modal" onclick="hideFacultiesDelete()">HỦY</button>
-            <button class="btn__modal" >XÓA</button>
+            <button class="btn__modal" id = "faculty-id-delete" onclick="FacultiesDelete(this)">XÓA</button>
           </div>
         </div>
       </div>
@@ -914,9 +915,6 @@
     }
     getEle("statistics").addEventListener("click",()=>{
         getEle("statistics").classList.toggle("show")
-    })
-    getEle("report").addEventListener("click",()=>{
-        getEle("report").classList.toggle("show")
     })
     
     getEle("btn-dropdown").addEventListener("click",()=>{
@@ -937,19 +935,57 @@
     }
 
     //Popup xem chi tiết Khoa
-    function showFacultiesDetail() {
+    function showFacultiesDetail(element) {
       document.getElementById("popup_FacultiesDetail").style.display = "flex";
+      $("#faculty-edit").val(element.getAttribute('data-name'))
+      document.getElementById("update-faculty-btn").setAttribute("data-name", element.getAttribute('data-name'))
+      document.getElementById("update-faculty-btn").setAttribute("data-faculty-id", element.getAttribute('data-faculty-id'))
     }
     function hideFacultiesDetail() {
       document.getElementById("popup_FacultiesDetail").style.display = "none";
     }
 
     //Popup xóa Khoa
-    function showFacultiesDelete() {
+    function showFacultiesDelete(element) {
       document.getElementById("popup_FacultiesDelete").style.display = "flex";
+      document.getElementById("faculty-id-delete").setAttribute('data-id', element.getAttribute('data-faculty-id'));
     }
     function hideFacultiesDelete() {
       document.getElementById("popup_FacultiesDelete").style.display = "none";
+    }
+
+    function FacultiesDelete(element) {
+      var id = element.getAttribute("data-id")
+      jQuery.ajax({
+        url: `/faculties/${id}`,
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'DELETE',
+        success: function(data){
+          window.location.replace("/faculties");
+        }
+      });
+    }
+
+    function UpdateFacultiesDelete(element) {
+      var name =  $("#faculty-edit").val();
+      var id = element.getAttribute("data-faculty-id")
+      var data = new FormData();
+      data.append('name', name);
+      jQuery.ajax({
+        url: `/faculties/${id}`,
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        cache: false,
+        data: data,
+        contentType: false,
+        processData: false,
+        method: 'PUT',
+        success: function(data){
+          window.location.replace("/faculties");
+        }
+      });
     }
 
   </script>
