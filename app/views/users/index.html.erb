@@ -562,6 +562,12 @@
     .green {
       background-color: #5cbd4c;
     }
+    .yellow{
+      background-color: #FFBF24
+    }
+    .grey{
+      background-color: #ABABAB
+    }
     .paging {
       display: flex;
       justify-content: end;
@@ -807,6 +813,10 @@
       background: #fff;
       color: black;
     }
+    .hidden {
+      display: none;
+    }
+
   </style>
   <body>
     <main class="container">
@@ -861,7 +871,7 @@
             </th>
           </tr>
           <% @users.each do |u|%>
-          <tr class="content__table_body">
+          <tr class="content__table_body"  onclick="toggleButtons(this)">
             <td> <%= u.id %> </td>
             <td> <%= u.name %> </td>
             <td> <%= u.email %> </td>
@@ -872,8 +882,12 @@
             </td>
             <td> <%= u.subject.name || "N/A"  %> </td>
             <td>
-              <%= button_to edit_user_path(u), method: :get, style: "background-color: #FFBF24", class: "btn btn-secondary", data: {turbo: false} do %>
-              <% concat content_tag(:i, "", class: "fa-solid fa-pen", title: "Chỉnh sửa tài khoản", data: { tooltip: "Tooltip Text" }) %>
+              
+              <%#<button class="btn grey" aria-label="btn" title="Hiển thị người dùng" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye"></i></button>
+              <button class="btn grey hidden" aria-label="btn" title="Ẩn người dùng" data-tooltip="Tooltip Text"><i class="fa-solid fa-eye-slash"></i></button>%>
+
+              <%= link_to edit_user_path(u), style: "text-decoration:none", data: {turbo: false} do %>
+                <button class="btn yellow s" aria-label="btn" title="Chỉnh sửa" data-tooltip="Tooltip Text"><i class="fa-solid fa-pen"></i></button>
               <% end %>
             </td>
           </tr>
@@ -1020,5 +1034,13 @@
         });
       }
     });
+
+    //Ẩn hiện người dùng
+    // function toggleButtons(row) {
+    //   var buttons = row.querySelectorAll('.btn');
+    //   buttons.forEach(function(button) {
+    //     button.classList.toggle('hidden');
+    //   });
+    // }
   </script>
 </html>

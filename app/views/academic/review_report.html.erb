@@ -816,6 +816,40 @@
     .file_upload:hover {
       background: #f5f5f5;
     }
+
+    <%#format danh sách attachment%>
+    .fileList {
+      list-style: none; /* Loại bỏ dấu chấm đầu dòng */
+      padding: 0; /* Loại bỏ padding mặc định */
+      overflow-Y: scroll;
+      height: 200px
+    }
+    .fileList div {
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      margin: 5px; 
+      padding: 10px; 
+      background-color: #f9f9f9; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+    }
+    .fileList a {
+      <%#text-decoration: none;%> /* Loại bỏ đường gạch chân cho liên kết */
+      color: #333;
+    }
+    .fileList button {
+      border-radius: 12px;
+      border: 1px solid #dc546c;
+      margin-left: 10px;
+      background-color: #dc546c; 
+      color: white; 
+      border: none; 
+      padding: 5px 10px;
+      cursor: pointer;
+      width: 8%;
+    }
+
     /*fileList Cho trình duyệt WebKit (Chrome, Safari) */
     .fileList::-webkit-scrollbar {
       width: 10px;
@@ -1258,5 +1292,45 @@
     const fileInput = document.getElementById('fileInput');
     const fileList = document.getElementById('fileList');
     const fileCountSpan = document.getElementById('fileCount');
+
+    fileInput.addEventListener('change', updateFileList);
+
+    function updateFileList() {
+        fileList.innerHTML = '';
+        const files = fileInput.files;
+        const updatedFiles = Array.from(files);
+
+        fileCountSpan.textContent = files.length; // Hiển thị số lượng tệp đã chọn
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const listItem = document.createElement('div');
+            const fileLink = document.createElement('a');
+            fileLink.textContent = file.name;
+            fileLink.href = URL.createObjectURL(file);
+            fileLink.download = file.name;
+
+            // Tạo một button cho phép xóa tệp
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'XÓA';
+            deleteButton.addEventListener('click', () => deleteFile(i, updatedFiles));
+
+            listItem.appendChild(fileLink);
+            listItem.appendChild(deleteButton);
+            fileList.appendChild(listItem);
+        }
+    }
+
+    function deleteFile(index, updatedFiles) {
+        if (index >= 0) {
+            updatedFiles.splice(index, 1); // Xóa tệp khỏi danh sách
+            const dataTransfer = new DataTransfer();
+            updatedFiles.forEach((file) => dataTransfer.items.add(file));
+            fileInput.files = dataTransfer.files;
+
+            // Cập nhật danh sách tệp
+            updateFileList();
+        }
+    }
   </script>
 </html>

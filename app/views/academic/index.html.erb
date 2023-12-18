@@ -1223,6 +1223,9 @@ function getEle(id) {
         return false;
       }
 
+      // Reset thông báo lỗi
+      document.getElementById('academicName-error').textContent = "";
+
       if (!academicYear) {
           document.getElementById('academicYear-error').textContent = 'Vui lòng nhập năm báo cáo.';
           return false;
@@ -1238,30 +1241,48 @@ function getEle(id) {
           return false;
       }
 
+      // Reset thông báo lỗi
+      document.getElementById('academicYear-error').textContent = "";
+
       if (!academicStart) {
         document.getElementById('academicStart-error').textContent = 'Vui lòng chọn thời gian bắt đầu.';
         return false;
       }
+
+      // Reset thông báo lỗi
+      document.getElementById('academicStart-error').textContent = "";
 
       if (!academicEnd) {
         document.getElementById('academicEnd-error').textContent = 'Vui lòng chọn thời gian kết thúc.';
         return false;
       }
 
+      // Reset thông báo lỗi
+      document.getElementById('academicEnd-error').textContent = "";  
+
       if (!option__nhanvien) {
         document.getElementById('academicnhanvien-error').textContent = 'Vui lòng chọn biểu mẫu của nhân viên.';
         return false;
       }
+
+      // Reset thông báo lỗi
+      document.getElementById('academicnhanvien-error').textContent = ""; 
 
       if (!option__giangvien) {
         document.getElementById('academicgiangvien-error').textContent = 'Vui lòng chọn biểu mẫu của giảng viên.';
         return false;
       }
 
+      // Reset thông báo lỗi
+      document.getElementById('academicgiangvien-error').textContent = "";
+
       if (!option__phutrachbomon) {
         document.getElementById('academicphutrachbomon-error').textContent = 'Vui lòng chọn biểu mẫu của bộ môn.';
         return false;
       }
+
+      // Reset thông báo lỗi
+      document.getElementById('academicphutrachbomon-error').textContent = "";
 
       if (!option__banchunhiemkhoa) {
         document.getElementById('academicbanchunhiemkhoa-error').textContent = 'Vui lòng chọn biểu mẫu của khoa.';
@@ -1269,15 +1290,7 @@ function getEle(id) {
       }
       
       // Reset thông báo lỗi
-      document.getElementById('academicName-error').textContent = "";
-      document.getElementById('academicYear-error').textContent = "";
-      document.getElementById('academicStart-error').textContent = "";
-      document.getElementById('academicEnd-error').textContent = "";    
-      document.getElementById('academicnhanvien-error').textContent = ""; 
-      document.getElementById('academicgiangvien-error').textContent = "";
-      document.getElementById('academicphutrachbomon-error').textContent = "";
       document.getElementById('academicbanchunhiemkhoa-error').textContent = "";
-
       return true
     }
 
