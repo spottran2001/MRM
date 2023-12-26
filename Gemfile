@@ -61,15 +61,18 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'omniauth-rails_csrf_protection'
 gem 'simple_form'
 gem 'htmlbeautifier'
+
+#deploy
 gem 'capistrano', '~> 3.11'
 gem 'capistrano-rails', '~> 1.4'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+
 #enum
-
-gem "exception_notification"
-
 gem 'enumerize'
+
+# debug email
+gem "exception_notification"
 
 #pagination
 gem "pagy", "~>5.10"
@@ -79,6 +82,9 @@ gem "carrierwave"
 
 #breadcrumbs
 gem "breadcrumbs_on_rails"
+
+# cron job
+gem 'whenever', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

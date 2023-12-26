@@ -10,7 +10,8 @@ class UserMailer < ApplicationMailer
     mail(from: 'Report Monthly <reportmonthlyk25pm04@gmail.com>', to: @user.email, subject: "Thông báo Kỳ báo cáo tháng #{Time.current.strftime('%m-%Y')}")
   end
 
-  def end_report(user)
+  def end_report(user, report)
+    @report = report
     @user = user
     mail(from: 'Report Monthly <reportmonthlyk25pm04@gmail.com>', to: @user.email, subject: "Thông báo Kỳ báo cáo tháng #{Time.current.strftime('%m-%Y')}")
   end
