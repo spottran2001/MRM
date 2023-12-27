@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :report_template do
     put 'submit_report_temp', to: 'report_template#submit_report'
   end
+  resources :configuration, only: [:index, :update]
   post 'report_template/apply_temple', to: 'report_template#apply_temple'
   resources :faculties
   resources :academic do

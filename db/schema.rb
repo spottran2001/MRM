@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_25_063242) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_27_112748) do
   create_table "academics", force: :cascade do |t|
     t.string "name"
     t.integer "staff_report_id"
@@ -20,6 +20,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_25_063242) do
     t.string "report_type"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "configurations", force: :cascade do |t|
+    t.integer "deadline"
+    t.integer "send_email_before_deadline"
+    t.integer "send_email_before_end_date"
+    t.boolean "mailer_start", default: false
+    t.boolean "mailer_end", default: false
+    t.boolean "mailer_deadline", default: false
+    t.boolean "mailer_before_deadline", default: false
+    t.boolean "mailer_before_end_date", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -112,6 +125,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_25_063242) do
     t.datetime "updated_at", null: false
     t.bigint "faculty_id"
     t.index ["faculty_id"], name: "index_subjects_on_faculty_id"
+  end
+
+  create_table "sysdiagrams", primary_key: "diagram_id", id: :integer, force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "principal_id", null: false
+    t.integer "version"
+    t.binary "definition"
+    t.index ["principal_id", "name"], name: "UK_principal_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

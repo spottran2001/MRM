@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      Các cán bộ công chức nhân viên vui lòng hoàn thành Kỳ báo cáo tháng <%= "#{Time.current.strftime('%m-%Y')}" %>. Thời gian bắt đầu từ ngày: <%= "#{@academic.start_date&.strftime('%d/%m/%Y')}"%> cho đến ngày: <%= "#{@academic.end_date&.strftime('%d/%m/%Y')}"%>
+    </p>
+  </body>
+</html>

@@ -855,7 +855,7 @@
           </div>
           <div class="popup_foiter">
             <%= button_to report_index_path,class:"btn__addfile", id:"btn__closeBaocao", style:"background-color: #dc546c;" do %>HỦY<% end %>
-            <%= button_to report_template_submit_report_temp_path(@report_template), method: :put, style: "background-color: #6C8DE0;",class:"btn__addfile" do %>
+            <%= button_to report_template_submit_report_temp_path(@report_template), method: :put, style: "background-color: #6C8DE0;",class:"btn__addfile", onclick: "SubmitReport()" do %>
               LƯU
             <% end %>
           </div>
@@ -987,7 +987,6 @@
           method: 'PUT',
           success: function(data){
             alert("Chỉnh sửa thành công");
-            window.location.replace("/report_template_management");
           }
         });
       }

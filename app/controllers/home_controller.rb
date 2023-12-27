@@ -54,6 +54,7 @@ class HomeController < ApplicationController
 
   def configuration_page
     add_breadcrumb "QUẢN LÝ CẤU HÌNH", :configuration_page_path
+    @config = ::Configuration.last
   end
 
   def report_upload

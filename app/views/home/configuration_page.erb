@@ -725,49 +725,21 @@
 
         <div class="setting-body">
             <div class="setting-body-left">
+                <%= simple_form_for @config do |c| %>
+                  <%= c.input :deadline, label: 'Cập nhật ngày hạn báo cáo trong tháng' %>%
+                <% end %>
+                
+
                 <h4>1. Cấu hình thông báo</h4>
-                <span>Cập nhật số ngày trước hạn</span>
-                <input class="nameGeneralReportForm" style="margin-bottom: 5rem" type="date">
-                <span>Cập nhật số ngày sau hạn</span>
-                <input class="nameGeneralReportForm" type="date">
-            </div>
-            <hr  class="setting-body-line" />
-            <div class="setting-body-right">         
-                <h4>2. Cấu hình kỳ hạn của báo cáo</h4>
-                <div class="contentTimeCreate">
-                  <div class="contentTimeCreateLeft">   
-                    <p style="margin-bottom: 0px">Thời gian bắt đầu</p>                 
-                    <input class="nameGeneralReportForm" style="margin-bottom: 5rem" type="date">                     
-                  </div>
-                  <div class="contentTimeArrow">
-                    <i class="fa-solid fa-arrow-right" style="margin-bottom: 4rem;"></i>
-                  </div>
-                  <div class="contentTimeCreateRight">   
-                    <p style="margin-bottom: 0px">Thời gian kết thúc</p>                 
-                    <input class="nameGeneralReportForm" style="margin-bottom: 5rem" type="date">                    
-                  </div>
-                </div>
-                <span>Ngày hạn báo cáo</span>
+                <span></span>
+                <input class="nameGeneralReportForm" type="number">
+                <span>Cập nhật ngày gửi thông báo trước hạn</span>
+                <input class="nameGeneralReportForm" type="number">
+                <span>Cập nhật ngày gửi thông báo trước khi kết thúc</span>
                 <input class="nameGeneralReportForm" type="number">
             </div>
         </div>
-        
-        <div class="paging d-none">
-          <button aria-label="pagin">
-          <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <button class="paging--active" aria-label="pagin">1</button>
-          <button aria-label="pagin">2</button>
-          <button aria-label="pagin">3</button>
-          <button aria-label="pagin">...</button>
-          <button aria-label="pagin">100</button>
-          <button aria-label="pagin">
-          <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-        
       </div>
-      
     </main>
   </body>
   <script >
@@ -777,9 +749,6 @@
     }
     getEle("statistics").addEventListener("click",()=>{
         getEle("statistics").classList.toggle("show")
-    })
-    getEle("report").addEventListener("click",()=>{
-        getEle("report").classList.toggle("show")
     })
     
     getEle("btn-dropdown").addEventListener("click",()=>{
