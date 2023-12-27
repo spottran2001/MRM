@@ -808,9 +808,9 @@
               </select>
 
               
-              <span style="padding-left: 2rem; font-weight:600">Vai trò</span>
+              <span style="padding-left: 2rem; font-weight:600" class="<%= is_not_valid ? 'd-none' : '' %>">Vai trò</span>
               <%= text_field_tag "filter_role", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
-              <select class="select-field" style="background: #DC4C5D" id="selected_role">
+              <select class="select-field <%= is_not_valid ? 'd-none' : '' %>" style="background: #DC4C5D" id="selected_role">
                 <option value="" selected>Tất cả</option>
                 <option value="Nhân viên">Nhân viên</option>
                 <option value="Giảng viên">Giảng viên</option>
