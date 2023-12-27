@@ -4,7 +4,11 @@ class SubjectsController < ApplicationController
   def index
     add_breadcrumb "QUẢN LÝ BỘ MÔN", :subjects_path
     @subject = Subject.new
-    @pagy, @subjects = pagy(Subject.all, items: 8)
+    subject = Subject.joins(:faculty)
+    if params[:filter]
+      subject = subject.where("subjects.name like ? or faculties.name like ?", "%#{params[:filter]}%", "%#{params[:filter]}%")
+    end
+    @pagy, @subjects = pagy(subject, items: 8)
   end
 
   def create
@@ -13,14 +17,18 @@ class SubjectsController < ApplicationController
   end
 
   def update
-    @subject.update(name: params[:name])
+    @subject = Subject.find(params[:id])
+    @subject.update(name: params[:name], faculty_id: params[:fac_id])
   end
 
   def destroy
+    binding.pry
     if User.where(subject_id: params[:id]).present? || ReportTemplate.where(subject_id: params[:id]).present?
-      raise 'You can not delete this subject because it has been used already'
+      # raise 'You can not delete this subject because it has been used already'
+    else
+      @subject = Subject.find(params[:id])
+      @subject.destroy!
     end
-    @subject.destroy!
   end
 
   private

@@ -819,9 +819,10 @@
               </select>
 
               <%# <input type="checkbox" class="custom_checkbox"> %>
-              <span style="padding-left: 2rem; font-weight:600">Khoa</span>
+              <% is_not_valid = current_user.role.include?("staff") || current_user.role.include?("teacher")%>
+              <span style="padding-left: 2rem; font-weight:600" class="<%= is_not_valid ? 'd-none' : '' %>">Khoa</span>
               <%= text_field_tag "filter_faculty", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
-              <select class="select-field" style="background: #FFC123" id="selected_faculty" >
+              <select class="select-field <%= is_not_valid ? 'd-none' : '' %>" style="background: #FFC123" id="selected_faculty" >
                 <option value="" selected>Tất cả</option>
                   <% Faculty.all.each do |f| %>
                     <option value="<%= f.id %>"><%= f.name %></option>
@@ -829,9 +830,9 @@
               </select>
 
               <%# <input type="checkbox" class="custom_checkbox"> %>
-              <span style="padding-left: 2rem; font-weight:600">Bộ môn</span>
+              <span style="padding-left: 2rem; font-weight:600" class="<%= is_not_valid ? 'd-none' : '' %>">Bộ môn</span>
               <%= text_field_tag "filter_subject", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
-              <select class="select-field" style="background: #FFC123" id="selected_subject">
+              <select class="select-field <%= is_not_valid ? 'd-none' : '' %>" style="background: #FFC123" id="selected_subject">
                 <option value="" selected>Tất cả</option>
                   <% Subject.all.each do |s| %>
                     <option value="<%= s.id %>"><%= s.name %></option>
@@ -872,13 +873,13 @@
               <option value="11">12</option>             
             </select>
             <span style=" font-weight:600; padding-left: 10px; padding-right: 10px">/</span>%>  
-            <select class="select-field-content">
-              <option selected>2025</option>
+            <%# <select class="select-field-content"> %>
+              <%# <option selected>2025</option>
               <option value="1">2024</option>
               <option value="2">2023</option>
               <option value="3">2022</option>
               <option value="4">2021</option>
-            </select>
+            </select> %>
             <%#<div class="btn__addfile">
               <button style=" background-color: #006D77 ;
                 box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25)"> 

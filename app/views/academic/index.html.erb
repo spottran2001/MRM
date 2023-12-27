@@ -940,11 +940,6 @@
                           <input class="nameGeneralReportForm" placeholder="Nhập tên kỳ báo cáo" id="academicName">
                           <span id="academicName-error" style="color: red;"></span>
                         </div>
-                        <div style="padding-bottom: 1rem">
-                          <p>Năm báo cáo</p>
-                          <input class="nameGeneralReportForm" placeholder="Nhập năm báo cáo" id="academicYear" >
-                          <span id="academicYear-error" style="color: red;"></span>
-                        </div>
                         <div class="contentTimeCreate" style="padding-bottom: 1rem">
                           <div class="contentTimeCreateLeft">
                             <p>Thời gian bắt đầu</p>
@@ -1044,7 +1039,7 @@
               <div class="Rectangle5" style="width: 11px; height: 125.04px; left: 221.74px; top: 23.19px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FFE9BC; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-top-left-radius: 12px; border-top-right-radius: 12px"></div>
               <div class="Rectangle6" style="width: 11px; height: 92.18px; left: 207.14px; top: -19.37px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #FF6969; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
               <div class="Rectangle7" style="width: 11px; height: 116.56px; left: 184px; top: -1.89px; position: absolute; transform: rotate(-37.06deg); transform-origin: 0 0; background: #BB2525; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px"></div>
-              <div class="reportPeriod" style="left: 10px; top: 15px; position: absolute; color: white; font-size: 15px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm: 2023</div>
+              <div class="reportPeriod" style="left: 10px; top: 15px; position: absolute; color: white; font-size: 15px; font-family: Inter; font-weight: 700; word-wrap: break-word">Năm: <%= r.start_date&.year %></div>
               <div class="periodName" style="left: 43px; top: 60px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word; width: 190px"><%= r.name %></div>
               <div class="periodYear" style="left: 43px; top: 94px; position: absolute; color: black; font-size: 15px; font-family: Inter; font-weight: 600; word-wrap: break-word"><%= r.start_date&.strftime('%d/%m/%Y') %> - <%= r.end_date&.strftime('%d/%m/%Y') %></div>
               <div class="iconFile" style="width: 12px; height: 12px; left: 16px; top: 58px; position: absolute; color: white">

@@ -111,6 +111,9 @@ class ReportTemplateController < ApplicationController
 
   def report_template_management
     report_templates = ReportTemplate.all
+    if params[:filter].present?
+      report_templates = report_templates.where("name like ? or role like ?", "%#{params[:filter]}%", "%#{params[:filter]}%")
+    end
     @pagy, @report_templates = pagy(report_templates.all, items: 8)
   end
 

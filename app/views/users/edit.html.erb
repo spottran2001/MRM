@@ -767,3 +767,12 @@
     }
   })
 </script>
+
+<script>
+   $(`input[type='checkbox']`).each(function(){
+      if ("<%= @user.role %>".includes(this.value)){
+        this.setAttribute("checked", "checked")
+      }
+    })
+</script>
+

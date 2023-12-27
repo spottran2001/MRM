@@ -4,7 +4,11 @@ class FacultiesController < ApplicationController
   def index
     add_breadcrumb "QUẢN LÝ KHOA", :faculties_path
     @faculty = Faculty.new
-    @pagy, @faculties = pagy(Faculty.all, items: 8)
+    faculties = Faculty.all
+    if params[:filter].present?
+      faculties = faculties.where("name like ?", "%#{params[:filter]}%")
+    end
+    @pagy, @faculties = pagy(faculties, items: 8)
   end
 
   def create

@@ -843,10 +843,14 @@
             </div>
           </div>
           <div class="generality__search">
-            <div class="generality__search_icon">
-              <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="generality__search">
+              <%= form_with url: subjects_path, method: :get, class: "d-flex" do %>
+                <div class="generality__search_icon">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <%= text_field_tag "filter", nil, placeholder: "Tìm kiếm bộ môn", class: "custom-text-field"%>
+              <% end %>
             </div>
-            <input type="text" id="searchInput" placeholder="Tìm kiếm bộ môn">
           </div>
         </div>
         <table class="content__table" id="table_phongban">
@@ -877,10 +881,10 @@
             <td><%= f.created_at&.strftime('%d/%m/%Y %T') %></td>
             <td><%= f.updated_at&.strftime('%d/%m/%Y %T') %></td>
             <td>
-              <button class="btn gold" aria-label="btn" title="Chỉnh sửa bộ môn" data-tooltip="Tooltip Text" onclick="showSubjectDetail()">
+              <button class="btn gold" aria-label="btn" title="Chỉnh sửa bộ môn" data-tooltip="Tooltip Text" onclick="showSubjectDetail(this)" data-fal-name="<%= f.faculty&.name %>" data-sub-name= "<%= f.name %>" data-id="<%= f.id %>">
                 <i class="fa-solid fa-pen"></i>
               </button>
-              <button class="btn red" aria-label="btn" title="Xóa bộ môn" data-tooltip="Tooltip Text"onclick="showSubjectDelete()">
+              <button class="btn red" aria-label="btn" title="Xóa bộ môn" data-tooltip="Tooltip Text"onclick="showSubjectDelete(this)" data-id="<%= f.id %>">
                 <i class="fa-solid fa-trash"></i>
               </button>
             </td>
@@ -939,16 +943,21 @@
           <div class="popup_body_SubjectDetail">
             <div class="content_subjectDetail">
               <span>Khoa</span>
-              <input class="input-field" type="text">
+              <div class="input select optional subject_faculty_id w-100"><select class="input-field" id="facul-id">
+                        <% Faculty.all.each do |s| %>
+                          <option value="<%= s.id %>"><%= s.name %></option>
+                        <% end %>
+                      </select>
+              </div> 
             </div>
             <div class="content_subjectDetail">
               <span>Bộ môn</span>
-              <input class="input-field" type="text">                       
+              <input class="input-field" type="text" id="sub-name">                      
             </div> 
           </div>
           <div class="popup_footer_SubjectDetail">
             <button class="btn__modal" onclick="hideFacultiesDetail()"  id="btn__closeModal">HỦY</button>
-            <button class="btn__modal" id="academicSubmit">LƯU</button>
+            <button class="btn__modal" id="subjectcSubmit" onclick="UpdateSubject(this)">LƯU</button>
           </div>
         </div>
       </div>
@@ -971,7 +980,7 @@
           </div>
           <div class="popup_footer_SubjectDelete">
             <button class="btn__modal" onclick="hideSubjectDelete()">HỦY</button>
-            <button class="btn__modal" >XÓA</button>
+            <button class="btn__modal" id="delete-subject" onclick="FacultiesDelete(this)">XÓA</button>
           </div>
         </div>
       </div>
@@ -1005,16 +1014,29 @@
     }
 
     //Popup xem chi tiết bộ môn
-    function showSubjectDetail() {
+    function showSubjectDetail(element) {
       document.getElementById("popup_SubjectDetail").style.display = "flex";
+      var facul_name = element.getAttribute("data-fal-name")
+      $("#sub-name").val(element.getAttribute("data-sub-name"))
+      $("#facul-id option").each(function(index, e){
+        e.removeAttribute("selected");
+        if(e.innerHTML == facul_name){
+          e.setAttribute("selected","selected");
+        }
+      })
+
+      document.getElementById("subjectcSubmit").setAttribute("data-id", element.getAttribute("data-id"))
     }
+
+
     function hideSubjectDetail() {
       document.getElementById("popup_SubjectDetail").style.display = "none";
     }
 
     //Popup xóa bộ môn
-    function showSubjectDelete() {
+    function showSubjectDelete(element) {
       document.getElementById("popup_SubjectDelete").style.display = "flex";
+      document.getElementById("delete-subject").setAttribute("data-id", element.getAttribute("data-id"))
     }
     function hideSubjectDelete() {
       document.getElementById("popup_SubjectDelete").style.display = "none";
@@ -1022,45 +1044,84 @@
 
     //search dữ liệu trong bảng 
     // Lấy input tìm kiếm và bảng
-    const searchInput = document.getElementById('searchInput');
-    const table = document.getElementById('table_phongban');
-    const rows = table.querySelectorAll('tr');
+    // const searchInput = document.getElementById('searchInput');
+    // const table = document.getElementById('table_phongban');
+    // const rows = table.querySelectorAll('tr');
 
     // Lưu trạng thái ban đầu của các hàng
-    const initialDisplayStates = [...rows].map(row => row.style.display);
+    // const initialDisplayStates = [...rows].map(row => row.style.display);
 
     // Sử lý sự kiện tìm kiếm
-    searchInput.addEventListener('input', function () {
-      const searchTerm = searchInput.value.trim().toLowerCase();
+    // searchInput.addEventListener('input', function () {
+    //   const searchTerm = searchInput.value.trim().toLowerCase();
 
-      rows.forEach((row, index) => {
-        // Bỏ qua hàng tiêu đề
-        if (row.classList.contains('content__table_header')) return;
+    //   rows.forEach((row, index) => {
+    //     // Bỏ qua hàng tiêu đề
+    //     if (row.classList.contains('content__table_header')) return;
 
-          const columns = row.querySelectorAll('td');
-          let found = false;
+    //       const columns = row.querySelectorAll('td');
+    //       let found = false;
 
-          // Kiểm tra nội dung trong cột và ẩn/hiện dựa trên kết quả tìm kiếm
-          columns.forEach((column, columnIndex) => {
-            if (column.textContent.trim().toLowerCase().includes(searchTerm)) {
-              found = true;
-              row.style.display = ''; // Hiển thị hàng
-            } else if (found === false && columnIndex === columns.length - 1) {
-              row.style.display = 'none'; // Ẩn hàng nếu không tìm thấy kết quả
-            }
-          });
-        });
-    });
+    //       // Kiểm tra nội dung trong cột và ẩn/hiện dựa trên kết quả tìm kiếm
+    //       columns.forEach((column, columnIndex) => {
+    //         if (column.textContent.trim().toLowerCase().includes(searchTerm)) {
+    //           found = true;
+    //           row.style.display = ''; // Hiển thị hàng
+    //         } else if (found === false && columnIndex === columns.length - 1) {
+    //           row.style.display = 'none'; // Ẩn hàng nếu không tìm thấy kết quả
+    //         }
+    //       });
+    //     });
+    // });
 
-    // Sử lý sự kiện xóa trường tìm kiếm
-    searchInput.addEventListener('keyup', function (event) {
-      if (event.key === 'Escape' && searchInput.value !== '') {
-        searchInput.value = ''; // Xóa nội dung tìm kiếm
-        rows.forEach((row, index) => {
-          row.style.display = initialDisplayStates[index]; // Hiển thị lại dữ liệu ban đầu
-        });
-      }
-    });
+    // // Sử lý sự kiện xóa trường tìm kiếm
+    // searchInput.addEventListener('keyup', function (event) {
+    //   if (event.key === 'Escape' && searchInput.value !== '') {
+    //     searchInput.value = ''; // Xóa nội dung tìm kiếm
+    //     rows.forEach((row, index) => {
+    //       row.style.display = initialDisplayStates[index]; // Hiển thị lại dữ liệu ban đầu
+    //     });
+    //   }
+    // });
     
+  </script>
+
+  <script>
+    function FacultiesDelete(element) {
+      var id = element.getAttribute("data-id")
+      jQuery.ajax({
+        url: `/subjects/${id}`,
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'DELETE',
+        success: function(data){
+          window.location.replace("/subjects");
+        }
+      });
+    }
+
+    function UpdateSubject(element) {
+      var name =  $("#sub-name").val();
+      var fac_id =  $("#facul-id option:selected").val();
+      var id = element.getAttribute("data-id")
+      var data = new FormData();
+      data.append('name', name);
+      data.append('fac_id', fac_id);
+      jQuery.ajax({
+        url: `/subjects/${id}`,
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        cache: false,
+        data: data,
+        contentType: false,
+        processData: false,
+        method: 'PUT',
+        success: function(data){
+          window.location.replace("/subjects");
+        }
+      });
+    }
+  
   </script>
 </html>

@@ -595,7 +595,7 @@
     <div class="user_icon" id="userIcon">
       <%= button_to user_read_notifications_path(current_user), method: :put, style: "background-color: #F5F5F5; border:none", id: 'notification-button' do %>
       <i class="fa-regular fa-bell" title="Thông báo" data-tooltip="Tooltip Text">
-        <span class="notification-badge"><%= current_user.notifications.size %></span>
+        <span class="notification-badge" id="noti-span"><%= current_user.notifications.size %></span>
       </i>
       <% end %>
       <div id="userNotifi" class="d-none">
@@ -607,7 +607,7 @@
               <p> <%= noti.content %> </p>
               <p> <%= noti.created_at&.strftime('%d/%m/%Y %T') %> </p>
             </div>
-            <%= button_to user_delete_notification_path(current_user, notification_id: noti), method: :delete, style: "border:none;background-color: #5cbd4c", data: {turbo: false} do %>
+            <%= button_to user_delete_notification_path(current_user, notification_id: noti), method: :delete, style: "border:none;background-color: #5cbd4c", data: {turbo: false}, onclick: "updateNoti()" do %>
               <i class="fa-solid fa-xmark delete_notification" data-noti-index="notifi-content-<%= index %>"></i>
             <% end %>
           </div>
@@ -622,7 +622,7 @@
       </p>
     </div>
     <div class="user__img">
-      <img src="<%= current_user.avatar&.url || "https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo"%>" alt="" id="imagePreview">
+      <img src="<%= current_user.avatar&.url || "https://lh3.google.com/u/0/ogw/AGvuzYYcM_IFNQvLSHfI5OSqDYT2FXBM52OQB7JDBNii=s64-c-mo"%>" alt="" id="imagePreview" style="height: 40px">
     </div>
   </div>
 </div>
@@ -644,5 +644,9 @@
       $(`#${e.target.getAttribute("data-noti-index")}`).hide()
     })
   })
+
+  function updateNoti() {
+    document.getElementById("noti-span").innerHTML = document.getElementById("noti-span").innerHTML - 1
+  }
 </script>
 

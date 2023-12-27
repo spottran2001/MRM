@@ -13,11 +13,15 @@ class AcademicController < ApplicationController
 
   def report_list
     @academic = Academic.find(params[:id])
-    @report_list = Report.where(academic_id: params[:id])
+    @report_list = Report.joins(:user, :report_type).where(academic_id: params[:id])
+    @status = params[:status]
     add_breadcrumb  "CHI TIẾT KỲ BÁO CÁO", :academic_path
     add_breadcrumb "DANH SÁCH BÁO CÁO CHI TIẾT", :report_list_academic_path
     if params[:status]
       @report_list = @report_list.where(role: params[:status])
+      if params[:filter].present?
+        @report_list = @report_list.where("users.name like ? or report_types.name_type like ?", "%#{params[:filter]}%", "%#{params[:filter]}%")
+      end
       @pagy, @report_list = pagy(@report_list, items: 8)
     else
       redirect_to root_path

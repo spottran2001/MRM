@@ -785,10 +785,12 @@
           </div>
         </div>
         <div class="generality__search">
-          <div class="generality__search_icon">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-          <input type="text" id="searchInput" placeholder="Tìm kiếm khoa">
+          <%= form_with url: faculties_path, method: :get, class: "d-flex" do %>
+            <div class="generality__search_icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <%= text_field_tag "filter", nil, placeholder: "Tìm kiếm khoa", class: "custom-text-field"%>
+          <% end %>
         </div>
       </div>
       <table class="content__table" id="table_phongban">
@@ -845,8 +847,9 @@
             <i onclick="hideFeedbackPopup()" style="cursor: pointer;padding: 10px;" class="fa-solid fa-xmark"></i>
           </div>
           <div class="popup_body_feedback">
-            <%= simple_form_for @faculty do |f| %>
-              <%= f.input :name, input_html: { class: 'custom-input-class' }, placeholder: "Nhập tên khoa", label: 'Tên Khoa', required: false %>      
+            <%= simple_form_for @faculty, html: { novalidate: true } do |f| %>
+              <label for="faculty_name">Tên Khoa:</label>
+              <%= f.input :name, input_html: { class: 'custom-input-class' }, placeholder: "Nhập tên khoa", label: false, required: true %>      
           </div>
           <div class="popup_footer_feedback">
               <button class="btn__addfile" onclick="hideFeedbackPopup()" style="background-color: #dc546c;">HỦY</button>
@@ -988,49 +991,5 @@
       });
     }
 
-  </script>
-
-  <script>
-    //search dữ liệu trong bảng 
-    // Lấy input tìm kiếm và bảng
-    const searchInput = document.getElementById('searchInput');
-    const table = document.getElementById('table_phongban');
-    const rows = table.querySelectorAll('tr');
-
-    // Lưu trạng thái ban đầu của các hàng
-    const initialDisplayStates = [...rows].map(row => row.style.display);
-
-    // Sử lý sự kiện tìm kiếm
-    searchInput.addEventListener('input', function () {
-      const searchTerm = searchInput.value.trim().toLowerCase();
-
-      rows.forEach((row, index) => {
-        // Bỏ qua hàng tiêu đề
-        if (row.classList.contains('content__table_header')) return;
-
-          const columns = row.querySelectorAll('td');
-          let found = false;
-
-          // Kiểm tra nội dung trong cột và ẩn/hiện dựa trên kết quả tìm kiếm
-          columns.forEach((column, columnIndex) => {
-            if (column.textContent.trim().toLowerCase().includes(searchTerm)) {
-              found = true;
-              row.style.display = ''; // Hiển thị hàng
-            } else if (found === false && columnIndex === columns.length - 1) {
-              row.style.display = 'none'; // Ẩn hàng nếu không tìm thấy kết quả
-            }
-          });
-        });
-    });
-
-    // Sử lý sự kiện xóa trường tìm kiếm
-    searchInput.addEventListener('keyup', function (event) {
-      if (event.key === 'Escape' && searchInput.value !== '') {
-        searchInput.value = ''; // Xóa nội dung tìm kiếm
-        rows.forEach((row, index) => {
-          row.style.display = initialDisplayStates[index]; // Hiển thị lại dữ liệu ban đầu
-        });
-      }
-    });
   </script>
 </html>
