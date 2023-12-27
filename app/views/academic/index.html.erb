@@ -1186,7 +1186,6 @@ function getEle(id) {
 
     //validate các trường trong popup tạo kỳ
     function validateInput() {
-        var inputElement = document.getElementById("academicYear");
         var errorMessageElement = document.getElementById("error-message");
         var inputValue = inputElement.value;
 
@@ -1204,7 +1203,6 @@ function getEle(id) {
 
     function validateAndSubmit() {
       var academicName = document.getElementById('academicName').value;
-      var academicYear = document.getElementById('academicYear').value;
       var academicStart = document.getElementById('academicStart').value;
       var academicEnd = document.getElementById('academicEnd').value;
       var option__nhanvien = document.getElementById('selectedNhanVienModal').getAttribute('key')
@@ -1227,23 +1225,8 @@ function getEle(id) {
       // Reset thông báo lỗi
       document.getElementById('academicName-error').textContent = "";
 
-      if (!academicYear) {
-          document.getElementById('academicYear-error').textContent = 'Vui lòng nhập năm báo cáo.';
-          return false;
-      }
-
-      if (/[^0-9]/.test(academicYear)) {
-          document.getElementById('academicYear-error').textContent = 'Năm báo cáo chỉ được chứa chữ số dương.';
-          return false;
-      }
-
-      if (academicYear.length !== 4) {
-          document.getElementById('academicYear-error').textContent = 'Năm báo cáo phải có đúng 4 chữ số.';
-          return false;
-      }
-
       // Reset thông báo lỗi
-      document.getElementById('academicYear-error').textContent = "";
+      
 
       if (!academicStart) {
         document.getElementById('academicStart-error').textContent = 'Vui lòng chọn thời gian bắt đầu.';
