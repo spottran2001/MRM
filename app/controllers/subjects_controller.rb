@@ -22,7 +22,6 @@ class SubjectsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     if User.where(subject_id: params[:id]).present? || ReportTemplate.where(subject_id: params[:id]).present?
       # raise 'You can not delete this subject because it has been used already'
     else
