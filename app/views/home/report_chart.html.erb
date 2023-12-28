@@ -807,7 +807,8 @@
                 <% end %>
               </select>
 
-              
+              <% is_not_valid = current_user.role.include?("staff") || current_user.role.include?("teacher")%>
+
               <span style="padding-left: 2rem; font-weight:600" class="<%= is_not_valid ? 'd-none' : '' %>">Vai trò</span>
               <%= text_field_tag "filter_role", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
               <select class="select-field <%= is_not_valid ? 'd-none' : '' %>" style="background: #DC4C5D" id="selected_role">
@@ -819,7 +820,6 @@
               </select>
 
               <%# <input type="checkbox" class="custom_checkbox"> %>
-              <% is_not_valid = current_user.role.include?("staff") || current_user.role.include?("teacher")%>
               <span style="padding-left: 2rem; font-weight:600" class="<%= is_not_valid ? 'd-none' : '' %>">Khoa</span>
               <%= text_field_tag "filter_faculty", nil, placeholder: "Tìm kiếm tài khoản", class: "custom-text-field d-none"%>
               <select class="select-field <%= is_not_valid ? 'd-none' : '' %>" style="background: #FFC123" id="selected_faculty" >
